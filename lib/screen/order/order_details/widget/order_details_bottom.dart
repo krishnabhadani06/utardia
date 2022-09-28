@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
+import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 
 class OrderDetailsBottom extends StatelessWidget {
-  const OrderDetailsBottom({Key? key}) : super(key: key);
+  int? ind;
+  OrderDetailsBottom({Key? key, this.ind}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<OrderProvider>(context, listen: false);
     return Column(
       children: [
         Padding(
@@ -55,7 +59,7 @@ class OrderDetailsBottom extends StatelessWidget {
                     Text(Strings.subTotal,
                         style: natoRegularTextStyle(fontSize: 16)),
                     Text(
-                      '320',
+                      provider.orderModel!.data![ind!].grandTotal.toString(),
                       style: natoRegularTextStyle(
                           fontSize: 16, color: ColorRes.grey),
                     ),
@@ -70,7 +74,8 @@ class OrderDetailsBottom extends StatelessWidget {
                     Text(Strings.disCount,
                         style: natoRegularTextStyle(fontSize: 16)),
                     Text(
-                      '10',
+                      provider.orderModel!.data![ind!].couponDiscount
+                          .toString(),
                       style: natoRegularTextStyle(
                           fontSize: 16, color: ColorRes.grey),
                     ),
@@ -83,11 +88,11 @@ class OrderDetailsBottom extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      Strings.save,
+                      Strings.subTotal,
                       style: natoRegularTextStyle(fontSize: 16),
                     ),
                     Text(
-                      Strings.subTotal,
+                      provider.orderModel!.data![ind!].grandTotal.toString(),
                       style: natoRegularTextStyle(
                           fontSize: 16, color: ColorRes.blue),
                     ),
@@ -108,7 +113,7 @@ class OrderDetailsBottom extends StatelessWidget {
                       style: natoRegularTextStyle(fontSize: 16),
                     ),
                     Text(
-                      Strings.total,
+                      provider.orderModel!.data![ind!].grandTotal.toString(),
                       style: natoRegularTextStyle(
                           fontSize: 16, color: ColorRes.blue),
                     ),

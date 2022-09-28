@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:utardia/common/helper.dart';
+import 'package:utardia/common/material_button.dart';
+import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
+import 'package:utardia/util/image_res.dart';
+import 'package:utardia/util/string.dart';
 
 class PaymentStatusScreen extends StatefulWidget {
   const PaymentStatusScreen({Key? key}) : super(key: key);
@@ -33,7 +38,31 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
           )),
       body: Center(
         child: Column(
-          children: [],
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.12),
+            Image.asset(AssetsImagesRes.favouriteImage),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+            Text(
+              Strings.noOrder,
+              style: natoBoldTextStyle(fontSize: 20),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+            Text(
+              Strings.NoOrderDes,
+              style:
+                  natoMediumTextStyle(fontSize: 16, color: ColorRes.grayText),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+              child: materialButton(
+                  txtButton: Strings.startShopping,
+                  onPressed: () {
+                    navigator.currentState!.pop();
+                  }),
+            ),
+          ],
         ),
       ),
     );

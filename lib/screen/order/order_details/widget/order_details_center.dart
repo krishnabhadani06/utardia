@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/order/order_details/widget/order_details_cart.dart';
+import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
 import 'package:utardia/util/string.dart';
 
 class OrderDetailsCenter extends StatelessWidget {
-  const OrderDetailsCenter({Key? key}) : super(key: key);
+  int? ind;
+  OrderDetailsCenter({Key? key, this.ind}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<OrderProvider>(context, listen: false);
     return Column(
       children: [
         SizedBox(
@@ -22,7 +26,10 @@ class OrderDetailsCenter extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
-                Strings.address,
+                provider.orderModel!.data![ind!].shippingAddress!.isNotEmpty
+                    ? provider
+                        .orderModel!.data![ind!].shippingAddress![0].address!
+                    : "",
                 style: robotoBoldTextStyle(fontSize: 16),
               ),
             ),
@@ -59,7 +66,10 @@ class OrderDetailsCenter extends StatelessWidget {
                 width: deviceWidth * 0.75,
                 child: Center(
                   child: Text(
-                    '221 Baker St, Marylebone, London NW1 6XE, United Kingdom',
+                    provider.orderModel!.data![ind!].shippingAddress!.isNotEmpty
+                        ? provider.orderModel!.data![ind!].shippingAddress![0]
+                            .address!
+                        : "",
                     style: robotoBoldTextStyle(fontSize: 14),
                     textAlign: TextAlign.justify,
                     maxLines: 2,
@@ -99,7 +109,7 @@ class OrderDetailsCenter extends StatelessWidget {
             ],
           ),
         ),
-        const OrderDetailsCart(),
+        OrderDetailsCart(i: ind!),
       ],
     );
   }

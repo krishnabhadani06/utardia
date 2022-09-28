@@ -14,6 +14,7 @@ import 'package:utardia/screen/edit_profile/edit_profile_screen.dart';
 import 'package:utardia/screen/edit_profile/editprofile_provider.dart';
 import 'package:utardia/screen/mycard/my_card_screen.dart';
 import 'package:utardia/screen/order/oder_screen.dart';
+import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/pref_key.dart';
 
@@ -40,6 +41,13 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void onTapOrders(BuildContext con) {
+    Provider.of<OrderProvider>(con, listen: false).init();
+    navigator.currentState!.push(MaterialPageRoute(builder: (context) {
+      return OrderScreen();
+    }));
+  }
+
   bool onChangeNotification() {
     if (kDebugMode) {
       print(value);
@@ -64,6 +72,7 @@ class ProfileProvider extends ChangeNotifier {
   }
 
   void onTapOrder(BuildContext context) {
+    Provider.of<OrderProvider>(context, listen: false).init();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const OrderScreen()));
   }

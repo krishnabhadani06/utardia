@@ -57,7 +57,9 @@ class ProfileDrawerGeneral extends StatelessWidget {
           height: deviceHeight * 0.01,
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            provider.onTapOrder(context);
+          },
           child: rowCommon(icon: IconRes.icMyOrders, title: Strings.myOrder),
         ),
       ],

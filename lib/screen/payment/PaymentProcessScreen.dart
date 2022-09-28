@@ -6,7 +6,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:logger/logger.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/screen/dashboard/dashboard_screen.dart';
-import 'package:utardia/screen/payment/PaymentStatusScreen.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
@@ -38,8 +37,7 @@ class PaymentProcessScreen extends StatelessWidget {
             if (uri.path.contains("success")) {
               showToast("Payment successfull");
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (context) => PaymentStatusScreen()),
+                  MaterialPageRoute(builder: (context) => DashScreen()),
                   (Route<dynamic> route) => false);
             } else if (uri.toString().contains("fail")) {
               showToast("Payment failed");

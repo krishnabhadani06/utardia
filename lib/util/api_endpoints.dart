@@ -5,7 +5,7 @@ class ApiEndPoint {
 
   ///*******************endPoints**********************
   static const signUp = "${baseUrl}auth/signup";
-
+  static const getOrders = "${baseUrl}orders/";
   static const signIn = "${baseUrl}auth/login";
   static const conformCode = "${baseUrl}auth/confirm_code";
   static const forgotPassword = "${baseUrl}auth/password/forget_request";

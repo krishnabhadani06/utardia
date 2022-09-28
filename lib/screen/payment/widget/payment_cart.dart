@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/model/payment_model/pamentModel.dart';
-import 'package:utardia/model/payment_model/payment_drop_down.dart';
 import 'package:utardia/screen/mycard/my_card_screen.dart';
 import 'package:utardia/screen/payment/payment_provider.dart';
 import 'package:utardia/util/color_res.dart';
@@ -55,8 +54,7 @@ class PaymentCart extends StatelessWidget {
                         iconSize: 24,
                         elevation: 16,
                         isExpanded: true,
-                        onChanged: (paymentModel? newSelectCart) =>
-                            provider.onDropDownCartSelected(newSelectCart!),
+                        onChanged: null,
                         value: provider.currentPayment,
                         items: provider.paymentTypeList!
                             .map<DropdownMenuItem<paymentModel>>(

@@ -1,10 +1,8 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/util/color_res.dart';
@@ -26,8 +24,8 @@ class HomeCenter extends StatelessWidget {
           crossAxisCount: 3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 0,
-          childAspectRatio: MediaQuery.of(context).size.width /
-              (MediaQuery.of(context).size.height / 1.6),
+          // childAspectRatio: MediaQuery.of(context).size.width /
+          //     (MediaQuery.of(context).size.height / 1.6),
         ),
         itemCount: provider.allHomeCategories.length,
         itemBuilder: (context, index) {
@@ -37,8 +35,8 @@ class HomeCenter extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: deviceWidth * 0.30,
-                  width: deviceWidth * 0.30,
+                  height: MediaQuery.of(context).size.width * 0.25,
+                  width: MediaQuery.of(context).size.width * 0.30,
                   child: Card(
                     shadowColor: ColorRes.black.withOpacity(0.3),
                     shape: RoundedRectangleBorder(

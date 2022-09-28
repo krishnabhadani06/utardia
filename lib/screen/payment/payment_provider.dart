@@ -2,21 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/CartList_model/cartSummaryModel.dart';
 import 'package:utardia/model/adddressListMdoel/addressModel.dart';
 import 'package:utardia/model/coupenModel/CartBaseCoupenModel.dart';
-import 'package:utardia/model/coupenModel/coupenModel.dart';
 import 'package:utardia/model/payment_model/pamentModel.dart';
 import 'package:utardia/model/payment_model/payment_drop_down.dart';
 import 'package:utardia/model/shipping_addrss_model/Shipping_address_model.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/payment/PaymentProcessScreen.dart';
-import 'package:utardia/screen/payment/payment_result/payment_result_screen.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
@@ -63,13 +61,15 @@ class PaymentProvider extends ChangeNotifier {
 
   void onTapPlaceOrder(BuildContext context) {
     PlaceOrder(context).then((value) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => PaymentProcessScreen(
-                    id: value.toString(),
-                    amount: cartSummary!.grandTotalValue.toString(),
-                  ))).whenComplete(() => init());
+      if (value != "") {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PaymentProcessScreen(
+                      id: value.toString(),
+                      amount: cartSummary!.grandTotalValue.toString(),
+                    ))).whenComplete(() => init());
+      }
     });
   }
 
@@ -95,7 +95,12 @@ class PaymentProvider extends ChangeNotifier {
           return paymentModel.fromJson(e);
         }).toList();
         if (paymentTypeList != null) {
-          currentPayment = paymentTypeList![0];
+          paymentTypeList!.forEach((element) {
+            if (element.paymentType == "paystack") {
+              currentPayment = element;
+              return;
+            }
+          });
         }
       } else {
         showToast("went Wrong !! ${res!.statusCode}");
@@ -229,7 +234,11 @@ class PaymentProvider extends ChangeNotifier {
       if (res != null && res!.statusCode == 200) {
         Logger().e(jsonDecode(res.body));
         showToast(jsonDecode(res.body)['message']);
-        return jsonDecode(res.body)['combined_order_id'].toString();
+        if (jsonDecode(res.body)['result'] == true) {
+          return jsonDecode(res.body)['combined_order_id'].toString();
+        } else {
+          return "";
+        }
       } else {
         showToast(res!.statusCode.toString());
         return "";

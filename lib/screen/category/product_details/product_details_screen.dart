@@ -15,6 +15,7 @@ import 'package:utardia/util/icon_res.dart';
 import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/pref_key.dart';
 import 'package:utardia/util/string.dart';
+
 import 'product_details_provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {

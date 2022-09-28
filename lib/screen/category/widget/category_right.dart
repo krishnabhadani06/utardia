@@ -77,7 +77,7 @@ class _CategoryRightState extends State<CategoryRight> {
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
                               gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                  SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 0.5,
                                 mainAxisSpacing: 0.5,

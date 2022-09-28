@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:utardia/common/helper.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/home_center.dart';
 import 'package:utardia/screen/dashboard/profile/widget/profile_drawer.dart';
@@ -101,7 +100,8 @@ class HomeScreen extends StatelessWidget {
                     child: ListView.builder(
                       //itemCount: 1 + 1 + provider.allCategoriesProducts.length,
                       itemCount: 1 + 1 + provider.allHomeTopProducts.length,
-                      padding: EdgeInsets.only(top: deviceHeight * 0.02),
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.02),
                       itemBuilder: (context, index) {
                         if (index == 0) {
                           return const HomeTop();

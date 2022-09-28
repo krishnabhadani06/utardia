@@ -60,27 +60,25 @@ class _categoryProductCardState extends State<categoryProductCard> {
     final provider2 = Provider.of<FavoriteProvider>(context, listen: false);
 
     return Consumer<FavoriteProvider>(builder: (context, pro, x) {
-      return Container(
-        margin:
-            const EdgeInsets.only(left: 3.0, right: 3.0, top: 7.0, bottom: 7.0),
-        // height: 210,
-        // width: 180,
-        decoration: BoxDecoration(
-          color: ColorRes.white,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.20),
-              blurRadius: 5,
-              offset: Offset.zero,
-              spreadRadius: 0,
+      return GestureDetector(
+        onTap: widget.onTap,
+        child: Container(
+          margin: const EdgeInsets.only(
+              left: 3.0, right: 3.0, top: 7.0, bottom: 7.0),
+          decoration: BoxDecoration(
+            color: ColorRes.white,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(8),
             ),
-          ],
-        ),
-        child: GestureDetector(
-          onTap: () => widget.onTap,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.20),
+                blurRadius: 5,
+                offset: Offset.zero,
+                spreadRadius: 0,
+              ),
+            ],
+          ),
           child: Column(
             children: [
               Expanded(
@@ -267,8 +265,6 @@ class _categoryProductCardState extends State<categoryProductCard> {
               // ),
             ],
           ),
-          //   ],
-          // ),
         ),
       );
     });

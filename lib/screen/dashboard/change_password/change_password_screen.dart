@@ -19,11 +19,6 @@ class ChangePasswordScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: ColorRes.appBarColor,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(20),
-            ),
-          ),
           leading: GestureDetector(
             child: Icon(IconRes.icBack, size: 30),
             onTap: () {
@@ -45,21 +40,44 @@ class ChangePasswordScreen extends StatelessWidget {
                   SizedBox(height: deviceHeight * 0.04),
                   provider.isForgot
                       ? const SizedBox()
-                      : txtfield(
-                          isObs: true,
-                          validate: (val) {
-                            if (val!.length < 8) {
-                              return Strings.enterMinimumPassword;
-                            }
-                            return (val!.isEmpty)
-                                ? Strings.pleaseEnterPassword
-                                : null;
-                          },
-                          controllerValue: provider.txtOldPassword,
-                          hintTxt: Strings.oldPassword,
-                          // validate: (val) => validatePassword(provider.txtOldPassword)),
-                          // validate: (val) => validatePassword(val),
-                        ),
+                  : CommonTextField(
+                      controller: provider.txtOldPassword,
+                      obscure: false,
+                      hintText: Strings.oldPassword,
+                      error: false,
+                      width: deviceWidth,
+                      border: false),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5),
+                    padding: const EdgeInsets.only(right: 25),
+                    alignment: Alignment.centerLeft,
+                    height: 20,
+                    width: double.infinity,
+                    // color: Colors.yellow,
+                    child: Text(
+                      "",
+                      // provider.errorTxtId ?? "",
+                      style: robotoRegularTextStyle(
+                        fontSize: 12,
+                        color: ColorRes.red,
+                      ),
+                    ),
+                  ),
+                      // : txtfield(
+                      //     isObs: true,
+                      //     validate: (val) {
+                      //       if (val!.length < 8) {
+                      //         return Strings.enterMinimumPassword;
+                      //       }
+                      //       return (val!.isEmpty)
+                      //           ? Strings.pleaseEnterPassword
+                      //           : null;
+                      //     },
+                      //     controllerValue: provider.txtOldPassword,
+                      //     hintTxt: Strings.oldPassword,
+                      //     // validate: (val) => validatePassword(provider.txtOldPassword)),
+                      //     // validate: (val) => validatePassword(val),
+                      //   ),
                   SizedBox(height: deviceHeight * 0.02),
                   txtfield(
                     isObs: true,

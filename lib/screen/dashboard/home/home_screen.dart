@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
+import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/home_center.dart';
 import 'package:utardia/screen/dashboard/profile/widget/profile_drawer.dart';
@@ -21,33 +22,6 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: ColorRes.appBarColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(16),
-              ),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  right: 10,
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    // method to show the search bar
-                    showSearch(
-                        context: context,
-                        // delegate to customize the search bar
-                        delegate: CustomSearchDelegate());
-                  },
-                  // onPressed: () => provider.onTapSearch(context),
-                  icon: Icon(
-                    IconRes.icSearch,
-                    size: 30,
-                  ),
-                ),
-              ),
-            ],
             leading: IconButton(
               onPressed: () {
                 //on drawer menu pressed
@@ -60,6 +34,22 @@ class HomeScreen extends StatelessWidget {
                 }
               },
               icon: const Icon(Icons.menu),
+            ),
+            centerTitle: true,
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("U T R A D I A",
+                    style: robotoSemiBoldTextStyle(
+                      color: ColorRes.white,
+                      fontSize: 18,
+                    ).copyWith(fontWeight: FontWeight.w700)),
+                Text("T h e  T r u s t w o r t h y  M a r k e t p l a c e",
+                    style: robotoSemiBoldTextStyle(
+                      color: ColorRes.white,
+                      fontSize: 7,
+                    ).copyWith(fontWeight: FontWeight.w700))
+              ],
             ),
           ),
           body: Scaffold(

@@ -24,11 +24,6 @@ class ProfileScreen extends StatelessWidget {
         primary: true,
         appBar: AppBar(
             backgroundColor: ColorRes.appBarColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(20),
-              ),
-            ),
             centerTitle: true,
             title: const Text(Strings.profile, style: TextStyle(fontSize: 22)),
             automaticallyImplyLeading: false,

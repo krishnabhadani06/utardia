@@ -1,0 +1,98 @@
+import 'package:flutter/foundation.dart';
+import 'package:utardia/util/string.dart';
+
+String? validatePassword(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  RegExp regex = RegExp(r'^((?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%&*]{6,20})$');
+  if (val.isEmpty) {
+    return Strings.pleaseEnterPassword;
+  } else {
+    if (!regex.hasMatch(val)) {
+      return 'Please Enter Password';
+      // return 'must use ex. Abc@1234 , minimum 8 character';
+    } else {
+      return null;
+    }
+  }
+}
+
+String? validateEmail(String? value) {
+  String pattern =
+      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+      r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+      r"{0,253}[a-zA-Z0-9])?)*$";
+  String patternPhone = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  RegExp regex = RegExp(pattern);
+  RegExp regphone = RegExp(patternPhone);
+  if (value == null || value.isEmpty) {
+    return "Please enter email or phone number !!";
+  } else {
+    if (num.tryParse(value) != null) {
+      //phone
+      if (regphone.hasMatch(value)) {
+        return null;
+      } else {
+        return "Enter valid phone number";
+      }
+    } else {
+      if (regex.hasMatch(value)) {
+        return null;
+      } else {
+        return "Enter valid email";
+      }
+      //email
+    }
+  }
+}
+
+String? phoneNumberValidator(String value) {
+  String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(value)) {
+    return 'Please enter valid mobile number';
+  } else {
+    return null;
+  }
+}
+
+String? validateEmail1(String value) {
+  String pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]'
+      r'{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  String patternPhone = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  RegExp regphone = RegExp(patternPhone);
+  RegExp regex = RegExp(pattern);
+  if (value.isEmpty) {
+    return "Please enter email or phone number !!";
+  } else {
+    if (num.tryParse(value) != null) {
+      //phone
+      if (regphone.hasMatch(value)) {
+        return null;
+      } else {
+        return "Enter valid phone number";
+      }
+    } else {
+      if (regex.hasMatch(value)) {
+        return null;
+      } else {
+        return "Enter valid email";
+      }
+      //email
+    }
+  }
+  // if(!regex.hasMatch(value)) {
+  //   return 'Enter email';
+  // } else {
+  //   return null;
+  // }
+}
+
+void main() {
+  if (kDebugMode) {
+    print(validateEmail("aslam@gmail.com"));
+    //print(validateEmail1("aslam@yahoo.com"));
+  }
+}

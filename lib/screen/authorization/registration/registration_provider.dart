@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:utardia/common/validations.dart';
 import 'package:utardia/model/SignUp_Model/signup_model.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 
@@ -11,9 +13,17 @@ class RegistrationProvider extends ChangeNotifier {
   GlobalKey<FormState> registrationFormKey = GlobalKey<FormState>();
   SingUpModel singUpModel = SingUpModel();
   bool loader = false;
+  String? errorTextEmail;
+  String? errorTextPassword;
+  String? errorTextRePassword;
 
   void onTapRegistration(BuildContext context) {
-    if (registrationFormKey.currentState!.validate()) {
+    emailValidation();
+    passwordValidation();
+    rePasswordValidation();
+    if (errorTextEmail == null &&
+        errorTextPassword == null &&
+        errorTextRePassword == null) {
       singUpApiData(
         context,
         txtEmail.text,
@@ -23,7 +33,33 @@ class RegistrationProvider extends ChangeNotifier {
     } else {}
   }
 
-  // Navigator.push(context, MaterialPageRoute(builder: (context)=>const OtpReceiverScreen()));
+  void emailValidation() {
+    errorTextEmail = validateEmail(txtEmail.text);
+    notifyListeners();
+  }
+
+  void passwordValidation() {
+    errorTextPassword = validatePassword(txtPassword.text);
+    notifyListeners();
+  }
+
+  void rePasswordValidation() {
+    errorTextRePassword = validatePassword(txtRePassword.text);
+    notifyListeners();
+  }
+
+  String? rePassValidation(val) {
+    if (kDebugMode) {
+      print(val);
+    }
+    if (val.isEmpty) {
+      return 'Please re-enter your new password';
+    }
+    if (val != txtRePassword.text) {
+      return 'Password must be same..';
+    }
+    return null;
+  }
 
   Widget onTapTerms(BuildContext context, String title, String subText) {
     return TermsBottomSheet(title, subText);

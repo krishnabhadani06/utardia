@@ -6,12 +6,12 @@ class Strings {
   static const or = 'or';
   static const anyAccount = 'Don\'t have any account?';
   static const createNew = 'Create new account';
-  static const password = 'Password';
+  static const password = ' Enter Password';
   static const pleaseEnterPassword = 'Please Enter Password';
   static const enterMinimumPassword = 'Please enter Password,minimum 8';
 
   static const register = 'Register';
-  static const emailOrPhone = 'Email or Phone';
+  static const emailOrPhone = ' Enter Email or Phone';
   static const enterEmail = 'Enter Email or Phone ';
   static const verifyPass = 'Verify Password';
   static const byCreatingAccount =

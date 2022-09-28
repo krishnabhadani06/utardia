@@ -29,28 +29,55 @@ class OtpCenter extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+            Container(
               height: deviceWidth * 0.10,
               width: deviceWidth * 0.10,
-              child: Card(
-                elevation: 4.0,
-                shadowColor: ColorRes.borderblue.withOpacity(0.7),
-                borderOnForeground: true,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+              decoration: BoxDecoration(
+                color: ColorRes.white,
+                border: Border.all(
+                  color: ColorRes.white,
+                  style: BorderStyle.solid,
+                  width: 1.0,
                 ),
-                child: txtField1(
-                    context: context,
-                    controllerValue: provider.txtOtp1,
-                    autoFocus: false),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorRes.black.withOpacity(0.4),
+                    //color of shadow
+                    spreadRadius: 0, //spread radius
+                    blurRadius: 3, // blur radius
+                    offset: Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
               ),
+              child: txtField1(
+                  context: context,
+                  controllerValue: provider.txtOtp1,
+                  autoFocus: false),
             ),
             SizedBox(
               width: deviceWidth * 0.03,
             ),
-            SizedBox(
+            Container(
               height: deviceWidth * 0.10,
               width: deviceWidth * 0.10,
+              decoration: BoxDecoration(
+                color: ColorRes.white,
+                border: Border.all(
+                  color: ColorRes.white,
+                  style: BorderStyle.solid,
+                  width: 1.0,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorRes.black.withOpacity(0.4),
+                    spreadRadius: 0, //spread radius
+                    blurRadius: 3, // blur radius
+                    offset: Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              ),
               child: txtField1(
                   context: context,
                   controllerValue: provider.txtOtp2,
@@ -59,9 +86,26 @@ class OtpCenter extends StatelessWidget {
             SizedBox(
               width: deviceWidth * 0.03,
             ),
-            SizedBox(
+            Container(
               height: deviceWidth * 0.10,
               width: deviceWidth * 0.10,
+              decoration: BoxDecoration(
+                color: ColorRes.white,
+                border: Border.all(
+                  color: ColorRes.white,
+                  style: BorderStyle.solid,
+                  width: 1.0,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorRes.black.withOpacity(0.4),
+                    spreadRadius: 0, //spread radius
+                    blurRadius: 3, // blur radius
+                    offset: Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              ),
               child: txtField1(
                   context: context,
                   controllerValue: provider.txtOtp3,
@@ -70,9 +114,27 @@ class OtpCenter extends StatelessWidget {
             SizedBox(
               width: deviceWidth * 0.03,
             ),
-            SizedBox(
+            Container(
               height: deviceWidth * 0.10,
               width: deviceWidth * 0.10,
+              decoration: BoxDecoration(
+                color: ColorRes.white,
+                border: Border.all(
+                  color: ColorRes.white,
+                  style: BorderStyle.solid,
+                  width: 1.0,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorRes.black.withOpacity(0.4),
+                    //color of shadow
+                    spreadRadius: 0, //spread radius
+                    blurRadius: 3, // blur radius
+                    offset: Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              ),
               child: txtField1(
                   context: context,
                   controllerValue: provider.txtOtp4,
@@ -81,9 +143,27 @@ class OtpCenter extends StatelessWidget {
             SizedBox(
               width: deviceWidth * 0.03,
             ),
-            SizedBox(
+            Container(
               height: deviceWidth * 0.10,
               width: deviceWidth * 0.10,
+              decoration: BoxDecoration(
+                color: ColorRes.white,
+                border: Border.all(
+                  color: ColorRes.white,
+                  style: BorderStyle.solid,
+                  width: 1.0,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorRes.black.withOpacity(0.4),
+                    //color of shadow
+                    spreadRadius: 0, //spread radius
+                    blurRadius: 3, // blur radius
+                    offset: Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              ),
               child: txtField1(
                   context: context,
                   controllerValue: provider.txtOtp5,
@@ -92,9 +172,27 @@ class OtpCenter extends StatelessWidget {
             SizedBox(
               width: deviceWidth * 0.03,
             ),
-            SizedBox(
+            Container(
               height: deviceWidth * 0.10,
               width: deviceWidth * 0.10,
+              decoration: BoxDecoration(
+                color: ColorRes.white,
+                border: Border.all(
+                  color: ColorRes.white,
+                  style: BorderStyle.solid,
+                  width: 1.0,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorRes.black.withOpacity(0.4),
+                    //color of shadow
+                    spreadRadius: 0, //spread radius
+                    blurRadius: 3, // blur radius
+                    offset: Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              ),
               child: txtField1(
                   context: context,
                   controllerValue: provider.txtOtp6,

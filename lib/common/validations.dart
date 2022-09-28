@@ -5,18 +5,22 @@ String? validatePassword(val) {
   if (kDebugMode) {
     print(val);
   }
-  RegExp regex = RegExp(r'^((?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%&*]{6,20})$');
-  if (val.isEmpty) {
-    return Strings.pleaseEnterPassword;
-  } else {
-    if (!regex.hasMatch(val)) {
-      return 'Please Enter Password';
-      // return 'must use ex. Abc@1234 , minimum 8 character';
-    } else {
-      return null;
-    }
-  }
+  if (val!.length < 8) return Strings.enterMinimumPassword;
+  return (val!.isEmpty) ? Strings.pleaseEnterPassword : null;
 }
+
+// String? validateRePassword(val) {
+//   if (kDebugMode) {
+//     print(val);
+//   }
+//   if (val!.isEmpty) {
+//     return 'Please re-enter your new password';
+//   }
+//   if (val != provider.txtRePassword.text) {
+//     return 'Password must be same..';
+//   }
+//   return null;
+// }
 
 String? validateEmail(String? value) {
   String pattern =

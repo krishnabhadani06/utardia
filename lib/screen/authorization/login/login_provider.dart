@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:utardia/common/helper.dart';
+import 'package:utardia/common/validations.dart';
 import 'package:utardia/model/SinIn_Model/singin_model.dart';
 import 'package:utardia/screen/authorization/login/Login_Api/login_Api.dart';
 import 'package:utardia/screen/authorization/login/forgot_password/forgot_password_screen.dart';
@@ -13,6 +14,9 @@ class LoginProvider extends ChangeNotifier {
   int page = 0;
   TextEditingController txtId = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
+  String? errorTxtId;
+  String? errorTxtPass;
+
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   bool loader = false;
@@ -27,9 +31,21 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void onClickLogin(BuildContext context) async {
-    if (loginFormKey.currentState!.validate()) {
+    emailValidation();
+    passwordValidation();
+    if (errorTxtPass == null && errorTxtId == null) {
       singUpApiData(txtId.text, txtPassword.text);
     }
+  }
+
+  void emailValidation() {
+    errorTxtId = validateEmail(txtId.text);
+    notifyListeners();
+  }
+
+  void passwordValidation() {
+    errorTxtPass = validatePassword(txtPassword.text);
+    notifyListeners();
   }
 
   Future<void> singUpApiData(String email, String password) async {

@@ -36,10 +36,10 @@ class OrderScreen extends StatelessWidget {
               centerTitle: true,
               title: const Text(Strings.order, style: TextStyle(fontSize: 22)),
             ),
-            body: provider.orderModel!.data!.isNotEmpty &&
+            body: provider.orderModel.data!.isNotEmpty &&
                     provider.loader == false
                 ? ListView.builder(
-                    itemCount: provider.orderModel!.data!.length,
+                    itemCount: provider.orderModel.data!.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(left: 13.0, right: 15),
@@ -56,7 +56,7 @@ class OrderScreen extends StatelessWidget {
                         ),
                       );
                     })
-                : provider.orderModel!.data!.isEmpty && provider.loader == true
+                : provider.orderModel.data!.isEmpty && provider.loader == true
                     ? Center(
                         child: CircularProgressIndicator(),
                       )

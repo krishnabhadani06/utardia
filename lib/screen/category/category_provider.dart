@@ -65,6 +65,7 @@ class CategoryProvider extends ChangeNotifier {
     print('00000000${url!}');
     print(url1);
     await homeCategoryProduct(url);
+    getSubCategoryData(url1.toString());
     notifyListeners();
   }
 
@@ -84,6 +85,26 @@ class CategoryProvider extends ChangeNotifier {
     print(count);
     notifyListeners();
     return count;
+  }
+
+  void getSubCategoryData(String url) async {
+    try {
+      http.Response? res = await HttpService.getApi(url: url);
+      if (res != null && res.statusCode == 200) {
+        allHomeSubCategories =
+            HomeCenterSubCategoryModel.fromJson(jsonDecode(res.body));
+        if (allHomeSubCategories != null &&
+            allHomeSubCategories!.success == true) {
+          notifyListeners();
+          Logger().e(jsonDecode(res.body));
+        }
+      } else {
+        showToast(res!.statusCode.toString());
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+    }
   }
 
   getWishList() async {

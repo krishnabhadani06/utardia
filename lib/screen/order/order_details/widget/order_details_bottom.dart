@@ -59,7 +59,7 @@ class OrderDetailsBottom extends StatelessWidget {
                     Text(Strings.subTotal,
                         style: natoRegularTextStyle(fontSize: 16)),
                     Text(
-                      provider.orderModel!.data![ind!].grandTotal.toString(),
+                      provider.orderModel.data![ind!].grandTotal.toString(),
                       style: natoRegularTextStyle(
                           fontSize: 16, color: ColorRes.grey),
                     ),
@@ -74,8 +74,7 @@ class OrderDetailsBottom extends StatelessWidget {
                     Text(Strings.disCount,
                         style: natoRegularTextStyle(fontSize: 16)),
                     Text(
-                      provider.orderModel!.data![ind!].couponDiscount
-                          .toString(),
+                      provider.orderModel.data![ind!].couponDiscount.toString(),
                       style: natoRegularTextStyle(
                           fontSize: 16, color: ColorRes.grey),
                     ),
@@ -92,7 +91,7 @@ class OrderDetailsBottom extends StatelessWidget {
                       style: natoRegularTextStyle(fontSize: 16),
                     ),
                     Text(
-                      provider.orderModel!.data![ind!].grandTotal.toString(),
+                      provider.orderModel.data![ind!].grandTotal.toString(),
                       style: natoRegularTextStyle(
                           fontSize: 16, color: ColorRes.blue),
                     ),
@@ -113,7 +112,7 @@ class OrderDetailsBottom extends StatelessWidget {
                       style: natoRegularTextStyle(fontSize: 16),
                     ),
                     Text(
-                      provider.orderModel!.data![ind!].grandTotal.toString(),
+                      provider.orderModel.data![ind!].grandTotal.toString(),
                       style: natoRegularTextStyle(
                           fontSize: 16, color: ColorRes.blue),
                     ),

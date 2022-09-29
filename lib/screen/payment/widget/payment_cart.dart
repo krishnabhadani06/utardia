@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/model/payment_model/pamentModel.dart';
-import 'package:utardia/screen/mycard/my_card_screen.dart';
 import 'package:utardia/screen/payment/payment_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
@@ -25,15 +24,6 @@ class PaymentCart extends StatelessWidget {
               Text(
                 Strings.payment,
                 style: natoBoldTextStyle(fontSize: 16),
-              ),
-              InkWell(
-                onTap: () => navigator.currentState!.push(MaterialPageRoute(
-                    builder: (context) => const MyCardScreen())),
-                child: Text(
-                  Strings.addCart,
-                  style: natoBoldTextStyle(
-                      fontSize: 14, color: ColorRes.appBarColor),
-                ),
               ),
             ],
           ),
@@ -84,24 +74,22 @@ class PaymentCart extends StatelessWidget {
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Text(
-                                        value.paymentType.toString(),
-                                        style: natoBoldTextStyle(fontSize: 16),
-                                      ),
+                                    Text(
+                                      value.paymentType.toString(),
+                                      style: natoBoldTextStyle(fontSize: 16),
                                     ),
-                                    Container(
-                                      width: deviceWidth * 0.60,
-                                      child: Text(
-                                        value.details.toString(),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
-                                        style: natoBoldTextStyle(
-                                            fontSize: 12, color: ColorRes.grey),
-                                      ),
-                                    )
+                                    // Container(
+                                    //   width: deviceWidth * 0.60,
+                                    //   child: Text(
+                                    //     value.details.toString(),
+                                    //     overflow: TextOverflow.ellipsis,
+                                    //     maxLines: 1,
+                                    //     style: natoBoldTextStyle(
+                                    //         fontSize: 12, color: ColorRes.grey),
+                                    //   ),
+                                    // )
                                   ],
                                 ),
                               ],

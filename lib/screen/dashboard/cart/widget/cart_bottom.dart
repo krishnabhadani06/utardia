@@ -70,7 +70,7 @@ class CartBottom extends StatelessWidget {
                       if (!kDebugMode) {
                         if (provider.cartListDataModel.cartItems != null) {
                           Provider.of<PaymentProvider>(context, listen: false)
-                              .init();
+                              .init(context);
                           navigator.currentState!
                               .push(MaterialPageRoute(builder: (context) {
                             return const PaymentScreen();
@@ -80,7 +80,7 @@ class CartBottom extends StatelessWidget {
                         }
                       } else {
                         Provider.of<PaymentProvider>(context, listen: false)
-                            .init();
+                            .init(context);
                         navigator.currentState!
                             .push(MaterialPageRoute(builder: (context) {
                           return const PaymentScreen();

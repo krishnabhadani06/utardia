@@ -51,4 +51,5 @@ class ApiEndPoint {
   static const cartSummary = "${baseUrl}cart-summary/";
 
   static var plaeOrder = "${baseUrl}order/store";
+  static var applyCoupen = "${baseUrl}coupon-apply";
 }

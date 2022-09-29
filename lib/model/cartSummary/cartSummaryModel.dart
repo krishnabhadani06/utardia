@@ -3,6 +3,9 @@ class cartSummaryModel {
   String? tax;
   String? shippingCost;
   String? discount;
+  String? savedAmount;
+  double? savedAmountInPercentage;
+  int? clubPoint;
   String? grandTotal;
   int? grandTotalValue;
   String? couponCode;
@@ -13,6 +16,9 @@ class cartSummaryModel {
       this.tax,
       this.shippingCost,
       this.discount,
+      this.savedAmount,
+      this.savedAmountInPercentage,
+      this.clubPoint,
       this.grandTotal,
       this.grandTotalValue,
       this.couponCode,
@@ -23,6 +29,9 @@ class cartSummaryModel {
     tax = json['tax'];
     shippingCost = json['shipping_cost'];
     discount = json['discount'];
+    savedAmount = json['saved_amount'];
+    savedAmountInPercentage = json['saved_amount_in_percentage'];
+    clubPoint = json['club_point'];
     grandTotal = json['grand_total'];
     grandTotalValue = json['grand_total_value'];
     couponCode = json['coupon_code'];
@@ -35,6 +44,9 @@ class cartSummaryModel {
     data['tax'] = this.tax;
     data['shipping_cost'] = this.shippingCost;
     data['discount'] = this.discount;
+    data['saved_amount'] = this.savedAmount;
+    data['saved_amount_in_percentage'] = this.savedAmountInPercentage;
+    data['club_point'] = this.clubPoint;
     data['grand_total'] = this.grandTotal;
     data['grand_total_value'] = this.grandTotalValue;
     data['coupon_code'] = this.couponCode;

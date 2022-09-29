@@ -50,7 +50,9 @@ class PaymentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onDropDownCampaingSelected(CartBaseCoupenModel newSelectedCampaing) {
+  void onDropDownCampaingSelected(
+      CartBaseCoupenModel newSelectedCampaing, BuildContext context) {
+    applyCoupenCode(context, newSelectedCampaing);
     currentCoupen = newSelectedCampaing;
     notifyListeners();
   }
@@ -68,16 +70,16 @@ class PaymentProvider extends ChangeNotifier {
                 builder: (context) => PaymentProcessScreen(
                       id: value.toString(),
                       amount: cartSummary!.grandTotalValue.toString(),
-                    ))).whenComplete(() => init());
+                    ))).whenComplete(() => init(context));
       }
     });
   }
 
-  void init() {
+  void init(BuildContext context) {
     getPaymentList();
     getShipppingAddress();
     getCartSummary();
-    getCoupen();
+    getCoupen(context);
   }
 
   void getPaymentList() async {
@@ -184,7 +186,7 @@ class PaymentProvider extends ChangeNotifier {
     }
   }
 
-  void getCoupen() async {
+  void getCoupen(BuildContext context) async {
     try {
       http.Response? res =
           await HttpService.getApi(url: ApiEndPoint.getcampign, header: {
@@ -203,6 +205,10 @@ class PaymentProvider extends ChangeNotifier {
               .toList();
           if (coupenList!.isNotEmpty) {
             currentCoupen = coupenList![0];
+            if (currentCoupen != null) {
+              applyCoupenCode(context, currentCoupen!);
+            }
+
             notifyListeners();
           }
         } else {
@@ -228,7 +234,7 @@ class PaymentProvider extends ChangeNotifier {
             .ownerId
             .toString(),
         "user_id": PrefService.getString(PrefKeys.uid),
-        "payment_type": "razorpay"
+        "payment_type": "paystack"
       });
 
       if (res != null && res!.statusCode == 200) {
@@ -248,5 +254,31 @@ class PaymentProvider extends ChangeNotifier {
       showToast(e.toString());
       return "";
     } finally {}
+  }
+
+  void applyCoupenCode(BuildContext context, CartBaseCoupenModel coupen) async {
+    try {
+      http.Response? res =
+          await HttpService.postApi(url: ApiEndPoint.applyCoupen, header: {
+        "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+      }, body: {
+        "user_id": "${PrefService.getString(PrefKeys.uid)}",
+        "owner_id":
+            "${Provider.of<CartProvider>(context, listen: false).cartListDataModel.ownerId.toString()}",
+        "coupon_code": "${coupen.code}"
+      });
+
+      if (res!.statusCode == 200 && res != null) {
+        if (jsonDecode(res.body)['result'] == true) {
+          getCartSummary();
+        }
+        showToast(jsonDecode(res.body)['message']);
+      } else {
+        showToast("error code from coupen apply ${res.statusCode}");
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+    }
   }
 }

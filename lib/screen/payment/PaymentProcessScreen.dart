@@ -31,7 +31,7 @@ class PaymentProcessScreen extends StatelessWidget {
           },
           initialUrlRequest: URLRequest(
               url: Uri.parse(
-                  "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=${id}&amount=${amount}")),
+                  "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=${id}")),
           onUpdateVisitedHistory: (_, Uri? uri, __) {
             print("@@@@@@ ${uri!.path}");
             if (uri.path.contains("success")) {

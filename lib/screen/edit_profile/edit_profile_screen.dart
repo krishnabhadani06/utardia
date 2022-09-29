@@ -136,37 +136,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               hintTxt: Strings.name,
                               controllerValue: x.txtName),
                           SizedBox(height: deviceHeight * 0.02),
-                          Card(
-                            elevation: 4.0,
-                            shadowColor: ColorRes.borderblue.withOpacity(0.7),
-                            borderOnForeground: true,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: txtfield(
-                                validate: (val) {}, //=> validateEmail1(val),
-                                controllerValue: x.txtEmail,
-                                hintTxt: Strings.enterEmail),
-                          ),
+                          txtfield(
+                              validate: (val) {}, //=> validateEmail1(val),
+                              controllerValue: x.txtEmail,
+                              hintTxt: Strings.enterEmail),
                           SizedBox(height: deviceHeight * 0.02),
                           const EditProfileCenter(),
                           SizedBox(height: deviceHeight * 0.02),
-                          Card(
-                            elevation: 4.0,
-                            shadowColor: ColorRes.borderblue.withOpacity(0.7),
-                            borderOnForeground: true,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: txtFieldMulti(
-                                validate: (val) {
-                                  return (val!.isEmpty)
-                                      ? Strings.enterAddress
-                                      : null;
-                                },
-                                controllerValue: x.txtAddress,
-                                hintTxt: Strings.address),
-                          ),
+                          txtFieldMulti(
+                              validate: (val) {
+                                return (val!.isEmpty)
+                                    ? Strings.enterAddress
+                                    : null;
+                              },
+                              controllerValue: x.txtAddress,
+                              hintTxt: Strings.address),
                           SizedBox(height: deviceHeight * 0.06),
                           materialButton(
                               txtButton: Strings.updateProfile,

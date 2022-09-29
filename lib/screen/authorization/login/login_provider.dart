@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:country_pickers/country.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:utardia/common/helper.dart';
@@ -12,17 +13,24 @@ import '../registration/registration_screen.dart';
 
 class LoginProvider extends ChangeNotifier {
   int page = 0;
+  bool isPhone = false;
   TextEditingController txtId = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
+  TextEditingController txtPhone = TextEditingController();
   String? errorTxtId;
   String? errorTxtPass;
-
+  Country? currentCountry;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   bool loader = false;
   void onTapForgot() {
     navigator.currentState!.push(
         MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()));
+  }
+
+  void onTapButtonOption(int index) {
+    isPhone = !isPhone;
+    notifyListeners();
   }
 
   void onTapCreate() {
@@ -34,7 +42,10 @@ class LoginProvider extends ChangeNotifier {
     emailValidation();
     passwordValidation();
     if (errorTxtPass == null && errorTxtId == null) {
-      singUpApiData(txtId.text, txtPassword.text);
+      singUpApiData(
+          isPhone ? "${currentCountry!.phoneCode}${txtPhone.text}" : txtId.text,
+          txtPassword.text,
+          context);
     }
   }
 
@@ -48,9 +59,10 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> singUpApiData(String email, String password) async {
+  Future<void> singUpApiData(
+      String email, String password, BuildContext context) async {
     loader = true;
-    SingInModel? model = await SingInpApi.singInApi(email, password);
+    SingInModel? model = await SingInpApi.singInApi(email, password, context);
     if (model != null) {
       writeSignInData(model.toJson());
     } else {
@@ -64,6 +76,10 @@ class LoginProvider extends ChangeNotifier {
 
   void writeSignInData(Map<String, dynamic> userdata) {
     PrefService.setValue("UserData", jsonEncode(userdata));
+  }
+
+  void onTapCountry(Country country) {
+    currentCountry = country;
   }
 // void writeSignInData(Map<String, dynamic> userdata) {
 //   PrefService.init();

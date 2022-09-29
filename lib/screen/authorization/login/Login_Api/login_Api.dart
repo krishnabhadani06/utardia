@@ -15,7 +15,8 @@ import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
 
 class SingInpApi {
-  static Future<SingInModel?> singInApi(String email, String password) async {
+  static Future<SingInModel?> singInApi(
+      String email, String password, BuildContext context) async {
     try {
       String url = ApiEndPoint.signIn;
       Map<String, dynamic> param = {

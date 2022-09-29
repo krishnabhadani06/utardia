@@ -42,7 +42,7 @@ class OrderDetailsTop extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                provider.orderModel!.data![ind!].id.toString(),
+                provider.orderModel.data![ind!].id.toString(),
                 style:
                     robotoMediumTextStyle(fontSize: 14, color: ColorRes.black),
               ),
@@ -63,7 +63,7 @@ class OrderDetailsTop extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
-                provider.orderModel!.data![ind!].deliveryStatus.toString(),
+                provider.orderModel.data![ind!].deliveryStatus.toString(),
                 style: robotoBoldTextStyle(color: ColorRes.black, fontSize: 16),
               ),
             )
@@ -91,7 +91,7 @@ class OrderDetailsTop extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              StepsIndicator(
+              const StepsIndicator(
                 selectedStep: 1,
                 // provider.getSteps(
                 //     provider.ordermodel!.data![ind!].deliveryStatus.toString()),
@@ -99,7 +99,7 @@ class OrderDetailsTop extends StatelessWidget {
                 nbSteps: 3,
                 // doneLineColor: Colors.green,
                 // doneStepColor: Colors.green,
-                undoneLineColor: ColorRes.green,
+                undoneLineColor: ColorRes.appBarColor,
                 undoneLineThickness: 6.0,
                 unselectedStepColorIn: ColorRes.grey,
                 unselectedStepColorOut: ColorRes.grey,
@@ -110,7 +110,7 @@ class OrderDetailsTop extends StatelessWidget {
                 selectedStepSize: 16,
                 selectedStepBorderSize: 8,
 
-                selectedStepColorOut: ColorRes.green,
+                selectedStepColorOut: ColorRes.appBarColor,
                 // lineLengthCustomStep: [
                 //   StepsIndicatorCustomLine(nbStep: 1, length: 105)
                 // ],

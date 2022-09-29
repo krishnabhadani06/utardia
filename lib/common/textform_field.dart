@@ -19,7 +19,7 @@ Widget txtfield({
       focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(
-            color: Color(0xffeeeeee),
+            color: ColorRes.lightGrey,
             width: 1,
           )
           // color: Colors.transparent),
@@ -27,7 +27,7 @@ Widget txtfield({
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8.0),
         borderSide: const BorderSide(
-          color: Color(0xffeeeeee),
+          color: ColorRes.lightGrey,
           // color: Colors.transparent,
           width: 1,
         ),
@@ -113,15 +113,15 @@ Widget txtFieldMulti({
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8.0),
         borderSide: const BorderSide(
-          color: Colors.transparent,
-          // color: ColorRes.lightGrey,
+          // color: Colors.transparent,
+          color: ColorRes.lightGrey,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8.0),
         borderSide: const BorderSide(
-          color: Colors.transparent,
-          //color: ColorRes.lightGrey,
+          // color: Colors.transparent,
+          color: ColorRes.lightGrey,
           width: 2.0,
         ),
       ),

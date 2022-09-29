@@ -5,8 +5,37 @@ String? validatePassword(val) {
   if (kDebugMode) {
     print(val);
   }
-  if (val!.length < 8) return Strings.enterMinimumPassword;
+  if (val) return Strings.enterMinimumPassword;
   return (val!.isEmpty) ? Strings.pleaseEnterPassword : null;
+}
+
+String? validateAddress(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  return (val!.isEmpty) ? Strings.pleaseEnterAddress : null;
+}
+
+String? validateName(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  return (val!.isEmpty) ? Strings.pleaseEnterName : null;
+}
+
+String? validateLandMark(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  return (val!.isEmpty) ? Strings.pleaseEnterName : null;
+}
+
+String? validatePinCode(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  if (val!.length != 6) return Strings.enterpincode;
+  return (val.isEmpty) ? Strings.enterpincode : null;
 }
 
 // String? validateRePassword(val) {

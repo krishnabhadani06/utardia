@@ -9,6 +9,12 @@ class ForgotPasswordProvider extends ChangeNotifier {
 
   GlobalKey<FormState> forgotPasswordFormKey = GlobalKey<FormState>();
   bool loader = false;
+  bool isPhone = false;
+
+  void onTapButtonForgotPassword(int index) {
+    isPhone = !isPhone;
+    notifyListeners();
+  }
 
   void onTapResetPassword() {
     emailValidation();

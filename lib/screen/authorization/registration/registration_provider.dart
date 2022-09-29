@@ -10,12 +10,15 @@ class RegistrationProvider extends ChangeNotifier {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   TextEditingController txtRePassword = TextEditingController();
+  TextEditingController txtPhone = TextEditingController();
+
   GlobalKey<FormState> registrationFormKey = GlobalKey<FormState>();
   SingUpModel singUpModel = SingUpModel();
   bool loader = false;
   String? errorTextEmail;
   String? errorTextPassword;
   String? errorTextRePassword;
+  bool isPhone = false;
 
   void onTapRegistration(BuildContext context) {
     emailValidation();
@@ -59,6 +62,11 @@ class RegistrationProvider extends ChangeNotifier {
       return 'Password must be same..';
     }
     return null;
+  }
+
+  void onTapButtonRegis(int index) {
+    isPhone = !isPhone;
+    notifyListeners();
   }
 
   Widget onTapTerms(BuildContext context, String title, String subText) {

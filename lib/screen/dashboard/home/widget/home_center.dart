@@ -20,7 +20,7 @@ class HomeCenter extends StatelessWidget {
         shrinkWrap: true,
         padding: const EdgeInsets.only(left: 10, right: 10),
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 0,

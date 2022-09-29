@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:steps_indicator/steps_indicator.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
+import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/string.dart';
 
 class OrderDetailsTop extends StatelessWidget {
-  const OrderDetailsTop({Key? key}) : super(key: key);
+  int? ind;
+  OrderDetailsTop({Key? key, this.ind}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<OrderProvider>(context, listen: false);
     return Column(
       children: [
         Row(
@@ -38,7 +42,7 @@ class OrderDetailsTop extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                'No: 1234567890',
+                provider.orderModel!.data![ind!].id.toString(),
                 style:
                     robotoMediumTextStyle(fontSize: 14, color: ColorRes.black),
               ),
@@ -59,7 +63,7 @@ class OrderDetailsTop extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
-                Strings.status,
+                provider.orderModel!.data![ind!].deliveryStatus.toString(),
                 style: robotoBoldTextStyle(color: ColorRes.black, fontSize: 16),
               ),
             )
@@ -87,22 +91,25 @@ class OrderDetailsTop extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const StepsIndicator(
-                selectedStep: 3,
+              StepsIndicator(
+                selectedStep: 1,
+                // provider.getSteps(
+                //     provider.ordermodel!.data![ind!].deliveryStatus.toString()),
                 //selectedStep: provider.selectedStep,
                 nbSteps: 3,
                 // doneLineColor: Colors.green,
                 // doneStepColor: Colors.green,
                 undoneLineColor: ColorRes.green,
-                undoneLineThickness: 06.0,
-                unselectedStepColorIn: ColorRes.green,
-                unselectedStepColorOut: ColorRes.green,
+                undoneLineThickness: 6.0,
+                unselectedStepColorIn: ColorRes.grey,
+                unselectedStepColorOut: ColorRes.grey,
                 lineLength: 110,
                 isHorizontal: true,
                 doneStepSize: 16,
                 unselectedStepSize: 16,
                 selectedStepSize: 16,
                 selectedStepBorderSize: 8,
+
                 selectedStepColorOut: ColorRes.green,
                 // lineLengthCustomStep: [
                 //   StepsIndicatorCustomLine(nbStep: 1, length: 105)

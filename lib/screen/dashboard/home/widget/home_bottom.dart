@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:utardia/common/helper.dart';
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/category_title.dart';
@@ -23,11 +22,11 @@ class HomeBottom extends StatelessWidget {
           title: provider.allHomeTopCategories[index].name, onTap: () {}),
       Container(
         height: 310,
-        width: deviceWidth,
+        width: MediaQuery.of(context).size.width,
         //color: Colors.yellow,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
+            // shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index1) {
               return ProductCard(

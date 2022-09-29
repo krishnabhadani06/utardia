@@ -4,10 +4,10 @@ import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
-import 'package:utardia/util/string.dart';
 
 class OrderTop extends StatelessWidget {
-  const OrderTop({Key? key}) : super(key: key);
+  int? inde;
+  OrderTop({Key? key, this.inde}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +30,15 @@ class OrderTop extends StatelessWidget {
               style: natoMediumTextStyle(fontSize: 14, color: ColorRes.grey),
             ),
             const Spacer(),
-            const CircleAvatar(
-              backgroundColor: ColorRes.blue,
-              radius: 12.0,
-              child: Icon(
-                Icons.arrow_downward,
-                color: ColorRes.white,
-                size: 20,
-              ),
-            ),
             const SizedBox(width: 8),
             Text(
-              Strings.rs3800,
+              provider.orderModel.data![inde!].grandTotal.toString(),
               style: natoBoldTextStyle(fontSize: 18, color: ColorRes.blue),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 6.0),
               child: GestureDetector(
-                onTap: () => provider.onTapNext(context),
+                onTap: () => provider.onTapNext(context, inde),
                 child: Icon(
                   IconRes.icArrowIos,
                   size: 25,
@@ -58,7 +49,9 @@ class OrderTop extends StatelessWidget {
           ],
         ),
         Text(
-          '111,Dhara Arcaed Mota Varchha, surat',
+          provider.orderModel.data![inde!].shippingAddress!.isNotEmpty
+              ? provider.orderModel.data![inde!].shippingAddress![0].address!
+              : "",
           style: natoBoldTextStyle(fontSize: 12),
         ),
       ],

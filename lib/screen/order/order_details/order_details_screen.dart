@@ -9,7 +9,8 @@ import 'package:utardia/util/icon_res.dart';
 import 'package:utardia/util/string.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
-  const OrderDetailsScreen({Key? key}) : super(key: key);
+  int? ind;
+  OrderDetailsScreen({Key? key, this.ind}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +40,9 @@ class OrderDetailsScreen extends StatelessWidget {
               SizedBox(
                 height: deviceHeight * 0.05,
               ),
-              const OrderDetailsTop(),
-              const OrderDetailsCenter(),
-              const OrderDetailsBottom(),
+              OrderDetailsTop(ind: ind),
+              OrderDetailsCenter(ind: ind),
+              OrderDetailsBottom(ind: ind),
             ],
           ),
         ),

@@ -33,13 +33,17 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
     final pro = Provider.of<ProductDetailsProvider>(context);
 
     return Column(
+      crossAxisAlignment:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? CrossAxisAlignment.center
+              : CrossAxisAlignment.stretch,
       children: [
         SizedBox(height: deviceHeight * 0.02),
         Card(
           elevation: 5.0,
           child: Container(
             height: deviceHeight * 0.13,
-            width: deviceWidth,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: ColorRes.white,
               boxShadow: [
@@ -55,6 +59,10 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
               padding: const EdgeInsets.only(left: 12.0, right: 10.00),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? CrossAxisAlignment.start
+                        : CrossAxisAlignment.center,
                 children: [
                   Row(
                     children: [
@@ -457,6 +465,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                       itemCount: 3,
                       itemBuilder: (context, index) {
                         return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Row(
                               children: [

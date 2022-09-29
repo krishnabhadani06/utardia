@@ -91,7 +91,8 @@ class HomeScreen extends StatelessWidget {
                     child: ListView.builder(
                       //itemCount: 1 + 1 + provider.allCategoriesProducts.length,
                       itemCount: 1 + 1 + provider.allHomeTopProducts.length,
-                      padding: EdgeInsets.only(top: deviceHeight * 0.02),
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.02),
                       itemBuilder: (context, index) {
                         if (index == 0) {
                           return const HomeTop();

@@ -47,7 +47,7 @@ class RegistrationProvider extends ChangeNotifier {
   }
 
   void rePasswordValidation() {
-    errorTextRePassword = validatePassword(txtRePassword.text);
+    errorTextRePassword = rePassValidation(txtRePassword.text);
     notifyListeners();
   }
 

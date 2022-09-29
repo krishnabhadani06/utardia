@@ -127,30 +127,57 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ],
                           ),
                           SizedBox(height: deviceHeight * 0.03),
-                          txtfield(
-                              validate: (val) {
-                                return (val!.isEmpty)
-                                    ? Strings.pleaseEnterName
-                                    : null;
-                              },
-                              hintTxt: Strings.name,
-                              controllerValue: x.txtName),
+                          CommonTextField(
+                              controller: x.txtName,
+                              obscure: false,
+                              hintText: Strings.name,
+                              error: false,
+                              width: deviceWidth,
+                              border: false),
+                          // txtfield(
+                          //     validate: (val) {
+                          //       return (val!.isEmpty)
+                          //           ? Strings.pleaseEnterName
+                          //           : null;
+                          //     },
+                          //     hintTxt: Strings.name,
+                          //     controllerValue: x.txtName),
                           SizedBox(height: deviceHeight * 0.02),
-                          txtfield(
-                              validate: (val) {}, //=> validateEmail1(val),
-                              controllerValue: x.txtEmail,
-                              hintTxt: Strings.enterEmail),
+
+                          // txtfield(
+                          //     validate: (val) {}, //=> validateEmail1(val),
+                          //     controllerValue: x.txtEmail,
+                          //     hintTxt: Strings.enterEmail),
+                          CommonTextField(
+                            controller: x.txtEmail,
+                            obscure: false,
+                            hintText: Strings.enterEmail,
+                            error: false,
+                            width: deviceWidth,
+                            border: false,
+                          ),
                           SizedBox(height: deviceHeight * 0.02),
+
                           const EditProfileCenter(),
+
                           SizedBox(height: deviceHeight * 0.02),
-                          txtFieldMulti(
-                              validate: (val) {
-                                return (val!.isEmpty)
-                                    ? Strings.enterAddress
-                                    : null;
-                              },
-                              controllerValue: x.txtAddress,
-                              hintTxt: Strings.address),
+                          CommonTextField(
+                            controller: x.txtAddress,
+                            obscure: false,
+                            hintText: Strings.address,
+                            error: false,
+                            width: deviceWidth,
+                            border: false,
+                          ),
+                          // txtFieldMulti(
+                          //     validate: (val) {
+                          //       return (val!.isEmpty)
+                          //           ? Strings.enterAddress
+                          //           : null;
+                          //     },
+                          //     controllerValue: x.txtAddress,
+                          //     hintTxt: Strings.address),
+
                           SizedBox(height: deviceHeight * 0.06),
                           materialButton(
                               txtButton: Strings.updateProfile,

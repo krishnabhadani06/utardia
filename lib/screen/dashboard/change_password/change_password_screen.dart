@@ -36,13 +36,19 @@ class ChangePasswordScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 16, right: 19),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: deviceHeight * 0.04),
                   provider.isForgot
                       ? const SizedBox()
-                  : CommonTextField(
+                      : Text(
+                          "Enter Old Password",
+                          style: robotoRegularTextStyle(
+                              fontSize: 15, color: ColorRes.textfielTitleColor),
+                        ),
+                  CommonTextField(
                       controller: provider.txtOldPassword,
-                      obscure: false,
+                      obscure: true,
                       hintText: Strings.oldPassword,
                       error: false,
                       width: deviceWidth,
@@ -51,67 +57,73 @@ class ChangePasswordScreen extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 5),
                     padding: const EdgeInsets.only(right: 25),
                     alignment: Alignment.centerLeft,
-                    height: 20,
+                    height: 15,
                     width: double.infinity,
                     // color: Colors.yellow,
                     child: Text(
-                      "",
-                      // provider.errorTxtId ?? "",
+                      provider.errorOldPassword ?? "",
                       style: robotoRegularTextStyle(
                         fontSize: 12,
                         color: ColorRes.red,
                       ),
                     ),
                   ),
-                      // : txtfield(
-                      //     isObs: true,
-                      //     validate: (val) {
-                      //       if (val!.length < 8) {
-                      //         return Strings.enterMinimumPassword;
-                      //       }
-                      //       return (val!.isEmpty)
-                      //           ? Strings.pleaseEnterPassword
-                      //           : null;
-                      //     },
-                      //     controllerValue: provider.txtOldPassword,
-                      //     hintTxt: Strings.oldPassword,
-                      //     // validate: (val) => validatePassword(provider.txtOldPassword)),
-                      //     // validate: (val) => validatePassword(val),
-                      //   ),
-                  SizedBox(height: deviceHeight * 0.02),
-                  txtfield(
-                    isObs: true,
-                    validate: (val) {
-                      if (val!.length < 8) return Strings.enterMinimumPassword;
-                      return (val!.isEmpty)
-                          ? Strings.pleaseEnterPassword
-                          : null;
-                    },
-                    controllerValue: provider.txtNewPassword,
-                    hintTxt: Strings.newPassword,
+                  SizedBox(height: deviceHeight * 0.01),
+                  Text(
+                    "Enter New Password",
+                    style: robotoRegularTextStyle(
+                        fontSize: 15, color: ColorRes.textfielTitleColor),
                   ),
-                  SizedBox(height: deviceHeight * 0.02),
-                  txtfield(
-                      isObs: true,
-                      controllerValue: provider.txtRePassword,
-                      hintTxt: Strings.verifyPassword,
-                      validate: (val) {
-                        if (val!.isEmpty) {
-                          return 'Please re-enter your new password';
-                        }
-                        if (val != provider.txtRePassword.text) {
-                          return 'Password must be same..';
-                        }
-                        return null;
-                      }),
-
-                  // SizedBox(height:deviceHeight/25),
-                  // materialButton(txtButton: Strings.submit, onPressed: (){
-                  //   print(provider.txtNewPassword.text);
-                  //   print(provider.txtRePassword.text);
-                  //   print(provider.txtOldPassword.text);
-                  //   provider.onTapSubmit(context,provider.txtOldPassword,provider.txtRePassword,provider.txtNewPassword);}),
-
+                  CommonTextField(
+                      controller: provider.txtNewPassword,
+                      obscure: true,
+                      hintText: Strings.newPassword,
+                      error: false,
+                      width: deviceWidth,
+                      border: false),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5),
+                    padding: const EdgeInsets.only(right: 25),
+                    alignment: Alignment.centerLeft,
+                    height: 15,
+                    width: double.infinity,
+                    // color: Colors.yellow,
+                    child: Text(
+                      provider.errorReNewPassword ?? "",
+                      style: robotoRegularTextStyle(
+                        fontSize: 12,
+                        color: ColorRes.red,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: deviceHeight * 0.01),
+                  Text(
+                    "Enter Re-New Password",
+                    style: robotoRegularTextStyle(
+                        fontSize: 15, color: ColorRes.textfielTitleColor),
+                  ),
+                  CommonTextField(
+                      controller: provider.txtRePassword,
+                      obscure: true,
+                      hintText: Strings.verifyPass,
+                      error: false,
+                      width: deviceWidth,
+                      border: false),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5),
+                    padding: const EdgeInsets.only(right: 25),
+                    alignment: Alignment.centerLeft,
+                    height: 15,
+                    width: double.infinity,
+                    // color: Colors.yellow,
+                    child: Text(
+                      provider.errorReNewPassword ?? "",
+                      style: robotoRegularTextStyle(
+                        fontSize: 12,
+                        color: ColorRes.red,
+                      ),
+                    ),
+                  ),
                   SizedBox(height: deviceHeight * 0.04),
                   materialButton(
                       txtButton: Strings.submit,

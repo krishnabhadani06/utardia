@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import 'package:logger/logger.dart';
+import 'package:utardia/common/validations.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
@@ -16,12 +17,46 @@ class ChangePasswordProvider extends ChangeNotifier {
   GlobalKey<FormState> changePasswordFormKey = GlobalKey<FormState>();
   bool isForgot = false;
   String otp = "";
+  String? errorOldPassword;
+  String? errorNewPassword;
+  String? errorReNewPassword;
 
   void notify() {
     notifyListeners();
   }
 
+  void oldPasswordValidation() {
+    errorOldPassword = validatePassword(txtOldPassword.text);
+    notifyListeners();
+  }
+
+  void newPasswordValidation() {
+    errorNewPassword = validatePassword(txtNewPassword.text);
+    notifyListeners();
+  }
+
+  void rePasswordValidation() {
+    errorReNewPassword = rePassValidation(txtRePassword.text);
+    notifyListeners();
+  }
+
+  String? rePassValidation(val) {
+    if (kDebugMode) {
+      print(val);
+    }
+    if (val.isEmpty) {
+      return 'Please re-enter your new password';
+    }
+    if (val != txtRePassword.text) {
+      return 'Password must be same..';
+    }
+    return null;
+  }
+
   void onTapSubmit() async {
+    oldPasswordValidation.toString();
+    newPasswordValidation.toString();
+    rePasswordValidation.toString();
     if (isForgot) {
       // final result = await ChangePasswordApi.changePassword(txtNewPassword.text, otp);
       // if (result['result'] == true) {

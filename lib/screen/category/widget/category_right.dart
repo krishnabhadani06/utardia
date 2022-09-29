@@ -149,74 +149,81 @@ class _CategoryRightState extends State<CategoryRight> {
                                   ? provider.allHomeSubCategories!.data!.length
                                   : 0,
                               itemBuilder: (context, index1) {
-                                return Container(
-                                  margin: const EdgeInsets.all(10.0),
-                                  height: 50,
-                                  width: 100,
-                                  color: ColorRes.white,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: deviceHeight * 0.16,
-                                        width: deviceWidth * 0.28,
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(8.0)),
-                                          // color: ColorRes.appBarColor
-                                        ),
-                                        //color: ColorRes.blue,
-                                        child: Column(
-                                          children: [
-                                            Card(
-                                              elevation: 3.0,
-                                              shadowColor: ColorRes.black
-                                                  .withOpacity(0.3),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              child: Container(
-                                                height: deviceHeight * 0.11,
-                                                width: deviceWidth,
-                                                child: CachedNetworkImage(
-                                                  imageUrl: provider
-                                                      .allHomeSubCategories!
-                                                      .data![index1]
-                                                      .banner
-                                                      .toString(),
-                                                  //imageUrl: provider.allHomeCategories[index].banner.toString(),
-                                                  progressIndicatorBuilder: (context,
-                                                          url,
-                                                          downloadProgress) =>
-                                                      CircularProgressIndicator(
-                                                          value:
-                                                              downloadProgress
-                                                                  .progress),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          Image.asset(
-                                                    AssetsImagesRes.girl1,
+                                if (provider.loader) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                } else {
+                                  return Container(
+                                    margin: const EdgeInsets.all(10.0),
+                                    height: 50,
+                                    width: 100,
+                                    color: ColorRes.white,
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          height: deviceHeight * 0.16,
+                                          width: deviceWidth * 0.28,
+                                          decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(8.0)),
+                                            // color: ColorRes.appBarColor
+                                          ),
+                                          //color: ColorRes.blue,
+                                          child: Column(
+                                            children: [
+                                              Card(
+                                                elevation: 3.0,
+                                                shadowColor: ColorRes.black
+                                                    .withOpacity(0.3),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                child: Container(
+                                                  height: deviceHeight * 0.11,
+                                                  width: deviceWidth,
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: provider
+                                                        .allHomeSubCategories!
+                                                        .data![index1]
+                                                        .banner
+                                                        .toString(),
+                                                    //imageUrl: provider.allHomeCategories[index].banner.toString(),
+                                                    progressIndicatorBuilder: (context,
+                                                            url,
+                                                            downloadProgress) =>
+                                                        CircularProgressIndicator(
+                                                            value:
+                                                                downloadProgress
+                                                                    .progress),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            Image.asset(
+                                                      AssetsImagesRes.girl1,
+                                                    ),
+                                                    fit: BoxFit.fill,
                                                   ),
-                                                  fit: BoxFit.fill,
                                                 ),
                                               ),
-                                            ),
-                                            Text(
-                                              provider.allHomeSubCategories!
-                                                  .data![index1].name
-                                                  .toString(),
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ],
+                                              Text(
+                                                provider.allHomeSubCategories!
+                                                    .data![index1].name
+                                                    .toString(),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      // Text(provider.allHomeSubCategories!
-                                      //     .data![index1].name
-                                      //     .toString()),
-                                    ],
-                                  ),
-                                );
+                                        // Text(provider.allHomeSubCategories!
+                                        //     .data![index1].name
+                                        //     .toString()),
+                                      ],
+                                    ),
+                                  );
+                                }
                               }),
                         ),
                       ],

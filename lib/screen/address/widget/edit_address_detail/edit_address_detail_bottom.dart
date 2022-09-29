@@ -23,47 +23,29 @@ class EditAddressDetailBottom extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Card(
-          elevation: 4.0,
-          shadowColor: ColorRes.borderblue.withOpacity(0.7),
-          borderOnForeground: true,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          child: txtFieldAddress(
-              validate: (val) {
-                return (val!.isEmpty) ? Strings.pleaseEnterAddress : null;
-              },
-              controllerValue: provider.txtAddress,
-              hintTxt: Strings.address),
-        ),
+        CommonTextFieldAddress(
+            controller: provider.txtAddress,
+            obscure: false,
+            hintText: Strings.address,
+            error: false,
+            width: deviceWidth,
+            border: false),
         const SizedBox(height: 10),
-        Card(
-          elevation: 4.0,
-          shadowColor: ColorRes.borderblue.withOpacity(0.7),
-          borderOnForeground: true,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          child: txtFieldAddress(
-              validate: (val) {
-                return (val!.isEmpty) ? Strings.enterLandmark : null;
-              },
-              controllerValue: provider.txtLandmark,
-              hintTxt: Strings.landMarks),
-        ),
+        CommonTextFieldAddress(
+            controller: provider.txtLandmark,
+            obscure: false,
+            hintText: Strings.landMarks,
+            error: false,
+            width: deviceWidth,
+            border: false),
         const SizedBox(height: 10),
-        Card(
-          elevation: 4.0,
-          shadowColor: ColorRes.borderblue.withOpacity(0.7),
-          borderOnForeground: true,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          child: txtFieldAddress(
-              validate: (val) {
-                return (val!.isEmpty) ? Strings.enterPinCode : null;
-              },
-              controllerValue: provider.txtPincode,
-              hintTxt: Strings.pinCode),
-        ),
+        CommonTextFieldAddress(
+            controller: provider.txtPincode,
+            obscure: false,
+            hintText: Strings.pinCode,
+            error: false,
+            width: deviceWidth,
+            border: false),
         const SizedBox(height: 10),
         Row(
           children: [

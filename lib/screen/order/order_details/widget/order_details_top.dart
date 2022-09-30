@@ -47,7 +47,8 @@ class OrderDetailsTop extends StatelessWidget {
                     robotoMediumTextStyle(fontSize: 14, color: ColorRes.black),
               ),
               Text(
-                '${Strings.date}-${Strings.time}',
+                provider.orderModel!.data![ind!].productDetail![0].date
+                    .toString(),
                 style:
                     robotoRegularTextStyle(fontSize: 14, color: ColorRes.grey),
               ),

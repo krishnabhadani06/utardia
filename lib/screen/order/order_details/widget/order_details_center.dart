@@ -66,9 +66,9 @@ class OrderDetailsCenter extends StatelessWidget {
                 width: deviceWidth * 0.75,
                 child: Center(
                   child: Text(
-                    provider.orderModel!.data![ind!].shippingAddress!.isNotEmpty
-                        ? provider.orderModel!.data![ind!].shippingAddress![0]
-                            .address!
+                    provider.orderModel.data![ind!].shippingAddress!.isNotEmpty
+                        ? provider
+                            .orderModel.data![ind!].shippingAddress![0].address!
                         : "",
                     style: robotoBoldTextStyle(fontSize: 14),
                     textAlign: TextAlign.justify,
@@ -95,7 +95,8 @@ class OrderDetailsCenter extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '${Strings.date}-${Strings.time}',
+                    provider.orderModel.data![ind!].productDetail![0].date
+                        .toString(),
                     style:
                         robotoBoldTextStyle(fontSize: 14, color: ColorRes.grey),
                   ),

@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:utardia/common/helper.dart';
+import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/common/validations.dart';
 import 'package:utardia/model/SinIn_Model/singin_model.dart';
 import 'package:utardia/screen/authorization/login/Login_Api/login_Api.dart';
@@ -14,6 +16,7 @@ class LoginProvider extends ChangeNotifier {
   int page = 0;
   TextEditingController txtId = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
+
   String? errorTxtId;
   String? errorTxtPass;
 
@@ -65,6 +68,7 @@ class LoginProvider extends ChangeNotifier {
   void writeSignInData(Map<String, dynamic> userdata) {
     PrefService.setValue("UserData", jsonEncode(userdata));
   }
+
 // void writeSignInData(Map<String, dynamic> userdata) {
 //   PrefService.init();
 //   List<String> list = userdata.entries.map((e) => e.toString()).toList();

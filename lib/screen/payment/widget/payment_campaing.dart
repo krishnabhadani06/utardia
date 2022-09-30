@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/model/coupenModel/CartBaseCoupenModel.dart';
-import 'package:utardia/model/payment_model/payment_drop_down.dart';
 import 'package:utardia/screen/payment/payment_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
@@ -52,8 +51,8 @@ class PaymentCampaing extends StatelessWidget {
                       // style: TextStyle(color:  Colors.deepPurple, fontSize: 20.0),
 
                       onChanged: (CartBaseCoupenModel? newSelectedCampaing) =>
-                          provider
-                              .onDropDownCampaingSelected(newSelectedCampaing!),
+                          provider.onDropDownCampaingSelected(
+                              newSelectedCampaing!, context),
                       value: provider.currentCoupen,
                       items: provider.coupenList!
                           .map<DropdownMenuItem<CartBaseCoupenModel>>((value) {

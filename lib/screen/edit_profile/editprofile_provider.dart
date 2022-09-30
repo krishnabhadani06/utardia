@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/profile_model/profile_detail_model.dart';
-
 import 'package:utardia/screen/dashboard/profile/all_profile_api/profile_detail_api.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
@@ -93,7 +92,7 @@ class EditProfileProvider extends ChangeNotifier {
   void updateImage() async {
     try {
       http.Response? res =
-          await HttpService.postApi(url: ApiEndPoint.updateProfile, body: {
+          await HttpService.postApi(url: ApiEndPoint.profileImageUpdate, body: {
         "id": profileModel!.data![0].id.toString(),
         // "id": 190.toString(),
         "filename":
@@ -107,6 +106,9 @@ class EditProfileProvider extends ChangeNotifier {
         Map<dynamic, dynamic> map =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
         await PrefService.setValue(PrefKeys.profileImage, map['path']);
+        if (map['result']) {
+          getProFileData();
+        }
         showToast(map['message']);
       }
     } catch (e, x) {
@@ -120,13 +122,17 @@ class EditProfileProvider extends ChangeNotifier {
       profileModel = await AllProfileDetailApi.allProfileData();
       if (profileModel != null) {
         txtName.text = profileModel!.data![0].name ?? "";
-        txtAddress.text = "${profileModel!.data![0].address ?? ""}";
+        txtAddress.text =
+            "${profileModel!.data![0].address!.data != null ? profileModel!.data![0].address!.data![0].address ?? "" : "No Address"}";
         txtContact.text = profileModel!.data![0].phone ?? "";
         txtEmail.text = profileModel!.data![0].email ?? "";
       }
+      notifyListeners();
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
       showToast(e.toString());
+    } finally {
+      notifyListeners();
     }
   }
 }

@@ -73,7 +73,7 @@ class ProfileProvider extends ChangeNotifier {
 
   void onTapOrder(BuildContext context) {
     Provider.of<OrderProvider>(context, listen: false).init();
-    navigator.currentState!
+    Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const OrderScreen()));
   }
 

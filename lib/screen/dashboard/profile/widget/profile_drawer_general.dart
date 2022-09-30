@@ -28,13 +28,13 @@ class ProfileDrawerGeneral extends StatelessWidget {
         SizedBox(
           height: deviceHeight * 0.01,
         ),
-        InkWell(
-          onTap: () => provider.onTapOrder(context),
-          child: rowCommon(icon: IconRes.icOrders, title: Strings.order),
-        ),
-        SizedBox(
-          height: deviceHeight * 0.01,
-        ),
+        // InkWell(
+        //   onTap: () => provider.onTapOrder(context),
+        //   child: rowCommon(icon: IconRes.icOrders, title: Strings.order),
+        // ),
+        // SizedBox(
+        //   height: deviceHeight * 0.01,
+        // ),
         InkWell(
           onTap: () => provider.onTapFavorite(context),
           child: rowCommon(icon: IconRes.icFavourites, title: Strings.favorite),
@@ -49,13 +49,13 @@ class ProfileDrawerGeneral extends StatelessWidget {
         SizedBox(
           height: deviceHeight * 0.01,
         ),
-        InkWell(
-          onTap: () => provider.onTapMyCard(context),
-          child: rowCommon(icon: IconRes.icCards, title: Strings.myCards),
-        ),
-        SizedBox(
-          height: deviceHeight * 0.01,
-        ),
+        // InkWell(
+        //   onTap: () => provider.onTapMyCard(context),
+        //   child: rowCommon(icon: IconRes.icCards, title: Strings.myCards),
+        // ),
+        // SizedBox(
+        //   height: deviceHeight * 0.01,
+        // ),
         InkWell(
           onTap: () {
             provider.onTapOrder(context);

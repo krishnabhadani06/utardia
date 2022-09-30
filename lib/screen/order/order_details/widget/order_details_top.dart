@@ -42,7 +42,7 @@ class OrderDetailsTop extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                provider.orderModel.data![ind!].id.toString(),
+                provider.orderModel!.data![ind!].code.toString(),
                 style:
                     robotoMediumTextStyle(fontSize: 14, color: ColorRes.black),
               ),
@@ -91,16 +91,16 @@ class OrderDetailsTop extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const StepsIndicator(
-                selectedStep: 1,
-                // provider.getSteps(
-                //     provider.ordermodel!.data![ind!].deliveryStatus.toString()),
-                //selectedStep: provider.selectedStep,
+              StepsIndicator(
+                selectedStep: provider.getSteps(
+                    provider.orderModel.data![ind!].deliveryStatus.toString()),
+
                 nbSteps: 3,
-                // doneLineColor: Colors.green,
-                // doneStepColor: Colors.green,
-                undoneLineColor: ColorRes.appBarColor,
-                undoneLineThickness: 6.0,
+                // selectedStep: 2,
+
+                doneStepColor: Colors.green,
+                undoneLineColor: ColorRes.grey,
+                doneLineColor: ColorRes.green,
                 unselectedStepColorIn: ColorRes.grey,
                 unselectedStepColorOut: ColorRes.grey,
                 lineLength: 110,
@@ -116,6 +116,7 @@ class OrderDetailsTop extends StatelessWidget {
                 // ],
                 enableLineAnimation: true,
                 enableStepAnimation: true,
+                selectedStepColorIn: Colors.red,
               ),
               SizedBox(height: deviceHeight * 0.02),
               Row(

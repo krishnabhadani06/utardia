@@ -53,6 +53,11 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           body: Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 0.0,
+              primary: false,
+              backgroundColor: Colors.transparent,
+            ),
             drawerEnableOpenDragGesture: false,
             key: provider.drawerScaffoldLKey,
             drawer: Theme(

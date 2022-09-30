@@ -36,8 +36,7 @@ class OrderScreen extends StatelessWidget {
               centerTitle: true,
               title: const Text(Strings.order, style: TextStyle(fontSize: 22)),
             ),
-            body: provider.orderModel.data!.isNotEmpty &&
-                    provider.loader == false
+            body: provider.orderModel.data != null && provider.loader == false
                 ? ListView.builder(
                     itemCount: provider.orderModel.data!.length,
                     itemBuilder: (context, index) {
@@ -56,11 +55,8 @@ class OrderScreen extends StatelessWidget {
                         ),
                       );
                     })
-                : provider.orderModel.data!.isEmpty && provider.loader == true
+                : provider.orderModel.data == null && provider.loader == false
                     ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -97,6 +93,9 @@ class OrderScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(),
                       )));
   }
 }

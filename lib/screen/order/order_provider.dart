@@ -13,7 +13,7 @@ import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
 
 class OrderProvider extends ChangeNotifier {
-  OrderModel orderModel=OrderModel();
+  OrderModel orderModel = OrderModel();
   void onTapNext(BuildContext context, int? data) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => OrderDetailsScreen(ind: data)));
@@ -24,25 +24,24 @@ class OrderProvider extends ChangeNotifier {
   bool loader = false;
   void init() {
     getOrders();
-
   }
 
   void getOrders() async {
     loader = true;
     notifyListeners();
     try {
-      http.Response? res = await HttpService.getApi(header: {
+      http.Response? response = await HttpService.getApi(header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, url: "${ApiEndPoint.getOrders}${PrefService.getString(PrefKeys.uid)}");
-      if (res!.statusCode == 200 && res != null) {
-        orderModel = OrderModel.fromJson(jsonDecode(res.body));
-        if (orderModel != null) {
-          Logger().e(jsonDecode(res.body));
-          loader=false;
+      if (response!.statusCode == 200 && response != null) {
+        orderModel = OrderModel.fromJson(jsonDecode(response.body));
+        if (orderModel.data != null) {
+          Logger().e(jsonDecode(response.body));
+          loader = false;
           notifyListeners();
         }
       } else {
-        showToast("code ${res!.statusCode}");
+        showToast("code ${response.statusCode}");
       }
       loader = false;
       notifyListeners();
@@ -59,11 +58,11 @@ class OrderProvider extends ChangeNotifier {
 
   int getSteps(String status) {
     if (status == "pending") {
-      return 1;
+      return 0;
     } else if (status == "on the way") {
-      return 2;
+      return 1;
     } else {
-      return 3;
+      return 2;
     }
   }
 }

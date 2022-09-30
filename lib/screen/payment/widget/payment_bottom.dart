@@ -114,7 +114,7 @@ class PaymentBottom extends StatelessWidget {
                                 style: natoMediumTextStyle(fontSize: 16),
                               ),
                               Text(
-                                '${provider.cartSummary!.discount!.substring(0, provider.cartSummary!.discount!.length - 2)}',
+                                '${provider.cartSummary!.savedAmount!.toString().substring(0, 1)} ${double.parse(provider.cartSummary!.savedAmount!.toString().replaceAll("\$", "")).toStringAsFixed(1)}',
                                 style: natoMediumTextStyle(
                                     fontSize: 16, color: ColorRes.detailColor),
                               ),
@@ -139,7 +139,7 @@ class PaymentBottom extends StatelessWidget {
                                 style: natoBoldTextStyle(fontSize: 16),
                               ),
                               Text(
-                                '${provider.cartSummary!.grandTotal!.substring(0, provider.cartSummary!.grandTotal!.length - 2)}',
+                                '  ${provider.cartSummary!.grandTotal!.substring(0, 1)} ${provider.cartSummary!.grandTotalValue!.toDouble().toStringAsFixed(1)}',
                                 style: natoBoldTextStyle(
                                     fontSize: 16, color: ColorRes.detailColor),
                               ),

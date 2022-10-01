@@ -42,12 +42,12 @@ class OrderDetailsTop extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                provider.orderModel!.data![ind!].code.toString(),
+                provider.orderModel.data![ind!].code.toString(),
                 style:
                     robotoMediumTextStyle(fontSize: 14, color: ColorRes.black),
               ),
               Text(
-                provider.orderModel!.data![ind!].productDetail![0].date
+                provider.orderModel.data![ind!].productDetail![0].date
                     .toString(),
                 style:
                     robotoRegularTextStyle(fontSize: 14, color: ColorRes.grey),

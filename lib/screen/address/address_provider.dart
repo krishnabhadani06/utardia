@@ -27,26 +27,21 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:utardia/common/helper.dart';
-
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/common/validations.dart';
 import 'package:utardia/model/address_model/city_model.dart';
-
 import 'package:utardia/model/address_model/getUserAddressModel.dart';
 import 'package:utardia/model/address_model/state_model.dart';
-import 'package:utardia/screen/address/address_screen.dart';
 import 'package:utardia/screen/address/widget/address_bottom_sheet.dart';
 import 'package:utardia/screen/address/widget/edit_address_detail/edit_address_detail.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
-
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
-
 import 'package:utardia/util/string.dart';
-import 'package:http/http.dart' as http;
 
 class AddressProvider extends ChangeNotifier {
   TextEditingController txtName = TextEditingController();
@@ -391,11 +386,10 @@ class AddressProvider extends ChangeNotifier {
       getStates(state_id.toString(), city_id.toString());
       isSelect = workType.toString();
       if (data != null) {
-        txtAddress.text = "${data!.address ?? ""}";
-
-        txtContact.text = "${data.phone ?? ""}";
-        txtLandmark.text = "${data.address ?? ""}";
-        txtPincode.text = "${data.postalCode ?? ""}";
+        txtAddress.text = data.address ?? "";
+        txtContact.text = data.phone ?? "";
+        txtLandmark.text = data.address ?? "";
+        txtPincode.text = data.postalCode ?? "";
       }
     }
   }

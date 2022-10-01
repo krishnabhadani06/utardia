@@ -26,8 +26,7 @@ class OrderCenter extends StatelessWidget {
               //physics: NeverScrollableScrollPhysics(),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount:
-                  provider.orderModel!.data![inde!].productDetail!.length,
+              itemCount: provider.orderModel.data![inde!].productDetail!.length,
               itemBuilder: (context, i) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,8 +57,8 @@ class OrderCenter extends StatelessWidget {
                             height: deviceHeight * 0.16,
                             width: deviceWidth * 0.17,
                             child: Image.network(
-                              provider.orderModel!.data![inde!]
-                                  .productDetail![i].thumbnailImage
+                              provider.orderModel.data![inde!].productDetail![i]
+                                  .thumbnailImage
                                   .toString(),
                               fit: BoxFit.fill,
                             ),
@@ -114,7 +113,7 @@ class OrderCenter extends StatelessWidget {
                                               size: 18.0,
                                             ),
                                             Text(
-                                              provider.orderModel!.data![inde!]
+                                              provider.orderModel.data![inde!]
                                                   .productDetail![i].rating
                                                   .toString(),
                                               style: natoSemiBoldTextStyle(
@@ -130,7 +129,7 @@ class OrderCenter extends StatelessWidget {
                                         width: 25,
                                         child: Text(
                                           provider
-                                              .orderModel!
+                                              .orderModel
                                               .data![inde!]
                                               .productDetail![i]
                                               .photos![0]
@@ -153,7 +152,7 @@ class OrderCenter extends StatelessWidget {
                                   height: deviceHeight * 0.01,
                                 ),
                                 Text(
-                                  provider.orderModel!.data![inde!]
+                                  provider.orderModel.data![inde!]
                                       .productDetail![i].priceHighLow!
                                       .toString(),
                                   style: robotoBoldTextStyle(
@@ -167,7 +166,7 @@ class OrderCenter extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      provider.orderModel!.data![inde!]
+                                      provider.orderModel.data![inde!]
                                           .productDetail![i].strokedPrice
                                           .toString(),
                                       style: TextStyle(
@@ -181,7 +180,7 @@ class OrderCenter extends StatelessWidget {
                                       width: deviceWidth * 0.02,
                                     ),
                                     Text(
-                                      "(${provider.orderModel!.data![inde!].productDetail![i].discount.toString()} ${provider.orderModel!.data![inde!].productDetail![i].discountType == "percent" ? "%" : "Rs"} off)",
+                                      "(${provider.orderModel.data![inde!].productDetail![i].discount.toString()} ${provider.orderModel.data![inde!].productDetail![i].discountType == "percent" ? "%" : "Rs"} off)",
                                       style: TextStyle(
                                           // decoration: TextDecoration.lineThrough,
                                           color: ColorRes.green,

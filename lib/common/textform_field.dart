@@ -191,7 +191,7 @@ class CommonTextField extends StatelessWidget {
             //color of shadow
             spreadRadius: 0, //spread radius
             blurRadius: 3, // blur radius
-            offset: Offset(0, 0), // changes position of shadow
+            offset: const Offset(0, 0), // changes position of shadow
           ),
         ],
         borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -214,7 +214,7 @@ class CommonTextField extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
             borderSide: BorderSide.none,
           ),
-          contentPadding: EdgeInsets.only(top: 0),
+          contentPadding: const EdgeInsets.only(top: 0),
           hintText: hintText,
           hintStyle: robotoMediumTextStyle(
             fontSize: 18,
@@ -281,7 +281,7 @@ class CommonTextFieldMulti extends StatelessWidget {
             //color of shadow
             spreadRadius: 0, //spread radius
             blurRadius: 3, // blur radius
-            offset: Offset(0, 0), // changes position of shadow
+            offset: const Offset(0, 0), // changes position of shadow
           ),
         ],
         borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -306,7 +306,7 @@ class CommonTextFieldMulti extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
             borderSide: BorderSide.none,
           ),
-          contentPadding: EdgeInsets.only(top: 0),
+          contentPadding: const EdgeInsets.only(top: 0),
           hintText: hintText,
           hintStyle: robotoMediumTextStyle(
             fontSize: 18,

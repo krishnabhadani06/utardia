@@ -25,7 +25,7 @@ class OrderDetailsCart extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.only(left: deviceWidth * 0.1),
           scrollDirection: Axis.horizontal,
-          itemCount: provider.orderModel!.data![i!].productDetail!.length,
+          itemCount: provider.orderModel.data![i!].productDetail!.length,
           itemBuilder: (context, i) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,7 +63,7 @@ class OrderDetailsCart extends StatelessWidget {
                         //    color: Colors.amber
                         //  ),
                         child: Image.network(
-                          provider.orderModel!.data![i!].productDetail![i]
+                          provider.orderModel.data![i].productDetail![i]
                               .thumbnailImage
                               .toString(),
                           fit: BoxFit.fill,
@@ -79,7 +79,7 @@ class OrderDetailsCart extends StatelessWidget {
                             // height: deviceHeight * 0.,
                             width: deviceWidth * 0.25,
                             child: Text(
-                              provider.orderModel!.data![i!].productDetail![i]
+                              provider.orderModel.data![i].productDetail![i]
                                   .productName
                                   .toString(),
                               maxLines: 1,
@@ -103,7 +103,7 @@ class OrderDetailsCart extends StatelessWidget {
                                   ),
                                   child: Center(
                                       child: Text(
-                                    provider.orderModel!.data![i!]
+                                    provider.orderModel.data![i]
                                         .productDetail![i].photos![0].variant
                                         .toString(),
                                     style: natoSemiBoldTextStyle(
@@ -126,7 +126,7 @@ class OrderDetailsCart extends StatelessWidget {
                             height: deviceHeight * 0.002,
                           ),
                           Text(
-                            provider.orderModel!.data![i!].productDetail![i]
+                            provider.orderModel.data![i].productDetail![i]
                                 .priceHighLow!
                                 .toString(),
                             style: robotoBoldTextStyle(
@@ -137,7 +137,7 @@ class OrderDetailsCart extends StatelessWidget {
                     ],
                   ),
                 ),
-                provider.orderModel!.data![i!].deliveryStatus == "deliverd"
+                provider.orderModel.data![i].deliveryStatus == "deliverd"
                     ? ElevatedButton(
                         onPressed: () {
                           showDialog(

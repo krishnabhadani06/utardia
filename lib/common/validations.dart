@@ -5,8 +5,37 @@ String? validatePassword(val) {
   if (kDebugMode) {
     print(val);
   }
-  if (val!.length < 8) return Strings.enterMinimumPassword;
+  if (val.length != 8) return Strings.enterMinimumPassword;
   return (val!.isEmpty) ? Strings.pleaseEnterPassword : null;
+}
+
+String? validateAddress(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  return (val!.isEmpty) ? Strings.pleaseEnterAddress : null;
+}
+
+String? validateName(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  return (val!.isEmpty) ? Strings.pleaseEnterName : null;
+}
+
+String? validateLandMark(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  return (val!.isEmpty) ? Strings.pleaseEnterName : null;
+}
+
+String? validatePinCode(val) {
+  if (kDebugMode) {
+    print(val);
+  }
+  if (val!.length != 6) return Strings.enterpincode;
+  return (val.isEmpty) ? Strings.enterpincode : null;
 }
 
 // String? validateRePassword(val) {
@@ -52,7 +81,7 @@ String? validateEmail(String? value) {
 }
 
 String? phoneNumberValidator(String value) {
-  String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  String pattern = '(^[0-9]{10}\$)';
   RegExp regex = RegExp(pattern);
   if (!regex.hasMatch(value)) {
     return 'Please enter valid mobile number';

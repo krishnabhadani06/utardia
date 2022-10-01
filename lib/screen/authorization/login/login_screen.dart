@@ -16,35 +16,36 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 58.0),
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: deviceHeight * 0.25,
-                  child: Image.asset(
-                    AssetsImagesRes.loginUtradiyaImage,
-                    // AssetsImagesRes.loginMainImage,
-                    //fit: BoxFit.fill,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 45.0),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: deviceHeight * 0.25,
+                    child: Image.asset(
+                      AssetsImagesRes.loginUtradiyaImage,
+                      //fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-                const LoginCenter(),
-                SizedBox(
-                  height: deviceHeight * 0.02,
-                ),
-                const LoginBottom(),
-              ],
+                  const LoginCenter(),
+                  SizedBox(
+                    height: deviceHeight * 0.02,
+                  ),
+                  const LoginBottom(),
+                ],
+              ),
             ),
-          ),
-          provider.loader == true
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : const SizedBox()
-        ],
+            provider.loader == true
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : const SizedBox()
+          ],
+        ),
       ),
     ));
   }

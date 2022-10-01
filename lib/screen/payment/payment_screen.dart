@@ -19,11 +19,6 @@ class PaymentScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
             backgroundColor: ColorRes.appBarColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(20),
-              ),
-            ),
             leading: GestureDetector(
               child: Icon(IconRes.icBack, size: 28),
               onTap: () {

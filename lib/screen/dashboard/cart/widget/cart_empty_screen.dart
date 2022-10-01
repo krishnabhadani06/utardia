@@ -41,38 +41,40 @@ class CartEmptyScreen extends StatelessWidget {
           title: Text(Strings.cart,
               style: robotoBoldTextStyle(fontSize: 22, color: ColorRes.white)),
         ),
-        body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.12),
-              Image.asset(AssetsImagesRes.cartEmpty),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-              Text(
-                Strings.cartTitle,
-                style: natoBoldTextStyle(fontSize: 20),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-              Text(
-                Strings.cartLooksLike,
-                style:
-                    natoMediumTextStyle(fontSize: 16, color: ColorRes.grayText),
-              ),
-              Text(
-                Strings.cartYourChoice,
-                style:
-                    natoMediumTextStyle(fontSize: 16, color: ColorRes.grayText),
-              ),
-              // SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-              //   child: materialButton(
-              //     txtButton: Strings.startShopping,
-              //     onPressed: () => provider.onTapStartShopping(context),
-              //   ),
-              // )
-            ],
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.12),
+                Image.asset(AssetsImagesRes.cartEmpty),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                Text(
+                  Strings.cartTitle,
+                  style: natoBoldTextStyle(fontSize: 20),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                Text(
+                  Strings.cartLooksLike,
+                  style: natoMediumTextStyle(
+                      fontSize: 16, color: ColorRes.grayText),
+                ),
+                Text(
+                  Strings.cartYourChoice,
+                  style: natoMediumTextStyle(
+                      fontSize: 16, color: ColorRes.grayText),
+                ),
+                // SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                //   child: materialButton(
+                //     txtButton: Strings.startShopping,
+                //     onPressed: () => provider.onTapStartShopping(context),
+                //   ),
+                // )
+              ],
+            ),
           ),
         ),
       ),

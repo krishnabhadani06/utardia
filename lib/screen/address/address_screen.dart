@@ -19,11 +19,6 @@ class AddressScreen extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
               backgroundColor: ColorRes.appBarColor,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-              ),
               leading: GestureDetector(
                 child: Icon(IconRes.icBack, size: 30),
                 onTap: () {
@@ -70,15 +65,27 @@ class AddressScreen extends StatelessWidget {
                         itemCount: provider.userAddress!.data!.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.only(
+                                top: 23.0, left: 8.0, right: 8.0),
                             child: Container(
                               height: deviceHeight * 0.08,
                               width: deviceWidth / 1,
                               decoration: BoxDecoration(
+                                color: ColorRes.white,
                                 border: Border.all(
-                                    color: ColorRes.lightGrey, width: 2),
+                                    color: ColorRes.lightGrey, width: 1),
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(8)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: ColorRes.black.withOpacity(0.5),
+                                    //color of shadow
+                                    spreadRadius: 0, //spread radius
+                                    blurRadius: 3, // blur radius
+                                    offset: Offset(
+                                        0, 0), // changes position of shadow
+                                  ),
+                                ],
                               ),
                               child: Row(
                                 mainAxisAlignment:

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
@@ -19,6 +18,26 @@ class LoginBottom extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16.0, right: 18),
       child: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                Strings.anyAccount,
+                style: robotoMediumTextStyle(fontSize: 12),
+              ),
+              SizedBox(width: deviceWidth * 0.01),
+              InkWell(
+                onTap: () => provider.onTapCreate(),
+                child: Text(
+                  Strings.createNew,
+                  style: robotoMediumTextStyle(
+                      fontSize: 12, color: ColorRes.textBlue),
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: deviceHeight * 0.01),
           Row(
             children: [
               Expanded(
@@ -70,24 +89,25 @@ class LoginBottom extends StatelessWidget {
           SizedBox(
             height: deviceHeight * 0.01,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                Strings.anyAccount,
-                style: robotoMediumTextStyle(fontSize: 12),
-              ),
-              InkWell(
-                onTap: () => provider.onTapCreate(),
-                child: Text(
-                  Strings.createNew,
-                  style: robotoMediumTextStyle(
-                      fontSize: 12, color: ColorRes.textBlue),
-                ),
-              )
-            ],
-          )
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     Text(
+          //       Strings.anyAccount,
+          //       style: robotoMediumTextStyle(fontSize: 12),
+          //     ),
+          //     SizedBox(width: deviceWidth * 0.01),
+          //     InkWell(
+          //       onTap: () => provider.onTapCreate(),
+          //       child: Text(
+          //         Strings.createNew,
+          //         style: robotoMediumTextStyle(
+          //             fontSize: 12, color: ColorRes.textBlue),
+          //       ),
+          //     )
+          //   ],
+          // )
         ],
       ),
     );

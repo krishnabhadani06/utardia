@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:utardia/common/validations.dart';
 import 'package:utardia/model/SignUp_Model/signup_model.dart';
+import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 
 import 'registration_api/registration_api.dart';
@@ -10,27 +12,50 @@ class RegistrationProvider extends ChangeNotifier {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   TextEditingController txtRePassword = TextEditingController();
+  TextEditingController txtPhone = TextEditingController();
+
   GlobalKey<FormState> registrationFormKey = GlobalKey<FormState>();
   SingUpModel singUpModel = SingUpModel();
   bool loader = false;
   String? errorTextEmail;
   String? errorTextPassword;
   String? errorTextRePassword;
+  String? errorTextPhone;
+  bool isPhone = false;
 
   void onTapRegistration(BuildContext context) {
-    emailValidation();
-    passwordValidation();
-    rePasswordValidation();
-    if (errorTextEmail == null &&
-        errorTextPassword == null &&
-        errorTextRePassword == null) {
-      singUpApiData(
-        context,
-        txtEmail.text,
-        txtPassword.text,
-        txtRePassword.text,
-      );
-    } else {}
+    if (Provider.of<LoginProvider>(context, listen: false).isPhone) {
+      passwordValidation();
+      rePasswordValidation();
+      phoneValidation();
+      if (errorTextPassword == null &&
+          errorTextRePassword == null &&
+          errorTextPhone == null) {
+        singUpApiData(
+          context,
+          txtEmail.text,
+          txtPassword.text,
+          txtRePassword.text,
+          txtPhone.text,
+        );
+      } else {}
+    } else {
+      emailValidation();
+      passwordValidation();
+      rePasswordValidation();
+      // phoneValidation();
+      if (errorTextEmail == null &&
+          errorTextPassword == null &&
+          errorTextRePassword == null) {
+        singUpApiData(
+          context,
+          txtEmail.text,
+          txtPassword.text,
+          txtRePassword.text,
+          txtPhone.text,
+        );
+      } else {}
+    }
   }
 
   void emailValidation() {
@@ -44,7 +69,12 @@ class RegistrationProvider extends ChangeNotifier {
   }
 
   void rePasswordValidation() {
-    errorTextRePassword = validatePassword(txtRePassword.text);
+    errorTextRePassword = rePassValidation(txtRePassword.text);
+    notifyListeners();
+  }
+
+  void phoneValidation() {
+    errorTextPhone = phoneNumberValidator(txtPhone.text);
     notifyListeners();
   }
 
@@ -61,14 +91,19 @@ class RegistrationProvider extends ChangeNotifier {
     return null;
   }
 
+  void onTapButtonRegis(int index) {
+    isPhone = !isPhone;
+    notifyListeners();
+  }
+
   Widget onTapTerms(BuildContext context, String title, String subText) {
     return TermsBottomSheet(title, subText);
   }
 
   Future<void> singUpApiData(BuildContext context, String email,
-      String password, String retypePassword) async {
+      String password, String retypePassword, String phone) async {
     loader = true;
-    await SingUpApi.singUpApi(context, email, password, retypePassword);
+    await SingUpApi.singUpApi(context, email, password, retypePassword, phone);
 
     loader = false;
     notifyListeners();

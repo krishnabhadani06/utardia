@@ -44,10 +44,13 @@ class _ProductDetailsCenterState extends State<ProductDetailsCenter> {
               SizedBox(height: deviceHeight * 0.02),
               Row(
                 children: [
-                  Text(pro.homeProductDetail!.name.toString(),
-                      style: robotoBoldTextStyle(
-                              color: ColorRes.grey, fontSize: 20)
-                          .copyWith(overflow: TextOverflow.ellipsis)),
+                  Text(
+                    pro.homeProductDetail!.name.toString(),
+                    style: robotoMediumTextStyle(
+                        color: ColorRes.greyDark, fontSize: 15),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
               ),
               SizedBox(height: deviceHeight * 0.01),

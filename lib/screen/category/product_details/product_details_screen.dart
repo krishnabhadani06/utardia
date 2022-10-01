@@ -42,11 +42,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: ColorRes.appBarColor,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-              ),
               leading: GestureDetector(
                 child: Icon(IconRes.icBack, size: 30),
                 onTap: () {
@@ -117,6 +112,332 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 ),
                               ),
                               const ProductDetailsBottom(),
+                              SizedBox(
+                                height: deviceHeight * 0.02,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Text(
+                                  "Todays Deal",
+                                  style: robotoSemiBoldTextStyle(
+                                      fontSize: 15, color: ColorRes.blackLight),
+                                ),
+                              ),
+                              Container(
+                                height: deviceHeight * 0.35,
+                                width: deviceWidth,
+                                // color: ColorRes.blackLight,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: pro.allTodayProducts.length,
+                                    itemBuilder: (context, index) {
+                                      return InkWell(
+                                        onTap: () {
+                                          pro.onTapProductDetails(
+                                              index,
+                                              pro.todayProduct!.data![index]
+                                                  .links!.details
+                                                  .toString(),
+                                              context,
+                                              pro.todayProduct!.data![index].id
+                                                  .toString());
+                                        },
+                                        child: Container(
+                                          margin: const EdgeInsets.all(10),
+                                          height: deviceHeight * 0.20,
+                                          width: deviceWidth * 0.45,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(8.0)),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: ColorRes.black
+                                                    .withOpacity(0.2),
+                                                //color of shadow
+                                                spreadRadius: 0, //spread radius
+                                                blurRadius: 3, // blur radius
+                                                offset: Offset(0,
+                                                    0), // changes position of shadow
+                                              ),
+                                            ],
+                                            color: ColorRes.white,
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    Alignment.bottomCenter,
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                      // color: ColorRes.blue,
+                                                      height:
+                                                          deviceHeight * 0.18,
+                                                      width: deviceWidth,
+                                                      child: CachedNetworkImage(
+                                                          imageUrl: pro
+                                                              .allTodayProducts[
+                                                                  index]
+                                                              .thumbnailImage
+                                                              .toString(),
+                                                          progressIndicatorBuilder: (context,
+                                                                  url,
+                                                                  downloadProgress) =>
+                                                              SizedBox(
+                                                                  height: 40,
+                                                                  width: 40,
+                                                                  child: CircularProgressIndicator(
+                                                                      value: downloadProgress
+                                                                          .progress)),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              Image.asset(
+                                                                  AssetsImagesRes
+                                                                      .girl1)),
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  top: 4.0),
+                                                          child: Column(
+                                                            children: [
+                                                              Container(
+                                                                height: 25,
+                                                                width: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                  color: ColorRes
+                                                                      .white,
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      color: Colors
+                                                                          .black
+                                                                          .withOpacity(
+                                                                              0.20),
+                                                                      blurRadius:
+                                                                          5,
+                                                                      offset: Offset
+                                                                          .zero,
+                                                                      spreadRadius:
+                                                                          0,
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                child:
+                                                                    CircleAvatar(
+                                                                  backgroundColor:
+                                                                      ColorRes
+                                                                          .white,
+                                                                  radius: 15,
+                                                                  child: Center(
+                                                                    child: InkWell(
+                                                                        onTap: () {
+                                                                          // provider.addWishList(id.toString(),
+                                                                          //     context, productUrl.toString());
+                                                                        },
+                                                                        child: Icon(
+                                                                          Icons
+                                                                              .favorite,
+                                                                          color:
+                                                                              ColorRes.grey,
+                                                                          // color: like!
+                                                                          //     ? ColorRes.red
+                                                                          //     : ColorRes.grey,
+                                                                          size:
+                                                                              18,
+                                                                        )),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              //SizedBox(height: deviceHeight * 0.01),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 1,
+                                                child: Container(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  padding:
+                                                      const EdgeInsets.all(5),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      SizedBox(
+                                                          height: deviceHeight *
+                                                              0.006),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                right: 4.0),
+                                                        child: Text(
+                                                          pro
+                                                              .allTodayProducts[
+                                                                  index]
+                                                              .name
+                                                              .toString(),
+                                                          style:
+                                                              robotoMediumTextStyle(
+                                                                  color: ColorRes
+                                                                      .greyDark,
+                                                                  fontSize: 12),
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          height: deviceHeight *
+                                                              0.01),
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    right:
+                                                                        10.0),
+                                                            height: 22,
+                                                            width: 40,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4.0),
+                                                              color: ColorRes
+                                                                  .yellow,
+                                                            ),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  pro
+                                                                      .allTodayProducts[
+                                                                          index]
+                                                                      .rating
+                                                                      .toString(),
+                                                                  // rate!,
+                                                                  style: const TextStyle(
+                                                                      color: ColorRes
+                                                                          .white,
+                                                                      fontSize:
+                                                                          12),
+                                                                ),
+                                                                const Icon(
+                                                                  Icons.star,
+                                                                  color: ColorRes
+                                                                      .white,
+                                                                  size: 15,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          const Spacer(),
+                                                          Text(
+                                                            Strings.tops,
+                                                            style:
+                                                                robotoSemiBoldTextStyle(
+                                                                    color:
+                                                                        ColorRes
+                                                                            .grey,
+                                                                    fontSize:
+                                                                        12),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: deviceHeight *
+                                                            0.004,
+                                                      ),
+                                                      Wrap(
+                                                        children: [
+                                                          //mainAxisAlignment: MainAxisAlignment.start,
+                                                          Text(
+                                                            // "Rs${mainPrice!.toString()}",
+                                                            pro
+                                                                .allTodayProducts[
+                                                                    index]
+                                                                .mainPrice
+                                                                .toString(),
+                                                            style:
+                                                                robotoBoldTextStyle(
+                                                                    fontSize:
+                                                                        12),
+                                                          ),
+                                                          SizedBox(
+                                                            width: deviceWidth *
+                                                                0.02,
+                                                          ),
+                                                          Text(
+                                                              // "Rs${strokedPrice!.toString()}",
+                                                              pro
+                                                                  .allTodayProducts[
+                                                                      index]
+                                                                  .strokedPrice
+                                                                  .toString(),
+                                                              style: robotoBoldTextStyle(
+                                                                      fontSize:
+                                                                          10,
+                                                                      color: ColorRes
+                                                                          .clrFont
+                                                                          .withOpacity(
+                                                                              0.7))
+                                                                  .copyWith(
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .lineThrough,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              )),
+                                                          SizedBox(
+                                                            width: deviceWidth *
+                                                                0.02,
+                                                          ),
+                                                          Text(
+                                                            Strings.off57,
+                                                            style: natoMediumTextStyle(
+                                                                color: ColorRes
+                                                                    .darkGreen,
+                                                                fontSize: 12),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      // ),
+                                                    ],
+                                                  ),
+                                                  //],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                              ),
                               SizedBox(
                                 height: deviceHeight * 0.10,
                               ),

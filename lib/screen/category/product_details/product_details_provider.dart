@@ -12,9 +12,11 @@ import 'package:utardia/model/addToCartModel/addToCart_model.dart';
 import 'package:utardia/model/category_model/product_description_model.dart';
 import 'package:utardia/model/home_model/home_category_product_detail_model.dart';
 import 'package:utardia/model/home_top_category/home_top_product_detail_model.dart';
+import 'package:utardia/model/todays_product_model/todays_product_deal_model.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/addToCartApi/addToCart_Api.dart';
 import 'package:utardia/screen/category/product_details/globalClass.dart';
+import 'package:utardia/screen/category/product_details/productDetailScreenApi/productDetailsScreenApi.dart';
 import 'package:utardia/screen/category/product_details/product_details_screen.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/dashboard/cart/cart_screen.dart';
@@ -54,6 +56,8 @@ class ProductDetailsProvider extends ChangeNotifier {
 
   ProductDescriptionApi productDescriptionModel = ProductDescriptionApi();
   List<ProductDetailList> allProductDescription = [];
+  TodaysProductDealModel? todayProduct;
+  List<TodayProductDealList> allTodayProducts = [];
 
   String selectDropDown(String? newValue) {
     select = newValue.toString();
@@ -104,6 +108,19 @@ class ProductDetailsProvider extends ChangeNotifier {
     } else {
       counter = counter - 1;
       notifyListeners();
+    }
+  }
+
+  ///todaysProductDeal
+  Future<void> allTodaysProductDealData() async {
+    loader = true;
+    todayProduct = await TodayProductDealServices.allTodaysProduct();
+    if (todayProduct!.status != 200) {
+      allTodaysProductDealData();
+    } else {
+      allTodayProducts = todayProduct!.data!;
+      print(allTodayProducts);
+      loader = false;
     }
   }
 
@@ -167,6 +184,7 @@ class ProductDetailsProvider extends ChangeNotifier {
     homeProductDetail = null;
     await homeProductDetails(url);
     currentProdductLink = url;
+    await allTodaysProductDealData();
 
     checkWishList(pid, PrefService.getString(PrefKeys.uid));
     navigator.currentState!

@@ -37,4 +37,5 @@ class ColorRes {
   static const borderblue = Color(0xff1D74E5);
   static const dailogBoxColor = Color(0xff009DE0);
   static const dailogTextColor = Color(0xffAAAAAA);
+  static const textfielTitleColor = Color(0xffA6A6A6);
 }

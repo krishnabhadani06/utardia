@@ -5,16 +5,25 @@ import 'package:utardia/screen/authorization/login/forgot_password/forgot_passwo
 
 class ForgotPasswordProvider extends ChangeNotifier {
   TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtPhone = TextEditingController();
   String? errorTextEmail;
+  String? errorPhone;
 
   GlobalKey<FormState> forgotPasswordFormKey = GlobalKey<FormState>();
   bool loader = false;
+  bool isPhone = false;
+
+  void onTapButtonForgotPassword(int index) {
+    isPhone = !isPhone;
+    notifyListeners();
+  }
 
   void onTapResetPassword() {
     emailValidation();
-    if (errorTextEmail == null) {
+    if (errorTextEmail == null && errorPhone == null) {
       forgotPasswordData(
         txtEmail.text,
+        txtPhone.text,
       );
     }
   }
@@ -24,13 +33,15 @@ class ForgotPasswordProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> forgotPasswordData(
-    String email,
-  ) async {
+  void phoneValidation() {
+    errorPhone = phoneNumberValidator(txtPhone.text);
+    notifyListeners();
+  }
+
+  Future<void> forgotPasswordData(String email, String phone) async {
     loader = true;
-    await ForgotPasswordApi.forgotPassword(email).then((value) => {
-          txtEmail.clear(),
-        });
+    await ForgotPasswordApi.forgotPassword(email)
+        .then((value) => {txtEmail.clear(), txtPhone.clear()});
     loader = false;
     notifyListeners();
   }

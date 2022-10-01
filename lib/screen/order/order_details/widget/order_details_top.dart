@@ -111,7 +111,7 @@ class OrderDetailsTop extends StatelessWidget {
                 selectedStepSize: 16,
                 selectedStepBorderSize: 8,
 
-                selectedStepColorOut: ColorRes.green,
+                selectedStepColorOut: ColorRes.appBarColor,
                 // lineLengthCustomStep: [
                 //   StepsIndicatorCustomLine(nbStep: 1, length: 105)
                 // ],

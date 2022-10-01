@@ -4,9 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/model/SignUp_Model/signup_model.dart';
+import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_provider.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_screen.dart';
@@ -15,22 +17,29 @@ import 'package:utardia/util/api_endpoints.dart';
 
 class SingUpApi {
   static Future<SingUpModel?> singUpApi(BuildContext context, String email,
-      String password, String retypePassword) async {
+      String phone, String password, String retypePassword) async {
     try {
       String url = ApiEndPoint.signUp;
       Map<String, String> param = {
         "name": "ram",
-        "email_or_phone": email.toString(),
+        "email_or_phone": Provider.of<LoginProvider>(context, listen: false)
+                    .isPhone ==
+                false
+            ? "+${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
+            : email.toString(),
         "password": password.toString(),
         "passowrd_confirmation": retypePassword.toString(),
-        "register_by": "email"
+        "register_by":
+            Provider.of<LoginProvider>(context, listen: false).isPhone == false
+                ? "Phone"
+                : "email",
       };
       http.Response? response = await HttpService.postApi(
           url: url,
           body: param,
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 201) {
-        Fluttertoast.showToast(msg: "Registration Successful.");
+        Fluttertoast.showToast(msg: "Registration Successfully.");
         var res = jsonDecode(response.body);
         print("*****************************${res['user_id']}");
         navigator.currentState!
@@ -43,7 +52,8 @@ class SingUpApi {
         return singUpModelFromJson(response.body);
       }
       return null;
-    } catch (e) {
+    } catch (e, x) {
+      Logger().e(e.toString() + x.toString());
       print(e);
       return null;
     }

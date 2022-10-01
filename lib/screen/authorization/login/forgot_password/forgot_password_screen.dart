@@ -59,7 +59,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border.all(color: ColorRes.buttonBlue),
                           borderRadius:
-                              BorderRadius.all(Radius.circular(12.0))),
+                              const BorderRadius.all(Radius.circular(12.0))),
                       child: Row(
                         children: [
                           Expanded(

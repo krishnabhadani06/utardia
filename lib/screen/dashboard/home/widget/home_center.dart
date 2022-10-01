@@ -30,7 +30,7 @@ class HomeCenter extends StatelessWidget {
         itemCount: provider.allHomeCategories.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () => provider.onTapCategory(index, context),
+            onTap: () => provider.onTapCategory(index, context, ""),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

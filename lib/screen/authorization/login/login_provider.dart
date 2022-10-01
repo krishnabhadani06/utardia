@@ -19,7 +19,9 @@ class LoginProvider extends ChangeNotifier {
   TextEditingController txtPhone = TextEditingController();
   String? errorTxtId;
   String? errorTxtPass;
+  String? errorTxtPhone;
   Country? currentCountry;
+
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   bool loader = false;
@@ -41,9 +43,11 @@ class LoginProvider extends ChangeNotifier {
   void onClickLogin(BuildContext context) async {
     emailValidation();
     passwordValidation();
-    if (errorTxtPass == null && errorTxtId == null) {
+    if (errorTxtPass == null && errorTxtId == null && errorTxtPhone == null) {
       singUpApiData(
-          isPhone ? "${currentCountry!.phoneCode}${txtPhone.text}" : txtId.text,
+          isPhone
+              ? "${currentCountry!.phoneCode} ${txtPhone.text}"
+              : txtId.text,
           txtPassword.text,
           context);
     }
@@ -81,6 +85,7 @@ class LoginProvider extends ChangeNotifier {
   void onTapCountry(Country country) {
     currentCountry = country;
   }
+
 // void writeSignInData(Map<String, dynamic> userdata) {
 //   PrefService.init();
 //   List<String> list = userdata.entries.map((e) => e.toString()).toList();

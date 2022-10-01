@@ -8,6 +8,7 @@ import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/home_model/home_category_model.dart';
 import 'package:utardia/model/home_model/home_category_product_model.dart';
 import 'package:utardia/model/home_model/home_subCategory_model.dart';
+import 'package:utardia/model/home_model/subCategory_Product_model.dart';
 
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/services/http_service.dart';
@@ -26,7 +27,10 @@ class CategoryProvider extends ChangeNotifier {
   bool visibleicon = false;
 
   HomeCategoryProductApi? categoryProducts;
+
+  /// subcategory
   HomeCenterSubCategoryModel? allHomeSubCategories;
+  SubCategoryProductModel? allSubCategoriesProducts;
 
   List<String> wishListId = [];
   HomeCategoryApi? homeCategoryModel;
@@ -95,6 +99,26 @@ class CategoryProvider extends ChangeNotifier {
             HomeCenterSubCategoryModel.fromJson(jsonDecode(res.body));
         if (allHomeSubCategories != null &&
             allHomeSubCategories!.success == true) {
+          notifyListeners();
+          Logger().e(jsonDecode(res.body));
+        }
+      } else {
+        showToast(res!.statusCode.toString());
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+    }
+  }
+
+  void getSubCategoriesProduct(String url) async {
+    try {
+      http.Response? res = await HttpService.getApi(url: url);
+      if (res != null && res.statusCode == 200) {
+        allSubCategoriesProducts =
+            SubCategoryProductModel.fromJson(jsonDecode(res.body));
+        if (allSubCategoriesProducts != null &&
+            allSubCategoriesProducts!.success == true) {
           notifyListeners();
           Logger().e(jsonDecode(res.body));
         }

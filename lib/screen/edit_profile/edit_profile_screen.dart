@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
+import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/common/textform_field.dart';
 import 'package:utardia/screen/dashboard/dashboard_provider.dart';
 import 'package:utardia/screen/edit_profile/editprofile_provider.dart';
@@ -125,57 +126,50 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ],
                           ),
                           SizedBox(height: deviceHeight * 0.03),
-                          CommonTextField(
-                              controller: x.txtName,
-                              obscure: false,
-                              hintText: Strings.name,
-                              error: false,
-                              width: deviceWidth,
-                              border: false),
-                          // txtfield(
-                          //     validate: (val) {
-                          //       return (val!.isEmpty)
-                          //           ? Strings.pleaseEnterName
-                          //           : null;
-                          //     },
-                          //     hintTxt: Strings.name,
-                          //     controllerValue: x.txtName),
-                          SizedBox(height: deviceHeight * 0.02),
-
-                          // txtfield(
-                          //     validate: (val) {}, //=> validateEmail1(val),
-                          //     controllerValue: x.txtEmail,
-                          //     hintTxt: Strings.enterEmail),
-                          CommonTextField(
-                            controller: x.txtEmail,
-                            obscure: false,
-                            hintText: Strings.enterEmail,
-                            error: false,
-                            width: deviceWidth,
-                            border: false,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Enter Name",
+                                  style: robotoRegularTextStyle(
+                                      fontSize: 15,
+                                      color: ColorRes.textfielTitleColor)),
+                              CommonTextField(
+                                  controller: x.txtName,
+                                  obscure: false,
+                                  hintText: Strings.name,
+                                  error: false,
+                                  width: deviceWidth,
+                                  border: false),
+                              SizedBox(height: deviceHeight * 0.02),
+                              Text("Enter Email id",
+                                  style: robotoRegularTextStyle(
+                                      fontSize: 15,
+                                      color: ColorRes.textfielTitleColor)),
+                              CommonTextField(
+                                controller: x.txtEmail,
+                                obscure: false,
+                                hintText: Strings.enterEmail,
+                                error: false,
+                                width: deviceWidth,
+                                border: false,
+                              ),
+                              SizedBox(height: deviceHeight * 0.02),
+                              const EditProfileCenter(),
+                              SizedBox(height: deviceHeight * 0.02),
+                              Text("Enter Address",
+                                  style: robotoRegularTextStyle(
+                                      fontSize: 15,
+                                      color: ColorRes.textfielTitleColor)),
+                              CommonTextField(
+                                controller: x.txtAddress,
+                                obscure: false,
+                                hintText: Strings.address,
+                                error: false,
+                                width: deviceWidth,
+                                border: false,
+                              ),
+                            ],
                           ),
-                          SizedBox(height: deviceHeight * 0.02),
-
-                          const EditProfileCenter(),
-
-                          SizedBox(height: deviceHeight * 0.02),
-                          CommonTextField(
-                            controller: x.txtAddress,
-                            obscure: false,
-                            hintText: Strings.address,
-                            error: false,
-                            width: deviceWidth,
-                            border: false,
-                          ),
-                          // txtFieldMulti(
-                          //     validate: (val) {
-                          //       return (val!.isEmpty)
-                          //           ? Strings.enterAddress
-                          //           : null;
-                          //     },
-                          //     controllerValue: x.txtAddress,
-                          //     hintTxt: Strings.address),
-
                           SizedBox(height: deviceHeight * 0.06),
                           materialButton(
                               txtButton: Strings.updateProfile,

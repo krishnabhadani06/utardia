@@ -116,13 +116,16 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void onTapCategory(int index, BuildContext context) {
+  void onTapCategory(
+    int index,
+    BuildContext context,
+    String url,
+  ) async {
     //Provider.of<CategoryProvider>(context,listen: false).homeCategoryProduct(allHomeCategories[index].links!.products!);
     navigator.currentState!.push(MaterialPageRoute(
         builder: (context) => CategoryScreen(
               select: index,
             )));
-    // MaterialPageRoute(builder: (context) => const CategoryScreen(index: 0,)));
   }
 
   void onTapViewProduct(int index) {

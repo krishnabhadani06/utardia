@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/model/SinIn_Model/singin_model.dart';
+import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/screen/dashboard/dashboard_screen.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/services/http_service.dart';
@@ -20,7 +21,14 @@ class SingInpApi {
     try {
       String url = ApiEndPoint.signIn;
       Map<String, dynamic> param = {
-        "email": email,
+        // "email": email,
+
+        Provider.of<LoginProvider>(context, listen: false).isPhone
+            ? "Phone"
+            : "email": Provider.of<LoginProvider>(context, listen: false)
+                .isPhone
+            ? "+${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}"
+            : email.toString(),
         "password": password,
         "identity_matrix": true.toString()
       };

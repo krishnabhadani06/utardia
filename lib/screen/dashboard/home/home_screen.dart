@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/home_center.dart';
 import 'package:utardia/screen/dashboard/profile/widget/profile_drawer.dart';
-import 'package:utardia/screen/dashboard/search/search_screen.dart';
 import 'package:utardia/util/color_res.dart';
-import 'package:utardia/util/icon_res.dart';
-
 import 'widget/home_bottom.dart';
 import 'widget/home_top.dart';
 

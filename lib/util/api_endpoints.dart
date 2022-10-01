@@ -52,4 +52,7 @@ class ApiEndPoint {
 
   static var plaeOrder = "${baseUrl}order/store";
   static var applyCoupen = "${baseUrl}coupon-apply";
+
+  ///todayProductDeal
+  static const todayProductDeal = "${baseUrl}products/todays-deal";
 }

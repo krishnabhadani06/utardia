@@ -5,7 +5,7 @@ String? validatePassword(val) {
   if (kDebugMode) {
     print(val);
   }
-  if (val) return Strings.enterMinimumPassword;
+  if (val.length != 8) return Strings.enterMinimumPassword;
   return (val!.isEmpty) ? Strings.pleaseEnterPassword : null;
 }
 
@@ -81,7 +81,7 @@ String? validateEmail(String? value) {
 }
 
 String? phoneNumberValidator(String value) {
-  String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  String pattern = '(^[0-9]{10}\$)';
   RegExp regex = RegExp(pattern);
   if (!regex.hasMatch(value)) {
     return 'Please enter valid mobile number';

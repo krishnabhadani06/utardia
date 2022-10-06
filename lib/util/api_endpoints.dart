@@ -13,6 +13,7 @@ class ApiEndPoint {
   static const changePassword = "${baseUrl}auth/password/change_password";
   static const getAddress = "${baseUrl}user/shipping/address/";
 
+  static const pushRate = "${baseUrl}reviews/submit";
   static const getPayment = "${baseUrl}payment-types";
   static const deleteCart = "${baseUrl}cart/delete/";
   static const addAddress = "${baseUrl}user/shipping/create";

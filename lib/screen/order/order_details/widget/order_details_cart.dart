@@ -1,9 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
+import 'package:utardia/screen/order/order_details/widget/rating_dialog.dart';
 import 'package:utardia/screen/order/order_provider.dart';
+import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
+import 'package:utardia/util/pref_key.dart';
 
 class OrderDetailsCart extends StatelessWidget {
   int? i;
@@ -14,15 +18,17 @@ class OrderDetailsCart extends StatelessWidget {
     final provider = Provider.of<OrderProvider>(context, listen: false);
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: deviceHeight * 0.13,
+      height: deviceHeight * 0.18,
       child: ListView.builder(
           // shrinkWrap: true,
           //physics: NeverScrollableScrollPhysics(),
           physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          itemCount: provider.orderModel!.data![i!].productDetail!.length,
+          padding: EdgeInsets.only(left: deviceWidth * 0.1),
+          scrollDirection: Axis.horizontal,
+          itemCount: provider.orderModel.data![i!].productDetail!.length,
           itemBuilder: (context, i) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   height: deviceHeight * 0.11,
@@ -57,7 +63,7 @@ class OrderDetailsCart extends StatelessWidget {
                         //    color: Colors.amber
                         //  ),
                         child: Image.network(
-                          provider.orderModel!.data![i!].productDetail![i]
+                          provider.orderModel.data![i].productDetail![i]
                               .thumbnailImage
                               .toString(),
                           fit: BoxFit.fill,
@@ -69,10 +75,18 @@ class OrderDetailsCart extends StatelessWidget {
                           SizedBox(
                             height: deviceHeight * 0.005,
                           ),
-                          Text(
-                            "Product name",
-                            style: robotoBoldTextStyle(
-                                fontSize: 16, color: ColorRes.greyDark),
+                          SizedBox(
+                            // height: deviceHeight * 0.,
+                            width: deviceWidth * 0.25,
+                            child: Text(
+                              provider.orderModel.data![i].productDetail![i]
+                                  .productName
+                                  .toString(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: robotoBoldTextStyle(
+                                  fontSize: 16, color: ColorRes.greyDark),
+                            ),
                           ),
                           Padding(
                             padding:
@@ -89,7 +103,7 @@ class OrderDetailsCart extends StatelessWidget {
                                   ),
                                   child: Center(
                                       child: Text(
-                                    provider.orderModel!.data![i!]
+                                    provider.orderModel.data![i]
                                         .productDetail![i].photos![0].variant
                                         .toString(),
                                     style: natoSemiBoldTextStyle(
@@ -112,7 +126,7 @@ class OrderDetailsCart extends StatelessWidget {
                             height: deviceHeight * 0.002,
                           ),
                           Text(
-                            provider.orderModel!.data![i!].productDetail![i]
+                            provider.orderModel.data![i].productDetail![i]
                                 .priceHighLow!
                                 .toString(),
                             style: robotoBoldTextStyle(
@@ -123,6 +137,28 @@ class OrderDetailsCart extends StatelessWidget {
                     ],
                   ),
                 ),
+                provider.orderModel.data![i].deliveryStatus == "deliverd"
+                    ? ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Rating_dialog(
+                                      pid: provider.orderModel.data![i]
+                                          .productDetail![i].id
+                                          .toString(),
+                                      uid: PrefService.getString(PrefKeys.uid)
+                                          .toString()),
+                                );
+                              });
+                        },
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: Size(30.0, 20.0),
+                            backgroundColor: ColorRes.borderblue,
+                            minimumSize: Size(deviceWidth * 0.2, 27.0)),
+                        child: Text("Rate"))
+                    : const SizedBox()
               ],
             );
           }),

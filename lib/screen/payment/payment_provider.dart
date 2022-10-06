@@ -237,7 +237,7 @@ class PaymentProvider extends ChangeNotifier {
         "payment_type": "paystack"
       });
 
-      if (res != null && res!.statusCode == 200) {
+      if (res != null && res.statusCode == 200) {
         Logger().e(jsonDecode(res.body));
         showToast(jsonDecode(res.body)['message']);
         if (jsonDecode(res.body)['result'] == true) {

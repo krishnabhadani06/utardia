@@ -18,17 +18,11 @@ class OrderTop extends StatelessWidget {
         Row(
           children: [
             Text(
-              '20/05/2020 ',
+              provider.orderModel.data![inde!].productDetail![0].date
+                  .toString(),
               style: natoMediumTextStyle(fontSize: 14, color: ColorRes.grey),
             ),
-            Text(
-              ' - ',
-              style: natoMediumTextStyle(fontSize: 14, color: ColorRes.grey),
-            ),
-            Text(
-              '16:11',
-              style: natoMediumTextStyle(fontSize: 14, color: ColorRes.grey),
-            ),
+         
             const Spacer(),
             const SizedBox(width: 8),
             Text(

@@ -135,7 +135,8 @@ class ShippingAddress {
 
 class ProductDetail {
   int? id;
-  String? title;
+  String? productName;
+  String? productCategory;
   List<Photos>? photos;
   int? rating;
   String? thumbnailImage;
@@ -148,11 +149,13 @@ class ProductDetail {
   List<String>? colors;
   List<Choices>? choices;
   List<String>? tags;
+  String? date;
   Links? links;
 
   ProductDetail(
       {this.id,
-      this.title,
+      this.productName,
+      this.productCategory,
       this.photos,
       this.rating,
       this.thumbnailImage,
@@ -165,11 +168,13 @@ class ProductDetail {
       this.colors,
       this.choices,
       this.tags,
+      this.date,
       this.links});
 
   ProductDetail.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'];
+    productName = json['product_name'];
+    productCategory = json['product_category'];
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
@@ -197,13 +202,15 @@ class ProductDetail {
       });
     }
     tags = json['tags'].cast<String>();
+    date = json['date'];
     links = json['links'] != null ? new Links.fromJson(json['links']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['title'] = this.title;
+    data['product_name'] = this.productName;
+    data['product_category'] = this.productCategory;
     if (this.photos != null) {
       data['photos'] = this.photos!.map((v) => v.toJson()).toList();
     }
@@ -223,6 +230,7 @@ class ProductDetail {
       data['choices'] = this.choices!.map((v) => v.toJson()).toList();
     }
     data['tags'] = this.tags;
+    data['date'] = this.date;
     if (this.links != null) {
       data['links'] = this.links!.toJson();
     }

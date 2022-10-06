@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import "package:http/http.dart" as http;
+import 'package:logger/logger.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/todays_product_model/todays_product_deal_model.dart';
 import 'package:utardia/services/http_service.dart';
@@ -20,15 +24,16 @@ class TodayProductDealServices {
     try {
       String url = ApiEndPoint.todayProductDeal;
       http.Response? response = await HttpService.getApi(url: url);
-
+      Logger().e(jsonDecode(response!.body));
       if (response != null && response.statusCode == 200) {
-        return todaysProductDealFromJson(response.body);
+        return todaysProductDealModelFromJson(response.body);
       } else {
-        return todaysProductDealFromJson("");
+        return todaysProductDealModelFromJson("");
       }
-    } catch (e) {
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
       showToast(e.toString());
-      return todaysProductDealFromJson("");
+      return todaysProductDealModelFromJson("");
     }
   }
 }

@@ -371,6 +371,7 @@ class ProductDetailsProvider extends ChangeNotifier {
             checkWishList(homeProductDetail!.id.toString(),
                 PrefService.getString(PrefKeys.uid));
             Provider.of<HomeProvider>(context, listen: false).getWishList();
+            allTodaysProductDealData();
 
             Logger().e(jsonDecode(res.body));
             showToast(map['message']);
@@ -389,7 +390,7 @@ class ProductDetailsProvider extends ChangeNotifier {
         kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
         showToast(e.toString());
         loader = false;
-        // notifyListeners();
+        notifyListeners();
       } finally {
         EasyLoading.dismiss();
       }
@@ -427,10 +428,103 @@ class ProductDetailsProvider extends ChangeNotifier {
         kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
         showToast(e.toString());
         loader = false;
-        // notifyListeners();
+        notifyListeners();
       } finally {
         EasyLoading.dismiss();
       }
+    }
+  }
+
+  void onTapTodaysDealLikeButton() {}
+
+  void removeTodayProductWishList(BuildContext context, String id) async {
+    loader = true;
+    notifyListeners();
+    EasyLoading.show();
+    try {
+      if (PrefService.getString(PrefKeys.uid) != "") {
+        String url =
+            "${ApiEndPoint.removeWishList}?product_id=${id}&user_id=${PrefService.getString(PrefKeys.uid)}";
+        http.Response? res = await HttpService.getApi(url: url);
+        if (res!.statusCode == 200) {
+          Map<dynamic, dynamic> map = jsonDecode(res.body);
+          if (kDebugMode) {
+            print("aaaaaaaaaaaaaaaaaaaa $map");
+          }
+
+          checkWishList(homeProductDetail!.id.toString(),
+              PrefService.getString(PrefKeys.uid));
+
+          // ignore: use_build_context_synchronously
+          Provider.of<HomeProvider>(context, listen: false).getWishList();
+          // Provider.of<CategoryProvider>(context, listen: false).getWishList();
+          allTodaysProductDealData();
+
+          showToast(map['message']);
+          Logger().e(jsonDecode(res.body));
+        } else {
+          loader = false;
+          notifyListeners();
+          showToast("response is null!!");
+        }
+      } else {
+        showToast("pls login");
+      }
+      loader = false;
+      notifyListeners();
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+      loader = false;
+      notifyListeners();
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void addTodayProductWishList(BuildContext context, String id) async {
+    loader = true;
+    notifyListeners();
+    EasyLoading.show();
+    try {
+      if (PrefService.getString(PrefKeys.uid) != "") {
+        String url =
+            "${ApiEndPoint.addWishList}?product_id=${id}&user_id=${PrefService.getString(PrefKeys.uid)}";
+        http.Response? res = await HttpService.getApi(url: url);
+        if (res!.statusCode == 200) {
+          Map<dynamic, dynamic> map = jsonDecode(res.body);
+          if (kDebugMode) {
+            print("aaaaaaaaaaaaaaaaaaaa $map");
+          }
+
+          checkWishList(homeProductDetail!.id.toString(),
+              PrefService.getString(PrefKeys.uid));
+          // ignore: use_build_context_synchronously
+          // Provider.of<CategoryProvider>(context, listen: false).getWishList();
+          // ignore: use_build_context_synchronously
+          Provider.of<HomeProvider>(context, listen: false).getWishList();
+
+          allTodaysProductDealData();
+
+          showToast(map['message']);
+          Logger().e(jsonDecode(res.body));
+        } else {
+          showToast("response is null!!");
+        }
+      } else {
+        loader = false;
+        notifyListeners();
+        showToast("pls login");
+      }
+      loader = false;
+      notifyListeners();
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+      loader = false;
+      notifyListeners();
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 }

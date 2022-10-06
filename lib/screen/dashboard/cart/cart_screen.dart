@@ -160,7 +160,7 @@ class _CartScreenState extends State<CartScreen> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                        top: 12.0,
+                                                        top: 8,
                                                         left: 10.0,
                                                       ),
                                                       child: Container(
@@ -189,9 +189,10 @@ class _CartScreenState extends State<CartScreen> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              top: 7.0,
-                                                              left: 10,
-                                                              right: 0.0),
+                                                        top: 7.0,
+                                                        left: 10,
+                                                        right: 0.0,
+                                                      ),
                                                       child: Row(
                                                         children: [
                                                           Container(
@@ -253,10 +254,6 @@ class _CartScreenState extends State<CartScreen> {
                                                           ),
                                                         ],
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          deviceHeight * 0.02,
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(

@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     height: deviceHeight * 0.25,
                     child: Image.asset(
                       AssetsImagesRes.loginUtradiyaImage,
@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   const LoginCenter(),
                   SizedBox(
-                    height: deviceHeight * 0.02,
+                    height: deviceHeight * 0.04,
                   ),
                   const LoginBottom(),
                 ],

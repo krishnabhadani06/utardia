@@ -67,10 +67,7 @@ class PaymentProvider extends ChangeNotifier {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                builder: (context) => PaymentProcessScreen(
-                      id: value.toString(),
-                      amount: cartSummary!.grandTotalValue.toString(),
-                    ))).whenComplete(() => init(context));
+                builder: (context) => PaymentProcessScreen(id: value.toString(), amount: cartSummary!.grandTotalValue.toString(),))).whenComplete(() => init(context));
       }
     });
   }
@@ -229,10 +226,7 @@ class PaymentProvider extends ChangeNotifier {
           await HttpService.postApi(url: ApiEndPoint.plaeOrder, header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, body: {
-        "owner_id": Provider.of<CartProvider>(context, listen: false)
-            .cartListDataModel
-            .ownerId
-            .toString(),
+        "owner_id": Provider.of<CartProvider>(context, listen: false).cartListDataModel.ownerId.toString(),
         "user_id": PrefService.getString(PrefKeys.uid),
         "payment_type": "paystack"
       });
@@ -253,7 +247,9 @@ class PaymentProvider extends ChangeNotifier {
       kDebugMode ? Logger().e(e.toString()) : "";
       showToast(e.toString());
       return "";
-    } finally {}
+    } finally {
+
+    }
   }
 
   void applyCoupenCode(BuildContext context, CartBaseCoupenModel coupen) async {

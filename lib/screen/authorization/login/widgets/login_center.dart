@@ -40,31 +40,46 @@ class _LoginCenterState extends State<LoginCenter> {
               ),
             ],
           ),
-          SizedBox(height: deviceHeight * 0.01),
+          SizedBox(height: deviceHeight * 0.03),
           Center(
             child: Container(
               height: deviceHeight * 0.050,
               width: deviceWidth * 0.60,
               decoration: BoxDecoration(
-                  border: Border.all(color: ColorRes.buttonBlue),
-                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                border: Border.all(color: ColorRes.buttonBlue),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorRes.black.withOpacity(0.5),
+                    //color of shadow
+                    spreadRadius: 0, //spread radius
+                    blurRadius: 3, // blur radius
+                    offset: const Offset(0, 0), // changes position of shadow
+                  )
+                ],
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(15),
+                ),
+              ),
               child: Row(
                 children: [
                   Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
-                        provider.onTapButtonOption(0);
-                      },
-                      color: provider.isPhone == false
-                          ? ColorRes.buttonBlue
-                          : ColorRes.white,
-                      minWidth: deviceWidth * 0.30,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12.0),
-                        bottomLeft: Radius.circular(12.0),
-                      )),
+                      child: InkWell(
+                    onTap: () {
+                      provider.onTapButtonOption(0);
+                    },
+                    child: Container(
+                      height: deviceHeight * 0.050,
+                      decoration: BoxDecoration(
+                        color: provider.isPhone == false
+                            ? ColorRes.buttonBlue
+                            : ColorRes.white,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15)),
+                      ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(Icons.email,
                               color: provider.isPhone == false
@@ -86,22 +101,26 @@ class _LoginCenterState extends State<LoginCenter> {
                         ],
                       ),
                     ),
-                  ),
+                  )),
                   Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
-                        provider.onTapButtonOption(1);
-                      },
-                      color: provider.isPhone
-                          ? ColorRes.buttonBlue
-                          : ColorRes.white,
-                      minWidth: deviceWidth * 0.29,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(12.0),
-                        bottomRight: Radius.circular(12.0),
-                      )),
+                      child: InkWell(
+                    onTap: () {
+                      provider.onTapButtonOption(1);
+                    },
+                    child: Container(
+                      height: deviceHeight * 0.050,
+                      decoration: BoxDecoration(
+                        color: provider.isPhone
+                            ? ColorRes.buttonBlue
+                            : ColorRes.white,
+                        borderRadius: const BorderRadius.only(
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                        ),
+                      ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(Icons.call,
                               color: provider.isPhone == true
@@ -123,14 +142,12 @@ class _LoginCenterState extends State<LoginCenter> {
                         ],
                       ),
                     ),
-                  ),
+                  )),
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: deviceHeight * 0.02,
-          ),
+          SizedBox(height: deviceHeight * 0.03),
           Visibility(
             visible: provider.isPhone,
             child: Row(
@@ -160,7 +177,7 @@ class _LoginCenterState extends State<LoginCenter> {
                     child: _buildCountryPickerDropdownSoloExpanded(context),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   flex: 5,
                   child: CommonTextField(
@@ -180,7 +197,6 @@ class _LoginCenterState extends State<LoginCenter> {
               margin: const EdgeInsets.only(bottom: 5),
               padding: const EdgeInsets.only(right: 25),
               alignment: Alignment.centerLeft,
-              height: 20,
               width: double.infinity,
               // color: Colors.yellow,
               child: Text(
@@ -195,20 +211,20 @@ class _LoginCenterState extends State<LoginCenter> {
           Visibility(
             visible: !provider.isPhone,
             child: CommonTextField(
-                controller: provider.txtId,
-                obscure: false,
-                hintText: Strings.emailOrPhone,
-                error: false,
-                width: deviceWidth,
-                border: false),
+              controller: provider.txtId,
+              obscure: false,
+              hintText: Strings.emailOrPhone,
+              error: false,
+              width: deviceWidth,
+              border: false,
+            ),
           ),
           Visibility(
             visible: !provider.isPhone,
             child: Container(
-              margin: const EdgeInsets.only(bottom: 5),
+              margin: const EdgeInsets.only(bottom: 5, top: 5),
               padding: const EdgeInsets.only(right: 25),
               alignment: Alignment.centerLeft,
-              height: 20,
               width: double.infinity,
               // color: Colors.yellow,
               child: Text(
@@ -224,17 +240,20 @@ class _LoginCenterState extends State<LoginCenter> {
             height: deviceHeight * 0.01,
           ),
           CommonTextField(
-              controller: provider.txtPassword,
-              obscure: true,
-              hintText: Strings.password,
-              error: false,
-              width: deviceWidth,
-              border: false),
+            controller: provider.txtPassword,
+            obscure: true,
+            hintText: Strings.password,
+            error: false,
+            width: deviceWidth,
+            border: false,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
           Container(
             margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.only(right: 25),
             alignment: Alignment.centerLeft,
-            height: 20,
             width: double.infinity,
             // color: Colors.yellow,
             child: Text(
@@ -261,9 +280,11 @@ class _LoginCenterState extends State<LoginCenter> {
           SizedBox(
             height: deviceHeight * 0.01,
           ),
-          materialButton(
-              txtButton: Strings.login,
-              onPressed: () => provider.onClickLogin(context)),
+          Center(
+            child: materialButton(
+                txtButton: Strings.login,
+                onPressed: () => provider.onClickLogin(context)),
+          ),
         ],
       ),
     );
@@ -301,7 +322,8 @@ _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
         ],
       );
     },
-    itemHeight: null, //50,
+    itemHeight: null,
+    //50,
     isExpanded: true,
     //initialValue: 'TR',
     icon: const Icon(Icons.arrow_downward),

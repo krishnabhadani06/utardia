@@ -1,7 +1,6 @@
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_picker_dropdown.dart';
 import 'package:country_pickers/utils/utils.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
@@ -59,24 +58,27 @@ class ForgotPasswordScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border.all(color: ColorRes.buttonBlue),
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(12.0))),
+                              const BorderRadius.all(Radius.circular(15.0))),
                       child: Row(
                         children: [
                           Expanded(
-                            child: MaterialButton(
-                              onPressed: () {
-                                provider.onTapButtonForgotPassword(0);
-                              },
-                              color: provider.isPhone == false
-                                  ? ColorRes.buttonBlue
-                                  : ColorRes.white,
-                              minWidth: deviceWidth * 0.30,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(12.0),
-                                bottomLeft: Radius.circular(12.0),
-                              )),
+                              child: InkWell(
+                            onTap: () {
+                              provider.onTapButtonForgotPassword(0);
+                            },
+                            child: Container(
+                              height: deviceHeight * 0.050,
+                              decoration: BoxDecoration(
+                                color: provider.isPhone == false
+                                    ? ColorRes.buttonBlue
+                                    : ColorRes.white,
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    bottomLeft: Radius.circular(15)),
+                              ),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Icon(Icons.email,
                                       color: provider.isPhone == false
@@ -99,42 +101,47 @@ class ForgotPasswordScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
+                          )),
                           Expanded(
-                            child: MaterialButton(
-                              onPressed: () {
+                            child: InkWell(
+                              onTap: () {
                                 provider.onTapButtonForgotPassword(1);
                               },
-                              color: provider.isPhone
-                                  ? ColorRes.buttonBlue
-                                  : ColorRes.white,
-                              minWidth: deviceWidth * 0.29,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(12.0),
-                                bottomRight: Radius.circular(12.0),
-                              )),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.call,
-                                      color: provider.isPhone == true
-                                          ? ColorRes.white
-                                          : ColorRes.black),
-                                  SizedBox(
-                                    width: deviceWidth * 0.02,
+                              child: Container(
+                                height: deviceHeight * 0.050,
+                                decoration: BoxDecoration(
+                                  color: provider.isPhone
+                                      ? ColorRes.buttonBlue
+                                      : ColorRes.white,
+                                  borderRadius: const BorderRadius.only(
+                                    bottomRight: Radius.circular(15),
+                                    topRight: Radius.circular(15),
                                   ),
-                                  Text(
-                                    "Call",
-                                    style: provider.isPhone == true
-                                        ? robotoBoldTextStyle(
-                                            fontSize: 16,
-                                            color: ColorRes.white,
-                                          )
-                                        : robotoBoldTextStyle(
-                                            fontSize: 16,
-                                            color: ColorRes.black),
-                                  ),
-                                ],
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.call,
+                                        color: provider.isPhone == true
+                                            ? ColorRes.white
+                                            : ColorRes.black),
+                                    SizedBox(
+                                      width: deviceWidth * 0.02,
+                                    ),
+                                    Text(
+                                      "Call",
+                                      style: provider.isPhone == true
+                                          ? robotoBoldTextStyle(
+                                              fontSize: 16,
+                                              color: ColorRes.white,
+                                            )
+                                          : robotoBoldTextStyle(
+                                              fontSize: 16,
+                                              color: ColorRes.black),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -222,7 +229,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                   materialButton(
                       txtButton: Strings.reSetPassword,
-                      onPressed: () => provider.onTapResetPassword()),
+                      onPressed: () => provider.onTapResetPassword(context)),
                 ],
               ),
             ),
@@ -244,10 +251,13 @@ _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
     //if you want your dropdown button's selected item UI to be different
     //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
     onValuePicked: (Country country) {
-      if (kDebugMode) {
-        print(country.phoneCode);
-      }
+      Provider.of<ForgotPasswordProvider>(context, listen: false)
+          .onchangedCountryValue(country);
+      // if (kDebugMode) {
+      //   print(country.phoneCode);
+      // }
     },
+    initialValue: "IN",
     itemBuilder: (Country country) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -269,6 +279,6 @@ _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
     itemHeight: null, //50,
     isExpanded: true,
     //initialValue: 'TR',
-    icon: const Icon(Icons.arrow_downward),
+    icon: const Icon(Icons.keyboard_arrow_down_rounded),
   );
 }

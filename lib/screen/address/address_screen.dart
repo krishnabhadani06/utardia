@@ -73,12 +73,13 @@ class AddressScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: ColorRes.white,
                                 border: Border.all(
-                                    color: ColorRes.lightGrey, width: 1),
+                                  color: ColorRes.lightGrey,
+                                ),
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(8)),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: ColorRes.black.withOpacity(0.5),
+                                    color: ColorRes.black.withOpacity(0.3),
                                     //color of shadow
                                     spreadRadius: 0, //spread radius
                                     blurRadius: 3, // blur radius

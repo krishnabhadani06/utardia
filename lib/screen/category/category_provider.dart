@@ -105,6 +105,7 @@ class CategoryProvider extends ChangeNotifier {
       } else {
         showToast(res!.statusCode.toString());
       }
+      notifyListeners();
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
       showToast(e.toString());

@@ -4,6 +4,7 @@ import 'package:utardia/common/helper.dart';
 import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/screen/authorization/login/widgets/login_bottom.dart';
 import 'package:utardia/screen/authorization/login/widgets/login_center.dart';
+import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
 
 class LoginPage extends StatelessWidget {
@@ -25,6 +26,7 @@ class LoginPage extends StatelessWidget {
                 // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
+                    // color: ColorRes.white,
                     height: deviceHeight * 0.25,
                     child: Image.asset(
                       AssetsImagesRes.loginUtradiyaImage,

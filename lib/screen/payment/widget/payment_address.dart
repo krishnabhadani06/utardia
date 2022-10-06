@@ -52,11 +52,11 @@ class PaymentAddress extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 14.0, left: 14, top: 8),
           child: Container(
-              height: deviceHeight / 14,
+              height: deviceHeight * 0.074,
               width: deviceWidth / 1,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(4)),
-                border: Border.all(color: ColorRes.lightGrey),
+                border: Border.all(color: ColorRes.lightGrey, width: 1),
               ),
               child: provider.addressList != null
                   ? provider.addressList!.isNotEmpty && provider.loader == false
@@ -80,13 +80,26 @@ class PaymentAddress extends StatelessWidget {
                                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 10.0),
-                                      child: Icon(
-                                        provider.getIcon(
-                                            value!.workType.toString()),
-                                        color: ColorRes.appBarColor,
-                                        size: 35,
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, top: 4.0, bottom: 4.0),
+                                      child: Container(
+                                        // margin: const  EdgeInsets.only(
+                                        //     top: 4.0, bottom: 4.0),
+                                        height: deviceHeight * 0.5,
+                                        width: deviceWidth * 0.17,
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(4)),
+                                          border: Border.all(
+                                              color: ColorRes.lightGrey,
+                                              width: 1),
+                                        ),
+                                        child: Icon(
+                                          provider.getIcon(
+                                              value!.workType.toString()),
+                                          color: ColorRes.appBarColor,
+                                          size: 30,
+                                        ),
                                       ),
                                     ),
                                     // Icon(valueItem.bank_logo),

@@ -55,38 +55,23 @@ class PaymentBottom extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              right: 12.0, left: 14, top: 12),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Tax",
-                                  style: natoMediumTextStyle(fontSize: 16)),
-                              Text(
-                                '${provider.cartSummary!.tax!.substring(0, provider.cartSummary!.tax!.length - 2)}',
-                                style: natoMediumTextStyle(
-                                    fontSize: 16, color: ColorRes.grey),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              right: 12.0, left: 14, top: 12),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Shipping Cost",
-                                  style: natoMediumTextStyle(fontSize: 16)),
-                              Text(
-                                '${provider.cartSummary!.shippingCost!.substring(0, provider.cartSummary!.shippingCost!.length - 2)}',
-                                style: natoMediumTextStyle(
-                                    fontSize: 16, color: ColorRes.grey),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(
+                        //       right: 12.0, left: 14, top: 12),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       Text("Tax",
+                        //           style: natoMediumTextStyle(fontSize: 16)),
+                        //       Text(
+                        //         '${provider.cartSummary!.tax!.substring(0, provider.cartSummary!.tax!.length - 2)}',
+                        //         style: natoMediumTextStyle(
+                        //             fontSize: 16, color: ColorRes.grey),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+
                         Padding(
                           padding: const EdgeInsets.only(
                               right: 12.0, left: 14, top: 12),
@@ -130,7 +115,7 @@ class PaymentBottom extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              right: 12.0, left: 14, top: 15),
+                              right: 12.0, left: 14.0, top: 5.5, bottom: 11.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -153,7 +138,7 @@ class PaymentBottom extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )),
         SizedBox(
-          height: deviceHeight / 15,
+          height: deviceHeight * 0.012,
         ),
         Text(
           Strings.byPlaceOrder,

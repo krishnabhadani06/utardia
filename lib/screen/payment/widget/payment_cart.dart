@@ -31,7 +31,7 @@ class PaymentCart extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 14.0, left: 14, top: 8),
           child: Container(
-              height: deviceHeight / 15,
+              height: deviceHeight * 0.074,
               width: deviceWidth / 1,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(4)),
@@ -53,12 +53,16 @@ class PaymentCart extends StatelessWidget {
                             value: value,
                             child: Row(
                               children: [
-                                SizedBox(
-                                  width: deviceWidth / 20,
-                                ),
+                                // SizedBox(
+                                //   width: deviceWidth / 20,
+                                // ),
                                 Container(
-                                  height: deviceHeight / 20,
-                                  width: deviceWidth / 6,
+                                  margin: const EdgeInsets.only(
+                                      left: 10.0, top: 4.0, bottom: 4.0),
+                                  height: deviceHeight * 0.5,
+                                  width: deviceWidth * 0.17,
+                                  // height: deviceHeight / 20,
+                                  // width: deviceWidth / 6,
                                   decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(4)),

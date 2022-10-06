@@ -8,10 +8,10 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/model/SignUp_Model/signup_model.dart';
-import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_provider.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_screen.dart';
+import 'package:utardia/screen/authorization/registration/registration_provider.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 
@@ -22,15 +22,17 @@ class SingUpApi {
       String url = ApiEndPoint.signUp;
       Map<String, String> param = {
         "name": "ram",
-        "email_or_phone": Provider.of<LoginProvider>(context, listen: false)
+        "email_or_phone": Provider.of<RegistrationProvider>(context,
+                        listen: false)
                     .isPhone ==
-                false
-            ? "+${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
+                true
+            ? "${Provider.of<RegistrationProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
             : email.toString(),
         "password": password.toString(),
         "passowrd_confirmation": retypePassword.toString(),
         "register_by":
-            Provider.of<LoginProvider>(context, listen: false).isPhone == false
+            Provider.of<RegistrationProvider>(context, listen: false).isPhone ==
+                    true
                 ? "Phone"
                 : "email",
       };
@@ -42,6 +44,7 @@ class SingUpApi {
         Fluttertoast.showToast(msg: "Registration Successfully.");
         var res = jsonDecode(response.body);
         print("*****************************${res['user_id']}");
+        Logger().e(jsonDecode(response.body));
         navigator.currentState!
             .pushReplacement(MaterialPageRoute(builder: (context) {
           Provider.of<OtpProvider>(context, listen: false).uid =

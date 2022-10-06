@@ -123,7 +123,7 @@ class CommonTextFieldAddress extends StatelessWidget {
           ),
           contentPadding: EdgeInsets.only(top: 0),
           hintText: hintText,
-          hintStyle: robotoMediumTextStyle(
+          hintStyle: robotoRegularTextStyle(
             fontSize: 18,
             color: ColorRes.grey,
           ),

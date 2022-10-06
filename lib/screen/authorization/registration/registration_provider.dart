@@ -1,3 +1,4 @@
+import 'package:country_pickers/country.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,8 @@ class RegistrationProvider extends ChangeNotifier {
   TextEditingController txtRePassword = TextEditingController();
   TextEditingController txtPhone = TextEditingController();
 
+  Country? currentCountry =
+      Country(isoCode: "IN", iso3Code: "IND", phoneCode: "+91", name: "India");
   GlobalKey<FormState> registrationFormKey = GlobalKey<FormState>();
   SingUpModel singUpModel = SingUpModel();
   bool loader = false;
@@ -24,19 +27,20 @@ class RegistrationProvider extends ChangeNotifier {
   bool isPhone = false;
 
   void onTapRegistration(BuildContext context) {
-    if (Provider.of<LoginProvider>(context, listen: false).isPhone) {
+    if (isPhone == true) {
+      phoneValidation();
       passwordValidation();
       rePasswordValidation();
-      phoneValidation();
-      if (errorTextPassword == null &&
-          errorTextRePassword == null &&
-          errorTextPhone == null) {
+      // phoneValidation();
+      if (errorTextPhone == null &&
+          errorTextPassword == null &&
+          errorTextRePassword == null) {
         singUpApiData(
           context,
           txtEmail.text,
+          txtPhone.text,
           txtPassword.text,
           txtRePassword.text,
-          txtPhone.text,
         );
       } else {}
     } else {
@@ -50,9 +54,9 @@ class RegistrationProvider extends ChangeNotifier {
         singUpApiData(
           context,
           txtEmail.text,
+          txtPhone.text,
           txtPassword.text,
           txtRePassword.text,
-          txtPhone.text,
         );
       } else {}
     }
@@ -74,7 +78,7 @@ class RegistrationProvider extends ChangeNotifier {
   }
 
   void phoneValidation() {
-    errorTextPhone = phoneNumberValidator(txtPhone.text);
+    errorTextPhone = phoneNumberValidator(txtPhone.text.toString().trim());
     notifyListeners();
   }
 
@@ -106,6 +110,11 @@ class RegistrationProvider extends ChangeNotifier {
     await SingUpApi.singUpApi(context, email, password, retypePassword, phone);
 
     loader = false;
+    notifyListeners();
+  }
+
+  void onchangedCountry(Country country) {
+    currentCountry = country;
     notifyListeners();
   }
 }

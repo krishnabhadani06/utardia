@@ -43,24 +43,36 @@ class RegistrationCenter extends StatelessWidget {
               width: deviceWidth * 0.60,
               decoration: BoxDecoration(
                   border: Border.all(color: ColorRes.buttonBlue),
-                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                  boxShadow: [
+                    BoxShadow(
+                      color: ColorRes.black.withOpacity(0.5),
+                      //color of shadow
+                      spreadRadius: 0, //spread radius
+                      blurRadius: 3, // blur radius
+                      offset: const Offset(0, 0), // changes position of shadow
+                    )
+                  ],
+                  borderRadius: const BorderRadius.all(Radius.circular(15.0))),
               child: Row(
                 children: [
                   Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
-                        provider.onTapButtonRegis(0);
-                      },
-                      color: provider.isPhone == false
-                          ? ColorRes.buttonBlue
-                          : ColorRes.white,
-                      minWidth: deviceWidth * 0.30,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12.0),
-                        bottomLeft: Radius.circular(12.0),
-                      )),
+                      child: InkWell(
+                    onTap: () {
+                      provider.onTapButtonRegis(0);
+                    },
+                    child: Container(
+                      height: deviceHeight * 0.050,
+                      decoration: BoxDecoration(
+                        color: provider.isPhone == false
+                            ? ColorRes.buttonBlue
+                            : ColorRes.white,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15)),
+                      ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(Icons.email,
                               color: provider.isPhone == false
@@ -82,41 +94,46 @@ class RegistrationCenter extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
+                  )),
                   Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
+                    child: InkWell(
+                      onTap: () {
                         provider.onTapButtonRegis(1);
                       },
-                      color: provider.isPhone
-                          ? ColorRes.buttonBlue
-                          : ColorRes.white,
-                      minWidth: deviceWidth * 0.29,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(12.0),
-                        bottomRight: Radius.circular(12.0),
-                      )),
-                      child: Row(
-                        children: [
-                          Icon(Icons.call,
-                              color: provider.isPhone == true
-                                  ? ColorRes.white
-                                  : ColorRes.black),
-                          SizedBox(
-                            width: deviceWidth * 0.02,
+                      child: Container(
+                        height: deviceHeight * 0.050,
+                        decoration: BoxDecoration(
+                          color: provider.isPhone
+                              ? ColorRes.buttonBlue
+                              : ColorRes.white,
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(15),
+                            topRight: Radius.circular(15),
                           ),
-                          Text(
-                            "Call",
-                            style: provider.isPhone == true
-                                ? robotoBoldTextStyle(
-                                    fontSize: 16,
-                                    color: ColorRes.white,
-                                  )
-                                : robotoBoldTextStyle(
-                                    fontSize: 16, color: ColorRes.black),
-                          ),
-                        ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.call,
+                                color: provider.isPhone == true
+                                    ? ColorRes.white
+                                    : ColorRes.black),
+                            SizedBox(
+                              width: deviceWidth * 0.02,
+                            ),
+                            Text(
+                              "Call",
+                              style: provider.isPhone == true
+                                  ? robotoBoldTextStyle(
+                                      fontSize: 16,
+                                      color: ColorRes.white,
+                                    )
+                                  : robotoBoldTextStyle(
+                                      fontSize: 16, color: ColorRes.black),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -137,7 +154,8 @@ class RegistrationCenter extends StatelessWidget {
                     height: 50,
                     decoration: BoxDecoration(
                       color: ColorRes.white,
-                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(8.0)),
                       border: Border.all(
                         color: ColorRes.white,
                         // style: BorderStyle.solid,
@@ -149,7 +167,8 @@ class RegistrationCenter extends StatelessWidget {
                           //color of shadow
                           spreadRadius: 1, //spread radius
                           blurRadius: 3, // blur radius
-                          offset: Offset(0, 0), // changes position of shadow
+                          offset:
+                              const Offset(0, 0), // changes position of shadow
                         ),
                       ],
                     ),
@@ -160,7 +179,7 @@ class RegistrationCenter extends StatelessWidget {
                 Expanded(
                   flex: 5,
                   child: CommonTextField(
-                      controller: provider.txtEmail,
+                      controller: provider.txtPhone,
                       obscure: false,
                       hintText: Strings.phoneNum,
                       error: false,
@@ -186,7 +205,7 @@ class RegistrationCenter extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 5),
               padding: const EdgeInsets.only(right: 25),
               alignment: Alignment.centerLeft,
-              height: 20,
+              height: 15,
               width: double.infinity,
               // color: Colors.yellow,
               child: Text(
@@ -212,7 +231,7 @@ class RegistrationCenter extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.only(right: 25),
             alignment: Alignment.centerLeft,
-            height: 20,
+            height: 15,
             width: double.infinity,
             // color: Colors.yellow,
             child: Text(
@@ -237,7 +256,7 @@ class RegistrationCenter extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.only(right: 25),
             alignment: Alignment.centerLeft,
-            height: 20,
+            height: 15,
             width: double.infinity,
             // color: Colors.yellow,
             child: Text(
@@ -248,6 +267,7 @@ class RegistrationCenter extends StatelessWidget {
               ),
             ),
           ),
+
           // Card(
           //   elevation: 4.0,
           //   shadowColor: ColorRes.borderblue.withOpacity(0.7),
@@ -292,10 +312,11 @@ _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
     //if you want your dropdown button's selected item UI to be different
     //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
     onValuePicked: (Country country) {
-      if (kDebugMode) {
-        print(country.phoneCode);
-      }
+      Provider.of<RegistrationProvider>(context, listen: false)
+          .onchangedCountry(country);
     },
+
+    initialValue: "IN",
     itemBuilder: (Country country) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -317,6 +338,6 @@ _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
     itemHeight: null, //50,
     isExpanded: true,
     //initialValue: 'TR',
-    icon: const Icon(Icons.arrow_downward),
+    icon: const Icon(Icons.keyboard_arrow_down_rounded),
   );
 }

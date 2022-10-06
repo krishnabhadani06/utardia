@@ -12,6 +12,7 @@ class Strings {
 
   static const register = 'Register';
   static const emailOrPhone = ' Enter Email or Phone';
+  static const enterNameEmail = 'Enter Name....';
   static const enterEmail = 'Enter Email or Phone ';
   static const verifyPass = 'Verify Password';
   static const byCreatingAccount =

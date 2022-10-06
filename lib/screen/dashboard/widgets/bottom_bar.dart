@@ -12,7 +12,7 @@ class BottomBar extends StatelessWidget {
     return Consumer<DashboardProvider>(
       builder: (con, provider, widget) {
         return Container(
-          height: 65,
+          height: 57,
           color: ColorRes.appBarColor,
           alignment: Alignment.center,
           child: Row(

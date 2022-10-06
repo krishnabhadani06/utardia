@@ -24,8 +24,8 @@ class FavoriteCenter extends StatelessWidget {
     return Container(
       margin:
           const EdgeInsets.only(left: 3.0, right: 3.0, top: 7.0, bottom: 7.0),
-      // height: 210,
-      width: 180,
+      // height: 215,
+      width: 150,
       decoration: BoxDecoration(
         //color: Colors.white,
         color: ColorRes.white,
@@ -52,7 +52,7 @@ class FavoriteCenter extends StatelessWidget {
                 child: Stack(
                   children: [
                     SizedBox(
-                      height: deviceHeight * 0.24,
+                      height: deviceHeight * 0.20,
                       width: deviceWidth,
                       child: CachedNetworkImage(
                           imageUrl: provider.Wishlist2!.data![index ?? 0]
@@ -60,8 +60,8 @@ class FavoriteCenter extends StatelessWidget {
                               .toString(),
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => SizedBox(
-                                  height: 40,
-                                  width: 40,
+                                  // height: 40,
+                                  // width: 40,
                                   child: CircularProgressIndicator(
                                       value: downloadProgress.progress)),
                           errorWidget: (context, url, error) =>
@@ -105,116 +105,117 @@ class FavoriteCenter extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.all(5),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    SizedBox(height: deviceHeight * 0.006),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 4.0),
-                      child: Text(
-                        index == null
-                            ? Strings.anglesMaluZip
-                            : provider
-                                .Wishlist2!.data![index ?? 0].product!.name
-                                .toString(),
-                        style: robotoMediumTextStyle(
-                            color: ColorRes.greyDark, fontSize: 12),
-                        maxLines: 2,
-                      ),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.all(5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(height: deviceHeight * 0.006),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: Text(
+                      index == null
+                          ? Strings.anglesMaluZip
+                          : provider.Wishlist2!.data![index ?? 0].product!.name
+                              .toString(),
+                      style: robotoMediumTextStyle(
+                          color: ColorRes.greyDark, fontSize: 12),
+                      maxLines: 2,
                     ),
-                    SizedBox(
-                      height: deviceHeight * 0.01,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 10.0),
-                          height: 22,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4.0),
-                            color: ColorRes.yellow,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "${provider.Wishlist2!.data![index ?? 0].product!.rating.toString()}",
-                                // widget.rate!,
-                                style: TextStyle(
-                                    color: ColorRes.white, fontSize: 12),
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: ColorRes.white,
-                                size: 15,
-                              )
-                            ],
-                          ),
+                  ),
+                  SizedBox(
+                    height: deviceHeight * 0.01,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(right: 10.0),
+                        height: 22,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          color: ColorRes.yellow,
                         ),
-                        const Spacer(),
-                        Text(
-                          Strings.tops,
-                          style: robotoSemiBoldTextStyle(
-                              color: ColorRes.grey, fontSize: 12),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: deviceHeight * 0.02,
-                    ),
-                    Wrap(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
+                              "${provider.Wishlist2!.data![index ?? 0].product!.rating.toString()}",
+                              // widget.rate!,
+                              style: const TextStyle(
+                                  color: ColorRes.white, fontSize: 12),
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: ColorRes.white,
+                              size: 15,
+                            )
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        Strings.tops,
+                        style: robotoSemiBoldTextStyle(
+                            color: ColorRes.grey, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: deviceHeight * 0.02,
+                  ),
+                  Row(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            index == null
+                                ? Strings.rs3800
+                                : "Rs.${provider.Wishlist2!.data![index ?? 0].product!.basePrice.toString()}",
+                            style: robotoBoldTextStyle(fontSize: 15).copyWith(
+                              fontWeight: FontWeight.w700,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          SizedBox(
+                            width: deviceWidth * 0.01,
+                          ),
+                          Text(
                               index == null
                                   ? Strings.rs3800
                                   : "Rs.${provider.Wishlist2!.data![index ?? 0].product!.basePrice.toString()}",
-                              style: robotoBoldTextStyle(fontSize: 15)
-                                  .copyWith(fontWeight: FontWeight.w700),
-                            ),
-                            SizedBox(
-                              width: deviceWidth * 0.01,
-                            ),
-                            Text(
-                                index == null
-                                    ? Strings.rs3800
-                                    : provider.Wishlist2!.data![index ?? 0]
-                                        .product!.basePrice
-                                        .toString(),
-                                style: TextStyle(
-                                        fontSize: 8,
-                                        fontWeight: FontWeight.w400,
-                                        color:
-                                            ColorRes.clrFont.withOpacity(0.7))
-                                    .copyWith(
-                                  decoration: TextDecoration.lineThrough,
-                                  overflow: TextOverflow.ellipsis,
-                                )),
-                          ],
-                        ),
-                        Text(
-                          index != null
-                              ? "(57 % Off)"
-                              : provider.Wishlist2!.data![index ?? 0].product!
-                                  .basePrice
-                                  .toString(),
-                          style: robotoBoldTextStyle(
-                              fontSize: 12, color: Colors.green),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                              style: TextStyle(
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w400,
+                                      color: ColorRes.clrFont.withOpacity(0.7))
+                                  .copyWith(
+                                decoration: TextDecoration.lineThrough,
+                                overflow: TextOverflow.ellipsis,
+                              )),
+                        ],
+                      ),
+                      SizedBox(
+                        width: deviceWidth * 0.01,
+                      ),
+                      Text(
+                        index != null
+                            ? Strings.off57
+                            : provider
+                                .Wishlist2!.data![index ?? 0].product!.basePrice
+                                .toString(),
+                        style: robotoBoldTextStyle(
+                                fontSize: 8, color: ColorRes.darkGreen)
+                            .copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ],
+                  ),
+                  // SizedBox(
+                  //   height: deviceHeight * 0.01,
+                  // )
+                ],
               ),
             ),
           ],

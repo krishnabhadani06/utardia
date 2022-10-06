@@ -18,7 +18,7 @@ class AddressBottomSheetCenter extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<AddressProvider>(context);
     return Padding(
-      padding: const EdgeInsets.only(left: 7.0, right: 6.0),
+      padding: const EdgeInsets.only(left: 6.0, right: 5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -49,7 +49,7 @@ class AddressBottomSheetCenter extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: deviceHeight * 0.02),
+          SizedBox(height: deviceHeight * 0.006),
           Column(
             children: [
               Row(

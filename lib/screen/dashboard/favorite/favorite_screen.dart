@@ -94,7 +94,7 @@ class FavoriteScreen extends StatelessWidget {
                                 crossAxisSpacing: 10.0,
                                 mainAxisSpacing: 8.0,
                                 childAspectRatio:
-                                    deviceWidth / (deviceHeight * 0.82),
+                                    deviceWidth / (deviceHeight * 0.80),
                               ),
                               itemCount: provider.Wishlist2!.data!.length == 0
                                   ? 4
@@ -109,7 +109,7 @@ class FavoriteScreen extends StatelessWidget {
                                 );
                               },
                             )
-                  : CircularProgressIndicator()),
+                  : const CircularProgressIndicator()),
         ),
       );
     });

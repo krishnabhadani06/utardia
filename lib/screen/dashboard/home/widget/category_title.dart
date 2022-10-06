@@ -9,15 +9,18 @@ Widget categoryTitle({String? title, VoidCallback? onTap}) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title ?? Strings.showByCategory,
-          style: robotoSemiBoldTextStyle(),
-          //textStyle(tColor: ColorRes.black, fontSize: 14),
-        ),
+        Text(title ?? Strings.showByCategory,
+            style: robotoMediumTextStyle(
+                    fontSize: 15, color: ColorRes.greyTextHome)
+                .copyWith(fontWeight: FontWeight.w700)
+            //textStyle(tColor: ColorRes.black, fontSize: 14),
+            ),
         TextButton(
           onPressed: onTap,
           child: Text(Strings.viewAll,
-              style: robotoSemiBoldTextStyle(color: ColorRes.grey)
+              style:
+                  robotoMediumTextStyle(color: ColorRes.textBlue, fontSize: 15)
+                      .copyWith(fontWeight: FontWeight.w700)
               //textStyle(tColor: ColorRes.grey, fontSize: 14),
               ),
         ),

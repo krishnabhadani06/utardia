@@ -18,9 +18,9 @@ class AddressBottomSheetBottom extends StatelessWidget {
     final provider = Provider.of<AddressProvider>(context);
     // provider.init();
     return Padding(
-      padding: const EdgeInsets.only(left: 7.0, right: 6.0),
+      padding: const EdgeInsets.only(left: 6.0, right: 5.0),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(height: deviceHeight * 0.02),
+        SizedBox(height: deviceHeight * 0.006),
         Text(
           "Address",
           style: natoMediumTextStyle(fontSize: 15, color: ColorRes.grey),
@@ -47,7 +47,7 @@ class AddressBottomSheetBottom extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: deviceHeight * 0.02),
+        SizedBox(height: deviceHeight * 0.004),
         CommonTextFieldAddress(
             controller: provider.txtLandmark,
             obscure: false,
@@ -70,7 +70,7 @@ class AddressBottomSheetBottom extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: deviceHeight * 0.02),
+        SizedBox(height: deviceHeight * 0.006),
         Text(
           "Pincode",
           style: natoMediumTextStyle(fontSize: 15, color: ColorRes.grey),
@@ -97,12 +97,31 @@ class AddressBottomSheetBottom extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: deviceHeight * 0.02),
+        SizedBox(height: deviceHeight * 0.01),
         Row(
           children: [
             Expanded(
               flex: 1,
               child: AnimatedContainer(
+                  height: deviceHeight * 0.06,
+                  width: deviceWidth * 0.20,
+                  padding: const EdgeInsets.only(left: 10),
+                  decoration: BoxDecoration(
+                    color: ColorRes.white,
+                    border: Border.all(
+                      color: ColorRes.lightGrey,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: ColorRes.black.withOpacity(0.3),
+                        //color of shadow
+                        spreadRadius: 0, //spread radius
+                        blurRadius: 3, // blur radius
+                        offset: Offset(0, 0), // changes position of shadow
+                      ),
+                    ],
+                  ),
                   curve: Curves.ease,
                   duration: const Duration(seconds: 1),
                   child: provider.stateList.isNotEmpty
@@ -130,9 +149,29 @@ class AddressBottomSheetBottom extends StatelessWidget {
                         )
                       : const Center(child: CircularProgressIndicator())),
             ),
+            SizedBox(width: deviceWidth * 0.02),
             Expanded(
               flex: 1,
               child: AnimatedContainer(
+                  height: deviceHeight * 0.06,
+                  width: deviceWidth * 0.20,
+                  padding: const EdgeInsets.only(left: 10),
+                  decoration: BoxDecoration(
+                    color: ColorRes.white,
+                    border: Border.all(
+                      color: ColorRes.lightGrey,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: ColorRes.black.withOpacity(0.3),
+                        //color of shadow
+                        spreadRadius: 0, //spread radius
+                        blurRadius: 3, // blur radius
+                        offset: Offset(0, 0), // changes position of shadow
+                      ),
+                    ],
+                  ),
                   curve: Curves.ease,
                   duration: const Duration(seconds: 1),
                   child: provider.cityList.length != 0

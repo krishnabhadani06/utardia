@@ -187,7 +187,7 @@ class CommonTextField extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: ColorRes.black.withOpacity(0.5),
+            color: ColorRes.black.withOpacity(0.3),
             //color of shadow
             spreadRadius: 0, //spread radius
             blurRadius: 3, // blur radius
@@ -218,7 +218,7 @@ class CommonTextField extends StatelessWidget {
           hintText: hintText,
           hintStyle: robotoMediumTextStyle(
             fontSize: 18,
-            color: ColorRes.grey,
+            color: ColorRes.greyTextColor,
           ),
           prefixIcon: pIcon != null
               ? Padding(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/helper.dart';
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/category_title.dart';
@@ -21,7 +22,7 @@ class HomeBottom extends StatelessWidget {
       categoryTitle(
           title: provider.allHomeTopCategories[index].name, onTap: () {}),
       Container(
-        height: 310,
+        height: 220,
         width: MediaQuery.of(context).size.width,
         //color: Colors.yellow,
         child: ListView.builder(

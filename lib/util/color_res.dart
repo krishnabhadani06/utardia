@@ -38,4 +38,6 @@ class ColorRes {
   static const dailogBoxColor = Color(0xff009DE0);
   static const dailogTextColor = Color(0xffAAAAAA);
   static const textfielTitleColor = Color(0xffA6A6A6);
+  static const greyTextHome = Color(0xff666666);
+  static const greyPriceText = Color(0xff848484);
 }

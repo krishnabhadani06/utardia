@@ -218,7 +218,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
                     ),
                     SizedBox(height: deviceHeight * 0.01),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //mainAxisAlignment: MainAxisAlignment.start,
@@ -233,30 +233,25 @@ class _categoryProductCardState extends State<categoryProductCard> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text("${widget.strokedPrice!.toString()}",
-                                  //widget.strokedPrice!,
-                                  style: robotoBoldTextStyle(
-                                          fontSize: 10,
-                                          color:
-                                              ColorRes.clrFont.withOpacity(0.7))
-                                      .copyWith(
-                                    decoration: TextDecoration.lineThrough,
-                                    overflow: TextOverflow.ellipsis,
-                                  )),
-                              Text(
-                                Strings.off57,
-                                style: natoMediumTextStyle(
-                                    color: ColorRes.darkGreen, fontSize: 7.3),
-                              ),
-                            ],
+                          child: Text("${widget.strokedPrice!.toString()}",
+                              //widget.strokedPrice!,
+                              style: robotoBoldTextStyle(
+                                      fontSize: 10,
+                                      color: ColorRes.clrFont.withOpacity(0.7))
+                                  .copyWith(
+                                decoration: TextDecoration.lineThrough,
+                                overflow: TextOverflow.ellipsis,
+                              )),
+                        ),
+                        Expanded(
+                          child: Text(
+                            Strings.off57,
+                            style: natoMediumTextStyle(
+                                color: ColorRes.darkGreen, fontSize: 7.3),
                           ),
                         ),
                       ],
                     ),
-
                     // ),
                   ],
                 ),

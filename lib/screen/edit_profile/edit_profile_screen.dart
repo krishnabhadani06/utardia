@@ -78,11 +78,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 height: 120,
                                 width: 120,
                                 alignment: Alignment.center,
-                                // decoration: BoxDecoration(
-                                //     border:
-                                //         Border.all(color: ColorRes.buttonBlue)),
+                                decoration: BoxDecoration(
+                                  color: ColorRes.white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: ColorRes.black.withOpacity(0.5),
+                                      //color of shadow
+                                      spreadRadius: 0, //spread radius
+                                      blurRadius: 3, // blur radius
+                                      offset: const Offset(
+                                          0, 0), // changes position of shadow
+                                    ),
+                                  ],
+                                  // border:
+                                  // Border.all(color: ColorRes.buttonBlue)
+                                ),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
+                                  borderRadius: BorderRadius.circular(50),
+                                  // borderRadius:
+                                  // BorderRadius.all(Radius.circular(100)),
                                   child: x.img != null
                                       ? Image.file(
                                           File(

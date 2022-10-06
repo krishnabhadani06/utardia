@@ -81,7 +81,7 @@ class _CategoryRightState extends State<CategoryRight> {
                             crossAxisCount: 2,
                             crossAxisSpacing: 0.5,
                             mainAxisSpacing: 0.5,
-                            childAspectRatio: 0.8,
+                            childAspectRatio: 0.7,
                             // (deviceWidth) / (deviceHeight * 0.58),
                           ),
                           itemCount: provider.categoryProducts == null
@@ -129,15 +129,14 @@ class _CategoryRightState extends State<CategoryRight> {
                           },
                         ),
                         SizedBox(height: deviceHeight * 0.01),
-                        Row(
-                          children: [
-                            Text(
-                              "Sub Category",
-                              style: natoSemiBoldTextStyle(
-                                  fontSize: 15, color: ColorRes.grey),
-                            )
-                          ],
-                        ),
+                        Row(children: [
+                          // provider.allHomeSubCategories!.data!.isNotEmpty
+                          Text(
+                            "Sub Category",
+                            style: natoSemiBoldTextStyle(
+                                fontSize: 15, color: ColorRes.grey),
+                          )
+                        ]),
                         Container(
                           height: deviceHeight * 0.25,
                           width: deviceWidth,

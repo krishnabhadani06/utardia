@@ -114,6 +114,8 @@ class ProductDetailsProvider extends ChangeNotifier {
   ///todaysProductDeal
   Future<void> allTodaysProductDealData() async {
     loader = true;
+    notifyListeners();
+
     todayProduct = await TodayProductDealServices.allTodaysProduct();
     if (todayProduct!.status != 200) {
       allTodaysProductDealData();
@@ -121,6 +123,7 @@ class ProductDetailsProvider extends ChangeNotifier {
       allTodayProducts = todayProduct!.data!;
       print(allTodayProducts);
       loader = false;
+      notifyListeners();
     }
   }
 
@@ -177,7 +180,7 @@ class ProductDetailsProvider extends ChangeNotifier {
   }
 
   ///product detail onTap
-  void onTapProductDetails(
+  Future<void> onTapProductDetails(
       int index, String url, BuildContext context, String pid) async {
     //selectedIndex = index;
     notifyListeners();

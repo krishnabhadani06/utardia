@@ -22,13 +22,13 @@ class TodayProductDealServices {
       http.Response? response = await HttpService.getApi(url: url);
 
       if (response != null && response.statusCode == 200) {
-        return todaysProductDealFromJson(response.body);
+        return todaysProductDealModelFromJson(response.body);
       } else {
-        return todaysProductDealFromJson("");
+        return todaysProductDealModelFromJson("");
       }
     } catch (e) {
       showToast(e.toString());
-      return todaysProductDealFromJson("");
+      return todaysProductDealModelFromJson("");
     }
   }
 }

@@ -136,7 +136,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                           pro.onTapProductDetails(
                                               index,
                                               pro.todayProduct!.data![index]
-                                                  .links!.details
+                                                  .links!.details!
                                                   .toString(),
                                               context,
                                               pro.todayProduct!.data![index].id

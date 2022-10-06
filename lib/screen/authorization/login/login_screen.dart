@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   const LoginCenter(),
                   SizedBox(
-                    height: deviceHeight * 0.02,
+                    height: deviceHeight * 0.04,
                   ),
                   const LoginBottom(),
                 ],

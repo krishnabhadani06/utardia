@@ -103,47 +103,46 @@ class _LoginCenterState extends State<LoginCenter> {
                     ),
                   )),
                   Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        provider.onTapButtonOption(1);
-                      },
-                      child: Container(
-                        height: deviceHeight * 0.050,
-                        decoration: BoxDecoration(
-                          color: provider.isPhone
-                              ? ColorRes.buttonBlue
-                              : ColorRes.white,
-                          borderRadius: const BorderRadius.only(
-                            bottomRight: Radius.circular(15),
-                            topRight: Radius.circular(15),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(Icons.call,
-                                color: provider.isPhone == true
-                                    ? ColorRes.white
-                                    : ColorRes.black),
-                            SizedBox(
-                              width: deviceWidth * 0.02,
-                            ),
-                            Text(
-                              "Call",
-                              style: provider.isPhone == true
-                                  ? robotoBoldTextStyle(
-                                      fontSize: 16,
-                                      color: ColorRes.white,
-                                    )
-                                  : robotoBoldTextStyle(
-                                      fontSize: 16, color: ColorRes.black),
-                            ),
-                          ],
+                      child: InkWell(
+                    onTap: () {
+                      provider.onTapButtonOption(1);
+                    },
+                    child: Container(
+                      height: deviceHeight * 0.050,
+                      decoration: BoxDecoration(
+                        color: provider.isPhone
+                            ? ColorRes.buttonBlue
+                            : ColorRes.white,
+                        borderRadius: const BorderRadius.only(
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15),
                         ),
                       ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.call,
+                              color: provider.isPhone == true
+                                  ? ColorRes.white
+                                  : ColorRes.black),
+                          SizedBox(
+                            width: deviceWidth * 0.02,
+                          ),
+                          Text(
+                            "Call",
+                            style: provider.isPhone == true
+                                ? robotoBoldTextStyle(
+                                    fontSize: 16,
+                                    color: ColorRes.white,
+                                  )
+                                : robotoBoldTextStyle(
+                                    fontSize: 16, color: ColorRes.black),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                  )),
                 ],
               ),
             ),
@@ -200,6 +199,7 @@ class _LoginCenterState extends State<LoginCenter> {
               margin: const EdgeInsets.only(bottom: 5),
               padding: const EdgeInsets.only(right: 25),
               alignment: Alignment.centerLeft,
+              height: 20,
               width: double.infinity,
               // color: Colors.yellow,
               child: Text(

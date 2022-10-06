@@ -5,10 +5,12 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
+import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/widget/product_details_bottom.dart';
 import 'package:utardia/screen/category/product_details/widget/product_detials_center.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
+import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
@@ -239,15 +241,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                                                   radius: 15,
                                                                   child: Center(
                                                                     child: InkWell(
-                                                                        onTap: () {
-                                                                          // provider.addWishList(id.toString(),
-                                                                          //     context, productUrl.toString());
+                                                                        onTap: () async {
+                                                                          pro.onTapTodaysDealLikeButton(
+                                                                              context,
+                                                                              index);
                                                                         },
                                                                         child: Icon(
                                                                           Icons
                                                                               .favorite,
-                                                                          color:
-                                                                              ColorRes.grey,
+                                                                          color: Provider.of<CategoryProvider>(context, listen: false).wishListId.contains(pro.allTodayProducts[index].id.toString())
+                                                                              ? ColorRes.red
+                                                                              : ColorRes.grey,
                                                                           // color: like!
                                                                           //     ? ColorRes.red
                                                                           //     : ColorRes.grey,
@@ -467,6 +471,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   child: InkWell(
                                 onTap: () {
                                   pro.addToWishList(context);
+                                  Provider.of<CategoryProvider>(context,
+                                          listen: false)
+                                      .getWishList();
+                                  Provider.of<HomeProvider>(context,
+                                          listen: false)
+                                      .getWishList();
                                   Provider.of<FavoriteProvider>(context,
                                           listen: false)
                                       .checkWishList(

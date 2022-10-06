@@ -46,9 +46,7 @@ class PaymentCart extends StatelessWidget {
                         isExpanded: true,
                         onChanged: null,
                         value: provider.currentPayment,
-                        items: provider.paymentTypeList!
-                            .map<DropdownMenuItem<paymentModel>>(
-                                (paymentModel value) {
+                        items: provider.paymentTypeList!.map<DropdownMenuItem<paymentModel>>((paymentModel value) {
                           return DropdownMenuItem(
                             value: value,
                             child: Row(
@@ -102,7 +100,7 @@ class PaymentCart extends StatelessWidget {
                         }).toList(),
                       ),
                     )
-                  : Center(
+                  : const Center(
                       child: CircularProgressIndicator(),
                     )),
         ),

@@ -242,16 +242,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                                                   child: Center(
                                                                     child: InkWell(
                                                                         onTap: () async {
-                                                                          if (await Provider.of<FavoriteProvider>(context, listen: false).checkWishList(pro.allTodayProducts[index].id.toString(), PrefService.getString(PrefKeys.uid)) ==
-                                                                              false) {
-                                                                            pro.addTodayProductWishList(context,
-                                                                                pro.allTodayProducts[index].id.toString());
-                                                                          } else {
-                                                                            pro.removeTodayProductWishList(context,
-                                                                                pro.allTodayProducts[index].id.toString());
-                                                                          }
-                                                                          Provider.of<CategoryProvider>(context, listen: false)
-                                                                              .getWishList();
+                                                                          pro.onTapTodaysDealLikeButton(
+                                                                              context,
+                                                                              index);
                                                                         },
                                                                         child: Icon(
                                                                           Icons

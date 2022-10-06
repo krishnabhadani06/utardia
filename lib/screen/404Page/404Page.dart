@@ -32,30 +32,5 @@ class Page404 extends StatelessWidget {
         ],
       ),
     ));
-    //     child: Scaffold(
-    //   body: Column(
-    //     children: [
-    //       const SizedBox(height: 227),
-    //       Image.asset(AssetsString.Image404),
-    //       const SizedBox(height: 42),
-    //       Text(
-    //         Strings.pageNotFound,
-    //         style: natoBoldTextStyle(fontSize: 20),
-    //       ),
-    //       const SizedBox(height: 8),
-    //
-    //       Text(
-    //         Strings.thereIsNoPage,
-    //         style: natoMediumTextStyle(fontSize: 16,color: ColorRes.grayText),
-    //       ),
-    //       Text(
-    //         Strings.youAreLooking,
-    //         style: natoMediumTextStyle(fontSize: 16,color: ColorRes.grayText) ,
-    //       ),
-    //       const SizedBox(height: 42),
-    //       materialButton(txtButton: Strings.goBack, onPressed: () {}),
-    //     ],
-    //   ),
-    // ));
   }
 }

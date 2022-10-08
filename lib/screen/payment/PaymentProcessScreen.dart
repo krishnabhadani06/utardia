@@ -4,8 +4,10 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/screen/dashboard/dashboard_screen.dart';
+import 'package:utardia/screen/payment/payment_provider.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
@@ -18,6 +20,7 @@ class PaymentProcessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<PaymentProvider>(context, listen: false);
     return Scaffold(
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -36,6 +39,8 @@ class PaymentProcessScreen extends StatelessWidget {
             print("@@@@@@ ${uri!.path}");
             if (uri.path.contains("success")) {
               showToast("Payment successfull");
+
+              provider.callPaymentResponse(context);
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => DashScreen()),
                   (Route<dynamic> route) => false);

@@ -283,7 +283,7 @@ class PaymentProvider extends ChangeNotifier {
     }
   }
 
-  void UpdateAddress() async {
+  UpdateAddress() async {
     try {
       http.Response? res = await HttpService.postApi(
           url: ApiEndPoint.updateAddressInCart,
@@ -302,6 +302,28 @@ class PaymentProvider extends ChangeNotifier {
       } else {
         showToast(
             "Error code from update address in cart code:-${res!.statusCode}");
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+    }
+  }
+
+  void callPaymentResponse(BuildContext context) async {
+    try {
+      http.Response? res =
+          await HttpService.postApi(url: ApiEndPoint.paymentResponse, header: {
+        "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+      }, body: {
+        "owner_id":
+            "${Provider.of<CartProvider>(context, listen: false).cartListDataModel.ownerId.toString()}",
+        "user_id": "${PrefService.getString(PrefKeys.uid)}",
+        "payment_type": "paystack"
+      });
+      if (res != null && res.statusCode != 200) {
+        Logger().e(jsonDecode(res.body));
+      } else {
+        showToast("${res!.statusCode}");
       }
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";

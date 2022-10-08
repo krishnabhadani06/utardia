@@ -15,7 +15,7 @@ import 'package:utardia/model/home_top_category/home_top_product_detail_model.da
 import 'package:utardia/model/todays_product_model/todays_product_deal_model.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/addToCartApi/addToCart_Api.dart';
-import 'package:utardia/screen/category/product_details/globalClass.dart';
+
 import 'package:utardia/screen/category/product_details/productDetailScreenApi/productDetailsScreenApi.dart';
 import 'package:utardia/screen/category/product_details/product_details_screen.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
@@ -93,7 +93,7 @@ class ProductDetailsProvider extends ChangeNotifier {
   }
 
   void onTapPlus() {
-    if (counter <= GlobalClass.currentqty) {
+    if (counter <= currentqty) {
       counter = counter + 1;
       notifyListeners();
     } else {
@@ -147,8 +147,8 @@ class ProductDetailsProvider extends ChangeNotifier {
     if (productDescriptionModel.status != 200) {
       productDescriptionDetail(url);
     } else {
-      navigator.currentState!.push(
-          MaterialPageRoute(builder: (context) => const ProductDetailScreen()));
+      navigator.currentState!
+          .push(MaterialPageRoute(builder: (context) => ProductDetailScreen()));
       allProductDescription = productDescriptionModel.data!;
       if (kDebugMode) {
         print('-----------------------------${allProductDescription.length}');
@@ -192,8 +192,7 @@ class ProductDetailsProvider extends ChangeNotifier {
 
     checkWishList(pid, PrefService.getString(PrefKeys.uid));
     navigator.currentState!
-        .push(MaterialPageRoute(
-            builder: (context) => const ProductDetailScreen()))
+        .push(MaterialPageRoute(builder: (context) => ProductDetailScreen()))
         .whenComplete(() {
       Provider.of<CategoryProvider>(context, listen: false).init(
           Provider.of<HomeProvider>(context, listen: false)
@@ -316,8 +315,8 @@ class ProductDetailsProvider extends ChangeNotifier {
                 homeProductDetail!.choiceOptions![0].options![currentMaterial]
                     .toString()) {
           // Logger().e(element.qty);
-          GlobalClass.currentqty = element.qty!;
-          Logger().e("${GlobalClass.currentqty}:::-> ${element.qty!}");
+          currentqty = element.qty!;
+          Logger().e("${currentqty}:::-> ${element.qty!}");
           notifyListeners();
         }
       }
@@ -540,6 +539,94 @@ class ProductDetailsProvider extends ChangeNotifier {
       notifyListeners();
     } finally {
       EasyLoading.dismiss();
+    }
+  }
+
+  void onTapSubmitQuery(
+      String productId, String uid, String Des, String pname) async {
+    checkConversation(productId, uid, Des, pname);
+  }
+
+  void checkConversation(
+      String pid, String uid, String des, String Pname) async {
+    try {
+      http.Response? res = await HttpService.getApi(
+          url:
+              "${ApiEndPoint.checkConversation}product_id=${pid}&user_id=${uid}");
+      if (res!.statusCode == 200 && res != null) {
+        Map<dynamic, dynamic> data =
+            jsonDecode(res.body) as Map<dynamic, dynamic>;
+        if (data['is_conversation']) {
+          insertMessage(
+              pid, uid, des, Pname, data['conversation_id'].toString());
+        } else {
+          createConversation(pid, uid, des, Pname);
+        }
+      } else {
+        showToast("Error Code ${res.statusCode}");
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+    }
+  }
+
+  void createConversation(
+      String pid, String uid, String Des, String Pname) async {
+    try {
+      http.Response? res = await HttpService.postApi(
+          url: ApiEndPoint.createConversation,
+          header: {
+            "Authorization":
+                "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+          },
+          body: {
+            "product_id": "${pid}",
+            "user_id": "${uid}",
+            "title": " Query of ${Pname} Product ",
+            "message": "${Des}"
+          });
+
+      if (res != null && res.statusCode != 200) {
+        Map<dynamic, dynamic> data =
+            jsonDecode(res.body) as Map<dynamic, dynamic>;
+
+        if (data['result']) {
+          insertMessage(
+              pid, uid, Des, Pname, data['conversation_id'].toString());
+        } else {
+          kDebugMode ? Logger().e(data['message']) : "";
+        }
+      } else {
+        showToast("Error Code from create conversation${res!.statusCode}");
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+    }
+  }
+
+  void insertMessage(String pid, String uid, String des, String pname,
+      String conversation_id) async {
+    try {
+      http.Response? res =
+          await HttpService.postApi(url: ApiEndPoint.pushMessage, header: {
+        "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+      }, body: {
+        "conversation_id": "${conversation_id}",
+        "user_id": "${uid}",
+        "message": "${des}"
+      });
+      if (res != null && res.statusCode != 200) {
+        Map<dynamic, dynamic> data =
+            jsonDecode(res.body) as Map<dynamic, dynamic>;
+        showToast(data['message']);
+      } else {
+        showToast("error code from insertMessage Code:${res!.statusCode}");
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
     }
   }
 }

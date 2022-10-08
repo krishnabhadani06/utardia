@@ -5,14 +5,17 @@ import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/common/textform_field.dart';
 import 'package:utardia/common/validations.dart';
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
+import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
+import 'package:utardia/util/pref_key.dart';
 import 'package:utardia/util/string.dart';
 
 Widget messagesellerDialog(
     BuildContext context, ProductDetailsProvider provider) {
   double deviceHeight = MediaQuery.of(context).size.height;
   double deviceWidth = MediaQuery.of(context).size.height;
+  provider.productName.text = provider.homeProductDetail!.name.toString();
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
@@ -116,7 +119,15 @@ Widget messagesellerDialog(
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: [
-                  materialButton(txtButton: Strings.submit, onPressed: () {})
+                  materialButton(
+                      txtButton: Strings.submit,
+                      onPressed: () {
+                        provider.onTapSubmitQuery(
+                            provider.homeProductDetail!.id.toString(),
+                            PrefService.getString(PrefKeys.uid).toString(),
+                            provider.description.text.toString(),
+                            provider.homeProductDetail!.name.toString());
+                      })
                 ],
               ),
             ),

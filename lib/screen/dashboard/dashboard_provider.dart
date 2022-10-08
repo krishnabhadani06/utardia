@@ -13,14 +13,13 @@ class DashboardProvider extends ChangeNotifier {
   late CategoryProvider categoryProvider;
   late CartProvider cartProvider;
   late CampaingProvider campaingsProvider;
-  late ProfileProvider Profileprovider;
 
   void initAllProvider(BuildContext context) async {
     homeProvider = Provider.of<HomeProvider>(context, listen: false);
     categoryProvider = Provider.of<CategoryProvider>(context, listen: false);
     //searchProvider = Provider.of<SearchProvider>(context,listen: false);
     cartProvider = Provider.of<CartProvider>(context, listen: false);
-    Profileprovider = Provider.of<ProfileProvider>(context, listen: false);
+
     // await homeProvider.init();
   }
 

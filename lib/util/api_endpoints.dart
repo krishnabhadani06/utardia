@@ -12,6 +12,7 @@ class ApiEndPoint {
   static const resetPassword = "${baseUrl}auth/password/confirm_reset";
   static const changePassword = "${baseUrl}auth/password/change_password";
   static const getAddress = "${baseUrl}user/shipping/address/";
+  static const paymentResponse = "${baseUrl}order/store";
 
   static const pushRate = "${baseUrl}reviews/submit";
   static const getPayment = "${baseUrl}payment-types";
@@ -21,6 +22,7 @@ class ApiEndPoint {
   static const checkWishList = "${baseUrl}wishlists-check-product";
   static const addWishList = "${baseUrl}wishlists-add-product";
   static const removeWishList = "${baseUrl}wishlists-remove-product";
+  static const updateAddressInCart = "${baseUrl}update-address-in-cart";
   // static const resetPassword = "${baseUrl}/get-user-by-access_token";
 
   static const homeAllCenterCategory = "${baseUrl}categories/featured";
@@ -40,6 +42,10 @@ class ApiEndPoint {
 
   ///cart
   static const updareCart = "${baseUrl}carts/process";
+
+  static const checkConversation = "${baseUrl}chat/check_conversation?";
+  static const createConversation = "${baseUrl}chat/create-conversation";
+  static const pushMessage = "${baseUrl}chat/insert-message";
 
   /// address
   static const getCountries = "${baseUrl}countries";

@@ -34,6 +34,7 @@ import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/common/validations.dart';
 import 'package:utardia/model/address_model/city_model.dart';
+import 'package:utardia/model/address_model/country_model.dart';
 import 'package:utardia/model/address_model/getUserAddressModel.dart';
 import 'package:utardia/model/address_model/state_model.dart';
 import 'package:utardia/screen/address/widget/address_bottom_sheet.dart';
@@ -70,6 +71,7 @@ class AddressProvider extends ChangeNotifier {
   String? errorTextAddress;
   String? errorTextLandmark;
   String? errorTextPincode;
+  late county.Country currentCountry;
 
   userGetAddress? userAddress;
   bool isHome = true, isWork = false, isOther = false;
@@ -113,6 +115,14 @@ class AddressProvider extends ChangeNotifier {
 
   Widget onTapEditAddress(Data Addresss) {
     currentAddress = Addresss;
+
+    if (Addresss.countryName!.isEmpty) {
+      currentCountry = CountryPickerUtils.getCountryByPhoneCode("+91");
+    } else {
+      currentCountry =
+          CountryPickerUtils.getCountryByName(Addresss.countryName.toString());
+    }
+
     return const EditAddressDetail();
   }
 
@@ -174,7 +184,7 @@ class AddressProvider extends ChangeNotifier {
         "city_id": "${currentCity!.id}",
         "state_id": "${currentState!.id}",
         "postal_code": "${txtPincode.text.toString()}",
-        "phone": "+91${txtContact.text.toString()}",
+        "phone": "${currentCountry.phoneCode}${txtContact.text.toString()}",
         "work_type": "${isSelect}"
       });
 
@@ -393,7 +403,8 @@ class AddressProvider extends ChangeNotifier {
       isSelect = workType.toString();
       if (data != null) {
         txtAddress.text = data.address ?? "";
-        txtContact.text = data.phone ?? "";
+        txtContact.text =
+            data.phone.toString().substring(3, data.phone!.length).toString();
         txtLandmark.text = data.address ?? "";
         txtPincode.text = data.postalCode ?? "";
       }

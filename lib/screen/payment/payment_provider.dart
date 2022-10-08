@@ -62,12 +62,16 @@ class PaymentProvider extends ChangeNotifier {
   }
 
   void onTapPlaceOrder(BuildContext context) {
+    UpdateAddress();
     PlaceOrder(context).then((value) {
       if (value != "") {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                builder: (context) => PaymentProcessScreen(id: value.toString(), amount: cartSummary!.grandTotalValue.toString(),))).whenComplete(() => init(context));
+                builder: (context) => PaymentProcessScreen(
+                      id: value.toString(),
+                      amount: cartSummary!.grandTotalValue.toString(),
+                    ))).whenComplete(() => init(context));
       }
     });
   }
@@ -226,7 +230,10 @@ class PaymentProvider extends ChangeNotifier {
           await HttpService.postApi(url: ApiEndPoint.plaeOrder, header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, body: {
-        "owner_id": Provider.of<CartProvider>(context, listen: false).cartListDataModel.ownerId.toString(),
+        "owner_id": Provider.of<CartProvider>(context, listen: false)
+            .cartListDataModel
+            .ownerId
+            .toString(),
         "user_id": PrefService.getString(PrefKeys.uid),
         "payment_type": "paystack"
       });
@@ -247,9 +254,7 @@ class PaymentProvider extends ChangeNotifier {
       kDebugMode ? Logger().e(e.toString()) : "";
       showToast(e.toString());
       return "";
-    } finally {
-
-    }
+    } finally {}
   }
 
   void applyCoupenCode(BuildContext context, CartBaseCoupenModel coupen) async {
@@ -271,6 +276,54 @@ class PaymentProvider extends ChangeNotifier {
         showToast(jsonDecode(res.body)['message']);
       } else {
         showToast("error code from coupen apply ${res.statusCode}");
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+    }
+  }
+
+  UpdateAddress() async {
+    try {
+      http.Response? res = await HttpService.postApi(
+          url: ApiEndPoint.updateAddressInCart,
+          header: {
+            "Authorization":
+                "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+          },
+          body: {
+            "user_id": "${PrefService.getString(PrefKeys.uid)}",
+            "address_id": "${currentAddress!.id}"
+          });
+
+      if (res != null && res.statusCode != 200) {
+        Map<dynamic, dynamic> data =
+            jsonDecode(res.body) as Map<dynamic, dynamic>;
+      } else {
+        showToast(
+            "Error code from update address in cart code:-${res!.statusCode}");
+      }
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+    }
+  }
+
+  void callPaymentResponse(BuildContext context) async {
+    try {
+      http.Response? res =
+          await HttpService.postApi(url: ApiEndPoint.paymentResponse, header: {
+        "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+      }, body: {
+        "owner_id":
+            "${Provider.of<CartProvider>(context, listen: false).cartListDataModel.ownerId.toString()}",
+        "user_id": "${PrefService.getString(PrefKeys.uid)}",
+        "payment_type": "paystack"
+      });
+      if (res != null && res.statusCode != 200) {
+        Logger().e(jsonDecode(res.body));
+      } else {
+        showToast("${res!.statusCode}");
       }
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";

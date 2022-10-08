@@ -10,14 +10,7 @@ import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/string.dart';
 
-class LoginCenter extends StatefulWidget {
-  const LoginCenter({Key? key}) : super(key: key);
-
-  @override
-  State<LoginCenter> createState() => _LoginCenterState();
-}
-
-class _LoginCenterState extends State<LoginCenter> {
+class LoginCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginProvider>(context);

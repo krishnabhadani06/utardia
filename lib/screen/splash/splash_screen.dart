@@ -26,38 +26,3 @@ class SplashScreen extends StatelessWidget {
                 ))));
   }
 }
-// Column(
-// mainAxisAlignment: MainAxisAlignment.center,
-// children: [
-// Padding(
-// padding: EdgeInsets.only(
-// left: deviceWidth * 0.1, right: deviceWidth * 0.1),
-// child: Image.asset(
-// AssetsImagesRes.loginMainImage,
-// fit: BoxFit.fill,
-// height: deviceHeight * 0.17,
-// width: deviceWidth,
-// ),
-// ),
-// SizedBox(height: deviceHeight * 0.02),
-// Padding(
-// padding: EdgeInsets.only(
-// left: deviceWidth * 0.05, right: deviceWidth * 0.05),
-// child: Text(
-// '"WE BELIEVE THAT QUALITY IS THE SOUL OF AN ENTERPRISE!"',
-// style:
-// robotoSemiBoldTextStyle(color: ColorRes.blue, fontSize: 24),
-// textAlign: TextAlign.center,
-// ),
-// ),
-// Padding(
-// padding: EdgeInsets.only(
-// left: deviceWidth * 0.05, right: deviceWidth * 0.05),
-// child: Text(
-// 'Maybe we are not Providing the Cheap Rate',
-// style: natoRegularTextStyle(color: ColorRes.blue, fontSize: 24),
-// textAlign: TextAlign.center,
-// ),
-// ),
-// ],
-// ),

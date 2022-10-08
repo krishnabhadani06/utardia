@@ -14,15 +14,6 @@ import '../../../util/icon_res.dart';
 
 class FavoriteScreen extends StatelessWidget {
   @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-  //     Provider.of<FavoriteProvider>(context,listen: false).getWishList();
-  //   });
-  // }
-
-  @override
   Widget build(BuildContext context) {
     // final provider = Provider.of<FavoriteProvider>(context);
     return Consumer<FavoriteProvider>(builder: (con, provider, widget) {

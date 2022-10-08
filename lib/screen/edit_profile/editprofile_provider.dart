@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/profile_model/profile_detail_model.dart';
 import 'package:utardia/screen/dashboard/profile/all_profile_api/profile_detail_api.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
+import 'package:country_pickers/country_pickers.dart';
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
 
@@ -20,6 +22,8 @@ class EditProfileProvider extends ChangeNotifier {
   TextEditingController txtContact = TextEditingController();
   TextEditingController txtAddress = TextEditingController();
   GlobalKey<FormState> editProfileFormKey = GlobalKey<FormState>();
+  Country? intialCountry;
+  String? intialCountryCode;
 
   ProfileModel? profileModel;
   Country? currentCountry;
@@ -64,9 +68,11 @@ class EditProfileProvider extends ChangeNotifier {
       }
     } else {
       updateProfile();
-      updateImage();
+      String path = profileModel!.data![0].avatarOriginal.toString();
+      if (path != profileModel!.data![0].avatarOriginal.toString()) {
+        updateImage();
+      }
     }
-  }
 
   void updateProfile() async {
     try {
@@ -74,7 +80,10 @@ class EditProfileProvider extends ChangeNotifier {
           await HttpService.postApi(url: ApiEndPoint.updateProfile, body: {
         "id": profileModel!.data![0].id.toString(),
         "name": txtName.text.toString(),
-        "password": ""
+        "email": txtEmail.text.toString(),
+        "address": txtAddress.text.toString(),
+        "phone": txtContact.text.toString(),
+        "country": "${intialCountry!.name.toString()}",
       });
       if (res != null && res.statusCode == 200) {
         Logger().e(jsonDecode(res.body));

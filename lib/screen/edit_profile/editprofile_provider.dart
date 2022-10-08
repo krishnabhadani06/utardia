@@ -12,7 +12,7 @@ import 'package:utardia/model/profile_model/profile_detail_model.dart';
 import 'package:utardia/screen/dashboard/profile/all_profile_api/profile_detail_api.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
-import 'package:country_pickers/country_pickers.dart';
+
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
 
@@ -73,6 +73,7 @@ class EditProfileProvider extends ChangeNotifier {
         updateImage();
       }
     }
+  }
 
   void updateProfile() async {
     try {

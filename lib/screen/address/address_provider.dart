@@ -34,7 +34,7 @@ import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/common/validations.dart';
 import 'package:utardia/model/address_model/city_model.dart';
-import 'package:utardia/model/address_model/country_model.dart';
+// import 'package:utardia/model/address_model/country_model.dart';
 import 'package:utardia/model/address_model/getUserAddressModel.dart';
 import 'package:utardia/model/address_model/state_model.dart';
 import 'package:utardia/screen/address/widget/address_bottom_sheet.dart';
@@ -64,14 +64,13 @@ class AddressProvider extends ChangeNotifier {
   StateModel? currentState;
   List<CityModel> cityList = [];
   CityModel? currentCity;
-  Country? currentCountry;
 
+  Country? currentCountry;
   String? errorTextName;
   String? errorTextPhone;
   String? errorTextAddress;
   String? errorTextLandmark;
   String? errorTextPincode;
-  late county.Country currentCountry;
 
   userGetAddress? userAddress;
   bool isHome = true, isWork = false, isOther = false;
@@ -117,10 +116,10 @@ class AddressProvider extends ChangeNotifier {
     currentAddress = Addresss;
 
     if (Addresss.countryName!.isEmpty) {
-      currentCountry = CountryPickerUtils.getCountryByPhoneCode("+91");
+      // currentCountry =;
     } else {
-      currentCountry =
-          CountryPickerUtils.getCountryByName(Addresss.countryName.toString());
+      // currentCountry =
+      //     CountryPickerUtils.getCountryByName(Addresss.countryName.toString());
     }
 
     return const EditAddressDetail();
@@ -184,7 +183,7 @@ class AddressProvider extends ChangeNotifier {
         "city_id": "${currentCity!.id}",
         "state_id": "${currentState!.id}",
         "postal_code": "${txtPincode.text.toString()}",
-        "phone": "${currentCountry.phoneCode}${txtContact.text.toString()}",
+        "phone": "${currentCountry!.phoneCode}${txtContact.text.toString()}",
         "work_type": "${isSelect}"
       });
 

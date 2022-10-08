@@ -91,35 +91,35 @@ class EditProfileCenter extends StatelessWidget {
   }
 }
 
-_buildCountryPickerDropdownSoloExpanded(BuildContext context) {
-  return CountryPickerDropdown(
-    /* underline: Container(
-        height: 2,
-        color: Colors.red,
-      ),*/
-    //show'em (the text fields) you're in charge now
-    onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-    //if you want your dropdown button's selected item UI to be different
-    //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
-    onValuePicked: (Country country) {
-      if (kDebugMode) {
-        print(country.phoneCode);
-      }
-    },
-    itemBuilder: (Country country) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(width: 2.0),
-          CountryPickerUtils.getDefaultFlagImage(country),
-          // SizedBox(width: 8.0),
-          Expanded(child: Text('+${country.phoneCode}')),
-        ],
-      );
-    },
-    itemHeight: null, //50,
-    isExpanded: true,
-    //initialValue: 'TR',
-    icon: const Icon(Icons.arrow_downward),
-  );
-}
+// _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
+//   return CountryPickerDropdown(
+//     /* underline: Container(
+//         height: 2,
+//         color: Colors.red,
+//       ),*/
+//     //show'em (the text fields) you're in charge now
+//     onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+//     //if you want your dropdown button's selected item UI to be different
+//     //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
+//     onValuePicked: (Country country) {
+//       if (kDebugMode) {
+//         print(country.phoneCode);
+//       }
+//     },
+//     itemBuilder: (Country country) {
+//       return Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: <Widget>[
+//           const SizedBox(width: 2.0),
+//           CountryPickerUtils.getDefaultFlagImage(country),
+//           // SizedBox(width: 8.0),
+//           Expanded(child: Text('+${country.phoneCode}')),
+//         ],
+//       );
+//     },
+//     itemHeight: null, //50,
+//     isExpanded: true,
+//     //initialValue: 'TR',
+//     icon: const Icon(Icons.arrow_downward),
+//   );
+// }

@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
                       //itemCount: 1 + 1 + provider.allCategoriesProducts.length,
-                      itemCount: 1 + 1 + provider.allHomeTopProducts.length,
+                      itemCount: 2 + provider.allHomeTopProducts.length,
                       padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.02),
                       itemBuilder: (context, index) {

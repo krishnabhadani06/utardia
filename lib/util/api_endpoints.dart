@@ -21,6 +21,7 @@ class ApiEndPoint {
   static const checkWishList = "${baseUrl}wishlists-check-product";
   static const addWishList = "${baseUrl}wishlists-add-product";
   static const removeWishList = "${baseUrl}wishlists-remove-product";
+  static const updateAddressInCart = "${baseUrl}update-address-in-cart";
   // static const resetPassword = "${baseUrl}/get-user-by-access_token";
 
   static const homeAllCenterCategory = "${baseUrl}categories/featured";
@@ -40,6 +41,10 @@ class ApiEndPoint {
 
   ///cart
   static const updareCart = "${baseUrl}carts/process";
+
+  static const checkConversation = "${baseUrl}chat/check_conversation?";
+  static const createConversation = "${baseUrl}chat/create-conversation";
+  static const pushMessage = "${baseUrl}chat/insert-message";
 
   /// address
   static const getCountries = "${baseUrl}countries";

@@ -25,8 +25,8 @@ class _ProfileDrawerAccountState extends State<ProfileDrawerAccount> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<ProfileProvider>(context, listen: false)
-          .allProfileDataList(context);
+      // Provider.of<ProfileProvider>(context, listen: false)
+      //     .allProfileDataList(context);
       //Provider.of<EditProfileProvider>(context, listen: false).profilemodel = widget.profilemode;
     });
   }

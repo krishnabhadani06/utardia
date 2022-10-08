@@ -47,7 +47,7 @@ class SingInpApi {
         navigator.currentState!
             .pushReplacement(MaterialPageRoute(builder: (context) {
           Provider.of<HomeProvider>(context, listen: false).init();
-          return const DashScreen();
+          return DashScreen();
         }));
         return singInModelFromJson(response.body);
       } else {

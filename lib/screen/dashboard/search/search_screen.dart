@@ -3,24 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:utardia/screen/dashboard/search/search_provider.dart';
 import 'package:utardia/util/color_res.dart';
 
-// class SearchScreen extends StatelessWidget {
-//   const SearchScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer<SearchProvider>(builder: (con, provider, widget) {
-//       return SafeArea(
-//           child: Scaffold(
-//         body: Container(
-//           height: deviceHeight / 2,
-//           color: ColorRes.green,
-//         ),
-//       ),
-//       );
-//     });
-//   }
-// }
-
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 

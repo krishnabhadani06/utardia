@@ -5,7 +5,7 @@ import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/common/textform_field.dart';
 import 'package:utardia/common/validations.dart';
-import 'package:utardia/screen/category/product_details/globalClass.dart';
+
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
 import 'package:utardia/screen/category/product_details/widget/productdetailscreenwidgets.dart';
 import 'package:utardia/util/color_res.dart';
@@ -113,7 +113,7 @@ class _ProductDetailsCenterState extends State<ProductDetailsCenter> {
                       ),
                       // const Spacer(),
                       Text(
-                        Strings.off57,
+                        "${pro.homeProductDetail!.discount}${pro.homeProductDetail!.discountType}",
                         style: natoMediumTextStyle(
                             color: ColorRes.darkGreen, fontSize: 12),
                       ),
@@ -174,7 +174,7 @@ class _ProductDetailsCenterState extends State<ProductDetailsCenter> {
               Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "current variant stocks ${GlobalClass.currentqty}",
+                    "current variant stocks ${pro.currentqty}",
                     style: TextStyle(
                         color: Colors.grey[400], fontWeight: FontWeight.w700),
                   )),

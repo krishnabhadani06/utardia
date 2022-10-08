@@ -99,7 +99,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                           .avatarOriginal !=
                                                       ""
                                               ? Image.network(
-                                                  "${x.profileModel!.data![0].avatarOriginal.toString()}",
+                                                  x.profileModel!.data![0]
+                                                      .avatarOriginal
+                                                      .toString(),
                                                   fit: BoxFit.fill,
                                                 )
                                               : const Text("No Image")

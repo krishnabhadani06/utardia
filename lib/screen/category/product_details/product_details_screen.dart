@@ -20,14 +20,7 @@ import 'package:utardia/util/string.dart';
 
 import 'product_details_provider.dart';
 
-class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({Key? key}) : super(key: key);
-
-  @override
-  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
-}
-
-class _ProductDetailScreenState extends State<ProductDetailScreen> {
+class ProductDetailScreen extends StatelessWidget {
   bool isLike = false;
   @override
   Widget build(BuildContext context) {

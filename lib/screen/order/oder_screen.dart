@@ -94,7 +94,7 @@ class OrderScreen extends StatelessWidget {
                           ],
                         ),
                       )
-                    : Center(
+                    : const Center(
                         child: CircularProgressIndicator(),
                       )));
   }

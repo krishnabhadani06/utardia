@@ -1,5 +1,5 @@
 import 'package:country_pickers/country.dart';
-import 'package:country_pickers/country_picker_dropdown.dart';
+
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +65,18 @@ _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
       if (kDebugMode) {
         print(country.phoneCode);
       }
+
+      Provider.of<EditProfileProvider>(context, listen: false)
+          .onCountryChanged(country, context);
     },
+    initialValue: Provider.of<EditProfileProvider>(context, listen: false)
+                .intialCountry !=
+            null
+        ? Provider.of<EditProfileProvider>(context, listen: false)
+            .intialCountry!
+            .isoCode
+            .toString()
+        : "IN",
     itemBuilder: (Country country) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,

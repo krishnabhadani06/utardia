@@ -32,7 +32,7 @@ class SplashProvider extends ChangeNotifier {
       navigator.currentState!
           .pushReplacement(MaterialPageRoute(builder: (context) {
         Provider.of<HomeProvider>(context, listen: false).init();
-        return const DashScreen();
+        return DashScreen();
       }));
     } else {
       navigator.currentState!.pushReplacement(

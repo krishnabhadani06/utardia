@@ -10,14 +10,7 @@ import 'package:utardia/util/color_res.dart';
 
 import 'widgets/bottom_bar.dart';
 
-class DashScreen extends StatefulWidget {
-  const DashScreen({Key? key}) : super(key: key);
-
-  @override
-  State<DashScreen> createState() => _DashScreenState();
-}
-
-class _DashScreenState extends State<DashScreen> {
+class DashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DashboardProvider provider = Provider.of<DashboardProvider>(context);

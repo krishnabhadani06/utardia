@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
+// import 'package:utardia/model/address_model/country_model.dart';
 import 'package:utardia/screen/address/address_provider.dart';
 import 'package:utardia/screen/address/common_textfield.dart';
 import 'package:utardia/util/color_res.dart';
@@ -106,18 +107,15 @@ class AddressBottomSheetCenter extends StatelessWidget {
 
 _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
   return CountryPickerDropdown(
-    /* underline: Container(
-        height: 2,
-        color: Colors.red,
-      ),*/
-    //show'em (the text fields) you're in charge now
     onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-    //if you want your dropdown button's selected item UI to be different
-    //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
+
     onValuePicked: (Country country) {
       if (kDebugMode) {
         print(country.phoneCode);
       }
+
+      Provider.of<AddressProvider>(context, listen: false).currentCountry =
+          country;
     },
     itemBuilder: (Country country) {
       return Row(
@@ -126,41 +124,15 @@ _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
           const SizedBox(width: 2.0),
           CountryPickerUtils.getDefaultFlagImage(country),
           // SizedBox(width: 8.0),
-          Expanded(child: Text('+${country.phoneCode}')),
+          Expanded(child: Text('${country.phoneCode}')),
         ],
       );
     },
     itemHeight: null, //50,
     isExpanded: true,
-    //initialValue: 'TR',
+    initialValue: Provider.of<AddressProvider>(context, listen: false)
+        .currentCountry
+        .isoCode,
     icon: const Icon(Icons.arrow_downward),
   );
 }
-
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         SizedBox(height: deviceHeight * 0.02),
-//         Text(
-//           "Enter name",
-//           style: natoMediumTextStyle(fontSize: 15, color: ColorRes.grey),
-//         ),
-//         txtFieldAddress(
-//             validate: (val) {
-//               return (val!.isEmpty) ? Strings.enterName : null;
-//             },
-//             controllerValue: provider.txtName,
-//             hintTxt: Strings.nameSurname),
-//         SizedBox(height: deviceHeight * 0.02),
-//         Text(
-//           "Enter Phone Number",
-//           style: natoMediumTextStyle(fontSize: 15, color: ColorRes.grey),
-//         ),
-//         txtFieldAddress(
-//             validate: (val) => phoneNumberValidator(val),
-//             controllerValue: provider.txtContact,
-//             hintTxt: Strings.mobileNo),
-//       ],
-//     );
-//   }
-// }

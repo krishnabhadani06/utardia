@@ -92,7 +92,12 @@ _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
       if (kDebugMode) {
         print(country.phoneCode);
       }
+      Provider.of<AddressProvider>(context, listen: false).currentCountry =
+          country;
     },
+    initialValue: Provider.of<AddressProvider>(context, listen: false)
+        .currentCountry
+        .isoCode,
     itemBuilder: (Country country) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,

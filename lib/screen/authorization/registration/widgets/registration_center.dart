@@ -1,6 +1,4 @@
-import 'package:country_pickers/country.dart';
-import 'package:country_pickers/country_picker_dropdown.dart';
-import 'package:country_pickers/utils/utils.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -172,7 +170,47 @@ class RegistrationCenter extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: _buildCountryPickerDropdownSoloExpanded(context),
+                    child: InkWell(
+                      onTap: () {
+                        showCountryPicker(
+                            context: context,
+                            onSelect: (Country country) {
+                              provider.currentCountry = country;
+                              provider.notifyListeners();
+                            });
+                      },
+                      child: Center(
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 1,
+                                child: provider.currentCountry != null
+                                    ? Text(
+                                        provider.currentCountry!.flagEmoji,
+                                        style: robotoRegularTextStyle(
+                                            fontSize: 25),
+                                      )
+                                    : const Center(
+                                        child: Text(""),
+                                      )),
+                            Expanded(
+                                flex: 2,
+                                child: provider.currentCountry != null
+                                    ? Text(
+                                        " +${provider.currentCountry!.phoneCode.toString()}",
+                                        style: robotoMediumTextStyle(
+                                            fontSize: 18,
+                                            color: ColorRes.greyTextHome),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2)
+                                    : const Center(
+                                        child: Text("India"),
+                                      )),
+                          ],
+                        ),
+                      ),
+                      // child: _buildCountryPickerDropdownSoloExpanded(context),
+                    ),
                   ),
                 ),
                 SizedBox(width: 10),
@@ -301,43 +339,43 @@ class RegistrationCenter extends StatelessWidget {
   }
 }
 
-_buildCountryPickerDropdownSoloExpanded(BuildContext context) {
-  return CountryPickerDropdown(
-    /* underline: Container(
-        height: 2,
-        color: Colors.red,
-      ),*/
-    //show'em (the text fields) you're in charge now
-    onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-    //if you want your dropdown button's selected item UI to be different
-    //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
-    onValuePicked: (Country country) {
-      Provider.of<RegistrationProvider>(context, listen: false)
-          .onchangedCountry(country);
-    },
-
-    initialValue: "IN",
-    itemBuilder: (Country country) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          // const SizedBox(width: 2.0),
-          Expanded(
-              flex: 1, child: CountryPickerUtils.getDefaultFlagImage(country)),
-          // SizedBox(width: 8.0),
-          Expanded(
-              flex: 2,
-              child: Text(
-                '+${country.phoneCode},',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              )),
-        ],
-      );
-    },
-    itemHeight: null, //50,
-    isExpanded: true,
-    //initialValue: 'TR',
-    icon: const Icon(Icons.keyboard_arrow_down_rounded),
-  );
-}
+// _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
+//   return CountryPickerDropdown(
+//     /* underline: Container(
+//         height: 2,
+//         color: Colors.red,
+//       ),*/
+//     //show'em (the text fields) you're in charge now
+//     onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+//     //if you want your dropdown button's selected item UI to be different
+//     //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
+//     onValuePicked: (Country country) {
+//       Provider.of<RegistrationProvider>(context, listen: false)
+//           .onchangedCountry(country);
+//     },
+//
+//     initialValue: "IN",
+//     itemBuilder: (Country country) {
+//       return Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: <Widget>[
+//           // const SizedBox(width: 2.0),
+//           Expanded(
+//               flex: 1, child: CountryPickerUtils.getDefaultFlagImage(country)),
+//           // SizedBox(width: 8.0),
+//           Expanded(
+//               flex: 2,
+//               child: Text(
+//                 '+${country.phoneCode},',
+//                 maxLines: 1,
+//                 overflow: TextOverflow.ellipsis,
+//               )),
+//         ],
+//       );
+//     },
+//     itemHeight: null, //50,
+//     isExpanded: true,
+//     //initialValue: 'TR',
+//     icon: const Icon(Icons.keyboard_arrow_down_rounded),
+//   );
+// }

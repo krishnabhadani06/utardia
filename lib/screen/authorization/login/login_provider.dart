@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:country_pickers/country.dart';
+import 'package:country_picker/country_picker.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:utardia/common/helper.dart';
@@ -51,6 +52,9 @@ class LoginProvider extends ChangeNotifier {
               : txtId.text,
           txtPassword.text,
           context);
+      txtId.clear();
+      txtPassword.clear();
+      txtPhone.clear();
     }
   }
 

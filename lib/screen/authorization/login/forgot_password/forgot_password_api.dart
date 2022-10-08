@@ -31,11 +31,13 @@ class ForgotPasswordApi {
       if (response.statusCode == 200) {
         print(response.body);
         Fluttertoast.showToast(msg: response.body.toString());
-        navigator.currentState!
-            .pushReplacement(MaterialPageRoute(builder: (context) {
+        if (jsonDecode(response.body)['result']) {
           Provider.of<OtpProvider>(context, listen: false).isForgot = true;
-          return const OtpReceiverScreen();
-        }));
+          navigator.currentState!
+              .pushReplacement(MaterialPageRoute(builder: (context) {
+            return const OtpReceiverScreen();
+          }));
+        }
         return jsonDecode(response.body);
       } else {
         Fluttertoast.showToast(msg: response.body.toString());

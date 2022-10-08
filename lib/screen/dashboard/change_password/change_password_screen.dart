@@ -39,20 +39,23 @@ class ChangePasswordScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: deviceHeight * 0.04),
-                  provider.isForgot
+                  provider.isForgot == true
                       ? const SizedBox()
                       : Text(
                           "Enter Old Password",
                           style: robotoRegularTextStyle(
                               fontSize: 15, color: ColorRes.textfielTitleColor),
                         ),
-                  CommonTextField(
-                      controller: provider.txtOldPassword,
-                      obscure: true,
-                      hintText: Strings.oldPassword,
-                      error: false,
-                      width: deviceWidth,
-                      border: false),
+                  Visibility(
+                    visible: !provider.isForgot,
+                    child: CommonTextField(
+                        controller: provider.txtOldPassword,
+                        obscure: true,
+                        hintText: Strings.oldPassword,
+                        error: false,
+                        width: deviceWidth,
+                        border: false),
+                  ),
                   Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     padding: const EdgeInsets.only(right: 25),

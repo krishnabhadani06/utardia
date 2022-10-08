@@ -1,10 +1,8 @@
-import 'package:country_pickers/country.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:utardia/common/validations.dart';
 import 'package:utardia/model/SignUp_Model/signup_model.dart';
-import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 
 import 'registration_api/registration_api.dart';
@@ -15,8 +13,8 @@ class RegistrationProvider extends ChangeNotifier {
   TextEditingController txtRePassword = TextEditingController();
   TextEditingController txtPhone = TextEditingController();
 
-  Country? currentCountry =
-      Country(isoCode: "IN", iso3Code: "IND", phoneCode: "+91", name: "India");
+  Country? currentCountry;
+
   GlobalKey<FormState> registrationFormKey = GlobalKey<FormState>();
   SingUpModel singUpModel = SingUpModel();
   bool loader = false;

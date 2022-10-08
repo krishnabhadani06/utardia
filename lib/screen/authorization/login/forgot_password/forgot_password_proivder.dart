@@ -1,5 +1,6 @@
 //import 'package:chhabildas_project/screen/authorization/login/forgot_password/forgot_password_api.dart';
-import 'package:country_pickers/country.dart';
+
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:utardia/common/validations.dart';
 import 'package:utardia/screen/authorization/login/forgot_password/forgot_password_api.dart';
@@ -10,8 +11,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
   String? errorTextEmail;
   String? errorPhone;
 
-  Country? currentCountry =
-      Country(isoCode: "IN", iso3Code: "IND", phoneCode: "+91", name: "India");
+  Country? currentCountry;
 
   GlobalKey<FormState> forgotPasswordFormKey = GlobalKey<FormState>();
   bool loader = false;
@@ -24,16 +24,25 @@ class ForgotPasswordProvider extends ChangeNotifier {
 
   void onTapResetPassword(BuildContext context) {
     if (isPhone == true) {
-      emailValidation();
       phoneValidation();
-      if (errorTextEmail == null && errorPhone == null) {
+      if (errorPhone == null) {
         forgotPasswordData(
           context,
           txtEmail.text,
           txtPhone.text,
         );
       }
-    } else {}
+    } else {
+      emailValidation();
+
+      if (errorTextEmail == null) {
+        forgotPasswordData(
+          context,
+          txtEmail.text,
+          txtPhone.text,
+        );
+      }
+    }
     // if (errorTextEmail == null && errorPhone == null) {
     //   forgotPasswordData(
     //     txtEmail.text,
@@ -61,8 +70,8 @@ class ForgotPasswordProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onchangedCountryValue(Country country) {
-    currentCountry = country;
-    notifyListeners();
-  }
+  // void onchangedCountryValue(Country country) {
+  //   currentCountry = country;
+  //   notifyListeners();
+  // }
 }

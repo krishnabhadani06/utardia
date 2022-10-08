@@ -25,6 +25,7 @@
 
 import 'dart:convert';
 
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -62,6 +63,7 @@ class AddressProvider extends ChangeNotifier {
   StateModel? currentState;
   List<CityModel> cityList = [];
   CityModel? currentCity;
+  Country? currentCountry;
 
   String? errorTextName;
   String? errorTextPhone;
@@ -71,6 +73,10 @@ class AddressProvider extends ChangeNotifier {
 
   userGetAddress? userAddress;
   bool isHome = true, isWork = false, isOther = false;
+
+  void onTapCountry(Country country) {
+    currentCountry = country;
+  }
 
   void setStateCustom() {
     notifyListeners();

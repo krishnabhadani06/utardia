@@ -44,6 +44,7 @@ class SingUpApi {
         Fluttertoast.showToast(msg: "Registration Successfully.");
         var res = jsonDecode(response.body);
         print("*****************************${res['user_id']}");
+
         Logger().e(jsonDecode(response.body));
         navigator.currentState!
             .pushReplacement(MaterialPageRoute(builder: (context) {

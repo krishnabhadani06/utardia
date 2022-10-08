@@ -1,6 +1,4 @@
-import 'package:country_pickers/country.dart';
-import 'package:country_pickers/country_picker_dropdown.dart';
-import 'package:country_pickers/utils/utils.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +44,47 @@ class EditAddressDetailsCenter extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                     border: Border.all(color: ColorRes.lightGrey, width: 2.0),
                   ),
-                  child: _buildCountryPickerDropdownSoloExpanded(context),
+                  child: InkWell(
+                    onTap: () {
+                      showCountryPicker(
+                          context: context,
+                          onSelect: (Country country) {
+                            provider.currentCountry = country;
+                            provider.notifyListeners();
+                          });
+                    },
+                    child: Center(
+                      child: Row(
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: provider.currentCountry != null
+                                  ? Text(
+                                      provider.currentCountry!.flagEmoji,
+                                      style:
+                                          robotoRegularTextStyle(fontSize: 25),
+                                    )
+                                  : Center(
+                                      child: Text(""),
+                                    )),
+                          Expanded(
+                              flex: 2,
+                              child: provider.currentCountry != null
+                                  ? Text(
+                                      " +${provider.currentCountry!.phoneCode.toString()}",
+                                      style: robotoMediumTextStyle(
+                                          fontSize: 18,
+                                          color: ColorRes.greyTextHome),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2)
+                                  : Center(
+                                      child: Text("India"),
+                                    )),
+                        ],
+                      ),
+                    ),
+                  ),
+                  // child: _buildCountryPickerDropdownSoloExpanded(context),
                 ),
               ),
               SizedBox(width: deviceWidth * 0.02),
@@ -90,38 +128,39 @@ class EditAddressDetailsCenter extends StatelessWidget {
   }
 }
 
-_buildCountryPickerDropdownSoloExpanded(BuildContext context) {
-  return CountryPickerDropdown(
-    /* underline: Container(
-        height: 2,
-        color: Colors.red,
-      ),*/
-    //show'em (the text fields) you're in charge now
-    onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-    //if you want your dropdown button's selected item UI to be different
-    //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
-    onValuePicked: (Country country) {
-      if (kDebugMode) {
-        print(country.phoneCode);
-      }
-    },
-    itemBuilder: (Country country) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(width: 2.0),
-          CountryPickerUtils.getDefaultFlagImage(country),
-          // SizedBox(width: 8.0),
-          Expanded(child: Text('+${country.phoneCode}')),
-        ],
-      );
-    },
-    itemHeight: null, //50,
-    isExpanded: true,
-    //initialValue: 'TR',
-    icon: const Icon(Icons.arrow_downward),
-  );
-}
+// _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
+//   return CountryPickerDropdown(
+//     /* underline: Container(
+//         height: 2,
+//         color: Colors.red,
+//       ),*/
+//     //show'em (the text fields) you're in charge now
+//     onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+//     //if you want your dropdown button's selected item UI to be different
+//     //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
+//     onValuePicked: (Country country) {
+//       if (kDebugMode) {
+//         print(country.phoneCode);
+//       }
+//     },
+//     itemBuilder: (Country country) {
+//       return Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: <Widget>[
+//           const SizedBox(width: 2.0),
+//           CountryPickerUtils.getDefaultFlagImage(country),
+//           // SizedBox(width: 8.0),
+//           Expanded(child: Text('+${country.phoneCode}')),
+//         ],
+//       );
+//     },
+//     itemHeight: null, //50,
+//     isExpanded: true,
+//     //initialValue: 'TR',
+//     icon: const Icon(Icons.arrow_downward),
+//   );
+// }
+
 //     return Padding(
 //       padding: const EdgeInsets.only(left: 15.0,right: 14.0),
 //       child: Column(

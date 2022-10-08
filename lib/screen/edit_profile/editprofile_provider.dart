@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -21,6 +22,7 @@ class EditProfileProvider extends ChangeNotifier {
   GlobalKey<FormState> editProfileFormKey = GlobalKey<FormState>();
 
   ProfileModel? profileModel;
+  Country? currentCountry;
   XFile? img;
   bool loader = false;
   void getImage() async {
@@ -134,5 +136,9 @@ class EditProfileProvider extends ChangeNotifier {
     } finally {
       notifyListeners();
     }
+  }
+
+  void onTapCountry(Country country) {
+    currentCountry = country;
   }
 }

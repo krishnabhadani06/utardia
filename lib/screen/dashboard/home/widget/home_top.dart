@@ -31,7 +31,8 @@ class HomeTop extends StatelessWidget {
                     Text(
                       Strings.showByCategory,
                       style: robotoMediumTextStyle(
-                              fontSize: 15, color: ColorRes.greyTextHome)
+                              fontSize: 15,
+                              color: ColorRes.greyTextHome.withOpacity(0.8))
                           .copyWith(fontWeight: FontWeight.w700),
                     ),
                     TextButton(

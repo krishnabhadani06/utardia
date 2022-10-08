@@ -70,5 +70,29 @@ class AssetsImagesRes {
 
   ///Card Screen image
   static const noCardImage = 'assets/images/EmptyPageScreen/card Image.png';
+
+  ///-------------------------------home screen bottom bar ---------------------------------------
+  static const homeIcon = 'assets/images/dashboardImages/Frame 17.png';
+  static const cartIcon = 'assets/images/dashboardImages/Frame 19.png';
+  static const categoryIcon = 'assets/images/dashboardImages/Frame 18.png';
+  static const campaignIcon = 'assets/images/dashboardImages/Frame 20.png';
+  static const profileIcon = 'assets/images/dashboardImages/Frame 21.png';
+  static const homeIcon1 = 'assets/images/dashboardImages/Frame 22.png';
+  static const cartIcon1 = 'assets/images/dashboardImages/Frame 24.png';
+  static const categoryIcon1 = 'assets/images/dashboardImages/Frame 23.png';
+  static const campaignIcon1 = 'assets/images/dashboardImages/Frame 25.png';
+  static const profileIcon1 = 'assets/images/dashboardImages/Frame 26.png';
+  static const menuBar = 'assets/images/dashboardImages/menubar.png';
+  static const flag = 'assets/images/dashboardImages/india.jpg';
+
+  ///--------------------------------- drawer icon -------------------------------------------
+  static const userIcon = 'assets/images/dashboardImages/user.png';
+  static const passwordIcon = 'assets/images/dashboardImages/key.png';
+  static const favoriteIcon = 'assets/images/dashboardImages/favourite.png';
+  static const addressIcon = 'assets/images/dashboardImages/myAddress.png';
+  static const ordersIcon = 'assets/images/dashboardImages/myOrder.png';
+  static const notificationIcon = 'assets/images/dashboardImages/bell.png';
+  static const languageIcon = 'assets/images/dashboardImages/language.png';
+  static const logoutIcon = 'assets/images/dashboardImages/logout.png';
 }
 //String icLoginMainImage = 'assets/images/login_top_image.png';

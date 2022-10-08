@@ -32,9 +32,10 @@ class ForgotPasswordApi {
         print(response.body);
         Fluttertoast.showToast(msg: response.body.toString());
         if (jsonDecode(response.body)['result']) {
-          Provider.of<OtpProvider>(context, listen: false).isForgot = true;
+          // Provider.of<OtpProvider>(context, listen: false).isForgot = true;
           navigator.currentState!
               .pushReplacement(MaterialPageRoute(builder: (context) {
+            Provider.of<OtpProvider>(context, listen: false).isForgot = true;
             return const OtpReceiverScreen();
           }));
         }

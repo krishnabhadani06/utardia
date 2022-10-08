@@ -18,23 +18,33 @@ Widget sliderHome(
       CarouselSlider.builder(
         itemCount: provider.bannerData.length,
         itemBuilder: (context, index, realIndex) {
-          return CachedNetworkImage(
-            imageUrl: provider.bannerData[index].photo.toString(),
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.fill,
+          return Card(
+            elevation: 2.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: CachedNetworkImage(
+                imageUrl: provider.bannerData[index].photo.toString(),
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) =>
+                    Image.asset(AssetsImagesRes.buy2GetFreeImage),
               ),
             ),
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) =>
-                Image.asset(AssetsImagesRes.buy2GetFreeImage),
           );
         },
         options: CarouselOptions(
-          height: deviceHeight / 5,
+          height: deviceHeight * 0.24,
           aspectRatio: 16 / 9,
           viewportFraction: 0.8,
           initialPage: 0,
@@ -42,7 +52,7 @@ Widget sliderHome(
           reverse: false,
           autoPlay: true,
           autoPlayInterval: const Duration(seconds: 2),
-          autoPlayAnimationDuration: const Duration(milliseconds: 800),
+          autoPlayAnimationDuration: const Duration(milliseconds: 500),
           autoPlayCurve: Curves.fastOutSlowIn,
           enlargeCenterPage: true,
           //  onPageChanged: callbackFunction,

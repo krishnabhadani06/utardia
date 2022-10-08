@@ -9,6 +9,7 @@ class ApiEndPoint {
   static const signIn = "${baseUrl}auth/login";
   static const conformCode = "${baseUrl}auth/confirm_code";
   static const forgotPassword = "${baseUrl}auth/password/forget_request";
+  // static const resetPassword = "${baseUrl}auth/password/confirm_reset";
   static const resetPassword = "${baseUrl}auth/password/confirm_reset";
   static const changePassword = "${baseUrl}auth/password/change_password";
   static const getAddress = "${baseUrl}user/shipping/address/";

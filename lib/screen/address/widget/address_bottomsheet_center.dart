@@ -7,6 +7,7 @@ import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/address/address_provider.dart';
 import 'package:utardia/screen/address/common_textfield.dart';
 import 'package:utardia/util/color_res.dart';
+import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 
 class AddressBottomSheetCenter extends StatelessWidget {
@@ -83,8 +84,12 @@ class AddressBottomSheetCenter extends StatelessWidget {
                                           style: robotoRegularTextStyle(
                                               fontSize: 25),
                                         )
-                                      : Center(
-                                          child: Text(""),
+                                      : Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 3.0),
+                                          child: Center(
+                                              child: Image.asset(
+                                                  AssetsImagesRes.flag)),
                                         )),
                               Expanded(
                                   flex: 2,
@@ -97,7 +102,12 @@ class AddressBottomSheetCenter extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2)
                                       : Center(
-                                          child: Text("India"),
+                                          child: Text("+91",
+                                              style: robotoMediumTextStyle(
+                                                  fontSize: 18,
+                                                  color: ColorRes.greyTextHome),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2),
                                         )),
                             ],
                           ),

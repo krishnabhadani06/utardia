@@ -5,6 +5,7 @@ import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/home_center.dart';
 import 'package:utardia/screen/dashboard/profile/widget/profile_drawer.dart';
 import 'package:utardia/util/color_res.dart';
+import 'package:utardia/util/image_res.dart';
 import 'widget/home_bottom.dart';
 import 'widget/home_top.dart';
 
@@ -18,19 +19,31 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: ColorRes.appBarColor,
-            leading: IconButton(
-              onPressed: () {
-                //on drawer menu pressed
-                if (provider.drawerScaffoldLKey.currentState!.isDrawerOpen) {
-                  //if drawer is open, then close the drawer
-                  Navigator.pop(context);
-                } else {
-                  provider.drawerScaffoldLKey.currentState!.openDrawer();
-                  //if drawer is closed then open the drawer.
-                }
-              },
-              icon: const Icon(Icons.menu),
-            ),
+            leading: InkWell(
+                onTap: () {
+                  // on drawer menu pressed
+                  if (provider.drawerScaffoldLKey.currentState!.isDrawerOpen) {
+                    //if drawer is open, then close the drawer
+                    Navigator.pop(context);
+                  } else {
+                    provider.drawerScaffoldLKey.currentState!.openDrawer();
+                    //if drawer is closed then open the drawer.
+                  }
+                },
+                child: Image.asset(AssetsImagesRes.menuBar)),
+            // leading: IconButton(
+            //   onPressed: () {
+            //     //on drawer menu pressed
+            //     if (provider.drawerScaffoldLKey.currentState!.isDrawerOpen) {
+            //       //if drawer is open, then close the drawer
+            //       Navigator.pop(context);
+            //     } else {
+            //       provider.drawerScaffoldLKey.currentState!.openDrawer();
+            //       //if drawer is closed then open the drawer.
+            //     }
+            //   },
+            //   icon: const Icon(Icons.menu),
+            // ),
             centerTitle: true,
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

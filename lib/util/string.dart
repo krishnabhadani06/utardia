@@ -86,6 +86,7 @@ class Strings {
   static const snack = 'Snacks';
   static const counter = 5;
   static const category = 'Category';
+  static const productList = 'Product List';
 
   ///-----------------------------------------Category Details Page----------------------------------
   static const productDetails = 'Product Details';

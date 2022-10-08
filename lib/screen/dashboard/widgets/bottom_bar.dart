@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:utardia/screen/dashboard/dashboard_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
+import 'package:utardia/util/image_res.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -18,11 +19,16 @@ class BottomBar extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              tab(IconRes.icHome, IconRes.ichome1, 0, context),
-              tab(IconRes.icCategory, IconRes.icCategory1, 1, context),
-              tab(IconRes.icCart, IconRes.icCart1, 2, context),
-              tab(IconRes.icOffer, IconRes.icOffer1, 3, context),
-              tab(IconRes.icProfile, IconRes.icProfile1, 4, context),
+              tab(Image.asset(AssetsImagesRes.homeIcon),
+                  Image.asset(AssetsImagesRes.homeIcon1), 0, context),
+              tab(Image.asset(AssetsImagesRes.categoryIcon),
+                  Image.asset(AssetsImagesRes.categoryIcon1), 1, context),
+              tab(Image.asset(AssetsImagesRes.cartIcon),
+                  Image.asset(AssetsImagesRes.cartIcon1), 2, context),
+              tab(Image.asset(AssetsImagesRes.campaignIcon),
+                  Image.asset(AssetsImagesRes.campaignIcon1), 3, context),
+              tab(Image.asset(AssetsImagesRes.profileIcon),
+                  Image.asset(AssetsImagesRes.profileIcon1), 4, context),
             ],
           ),
         );
@@ -31,7 +37,7 @@ class BottomBar extends StatelessWidget {
   }
 }
 
-Widget tab(IconData icon1, IconData icon2, int index, BuildContext context) {
+Widget tab(Image icon1, Image icon2, int index, BuildContext context) {
   return Consumer<DashboardProvider>(builder: (con, provider, widget) {
     return Expanded(
       child: InkWell(
@@ -46,9 +52,9 @@ Widget tab(IconData icon1, IconData icon2, int index, BuildContext context) {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              index == provider.currentTab
-                  ? Icon(icon2, color: ColorRes.white, size: 33)
-                  : Icon(icon1, color: ColorRes.white, size: 33)
+              index == provider.currentTab ? icon2 : icon1
+              // ? Icon(icon2, color: ColorRes.white, size: 33)
+              // : Icon(icon1, color: ColorRes.white, size: 33)
             ],
           ),
         ),

@@ -62,7 +62,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
             },
           ),
           centerTitle: true,
-          title: const Text(Strings.category, style: TextStyle(fontSize: 22)),
+          title:
+              const Text(Strings.productList, style: TextStyle(fontSize: 20)),
         ),
         body: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

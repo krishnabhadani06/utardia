@@ -7,12 +7,15 @@ import 'package:utardia/util/icon_res.dart';
 Widget icons(
     {required IconData iconData, required double size, required Color color}) {
   return Icon(iconData, size: size, color: color);
+  //   {required IconData iconData, required double size, required Color color}) {
+  // return Icon(iconData, size: size, color: color);
 }
 
-Widget rowCommon({required IconData icon, required String title}) {
+Widget rowCommon({required Image icon, required String title}) {
   return Row(
     children: [
-      icons(iconData: icon, size: 28, color: ColorRes.buttonBlue),
+      icon,
+      // icons(iconData: icon, size: 28, color: ColorRes.buttonBlue),
       SizedBox(width: deviceWidth * 0.03),
       Container(
         width: deviceWidth * 0.48,

@@ -134,7 +134,7 @@ class ChangePasswordScreen extends StatelessWidget {
                         if (provider.changePasswordFormKey.currentState!
                                 .validate() ==
                             true) {
-                          provider.onTapSubmit();
+                          provider.onTapSubmit(context);
                         }
                         // onPressed: () {
                         //   provider.onTapSubmit();

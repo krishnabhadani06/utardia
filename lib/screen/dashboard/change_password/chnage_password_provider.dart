@@ -1,13 +1,16 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import "package:http/http.dart" as http;
 import 'package:logger/logger.dart';
+import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/validations.dart';
+import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
-
 import '../../../common/toast_msg.dart';
 
 class ChangePasswordProvider extends ChangeNotifier {
@@ -53,11 +56,14 @@ class ChangePasswordProvider extends ChangeNotifier {
     return null;
   }
 
-  void onTapSubmit() async {
+  /* void onTapSubmit() async {
     oldPasswordValidation.toString();
     newPasswordValidation.toString();
     rePasswordValidation.toString();
-    if (isForgot) {
+    if (isForgot == true) {
+      errorOldPassword == null &&
+          errorNewPassword == null &&
+          errorReNewPassword == null;
       // final result = await ChangePasswordApi.changePassword(txtNewPassword.text, otp);
       // if (result['result'] == true) {
       //   txtOldPassword.clear();
@@ -69,6 +75,28 @@ class ChangePasswordProvider extends ChangeNotifier {
     } else {
       await changePasswordWithNewPass(
           txtRePassword.text, txtNewPassword.text, txtOldPassword.text);
+    }
+  }*/
+
+  void onTapSubmit(BuildContext context) {
+    if (isForgot) {
+      newPasswordValidation.toString();
+      rePasswordValidation.toString();
+      // phoneValidation();
+      if (errorNewPassword == null && errorReNewPassword == null) {
+        resetPassword(otp, txtNewPassword.text);
+      } else {}
+    } else {
+      oldPasswordValidation.toString();
+      newPasswordValidation.toString();
+      rePasswordValidation.toString();
+      // phoneValidation();
+      if (errorOldPassword == null &&
+          errorNewPassword == null &&
+          errorReNewPassword == null) {
+        changePasswordWithNewPass(
+            txtRePassword.text, txtNewPassword.text, txtOldPassword.text);
+      } else {}
     }
   }
 
@@ -103,6 +131,42 @@ class ChangePasswordProvider extends ChangeNotifier {
     } catch (ex, x) {
       showToast(ex.toString());
       kDebugMode ? Logger().e(x.toString() + ex.toString()) : "";
+    }
+  }
+
+  static Future<Map<dynamic, dynamic>> resetPassword(
+      String password, String code) async {
+    try {
+      String url = ApiEndPoint.resetPassword;
+      Map<String, String> param = {
+        // "user_id": uid,
+        "verification_code": code,
+        "password": password
+      };
+      http.Response? response = await http.post(Uri.parse(url),
+          headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        print("true condition");
+        Fluttertoast.showToast(msg: "password Change SuccessFully");
+        navigator.currentState!.pushReplacement(
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+        return jsonDecode(response.body);
+      } else {
+        Fluttertoast.showToast(msg: response.body.toString());
+        return {};
+      }
+    } on SocketException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return {};
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return {};
     }
   }
 }

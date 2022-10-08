@@ -7,6 +7,7 @@ import 'package:utardia/screen/dashboard/profile/widget/icon_comma.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
+import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/pref_key.dart';
 import 'package:utardia/util/string.dart';
 
@@ -98,7 +99,8 @@ class _ProfileDrawerAccountState extends State<ProfileDrawerAccount> {
             InkWell(
               onTap: () => provider.onTapEdit(context),
               child: rowCommon(
-                  icon: IconRes.icProfilePage, title: Strings.editProfile),
+                  icon: Image.asset(AssetsImagesRes.userIcon),
+                  title: Strings.editProfile),
             ),
             SizedBox(
               height: deviceHeight * 0.01,
@@ -106,7 +108,7 @@ class _ProfileDrawerAccountState extends State<ProfileDrawerAccount> {
             InkWell(
               onTap: () => provider.onTapChangePassword(context),
               child: rowCommon(
-                  icon: IconRes.icChangePassword,
+                  icon: Image.asset(AssetsImagesRes.passwordIcon),
                   title: Strings.changePassword),
             ),
           ],

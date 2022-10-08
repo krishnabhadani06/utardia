@@ -236,7 +236,7 @@ class LoginCenter extends StatelessWidget {
               width: double.infinity,
               // color: Colors.yellow,
               child: Text(
-                provider.errorTxtId ?? "",
+                provider.errorTxtPhone ?? "",
                 style: robotoRegularTextStyle(
                   fontSize: 12,
                   color: ColorRes.red,

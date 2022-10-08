@@ -6,6 +6,7 @@ import 'package:utardia/screen/dashboard/profile/profile_provider.dart';
 import 'package:utardia/screen/dashboard/profile/widget/icon_comma.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
+import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 
 class ProfileDrawerGeneral extends StatelessWidget {
@@ -37,14 +38,18 @@ class ProfileDrawerGeneral extends StatelessWidget {
         // ),
         InkWell(
           onTap: () => provider.onTapFavorite(context),
-          child: rowCommon(icon: IconRes.icFavourites, title: Strings.favorite),
+          child: rowCommon(
+              icon: Image.asset(AssetsImagesRes.favoriteIcon),
+              title: Strings.favorite),
         ),
         SizedBox(
           height: deviceHeight * 0.01,
         ),
         InkWell(
           onTap: () => provider.onTapAddress(context),
-          child: rowCommon(icon: IconRes.icAddresses, title: Strings.myAddress),
+          child: rowCommon(
+              icon: Image.asset(AssetsImagesRes.addressIcon),
+              title: Strings.myAddress),
         ),
         SizedBox(
           height: deviceHeight * 0.01,
@@ -60,7 +65,9 @@ class ProfileDrawerGeneral extends StatelessWidget {
           onTap: () {
             provider.onTapOrder(context);
           },
-          child: rowCommon(icon: IconRes.icMyOrders, title: Strings.myOrder),
+          child: rowCommon(
+              icon: Image.asset(AssetsImagesRes.ordersIcon),
+              title: Strings.myOrder),
         ),
       ],
     );

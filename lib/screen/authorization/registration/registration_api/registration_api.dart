@@ -41,7 +41,7 @@ class SingUpApi {
           body: param,
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 201) {
-        Fluttertoast.showToast(msg: "Registration Successfully.");
+        Fluttertoast.showToast(msg: response.body);
         var res = jsonDecode(response.body);
         print("*****************************${res['user_id']}");
 
@@ -77,9 +77,7 @@ class SingUpApi {
       if (response.statusCode == 200) {
         print(response.body);
         print("true condition");
-        Fluttertoast.showToast(msg: "Verified SuccsessFully");
-        navigator.currentState!.pushReplacement(
-            MaterialPageRoute(builder: (context) => const LoginPage()));
+        Fluttertoast.showToast(msg: response.body);
         return jsonDecode(response.body);
       } else {
         Fluttertoast.showToast(msg: response.body.toString());

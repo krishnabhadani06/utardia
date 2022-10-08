@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
+import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 import 'package:utardia/screen/authorization/registration/registration_api/registration_api.dart';
 import 'package:utardia/screen/dashboard/change_password/change_password_screen.dart';
 import 'package:utardia/screen/dashboard/change_password/chnage_password_provider.dart';
-import 'package:utardia/services/pref_service.dart';
-import 'package:utardia/util/pref_key.dart';
 
 class OtpProvider extends ChangeNotifier {
   TextEditingController txtOtp1 = TextEditingController();
@@ -48,15 +47,22 @@ class OtpProvider extends ChangeNotifier {
           return const ChangePasswordScreen();
         }));
       } else {
-        await SingUpApi.conformCode(PrefService.getString(PrefKeys.uid), otp)
-            .then((value) => {
+        SingUpApi.conformCode(uid!, otp).then((value) => {
+              print(value),
+              if (value["result"] == true)
+                {
+                  navigator.currentState!
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
+                    return LoginPage();
+                  })),
                   txtOtp1.clear(),
                   txtOtp2.clear(),
                   txtOtp3.clear(),
                   txtOtp4.clear(),
                   txtOtp5.clear(),
                   txtOtp6.clear(),
-                });
+                }
+            });
       }
     } else {
       Fluttertoast.showToast(msg: "please fill Otp!!");

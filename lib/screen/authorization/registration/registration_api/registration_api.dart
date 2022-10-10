@@ -28,6 +28,10 @@ class SingUpApi {
                 true
             ? "${Provider.of<RegistrationProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
             : email.toString(),
+        "country_code":
+            Provider.of<RegistrationProvider>(context, listen: false)
+                .currentCountry!
+                .phoneCode,
         "password": password.toString(),
         "passowrd_confirmation": retypePassword.toString(),
         "register_by":
@@ -42,10 +46,10 @@ class SingUpApi {
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 201) {
         Fluttertoast.showToast(msg: response.body);
-        Map<dynamic, dynamic> res =
-            jsonDecode(response.body) as Map<dynamic, dynamic>;
+        var res = jsonDecode(response.body);
+        // Map<dynamic, dynamic> res =
+        //     jsonDecode(response.body) as Map<dynamic, dynamic>;
         print("*****************************${res['user_id']}");
-
         Logger().e(jsonDecode(response.body));
         navigator.currentState!
             .pushReplacement(MaterialPageRoute(builder: (context) {

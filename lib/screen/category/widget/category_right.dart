@@ -153,7 +153,14 @@ class _CategoryRightState extends State<CategoryRight> {
                                 } else {
                                   return GestureDetector(
                                     onTap: () {
-                                      provider.onTapSubCategory();
+                                      provider.onTapSubCategory(
+                                          provider.allHomeSubCategories!.data!
+                                              .length
+                                              .toString(),
+                                          // provider.allSubCategoriesProducts!
+                                          //     .data!.length
+                                          //     .toString(),
+                                          index);
                                       // provider2.onTapCategory(
                                       //     index,
                                       //     context,

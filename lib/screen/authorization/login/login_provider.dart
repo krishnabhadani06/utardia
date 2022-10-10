@@ -22,6 +22,8 @@ class LoginProvider extends ChangeNotifier {
   String? errorTxtId;
   String? errorTxtPass;
   String? errorTxtPhone;
+
+  // Country? currentCountry;
   Country? currentCountry = Country(
       phoneCode: "+91",
       countryCode: "IN",

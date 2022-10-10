@@ -3,12 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
+import 'package:utardia/common/helper.dart';
 
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/home_model/home_category_model.dart';
 import 'package:utardia/model/home_model/home_category_product_model.dart';
 import 'package:utardia/model/home_model/home_subCategory_model.dart';
 import 'package:utardia/model/home_model/subCategory_Product_model.dart';
+import 'package:utardia/screen/category/subCategory/subCategory.dart';
 
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/services/http_service.dart';
@@ -72,8 +74,15 @@ class CategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onTapSubCategory() {
-    
+  void onTapSubCategory(String url, int index) async {
+    getSubCategoryData(url.toString());
+    notifyListeners();
+    // getSubCategoriesProduct(url1.toString());
+    navigator.currentState!
+        .pushReplacement(MaterialPageRoute(builder: (context) {
+      return const SubCategoryScreen();
+    }));
+    notifyListeners();
   }
 
   void currentSelect(int num) {

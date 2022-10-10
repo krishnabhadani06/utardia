@@ -180,40 +180,41 @@ class RegistrationCenter extends StatelessWidget {
                             });
                       },
                       child: Center(
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 1,
-                                child: provider.currentCountry != null
-                                    ? Text(
-                                        provider.currentCountry!.flagEmoji,
-                                        style: robotoRegularTextStyle(
-                                            fontSize: 25),
-                                      )
-                                    : const Center(
-                                        child: Text(""),
-                                      )),
-                            Expanded(
-                                flex: 2,
-                                child: provider.currentCountry != null
-                                    ? Text(
-                                        " +${provider.currentCountry!.phoneCode.toString()}",
-                                        style: robotoMediumTextStyle(
-                                            fontSize: 18,
-                                            color: ColorRes.greyTextHome),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2)
-                                    : const Center(
-                                        child: Text("India"),
-                                      )),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: provider.currentCountry != null
+                                      ? Text(
+                                          provider.currentCountry!.flagEmoji,
+                                          style: robotoRegularTextStyle(
+                                              fontSize: 25),
+                                        )
+                                      : const Center(
+                                          child: Text(""),
+                                        )),
+                              Expanded(
+                                  child: provider.currentCountry != null
+                                      ? Text(
+                                          " ${provider.currentCountry!.phoneCode.toString()}",
+                                          style: robotoMediumTextStyle(
+                                              fontSize: 18,
+                                              color: ColorRes.greyTextHome),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 2)
+                                      : const Center(
+                                          child: Text("+91"),
+                                        )),
+                            ],
+                          ),
                         ),
                       ),
                       // child: _buildCountryPickerDropdownSoloExpanded(context),
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   flex: 5,
                   child: CommonTextField(

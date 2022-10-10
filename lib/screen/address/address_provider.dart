@@ -65,7 +65,18 @@ class AddressProvider extends ChangeNotifier {
   List<CityModel> cityList = [];
   CityModel? currentCity;
 
-  Country? currentCountry;
+  Country? currentCountry = Country(
+      phoneCode: "91",
+      countryCode: "IN",
+      e164Sc: 0,
+      geographic: true,
+      level: 1,
+      name: "India",
+      example: "9123456789",
+      displayName: "India",
+      displayNameNoCountryCode: "India (IN)",
+      e164Key: "91-IN-0");
+
   String? errorTextName;
   String? errorTextPhone;
   String? errorTextAddress;

@@ -6,13 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
-import 'package:provider/provider.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/profile_model/profile_detail_model.dart';
 import 'package:utardia/screen/dashboard/profile/all_profile_api/profile_detail_api.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
-
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
 
@@ -26,7 +24,18 @@ class EditProfileProvider extends ChangeNotifier {
   String? intialCountryCode;
 
   ProfileModel? profileModel;
-  Country? currentCountry;
+  Country? currentCountry = Country(
+      phoneCode: "91",
+      countryCode: "IN",
+      e164Sc: 0,
+      geographic: true,
+      level: 1,
+      name: "India",
+      example: "9123456789",
+      displayName: "India",
+      displayNameNoCountryCode: "India (IN)",
+      e164Key: "91-IN-0");
+
   XFile? img;
   bool loader = false;
   void getImage() async {

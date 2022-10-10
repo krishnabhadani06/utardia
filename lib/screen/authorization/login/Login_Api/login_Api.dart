@@ -22,16 +22,23 @@ class SingInpApi {
       String url = ApiEndPoint.signIn;
       Map<String, dynamic> param = {
         // "email": email,
-        // "email": Provider.of<LoginProvider>(context, listen: false).isPhone ==
-        //         true
-        //     ? "${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}"
-        //     : email.toString(),
+
         Provider.of<LoginProvider>(context, listen: false).isPhone == true
             ? "Phone"
             : "email": Provider.of<LoginProvider>(context, listen: false)
                 .isPhone
             ? "+${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}"
             : email.toString(),
+
+        // "email_or_phone": Provider.of<LoginProvider>(context, listen: false)
+        //             .isPhone ==
+        //         true
+        //     ? "${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}}"
+        //     : email.toString(),
+        // "country_code": Provider.of<LoginProvider>(context, listen: false)
+        //     .currentCountry!
+        //     .phoneCode,
+
         "password": password,
         "identity_matrix": true.toString()
       };

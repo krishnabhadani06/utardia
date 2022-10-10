@@ -183,7 +183,6 @@ class LoginCenter extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
-                                  flex: 1,
                                   child: provider.currentCountry != null
                                       ? Text(
                                           provider.currentCountry!.flagEmoji,
@@ -194,7 +193,6 @@ class LoginCenter extends StatelessWidget {
                                           child: Text(""),
                                         )),
                               Expanded(
-                                  flex: 2,
                                   child: provider.currentCountry != null
                                       ? Text(
                                           " ${provider.currentCountry!.phoneCode.toString()}",

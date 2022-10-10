@@ -219,7 +219,7 @@ class RegistrationCenter extends StatelessWidget {
                   child: CommonTextField(
                       controller: provider.txtPhone,
                       obscure: false,
-                      hintText: Strings.phoneNum,
+                      hintText: Strings.enterMobileNo,
                       error: false,
                       width: deviceWidth,
                       border: false),
@@ -232,7 +232,7 @@ class RegistrationCenter extends StatelessWidget {
             child: CommonTextField(
                 controller: provider.txtEmail,
                 obscure: false,
-                hintText: Strings.emailOrPhone,
+                hintText: Strings.enterYourEmail,
                 error: false,
                 width: deviceWidth,
                 border: false),

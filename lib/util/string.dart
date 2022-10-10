@@ -9,6 +9,8 @@ class Strings {
   static const password = ' Enter Password';
   static const pleaseEnterPassword = 'Please Enter Password';
   static const enterMinimumPassword = 'Please enter Password,minimum 8';
+  static const enterYourEmail = 'Enter Your Email';
+  static const enterMobileNo = 'Enter Phone Number';
 
   static const register = 'Register';
   static const emailOrPhone = ' Enter Email or Phone';

@@ -182,7 +182,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                     context: context,
                                     onSelect: (Country country) {
                                       provider.currentCountry = country;
-                                      provider.notifyListeners();
+                                      // provider.notifyListeners();
                                     });
                               },
                               child: Center(
@@ -226,9 +226,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                         Expanded(
                           flex: 5,
                           child: CommonTextField(
-                              controller: provider.txtEmail,
+                              controller: provider.txtPhone,
                               obscure: false,
-                              hintText: Strings.phoneNum,
+                              hintText: Strings.enterMobileNo,
                               error: false,
                               width: deviceWidth,
                               border: false),
@@ -241,7 +241,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     child: CommonTextField(
                         controller: provider.txtEmail,
                         obscure: false,
-                        hintText: Strings.emailOrPhone,
+                        hintText: Strings.enterYourEmail,
                         error: false,
                         width: deviceWidth,
                         border: false),

@@ -173,7 +173,7 @@ class LoginCenter extends StatelessWidget {
                             context: context,
                             onSelect: (Country country) {
                               provider.currentCountry = country;
-                              provider.notifyListeners();
+                              // provider.notifyListeners();
                             });
                       },
                       // child: Center(child: Text("dmd")),
@@ -218,7 +218,7 @@ class LoginCenter extends StatelessWidget {
                   child: CommonTextField(
                       controller: provider.txtPhone,
                       obscure: false,
-                      hintText: Strings.phoneNum,
+                      hintText: Strings.enterMobileNo,
                       error: false,
                       width: deviceWidth,
                       border: false),
@@ -249,7 +249,7 @@ class LoginCenter extends StatelessWidget {
             child: CommonTextField(
               controller: provider.txtId,
               obscure: false,
-              hintText: Strings.enterNameEmail,
+              hintText: Strings.enterYourEmail,
               error: false,
               width: deviceWidth,
               border: false,

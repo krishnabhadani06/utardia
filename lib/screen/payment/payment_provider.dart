@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/CartList_model/cartSummaryModel.dart';
 import 'package:utardia/model/adddressListMdoel/addressModel.dart';
@@ -14,6 +15,8 @@ import 'package:utardia/model/payment_model/payment_drop_down.dart';
 import 'package:utardia/model/shipping_addrss_model/Shipping_address_model.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
+import 'package:utardia/screen/order/oder_screen.dart';
+import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/screen/payment/PaymentProcessScreen.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
@@ -62,17 +65,18 @@ class PaymentProvider extends ChangeNotifier {
   }
 
   void onTapPlaceOrder(BuildContext context) {
-    UpdateAddress();
-    PlaceOrder(context).then((value) {
-      if (value != "") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PaymentProcessScreen(
-                      id: value.toString(),
-                      amount: cartSummary!.grandTotalValue.toString(),
-                    ))).whenComplete(() => init(context));
-      }
+    UpdateAddress().then((value) {
+      PlaceOrder(context).then((value) {
+        if (value != "") {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PaymentProcessScreen(
+                        id: value.toString(),
+                        amount: cartSummary!.grandTotalValue.toString(),
+                      ))).whenComplete(() => init(context));
+        }
+      });
     });
   }
 
@@ -259,16 +263,20 @@ class PaymentProvider extends ChangeNotifier {
 
   void applyCoupenCode(BuildContext context, CartBaseCoupenModel coupen) async {
     try {
-      http.Response? res =
-          await HttpService.postApi(url: ApiEndPoint.applyCoupen, header: {
-        "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
-      }, body: {
+      Map<String, dynamic> param = {
         "user_id": "${PrefService.getString(PrefKeys.uid)}",
         "owner_id":
             "${Provider.of<CartProvider>(context, listen: false).cartListDataModel.ownerId.toString()}",
         "coupon_code": "${coupen.code}"
-      });
-
+      };
+      http.Response? res = await HttpService.postApi(
+          url: ApiEndPoint.applyCoupen,
+          header: {
+            "Authorization":
+                "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+          },
+          body: param);
+      Logger().e(jsonDecode(res!.body));
       if (res!.statusCode == 200 && res != null) {
         if (jsonDecode(res.body)['result'] == true) {
           getCartSummary();
@@ -283,7 +291,7 @@ class PaymentProvider extends ChangeNotifier {
     }
   }
 
-  UpdateAddress() async {
+  Future<void> UpdateAddress() async {
     try {
       http.Response? res = await HttpService.postApi(
           url: ApiEndPoint.updateAddressInCart,
@@ -296,9 +304,10 @@ class PaymentProvider extends ChangeNotifier {
             "address_id": "${currentAddress!.id}"
           });
 
-      if (res != null && res.statusCode != 200) {
+      if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> data =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
+        Logger().e(data);
       } else {
         showToast(
             "Error code from update address in cart code:-${res!.statusCode}");
@@ -329,5 +338,14 @@ class PaymentProvider extends ChangeNotifier {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
       showToast(e.toString());
     }
+  }
+
+  void onTapTrackOrder(String orderid, BuildContext con) {
+    Provider.of<OrderProvider>(con, listen: false).init();
+
+    navigator.currentState!
+        .pushReplacement(MaterialPageRoute(builder: (context) {
+      return OrderScreen();
+    }));
   }
 }

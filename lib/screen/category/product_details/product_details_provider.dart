@@ -550,13 +550,14 @@ class ProductDetailsProvider extends ChangeNotifier {
   void checkConversation(
       String pid, String uid, String des, String Pname) async {
     try {
-      http.Response? res = await HttpService.getApi(
-          url:
-              "${ApiEndPoint.checkConversation}product_id=${pid}&user_id=${uid}");
+      http.Response? res = await HttpService.getApi(header: {
+        "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+      }, url: "${ApiEndPoint.checkConversation}?product_id=${pid}&user_id=${uid}");
       if (res!.statusCode == 200 && res != null) {
         Map<dynamic, dynamic> data =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
-        if (data['is_conversation']) {
+        Logger().e(jsonDecode(res.body));
+        if (data['is_conversation'] == false || data['conversation_id'] != 0) {
           insertMessage(
               pid, uid, des, Pname, data['conversation_id'].toString());
         } else {
@@ -587,7 +588,7 @@ class ProductDetailsProvider extends ChangeNotifier {
             "message": "${Des}"
           });
 
-      if (res != null && res.statusCode != 200) {
+      if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> data =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
 
@@ -617,10 +618,16 @@ class ProductDetailsProvider extends ChangeNotifier {
         "user_id": "${uid}",
         "message": "${des}"
       });
-      if (res != null && res.statusCode != 200) {
+      Logger().e(jsonDecode(res!.body));
+      if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> data =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
-        showToast(data['message']);
+        if (data['success']) {
+          navigator.currentState!.pop();
+          showToast("Query Posted");
+        } else {
+          showToast("Error ");
+        }
       } else {
         showToast("error code from insertMessage Code:${res!.statusCode}");
       }

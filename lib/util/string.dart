@@ -157,7 +157,8 @@ class Strings {
   static const somethingWentWrong = 'Something went terribly wrong';
   static const tryAgain = 'Try Again';
   static const yourOrderHasBeen = 'Your Order Has Been Accepted';
-  static const weHaveAcceptedOrder = 'we have accepted your order,';
+  static const weHaveAcceptedOrder =
+      'we have accepted your order and we are getting it ready';
   static const gettingReady = 'and we are getting it ready';
   static const trackOrder = 'Track Order';
   static const backHome = 'Back Home';

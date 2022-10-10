@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
+import 'package:utardia/screen/dashboard/dashboard_screen.dart';
 import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/screen/order/widget/order_center.dart';
 import 'package:utardia/util/color_res.dart';
@@ -30,7 +31,14 @@ class OrderScreen extends StatelessWidget {
               leading: GestureDetector(
                 child: Icon(IconRes.icBack, size: 30),
                 onTap: () {
-                  Navigator.pop(context);
+                  if (navigator.currentState!.canPop()) {
+                    Navigator.pop(context);
+                  } else {
+                    navigator.currentState!
+                        .pushReplacement(MaterialPageRoute(builder: (con) {
+                      return DashScreen();
+                    }));
+                  }
                 },
               ),
               centerTitle: true,

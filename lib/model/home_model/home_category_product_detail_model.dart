@@ -271,7 +271,7 @@ class Choice {
 
   String? variant;
   dynamic sku;
-  int? price;
+  double? price;
   String? color;
   String? option;
   int? qty;
@@ -280,7 +280,9 @@ class Choice {
   factory Choice.fromJson(Map<String, dynamic> json) => Choice(
         variant: json["variant"] == null ? null : json["variant"],
         sku: json["sku"],
-        price: json["price"] == null ? null : json["price"],
+        price: json["price"] == null
+            ? null
+            : double.parse(json["price"].toString()),
         color: json["color"] == null ? null : json["color"],
         option: json["option"] == null ? null : json["option"],
         qty: json["qty"] == null ? null : json["qty"],

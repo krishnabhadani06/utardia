@@ -7,6 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/screen/dashboard/dashboard_screen.dart';
+import 'package:utardia/screen/payment/PaymentStatusScreen.dart';
 import 'package:utardia/screen/payment/payment_provider.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
@@ -22,35 +23,46 @@ class PaymentProcessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<PaymentProvider>(context, listen: false);
     return Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: InAppWebView(
-          onWebViewCreated: (controller) {
-            con = controller;
-          },
-          onLoadStop: (controller, url) {
-            Logger().e(url!.data.toString());
-          },
-          initialUrlRequest: URLRequest(
-              url: Uri.parse(
-                  "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=${id}")),
-          onUpdateVisitedHistory: (_, Uri? uri, __) {
-            print("@@@@@@ ${uri!.path}");
-            if (uri.path.contains("success")) {
-              showToast("Payment successfull");
+      body: SafeArea(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: InAppWebView(
+            onWebViewCreated: (controller) {
+              con = controller;
+            },
+            onLoadStop: (controller, url) {
+              Logger().e(url!.data.toString());
+            },
+            initialUrlRequest: URLRequest(
+                url: Uri.parse(
+                    "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=${id}")),
+            onUpdateVisitedHistory: (_, Uri? uri, __) {
+              print("@@@@@@ ${uri!.path}");
+              if (uri.path.contains("success")) {
+                showToast("Payment successfull");
 
-              provider.callPaymentResponse(context);
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => DashScreen()),
-                  (Route<dynamic> route) => false);
-            } else if (uri.toString().contains("fail")) {
-              showToast("Payment failed");
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => DashScreen()),
-                  (Route<dynamic> route) => false);
-            }
-          },
+                provider.callPaymentResponse(context);
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => PaymentStatusScreen(
+                              isSuccess: 0,
+                              orderId: id,
+                            )),
+                    (Route<dynamic> route) => false);
+              } else if (uri.toString().contains("fail")) {
+                showToast("Payment failed");
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => PaymentStatusScreen(
+                              isSuccess: 1,
+                              link:
+                                  "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=${id}",
+                            )),
+                    (Route<dynamic> route) => false);
+              }
+            },
+          ),
         ),
       ),
     );

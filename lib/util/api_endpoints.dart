@@ -44,7 +44,7 @@ class ApiEndPoint {
   ///cart
   static const updareCart = "${baseUrl}carts/process";
 
-  static const checkConversation = "${baseUrl}chat/check_conversation?";
+  static const checkConversation = "${baseUrl}chat/check-conversation";
   static const createConversation = "${baseUrl}chat/create-conversation";
   static const pushMessage = "${baseUrl}chat/insert-message";
 

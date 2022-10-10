@@ -23,12 +23,25 @@ class ForgotPasswordScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 74.0),
         child: Column(
           children: [
-            Container(
-              height: deviceHeight * 0.25,
-              child: Image.asset(
-                AssetsImagesRes.loginUtradiyaImage,
-                //fit: BoxFit.fill,
-              ),
+            Image.asset(
+              AssetsImagesRes.loginUtradiyaImage,
+              // height: 130,
+              // width: 130,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              height: deviceHeight * 0.015,
+            ),
+            Text(
+              Strings.utradia,
+              style: robotoRegularTextStyle(
+                      fontSize: 25, color: ColorRes.dailogBoxColor)
+                  .copyWith(fontWeight: FontWeight.w600),
+            ),
+            Text(
+              Strings.marketPlace,
+              style: robotoRegularTextStyle(
+                  fontSize: 10, color: ColorRes.dailogBoxColor),
             ),
             SizedBox(
               height: deviceHeight * 0.04,

@@ -36,9 +36,8 @@ class AddressBottomSheetBottom extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 5),
           padding: const EdgeInsets.only(right: 25),
           alignment: Alignment.centerLeft,
-          height: 15,
+          // height: 15,
           width: double.infinity,
-          // color: Colors.yellow,
           child: Text(
             provider.errorTextAddress ?? "",
             style: robotoRegularTextStyle(
@@ -59,9 +58,8 @@ class AddressBottomSheetBottom extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 5),
           padding: const EdgeInsets.only(right: 25),
           alignment: Alignment.centerLeft,
-          height: 15,
+          // height: 15,
           width: double.infinity,
-          // color: Colors.yellow,
           child: Text(
             provider.errorTextLandmark ?? "",
             style: robotoRegularTextStyle(
@@ -86,9 +84,8 @@ class AddressBottomSheetBottom extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 5),
           padding: const EdgeInsets.only(right: 25),
           alignment: Alignment.centerLeft,
-          height: 15,
+          // height: 15,
           width: double.infinity,
-          // color: Colors.yellow,
           child: Text(
             provider.errorTextPincode ?? "",
             style: robotoRegularTextStyle(

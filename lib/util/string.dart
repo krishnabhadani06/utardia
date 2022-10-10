@@ -11,6 +11,9 @@ class Strings {
   static const enterMinimumPassword = 'Please enter Password,minimum 8';
   static const enterYourEmail = 'Enter Your Email';
   static const enterMobileNo = 'Enter Phone Number';
+  static const utradia = 'U T R A D I A';
+  static const marketPlace =
+      'T h e  T r u s t w o r t h y  m a r k e t p l a c e';
 
   static const register = 'Register';
   static const emailOrPhone = ' Enter Email or Phone';

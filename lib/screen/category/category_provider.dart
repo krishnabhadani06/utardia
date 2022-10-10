@@ -64,13 +64,16 @@ class CategoryProvider extends ChangeNotifier {
   void onGesterTap(int index, String? url, String? url1) async {
     pageCon.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
-
     notifyListeners();
     print('00000000${url!}');
     print(url1);
     await homeCategoryProduct(url);
     getSubCategoryData(url1.toString());
     notifyListeners();
+  }
+
+  void onTapSubCategory() {
+    
   }
 
   void currentSelect(int num) {

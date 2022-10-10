@@ -83,23 +83,40 @@ class ProductDetailScreen extends StatelessWidget {
                                         },
                                         autoPlayInterval: 3000,
                                         isLoop: true,
-                                        children: pro.homeProductDetail != null
-                                            ? pro.homeProductDetail!.photos!
-                                                .map((e) {
-                                                return CachedNetworkImage(
-                                                  imageUrl:
-                                                      "https://dharmeshs42.sg-host.com/public/${e.path.toString()}",
-                                                  placeholder: (context, x) {
-                                                    return const Center(
-                                                        child:
-                                                            CircularProgressIndicator());
-                                                  },
-                                                );
-                                              }).toList()
-                                            : [
-                                                Image.asset(AssetsImagesRes
-                                                    .productGirl),
-                                              ],
+                                        children: [
+                                          CachedNetworkImage(
+                                            imageUrl: pro.homeProductDetail!
+                                                .thumbnailImage
+                                                .toString(),
+                                            progressIndicatorBuilder: (context,
+                                                    url, downloadProgress) =>
+                                                CircularProgressIndicator(
+                                                    value: downloadProgress
+                                                        .progress),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Image.asset(
+                                                        AssetsImagesRes.girl1),
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ],
+                                        // children: pro.homeProductDetail != null
+                                        //     ? pro.homeProductDetail!.photos!
+                                        //         .map((e) {
+                                        //         return CachedNetworkImage(
+                                        //           imageUrl:
+                                        //               "https://dharmeshs42.sg-host.com/public/${e.path.toString()}",
+                                        //           placeholder: (context, x) {
+                                        //             return const Center(
+                                        //                 child:
+                                        //                     CircularProgressIndicator());
+                                        //           },
+                                        //         );
+                                        //       }).toList()
+                                        //     : [
+                                        //         Image.asset(AssetsImagesRes
+                                        //             .productGirl),
+                                        //       ],
                                       ),
                                       const ProductDetailsCenter()
                                     ],
@@ -655,3 +672,17 @@ class ProductDetailScreen extends StatelessWidget {
     });
   }
 }
+
+// pro.homeProductDetail != null
+// ? pro.homeProductDetail!.photos!
+// .map((e) {
+// return CachedNetworkImage(
+// imageUrl:
+// "https://dharmeshs42.sg-host.com/public/${e.path.toString()}",
+// placeholder: (context, x) {
+// return const Center(
+// child:
+// CircularProgressIndicator());
+// },
+// );
+// }).toList()

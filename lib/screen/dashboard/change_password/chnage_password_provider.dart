@@ -84,7 +84,16 @@ class ChangePasswordProvider extends ChangeNotifier {
       rePasswordValidation.toString();
       // phoneValidation();
       if (errorNewPassword == null && errorReNewPassword == null) {
-        resetPassword(otp, txtNewPassword.text);
+        resetPassword(txtNewPassword.text, otp.toString()).then((value) => {
+              print(value),
+              if (value["result"] == true)
+                {
+                  navigator.currentState!
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
+                    return const LoginPage();
+                  })),
+                }
+            });
       } else {}
     } else {
       oldPasswordValidation.toString();
@@ -149,9 +158,10 @@ class ChangePasswordProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         print(response.body);
         print("true condition");
-        Fluttertoast.showToast(msg: "password Change SuccessFully");
-        navigator.currentState!.pushReplacement(
-            MaterialPageRoute(builder: (context) => const LoginPage()));
+        // Fluttertoast.showToast(msg: "password Change SuccessFully");
+        Fluttertoast.showToast(msg: response.body);
+        // navigator.currentState!.pushReplacement(
+        //     MaterialPageRoute(builder: (context) => const LoginPage()));
         return jsonDecode(response.body);
       } else {
         Fluttertoast.showToast(msg: response.body.toString());

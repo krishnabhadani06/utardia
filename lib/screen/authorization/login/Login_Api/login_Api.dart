@@ -41,6 +41,7 @@ class SingInpApi {
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 200) {
         var responseJson = json.decode(response.body);
+        // Fluttertoast.showToast(msg: response.body);
         Fluttertoast.showToast(msg: "Login Successful.");
         await PrefService.setValue(PrefKeys.isLogin, true);
         await PrefService.setValue(

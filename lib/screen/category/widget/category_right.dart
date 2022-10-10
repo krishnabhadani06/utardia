@@ -130,7 +130,6 @@ class _CategoryRightState extends State<CategoryRight> {
                         ),
                         SizedBox(height: deviceHeight * 0.01),
                         Row(children: [
-                          // provider.allHomeSubCategories!.data!.isNotEmpty
                           Text(
                             "Sub Category",
                             style: natoSemiBoldTextStyle(
@@ -154,6 +153,7 @@ class _CategoryRightState extends State<CategoryRight> {
                                 } else {
                                   return GestureDetector(
                                     onTap: () {
+                                      provider.onTapSubCategory();
                                       // provider2.onTapCategory(
                                       //     index,
                                       //     context,
@@ -180,7 +180,7 @@ class _CategoryRightState extends State<CategoryRight> {
                                             child: Column(
                                               children: [
                                                 Card(
-                                                  elevation: 3.0,
+                                                  elevation: 5.0,
                                                   shadowColor: ColorRes.black
                                                       .withOpacity(0.3),
                                                   shape: RoundedRectangleBorder(

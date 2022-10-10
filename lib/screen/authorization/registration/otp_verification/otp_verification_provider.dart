@@ -66,6 +66,7 @@ class OtpProvider extends ChangeNotifier {
       }
     } else {
       Fluttertoast.showToast(msg: "please fill Otp!!");
+      notifyListeners();
     }
   }
 

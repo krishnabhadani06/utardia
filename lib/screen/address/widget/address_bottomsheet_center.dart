@@ -37,7 +37,7 @@ class AddressBottomSheetCenter extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.only(right: 25),
             alignment: Alignment.centerLeft,
-            height: 15,
+            // height: 15,
             width: double.infinity,
             // color: Colors.yellow,
             child: Text(
@@ -70,7 +70,7 @@ class AddressBottomSheetCenter extends StatelessWidget {
                               context: context,
                               onSelect: (Country country) {
                                 provider.currentCountry = country;
-                                provider.notifyListeners();
+                                // provider.notifyListeners();
                               });
                         },
                         child: Center(
@@ -133,9 +133,8 @@ class AddressBottomSheetCenter extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 5),
                 padding: const EdgeInsets.only(right: 25),
                 alignment: Alignment.centerRight,
-                height: 15,
+                // height: 15,
                 width: double.infinity,
-                // color: Colors.yellow,
                 child: Text(
                   provider.errorTextPhone ?? "",
                   style: robotoRegularTextStyle(

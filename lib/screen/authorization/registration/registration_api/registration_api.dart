@@ -42,7 +42,8 @@ class SingUpApi {
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 201) {
         Fluttertoast.showToast(msg: response.body);
-        var res = jsonDecode(response.body);
+        Map<dynamic, dynamic> res =
+            jsonDecode(response.body) as Map<dynamic, dynamic>;
         print("*****************************${res['user_id']}");
 
         Logger().e(jsonDecode(response.body));
@@ -71,12 +72,17 @@ class SingUpApi {
         "user_id": uid,
         "verification_code": code,
       };
+      Logger().e(param);
       http.Response? response = await http.post(Uri.parse(url),
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
 
       if (response.statusCode == 200) {
         print(response.body);
         print("true condition");
+        // navigator.currentState!
+        //     .pushReplacement(MaterialPageRoute(builder: (context) {
+        //   return const LoginPage();
+        // }));
         Fluttertoast.showToast(msg: response.body);
         return jsonDecode(response.body);
       } else {

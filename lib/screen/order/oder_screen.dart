@@ -44,25 +44,10 @@ class OrderScreen extends StatelessWidget {
               centerTitle: true,
               title: const Text(Strings.order, style: TextStyle(fontSize: 22)),
             ),
-            body: provider.orderModel.data != null && provider.loader == false
-                ? ListView.builder(
-                    itemCount: provider.orderModel.data!.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 13.0, right: 15),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: deviceHeight * 0.02,
-                            ),
-                            OrderTop(
-                              inde: index,
-                            ),
-                            OrderCenter(inde: index),
-                          ],
-                        ),
-                      );
-                    })
+            body: provider.orderModel.data == null && provider.loader == true
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
                 : provider.orderModel.data == null && provider.loader == false
                     ? Center(
                         child: Column(
@@ -102,8 +87,24 @@ class OrderScreen extends StatelessWidget {
                           ],
                         ),
                       )
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      )));
+                    : ListView.builder(
+                        itemCount: provider.orderModel.data!.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding:
+                                const EdgeInsets.only(left: 13.0, right: 15),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: deviceHeight * 0.02,
+                                ),
+                                OrderTop(
+                                  inde: index,
+                                ),
+                                OrderCenter(inde: index),
+                              ],
+                            ),
+                          );
+                        })));
   }
 }

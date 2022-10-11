@@ -17,7 +17,6 @@ import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/profile/profile_provider.dart';
 import 'package:utardia/screen/dashboard/search/search_provider.dart';
-import 'package:utardia/screen/dashboard/view_all_category/view_screen_provider.dart';
 import 'package:utardia/screen/edit_profile/editprofile_provider.dart';
 import 'package:utardia/screen/mycard/my_card_provider.dart';
 import 'package:utardia/screen/order/order_provider.dart';
@@ -63,7 +62,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FavoriteProvider()),
         ChangeNotifierProvider(create: (context) => MyCardProvider()),
         ChangeNotifierProvider(create: (context) => AddressProvider()),
-        ChangeNotifierProvider(create: (context) => ViewAllCategoryProvider()),
         ChangeNotifierProvider(create: (context) => SubCategoryProvider()),
       ],
       child: MaterialApp(

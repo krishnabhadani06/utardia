@@ -21,7 +21,7 @@ class HomeBottom extends StatelessWidget {
     final provider1 = Provider.of<ProductDetailsProvider>(context);
     final provider2 = Provider.of<CategoryProvider>(context);
     return Column(children: [
-      if (index % 2 == 0) sliderHome(context: context),
+      // if (index % 2 == 0) sliderHome(context: context),
       if (index % 2 == 0)
         // sliderBottomHome(context: context, sliderImage: provider.sliderImage),
         sliderBottomHome(context: context, bannerImage: provider.bannerImage),

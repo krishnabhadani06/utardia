@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
-import 'package:utardia/screen/dashboard/home/widget/imageSliderBottom.dart';
-import 'package:utardia/screen/dashboard/view_all_category/view_screen_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/string.dart';
 
@@ -22,7 +20,7 @@ class HomeTop extends StatelessWidget {
           )
         : Column(
             children: [
-              // sliderHome(context: context),
+              sliderHome(context: context),
               // sliderBottomHome(
               //     context: context, sliderImage: provider.sliderImage),
 

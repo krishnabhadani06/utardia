@@ -29,7 +29,7 @@ class SubCategoryScreen extends StatelessWidget {
           },
         ),
         centerTitle: true,
-        title: const Text(Strings.productList, style: TextStyle(fontSize: 20)),
+        title: const Text("Sub Category", style: TextStyle(fontSize: 20)),
       ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

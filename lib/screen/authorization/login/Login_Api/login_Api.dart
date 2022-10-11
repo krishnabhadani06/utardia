@@ -38,7 +38,6 @@ class SingInpApi {
         // "country_code": Provider.of<LoginProvider>(context, listen: false)
         //     .currentCountry!
         //     .phoneCode,
-
         "password": password,
         "identity_matrix": true.toString()
       };

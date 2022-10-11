@@ -41,6 +41,8 @@ class HomeProvider extends ChangeNotifier {
   /// slider
   HomeBannerApi bannerModel = HomeBannerApi();
   List<HomeBanner> bannerData = [];
+  List<String> bannerImage = [];
+
   HomeSliderApi sliderModel = HomeSliderApi();
   List<HomeSlider> sliderData = [];
   List<String> sliderImage = [];
@@ -132,6 +134,13 @@ class HomeProvider extends ChangeNotifier {
   void onTapViewProduct(int index) {
     navigator.currentState!.push(MaterialPageRoute(
         builder: (context) => ViewProductScreen(index: index)));
+  }
+
+  void onTapViewCategory() {
+    navigator.currentState!.push(MaterialPageRoute(
+        builder: (context) => CategoryScreen(
+              select: 0,
+            )));
   }
 
   Future<bool> onLike(bool like) async {
@@ -246,7 +255,11 @@ class HomeProvider extends ChangeNotifier {
     if (bannerModel.status != 200) {
       homeBannerData();
     } else {
+      bannerImage.clear();
       bannerData = bannerModel.data!;
+      bannerData.forEach((element) {
+        bannerImage.add(element.photo!);
+      });
       print(bannerData);
       loader = false;
       //notifyListeners();
@@ -271,3 +284,17 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 }
+
+// Future<void> homeBannerData() async {
+//   loader = true;
+//   //notifyListeners();
+//   bannerModel = await HomeBannerApiServices.homeBannerData();
+//   if (bannerModel.status != 200) {
+//     homeBannerData();
+//   } else {
+//     bannerData = bannerModel.data!;
+//     print(bannerData);
+//     loader = false;
+//     //notifyListeners();
+//   }
+// }

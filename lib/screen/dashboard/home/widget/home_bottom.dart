@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
+import 'package:utardia/screen/category/category_provider.dart';
+import 'package:utardia/screen/category/category_screen.dart';
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/category_title.dart';
@@ -17,10 +19,22 @@ class HomeBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context);
     final provider1 = Provider.of<ProductDetailsProvider>(context);
+    final provider2 = Provider.of<CategoryProvider>(context);
     return Column(children: [
       if (index % 2 == 0) sliderHome(context: context),
+      if (index % 2 == 0)
+        // sliderBottomHome(context: context, sliderImage: provider.sliderImage),
+        sliderBottomHome(context: context, bannerImage: provider.bannerImage),
       categoryTitle(
-          title: provider.allHomeTopCategories[index].name, onTap: () {}),
+          title: provider.allHomeTopCategories[index].name,
+          onTap: () {
+            navigator.currentState!.push(MaterialPageRoute(builder: (context) {
+              return CategoryScreen(
+                  select: provider.allHomeCategories.indexWhere((element) =>
+                      element.name.toString() ==
+                      provider.allHomeTopCategories[index].name.toString()));
+            }));
+          }),
       Container(
         height: 220,
         width: MediaQuery.of(context).size.width,

@@ -15,7 +15,7 @@ class HomeTop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context);
-    final provider2 = Provider.of<ViewAllCategoryProvider>(context);
+    // final provider2 = Provider.of<ViewAllCategoryProvider>(context);
     return provider.loader
         ? const Center(
             child: CircularProgressIndicator(),
@@ -23,8 +23,8 @@ class HomeTop extends StatelessWidget {
         : Column(
             children: [
               // sliderHome(context: context),
-              sliderBottomHome(
-                  context: context, sliderImage: provider.sliderImage),
+              // sliderBottomHome(
+              //     context: context, sliderImage: provider.sliderImage),
 
               // sliderHome(imgPath: provider.bannerData[index].photo.toString(), context:context),
               Padding(
@@ -40,8 +40,8 @@ class HomeTop extends StatelessWidget {
                           .copyWith(fontWeight: FontWeight.w700),
                     ),
                     TextButton(
-                      onPressed: () {},
-                      // onPressed: () => provider2.onTapViewCategory(),
+                      // onPressed: () {},
+                      onPressed: () => provider.onTapViewCategory(),
                       child: Text(
                         Strings.viewAll,
                         style: robotoMediumTextStyle(

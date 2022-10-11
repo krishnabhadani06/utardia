@@ -94,7 +94,7 @@ class OrderCenter extends StatelessWidget {
                                       Container(
                                         height: 25,
                                         width: 38,
-                                        padding: EdgeInsets.symmetric(
+                                        padding: const EdgeInsets.symmetric(
                                             horizontal: 2.0),
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -107,7 +107,7 @@ class OrderCenter extends StatelessWidget {
                                         child: Center(
                                             child: Row(
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.star,
                                               color: Colors.white,
                                               size: 18.0,

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
+import 'package:utardia/screen/category/subCategory/subCategory.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
@@ -65,14 +66,18 @@ class _CategoryRightState extends State<CategoryRight> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Text(
-                            provider2.allHomeCategories[index].name
-                                .toString(), //pageview data
-                            style: natoMediumTextStyle(
-                                fontSize: 14, color: ColorRes.grey),
-                          ),
-                        ),
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: provider2.allHomeCategories != null
+                                ? Text(
+                                    provider2
+                                        .allHomeCategories[
+                                            provider.selectedPageInd]
+                                        .name
+                                        .toString(), //pageview data
+                                    style: natoMediumTextStyle(
+                                        fontSize: 14, color: ColorRes.grey),
+                                  )
+                                : Text("")),
                         GridView.builder(
                           shrinkWrap: true,
                           physics: const BouncingScrollPhysics(),
@@ -130,11 +135,15 @@ class _CategoryRightState extends State<CategoryRight> {
                         ),
                         SizedBox(height: deviceHeight * 0.01),
                         Row(children: [
-                          Text(
-                            "Sub Category",
-                            style: natoSemiBoldTextStyle(
-                                fontSize: 15, color: ColorRes.grey),
-                          )
+                          provider.allHomeSubCategories != null
+                              ? provider.allHomeSubCategories!.data!.isNotEmpty
+                                  ? Text(
+                                      "Sub Category",
+                                      style: natoSemiBoldTextStyle(
+                                          fontSize: 15, color: ColorRes.grey),
+                                    )
+                                  : Text("")
+                              : Text(""),
                         ]),
                         Container(
                           height: deviceHeight * 0.25,
@@ -153,21 +162,18 @@ class _CategoryRightState extends State<CategoryRight> {
                                 } else {
                                   return GestureDetector(
                                     onTap: () {
-                                      provider.onTapSubCategory(
-                                          provider.allHomeSubCategories!.data!
-                                              .length
-                                              .toString(),
-                                          // provider.allSubCategoriesProducts!
-                                          //     .data!.length
-                                          //     .toString(),
-                                          index);
-                                      // provider2.onTapCategory(
-                                      //     index,
-                                      //     context,
-                                      //     provider.allHomeSubCategories!
-                                      //         .data![index].links!.products
-                                      //         .toString());
+                                      navigator.currentState!.push(
+                                          MaterialPageRoute(builder: (context) {
+                                        return SubCategoryScreen();
+                                      }));
                                     },
+                                    // provider2.onTapCategory(
+                                    //     index,
+                                    //     context,
+                                    //     provider.allHomeSubCategories!
+                                    //         .data![index].links!.products
+                                    //         .toString());
+
                                     child: Container(
                                       margin: const EdgeInsets.all(10.0),
                                       height: 50,

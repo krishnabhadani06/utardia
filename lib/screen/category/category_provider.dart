@@ -20,13 +20,9 @@ import 'package:utardia/util/pref_key.dart';
 
 class CategoryProvider extends ChangeNotifier {
   var selectedPageInd = 0;
-  var sale = 0;
-  var i = 0;
+
   PageController pageCon = PageController();
-  bool quntity = false;
-  bool showSelect = false;
   bool loader = false;
-  bool visibleicon = false;
 
   HomeCategoryProductApi? categoryProducts;
 
@@ -37,8 +33,6 @@ class CategoryProvider extends ChangeNotifier {
   List<String> wishListId = [];
   HomeCategoryApi? homeCategoryModel;
   List<HomeCategory> allHomeCategories = [];
-
-  Future<void> getCategory() async {}
 
   Future<void> init(String url) async {
     await homeCategoryProduct(url);
@@ -75,14 +69,14 @@ class CategoryProvider extends ChangeNotifier {
   }
 
   void onTapSubCategory(String url, int index) async {
-    getSubCategoryData(url.toString());
-    notifyListeners();
-    // getSubCategoriesProduct(url1.toString());
-    navigator.currentState!
-        .pushReplacement(MaterialPageRoute(builder: (context) {
-      return const SubCategoryScreen();
-    }));
-    notifyListeners();
+    // getSubCategoryData(url.toString());
+    // notifyListeners();
+    // // getSubCategoriesProduct(url1.toString());
+    // navigator.currentState!
+    //     .pushReplacement(MaterialPageRoute(builder: (context) {
+    //   return const SubCategoryScreen();
+    // }));
+    // notifyListeners();
   }
 
   void currentSelect(int num) {
@@ -169,5 +163,10 @@ class CategoryProvider extends ChangeNotifier {
       showToast(e.toString());
       notifyListeners();
     }
+  }
+
+  void onchangedIndex(int select) {
+    selectedPageInd = select;
+    notifyListeners();
   }
 }

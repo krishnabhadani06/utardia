@@ -8,6 +8,7 @@ import 'package:utardia/screen/authorization/registration/Bottomsheet/bottom_she
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_provider.dart';
 import 'package:utardia/screen/authorization/registration/registration_provider.dart';
 import 'package:utardia/screen/category/category_provider.dart';
+import 'package:utardia/screen/category/subCategory/subCategory_provider.dart';
 import 'package:utardia/screen/dashboard/campaigns/campaigns_provider.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/dashboard/change_password/chnage_password_provider.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => MyCardProvider()),
         ChangeNotifierProvider(create: (context) => AddressProvider()),
         ChangeNotifierProvider(create: (context) => ViewAllCategoryProvider()),
+        ChangeNotifierProvider(create: (context) => SubCategoryProvider()),
       ],
       child: MaterialApp(
         navigatorKey: navigator,

@@ -9,10 +9,10 @@ class ViewAllCategoryProvider extends ChangeNotifier {
 
   AllCategoryDetailApi? homeViewCategoryProduct;
 
-  void onTapViewCategory() {
-    navigator.currentState!.push(
-        MaterialPageRoute(builder: (context) => const ViewAllCategoryScreen()));
-  }
+  // void onTapViewCategory() {
+  //   navigator.currentState!.push(
+  //       MaterialPageRoute(builder: (context) => const ViewAllCategoryScreen()));
+  // }
   // void onTapViewProduct(int index){
   //   navigator.currentState!.push(
   //       MaterialPageRoute(builder: (context) =>  ViewProductScreen(select: 0,)));

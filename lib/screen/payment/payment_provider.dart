@@ -18,6 +18,7 @@ import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/order/oder_screen.dart';
 import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/screen/payment/PaymentProcessScreen.dart';
+import 'package:utardia/screen/payment/PaymentStatusScreen.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
@@ -277,7 +278,7 @@ class PaymentProvider extends ChangeNotifier {
           },
           body: param);
       Logger().e(jsonDecode(res!.body));
-      if (res!.statusCode == 200 && res != null) {
+      if (res.statusCode == 200 && res != null) {
         if (jsonDecode(res.body)['result'] == true) {
           getCartSummary();
         }
@@ -318,19 +319,27 @@ class PaymentProvider extends ChangeNotifier {
     }
   }
 
-  void callPaymentResponse(BuildContext context) async {
+  void callPaymentResponse(BuildContext context, String id) async {
     try {
       http.Response? res =
           await HttpService.postApi(url: ApiEndPoint.paymentResponse, header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, body: {
-        "owner_id":
-            "${Provider.of<CartProvider>(context, listen: false).cartListDataModel.ownerId.toString()}",
-        "user_id": "${PrefService.getString(PrefKeys.uid)}",
-        "payment_type": "paystack"
+        "combined_order_id": "${id}",
+        "status": "success",
+        "payment_type": "cart_payment"
       });
-      if (res != null && res.statusCode != 200) {
+      if (res != null && res.statusCode == 200) {
         Logger().e(jsonDecode(res.body));
+        if (jsonDecode(res.body)['result']) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => PaymentStatusScreen(
+                        isSuccess: 0,
+                        orderId: id,
+                      )),
+              (Route<dynamic> route) => false);
+        }
       } else {
         showToast("${res!.statusCode}");
       }
@@ -341,11 +350,9 @@ class PaymentProvider extends ChangeNotifier {
   }
 
   void onTapTrackOrder(String orderid, BuildContext con) {
-    Provider.of<OrderProvider>(con, listen: false).init();
-
-    navigator.currentState!
-        .pushReplacement(MaterialPageRoute(builder: (context) {
-      return OrderScreen();
-    }));
+    Provider.of<OrderProvider>(con, listen: false).getOrders().then((value) {
+      navigator.currentState!.pop();
+      Provider.of<OrderProvider>(con, listen: false).onTapNext(con, 0);
+    });
   }
 }

@@ -35,7 +35,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     // TODO: implement initState
     super.initState();
     if (mounted) {
-      // Provider.of<EditProfileProvider>(context, listen: false).init();
+      Provider.of<EditProfileProvider>(context, listen: false).init();
     }
   }
 

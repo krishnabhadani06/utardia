@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
+import 'package:utardia/screen/dashboard/dashboard_screen.dart';
 import 'package:utardia/screen/order/order_details/widget/order_details_bottom.dart';
 import 'package:utardia/screen/order/order_details/widget/order_details_center.dart';
 import 'package:utardia/screen/order/order_details/widget/order_details_top.dart';
@@ -26,7 +27,14 @@ class OrderDetailsScreen extends StatelessWidget {
           leading: GestureDetector(
             child: Icon(IconRes.icBack, size: 30),
             onTap: () {
-              Navigator.pop(context);
+              if (navigator.currentState!.canPop()) {
+                navigator.currentState!.pop();
+              } else {
+                navigator.currentState!
+                    .pushReplacement(MaterialPageRoute(builder: (context) {
+                  return DashScreen();
+                }));
+              }
             },
           ),
           centerTitle: true,

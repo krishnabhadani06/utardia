@@ -5,6 +5,7 @@ import 'package:utardia/screen/category/product_details/product_details_provider
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/category_title.dart';
 import 'package:utardia/screen/dashboard/home/widget/imageSliderBottom.dart';
+import 'package:utardia/screen/dashboard/home/widget/slider.dart';
 
 import 'product_card.dart';
 
@@ -17,8 +18,7 @@ class HomeBottom extends StatelessWidget {
     final provider = Provider.of<HomeProvider>(context);
     final provider1 = Provider.of<ProductDetailsProvider>(context);
     return Column(children: [
-      if (index % 2 == 0)
-        sliderBottomHome(context: context, sliderImage: provider.sliderImage),
+      if (index % 2 == 0) sliderHome(context: context),
       categoryTitle(
           title: provider.allHomeTopCategories[index].name, onTap: () {}),
       Container(

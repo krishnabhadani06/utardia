@@ -42,14 +42,7 @@ class PaymentProcessScreen extends StatelessWidget {
               if (uri.path.contains("success")) {
                 showToast("Payment successfull");
 
-                provider.callPaymentResponse(context);
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                        builder: (context) => PaymentStatusScreen(
-                              isSuccess: 0,
-                              orderId: id,
-                            )),
-                    (Route<dynamic> route) => false);
+                provider.callPaymentResponse(context, id.toString());
               } else if (uri.toString().contains("fail")) {
                 showToast("Payment failed");
                 Navigator.of(context).pushAndRemoveUntil(

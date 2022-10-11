@@ -38,7 +38,14 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
           leading: GestureDetector(
             child: Icon(IconRes.icBack, size: 28),
             onTap: () {
-              Navigator.pop(context);
+              if (navigator.currentState!.canPop() == true) {
+                navigator.currentState!.pop();
+              } else {
+                navigator.currentState!
+                    .pushReplacement(MaterialPageRoute(builder: (context) {
+                  return DashScreen();
+                }));
+              }
             },
           ),
           centerTitle: true,

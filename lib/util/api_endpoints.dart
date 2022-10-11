@@ -13,7 +13,7 @@ class ApiEndPoint {
   static const resetPassword = "${baseUrl}auth/password/confirm_reset";
   static const changePassword = "${baseUrl}auth/password/change_password";
   static const getAddress = "${baseUrl}user/shipping/address/";
-  static const paymentResponse = "${baseUrl}order/store";
+  static const paymentResponse = "${baseUrl}paystack/payment_status";
 
   static const pushRate = "${baseUrl}reviews/submit";
   static const getPayment = "${baseUrl}payment-types";

@@ -69,7 +69,7 @@ class OrderProvider extends ChangeNotifier {
     getOrders();
   }
 
-  void getOrders() async {
+  Future<void> getOrders() async {
     loader = true;
     notifyListeners();
     try {

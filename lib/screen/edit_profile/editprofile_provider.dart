@@ -84,7 +84,7 @@ class EditProfileProvider extends ChangeNotifier {
         "email": txtEmail.text.toString(),
         "address": txtAddress.text.toString(),
         "phone": txtContact.text.toString(),
-        "country": "${intialCountry!.name.toString()}",
+        "country": "${currentCountry!.name.toString()}"
       });
       if (res != null && res.statusCode == 200) {
         Logger().e(jsonDecode(res.body));

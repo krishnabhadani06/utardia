@@ -3,8 +3,8 @@ class AssetsImagesRes {
   static const googleImage = 'assets/images/login/google_1.jpg';
   static const loginMainImage = 'assets/images/login/login_top_image.png';
   static const splashScreenImage = 'assets/images/login/splashScreen.png';
-  // static const loginUtradiyaImage = 'assets/images/login/utradiaLogo.png';
-  static const loginUtradiyaImage = 'assets/images/login/utradiaLoginImage.png';
+  static const loginUtradiyaImage = 'assets/images/login/Frame 27.png';
+  // static const loginUtradiyaImage = 'assets/images/login/utradiaLoginImage.png';
   static const coin1 = 'assets/images/login/coin1.png';
   static const goldCoin = 'assets/images/login/goldcoin.png';
   static const coin = 'assets/images/login/Coin.png';

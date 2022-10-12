@@ -19,7 +19,6 @@ import 'package:utardia/screen/dashboard/home/category_api/all_category_api.dart
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_top_category_apii/home_top_category_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_slider_api/home_banner_api.dart';
-import 'package:utardia/screen/dashboard/view_all_category/widgets/view_category_product.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
@@ -41,6 +40,8 @@ class HomeProvider extends ChangeNotifier {
   /// slider
   HomeBannerApi bannerModel = HomeBannerApi();
   List<HomeBanner> bannerData = [];
+  List<String> bannerImage = [];
+
   HomeSliderApi sliderModel = HomeSliderApi();
   List<HomeSlider> sliderData = [];
   List<String> sliderImage = [];
@@ -129,9 +130,11 @@ class HomeProvider extends ChangeNotifier {
             )));
   }
 
-  void onTapViewProduct(int index) {
+  void onTapViewCategory() {
     navigator.currentState!.push(MaterialPageRoute(
-        builder: (context) => ViewProductScreen(index: index)));
+        builder: (context) => CategoryScreen(
+              select: 0,
+            )));
   }
 
   Future<bool> onLike(bool like) async {
@@ -246,7 +249,11 @@ class HomeProvider extends ChangeNotifier {
     if (bannerModel.status != 200) {
       homeBannerData();
     } else {
+      bannerImage.clear();
       bannerData = bannerModel.data!;
+      bannerData.forEach((element) {
+        bannerImage.add(element.photo!);
+      });
       print(bannerData);
       loader = false;
       //notifyListeners();
@@ -271,3 +278,17 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 }
+
+// Future<void> homeBannerData() async {
+//   loader = true;
+//   //notifyListeners();
+//   bannerModel = await HomeBannerApiServices.homeBannerData();
+//   if (bannerModel.status != 200) {
+//     homeBannerData();
+//   } else {
+//     bannerData = bannerModel.data!;
+//     print(bannerData);
+//     loader = false;
+//     //notifyListeners();
+//   }
+// }

@@ -53,7 +53,7 @@ class OtpProvider extends ChangeNotifier {
                 {
                   navigator.currentState!
                       .pushReplacement(MaterialPageRoute(builder: (context) {
-                    return LoginPage();
+                    return const LoginPage();
                   })),
                   txtOtp1.clear(),
                   txtOtp2.clear(),
@@ -66,6 +66,7 @@ class OtpProvider extends ChangeNotifier {
       }
     } else {
       Fluttertoast.showToast(msg: "please fill Otp!!");
+      notifyListeners();
     }
   }
 

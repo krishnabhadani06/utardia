@@ -22,16 +22,22 @@ class SingInpApi {
       String url = ApiEndPoint.signIn;
       Map<String, dynamic> param = {
         // "email": email,
-        // "email": Provider.of<LoginProvider>(context, listen: false).isPhone ==
-        //         true
-        //     ? "${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}"
-        //     : email.toString(),
+
         Provider.of<LoginProvider>(context, listen: false).isPhone == true
             ? "Phone"
             : "email": Provider.of<LoginProvider>(context, listen: false)
                 .isPhone
             ? "+${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}"
             : email.toString(),
+
+        // "email_or_phone": Provider.of<LoginProvider>(context, listen: false)
+        //             .isPhone ==
+        //         true
+        //     ? "${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}}"
+        //     : email.toString(),
+        // "country_code": Provider.of<LoginProvider>(context, listen: false)
+        //     .currentCountry!
+        //     .phoneCode,
         "password": password,
         "identity_matrix": true.toString()
       };
@@ -41,6 +47,7 @@ class SingInpApi {
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 200) {
         var responseJson = json.decode(response.body);
+        // Fluttertoast.showToast(msg: response.body);
         Fluttertoast.showToast(msg: "Login Successful.");
         await PrefService.setValue(PrefKeys.isLogin, true);
         await PrefService.setValue(

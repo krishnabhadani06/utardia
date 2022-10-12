@@ -12,7 +12,6 @@ import 'package:utardia/util/string.dart';
 
 class CategoryScreen extends StatefulWidget {
   int select;
-
   CategoryScreen({Key? key, required this.select}) : super(key: key);
 
   @override
@@ -27,7 +26,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final provider = Provider.of<CategoryProvider>(context, listen: false);
       final provider2 = Provider.of<HomeProvider>(context, listen: false);
-      provider.init(provider2.allHomeCategories[0].links!.products.toString());
+      provider.init(provider2
+          .allHomeCategories[widget.select != 0 ? widget.select : 0]
+          .links!
+          .products
+          .toString());
+
+      if (widget.select != 0) {
+        provider.onchangedIndex(widget.select);
+      }
     });
   }
 
@@ -36,12 +43,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
     final provider = Provider.of<CategoryProvider>(context);
     final provider2 = Provider.of<HomeProvider>(context);
 
-    if (widget.select != 0) {
-      provider.pageCon =
-          PageController(initialPage: widget.select, keepPage: true);
-      provider.selectedPageInd = widget.select;
-      widget.select = 0;
-    }
+    // if (widget.select != 0) {
+    //   provider.pageCon =
+    //       PageController(initialPage: widget.select, keepPage: true);
+    //   provider.selectedPageInd = widget.select;
+    //   widget.select = 0;
+    // }
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

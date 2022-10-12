@@ -47,7 +47,8 @@ class HomeCenter extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(12.0)),
                         child: CachedNetworkImage(
                           imageUrl: provider.allHomeCategories[index].banner
                               .toString(),

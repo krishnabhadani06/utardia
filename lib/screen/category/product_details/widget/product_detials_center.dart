@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
-import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
-import 'package:utardia/common/textform_field.dart';
-import 'package:utardia/common/validations.dart';
-
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
 import 'package:utardia/screen/category/product_details/widget/productdetailscreenwidgets.dart';
 import 'package:utardia/util/color_res.dart';

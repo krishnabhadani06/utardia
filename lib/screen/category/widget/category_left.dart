@@ -17,7 +17,6 @@ class CategoryLeft extends StatelessWidget {
     final provider2 = Provider.of<HomeProvider>(context);
     final provider = Provider.of<CategoryProvider>(context);
 
-    
     // print('00000000000000000000000000${provider2.allCategories.length}');
     return Flexible(
       child: ListView.builder(
@@ -45,6 +44,8 @@ class CategoryLeft extends StatelessWidget {
                     decoration: provider.selectedPageInd == index
                         ? BoxDecoration(
                             border: Border.all(color: ColorRes.blue, width: 1),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             color: ColorRes.white,
                             boxShadow: [
                               BoxShadow(

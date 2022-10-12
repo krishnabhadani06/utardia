@@ -83,23 +83,40 @@ class ProductDetailScreen extends StatelessWidget {
                                         },
                                         autoPlayInterval: 3000,
                                         isLoop: true,
-                                        children: pro.homeProductDetail != null
-                                            ? pro.homeProductDetail!.photos!
-                                                .map((e) {
-                                                return CachedNetworkImage(
-                                                  imageUrl:
-                                                      "https://dharmeshs42.sg-host.com/public/${e.path.toString()}",
-                                                  placeholder: (context, x) {
-                                                    return const Center(
-                                                        child:
-                                                            CircularProgressIndicator());
-                                                  },
-                                                );
-                                              }).toList()
-                                            : [
-                                                Image.asset(AssetsImagesRes
-                                                    .productGirl),
-                                              ],
+                                        children: [
+                                          CachedNetworkImage(
+                                            imageUrl: pro.homeProductDetail!
+                                                .thumbnailImage
+                                                .toString(),
+                                            progressIndicatorBuilder: (context,
+                                                    url, downloadProgress) =>
+                                                CircularProgressIndicator(
+                                                    value: downloadProgress
+                                                        .progress),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Image.asset(
+                                                        AssetsImagesRes.girl1),
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ],
+                                        // children: pro.homeProductDetail != null
+                                        //     ? pro.homeProductDetail!.photos!
+                                        //         .map((e) {
+                                        //         return CachedNetworkImage(
+                                        //           imageUrl:
+                                        //               "https://dharmeshs42.sg-host.com/public/${e.path.toString()}",
+                                        //           placeholder: (context, x) {
+                                        //             return const Center(
+                                        //                 child:
+                                        //                     CircularProgressIndicator());
+                                        //           },
+                                        //         );
+                                        //       }).toList()
+                                        //     : [
+                                        //         Image.asset(AssetsImagesRes
+                                        //             .productGirl),
+                                        //       ],
                                       ),
                                       const ProductDetailsCenter()
                                     ],
@@ -539,7 +556,8 @@ class ProductDetailScreen extends StatelessWidget {
                                                   },
                                                   child: Container(
                                                     height: deviceHeight,
-                                                    width: 40,
+                                                    // width: 41.5,
+                                                    width: deviceWidth * 0.12,
                                                     color: ColorRes.buttonBlue,
                                                     child: Icon(
                                                       pro.counter == 1
@@ -551,7 +569,7 @@ class ProductDetailScreen extends StatelessWidget {
                                                 ),
                                                 Container(
                                                   height: deviceHeight,
-                                                  width: 45,
+                                                  width: deviceWidth * 0.12,
                                                   color: ColorRes.white,
                                                   child: Center(
                                                       child: Text(
@@ -567,7 +585,8 @@ class ProductDetailScreen extends StatelessWidget {
                                                   onTap: () => pro.onTapPlus(),
                                                   child: Container(
                                                     height: deviceHeight,
-                                                    width: 40,
+                                                    // width: 41.3,
+                                                    width: deviceWidth * 0.11,
                                                     color: ColorRes.buttonBlue,
                                                     child: Icon(
                                                       IconRes.icPlus,
@@ -655,3 +674,17 @@ class ProductDetailScreen extends StatelessWidget {
     });
   }
 }
+
+// pro.homeProductDetail != null
+// ? pro.homeProductDetail!.photos!
+// .map((e) {
+// return CachedNetworkImage(
+// imageUrl:
+// "https://dharmeshs42.sg-host.com/public/${e.path.toString()}",
+// placeholder: (context, x) {
+// return const Center(
+// child:
+// CircularProgressIndicator());
+// },
+// );
+// }).toList()

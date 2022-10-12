@@ -8,7 +8,8 @@ import 'package:utardia/util/image_res.dart';
 Widget sliderBottomHome({
   // required String imgPath,
   required BuildContext context,
-  required List<String> sliderImage,
+  required List<String> bannerImage,
+  // required List<String> sliderImage,
 }) {
   return ImageSlideshow(
     width: double.infinity,
@@ -21,7 +22,8 @@ Widget sliderBottomHome({
     },
     autoPlayInterval: 3000,
     isLoop: true,
-    children: sliderImage.map((e) {
+    // children: sliderImage.map((e) {
+    children: bannerImage.map((e) {
       return CachedNetworkImage(
         // imageUrl: 'https://picsum.photos/250?image=9',
         imageUrl: e.toString(),

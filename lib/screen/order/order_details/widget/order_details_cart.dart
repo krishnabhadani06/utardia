@@ -57,11 +57,6 @@ class OrderDetailsCart extends StatelessWidget {
                         margin: const EdgeInsets.only(left: 4.0, right: 4.0),
                         height: deviceHeight * 0.16,
                         width: deviceWidth * 0.20,
-                        // color: Colors.amber,
-                        //  decoration: BoxDecoration(
-                        //    borderRadius: BorderRadius.circular(8),
-                        //    color: Colors.amber
-                        //  ),
                         child: Image.network(
                           provider.orderModel.data![i].productDetail![i]
                               .thumbnailImage

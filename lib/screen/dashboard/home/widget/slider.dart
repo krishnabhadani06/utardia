@@ -9,14 +9,13 @@ import 'package:utardia/util/image_res.dart';
 Widget sliderHome(
     {
     //required String imgPath,
-    required BuildContext context
-    // required BuildContext context,
-    }) {
+    required BuildContext context}) {
   final provider = Provider.of<HomeProvider>(context);
   return Column(
     children: [
       CarouselSlider.builder(
-        itemCount: provider.bannerData.length,
+        itemCount: provider.sliderData.length,
+        // itemCount: provider.bannerData.length,
         itemBuilder: (context, index, realIndex) {
           return Card(
             elevation: 2.0,
@@ -26,7 +25,8 @@ Widget sliderHome(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
               child: CachedNetworkImage(
-                imageUrl: provider.bannerData[index].photo.toString(),
+                imageUrl: provider.sliderData[index].photo.toString(),
+                // imageUrl: provider.bannerData[index].photo.toString(),
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -44,9 +44,9 @@ Widget sliderHome(
           );
         },
         options: CarouselOptions(
-          height: deviceHeight * 0.24,
-          aspectRatio: 16 / 9,
-          viewportFraction: 0.8,
+          height: deviceHeight * 0.25,
+          aspectRatio: 20 / 10,
+          viewportFraction: 0.9,
           initialPage: 0,
           enableInfiniteScroll: true,
           reverse: false,

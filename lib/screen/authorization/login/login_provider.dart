@@ -22,8 +22,19 @@ class LoginProvider extends ChangeNotifier {
   String? errorTxtId;
   String? errorTxtPass;
   String? errorTxtPhone;
-  Country? currentCountry;
 
+  // Country? currentCountry;
+  Country? currentCountry = Country(
+      phoneCode: "+91",
+      countryCode: "IN",
+      e164Sc: 0,
+      geographic: true,
+      level: 1,
+      name: "India",
+      example: "9123456789",
+      displayName: "India",
+      displayNameNoCountryCode: "India (IN)",
+      e164Key: "91-IN-0");
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   bool loader = false;
@@ -43,23 +54,56 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void onClickLogin(BuildContext context) async {
-    emailValidation();
-    passwordValidation();
-    if (errorTxtPass == null && errorTxtId == null && errorTxtPhone == null) {
-      singUpApiData(
-          isPhone
-              ? "${currentCountry!.phoneCode} ${txtPhone.text}"
-              : txtId.text,
-          txtPassword.text,
-          context);
-      txtId.clear();
-      txtPassword.clear();
-      txtPhone.clear();
+    if (isPhone == true) {
+      phoneValidation();
+      passwordValidation();
+      if (errorTxtPhone == null && errorTxtPass == null) {
+        await singUpApiData(
+            isPhone
+                ? "${currentCountry!.phoneCode} ${txtPhone.text}"
+                : txtId.text,
+            txtPassword.text,
+            context);
+        txtPhone.clear();
+        txtPassword.clear();
+      } else {}
+    } else {
+      emailValidation();
+      passwordValidation();
+      if (errorTxtId == null && errorTxtPass == null) {
+        singUpApiData(
+            isPhone
+                ? "${currentCountry!.phoneCode} ${txtPhone.text}"
+                : txtId.text,
+            txtPassword.text,
+            context);
+        txtId.clear();
+        txtPassword.clear();
+      } else {}
     }
+    // emailValidation();
+    // passwordValidation();
+    // phoneValidation();
+    // if (errorTxtPass == null && errorTxtId == null && errorTxtPhone == null) {
+    //   singUpApiData(
+    //       isPhone
+    //           ? "${currentCountry!.phoneCode} ${txtPhone.text}"
+    //           : txtId.text,
+    //       txtPassword.text,
+    //       context);
+    //   txtId.clear();
+    //   txtPassword.clear();
+    //   txtPhone.clear();
+    // }
   }
 
   void emailValidation() {
     errorTxtId = validateEmail(txtId.text);
+    notifyListeners();
+  }
+
+  void phoneValidation() {
+    errorTxtPhone = phoneNumberValidator(txtPhone.text.toString().trim());
     notifyListeners();
   }
 
@@ -98,3 +142,20 @@ class LoginProvider extends ChangeNotifier {
 //   PrefService.setValue("UserData", list);
 // }
 }
+
+// void onClickLogin(BuildContext context) async {
+//   emailValidation();
+//   passwordValidation();
+//   phoneValidation();
+//   if (errorTxtPass == null && errorTxtId == null && errorTxtPhone == null) {
+//     singUpApiData(
+//         isPhone == true
+//             ? "${currentCountry!.phoneCode} ${txtPhone.text}"
+//             : txtId.text,
+//         txtPassword.text,
+//         context);
+//     txtId.clear();
+//     txtPassword.clear();
+//     txtPhone.clear();
+//   }
+// }

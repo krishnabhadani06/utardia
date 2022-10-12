@@ -23,12 +23,25 @@ class ForgotPasswordScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 74.0),
         child: Column(
           children: [
-            Container(
-              height: deviceHeight * 0.25,
-              child: Image.asset(
-                AssetsImagesRes.loginUtradiyaImage,
-                //fit: BoxFit.fill,
-              ),
+            Image.asset(
+              AssetsImagesRes.loginUtradiyaImage,
+              // height: 130,
+              // width: 130,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              height: deviceHeight * 0.015,
+            ),
+            Text(
+              Strings.utradia,
+              style: robotoRegularTextStyle(
+                      fontSize: 25, color: ColorRes.dailogBoxColor)
+                  .copyWith(fontWeight: FontWeight.w600),
+            ),
+            Text(
+              Strings.marketPlace,
+              style: robotoRegularTextStyle(
+                  fontSize: 10, color: ColorRes.dailogBoxColor),
             ),
             SizedBox(
               height: deviceHeight * 0.04,
@@ -182,39 +195,41 @@ class ForgotPasswordScreen extends StatelessWidget {
                                     context: context,
                                     onSelect: (Country country) {
                                       provider.currentCountry = country;
-                                      provider.notifyListeners();
+                                      // provider.notifyListeners();
                                     });
                               },
                               child: Center(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 1,
-                                        child: provider.currentCountry != null
-                                            ? Text(
-                                                provider
-                                                    .currentCountry!.flagEmoji,
-                                                style: robotoRegularTextStyle(
-                                                    fontSize: 25),
-                                              )
-                                            : Center(
-                                                child: Text(""),
-                                              )),
-                                    Expanded(
-                                        flex: 2,
-                                        child: provider.currentCountry != null
-                                            ? Text(
-                                                " +${provider.currentCountry!.phoneCode.toString()}",
-                                                style: robotoMediumTextStyle(
-                                                    fontSize: 18,
-                                                    color:
-                                                        ColorRes.greyTextHome),
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 2)
-                                            : Center(
-                                                child: Text("India"),
-                                              )),
-                                  ],
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: provider.currentCountry != null
+                                              ? Text(
+                                                  provider.currentCountry!
+                                                      .flagEmoji,
+                                                  style: robotoRegularTextStyle(
+                                                      fontSize: 25),
+                                                )
+                                              : const Center(
+                                                  child: Text(""),
+                                                )),
+                                      Expanded(
+                                          child: provider.currentCountry != null
+                                              ? Text(
+                                                  " ${provider.currentCountry!.phoneCode.toString()}",
+                                                  style: robotoMediumTextStyle(
+                                                      fontSize: 18,
+                                                      color: ColorRes
+                                                          .greyTextHome),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 2)
+                                              : const Center(
+                                                  child: Text(""),
+                                                )),
+                                    ],
+                                  ),
                                 ),
                               ),
                               // child: _buildCountryPickerDropdownSoloExpanded(
@@ -226,9 +241,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                         Expanded(
                           flex: 5,
                           child: CommonTextField(
-                              controller: provider.txtEmail,
+                              controller: provider.txtPhone,
                               obscure: false,
-                              hintText: Strings.phoneNum,
+                              hintText: Strings.enterMobileNo,
                               error: false,
                               width: deviceWidth,
                               border: false),
@@ -241,7 +256,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     child: CommonTextField(
                         controller: provider.txtEmail,
                         obscure: false,
-                        hintText: Strings.emailOrPhone,
+                        hintText: Strings.enterYourEmail,
                         error: false,
                         width: deviceWidth,
                         border: false),

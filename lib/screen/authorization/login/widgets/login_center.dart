@@ -1,6 +1,6 @@
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
@@ -172,39 +172,40 @@ class LoginCenter extends StatelessWidget {
                         showCountryPicker(
                             context: context,
                             onSelect: (Country country) {
+                              Logger().e(country.toJson());
                               provider.currentCountry = country;
-                              provider.notifyListeners();
+                              // provider.notifyListeners();
                             });
                       },
-                      // child: Center(child: Text("dmd")),
                       child: Center(
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 1,
-                                child: provider.currentCountry != null
-                                    ? Text(
-                                        provider.currentCountry!.flagEmoji,
-                                        style: robotoRegularTextStyle(
-                                            fontSize: 25),
-                                      )
-                                    : Center(
-                                        child: Text(""),
-                                      )),
-                            Expanded(
-                                flex: 2,
-                                child: provider.currentCountry != null
-                                    ? Text(
-                                        " +${provider.currentCountry!.phoneCode.toString()}",
-                                        style: robotoMediumTextStyle(
-                                            fontSize: 18,
-                                            color: ColorRes.greyTextHome),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2)
-                                    : Center(
-                                        child: Text("India"),
-                                      )),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: provider.currentCountry != null
+                                      ? Text(
+                                          provider.currentCountry!.flagEmoji,
+                                          style: robotoRegularTextStyle(
+                                              fontSize: 25),
+                                        )
+                                      : const Center(
+                                          child: Text(""),
+                                        )),
+                              Expanded(
+                                  child: provider.currentCountry != null
+                                      ? Text(
+                                          " ${provider.currentCountry!.phoneCode.toString()}",
+                                          style: robotoMediumTextStyle(
+                                              fontSize: 18,
+                                              color: ColorRes.greyTextHome),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 2)
+                                      : const Center(
+                                          child: Text(""),
+                                        )),
+                            ],
+                          ),
                         ),
                       ),
                       // provider.currentCountry!.displayName.toString()),
@@ -218,7 +219,7 @@ class LoginCenter extends StatelessWidget {
                   child: CommonTextField(
                       controller: provider.txtPhone,
                       obscure: false,
-                      hintText: Strings.phoneNum,
+                      hintText: Strings.enterMobileNo,
                       error: false,
                       width: deviceWidth,
                       border: false),
@@ -249,7 +250,7 @@ class LoginCenter extends StatelessWidget {
             child: CommonTextField(
               controller: provider.txtId,
               obscure: false,
-              hintText: Strings.enterNameEmail,
+              hintText: Strings.enterYourEmail,
               error: false,
               width: deviceWidth,
               border: false,

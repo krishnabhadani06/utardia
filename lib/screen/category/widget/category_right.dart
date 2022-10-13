@@ -147,130 +147,132 @@ class _CategoryRightState extends State<CategoryRight> {
                             );
                           },
                         ),
-                        SizedBox(height: deviceHeight * 0.01),
-                        Row(children: [
-                          provider.allHomeSubCategories != null
-                              ? provider.allHomeSubCategories!.data!.isNotEmpty
-                                  ? Text(
-                                      "Sub Category",
-                                      style: natoSemiBoldTextStyle(
-                                          fontSize: 15, color: ColorRes.grey),
-                                    )
-                                  : Text("")
-                              : Text(""),
-                        ]),
-                        Container(
-                          height: deviceHeight * 0.25,
-                          width: deviceWidth,
-                          //color: ColorRes.yellow,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: provider.allHomeSubCategories != null
-                                  ? provider.allHomeSubCategories!.data!.length
-                                  : 0,
-                              itemBuilder: (context, index1) {
-                                if (provider.loader) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      navigator.currentState!.push(
-                                          MaterialPageRoute(builder: (context) {
-                                        return SubCategoryScreen();
-                                      }));
-                                    },
-                                    // provider2.onTapCategory(
-                                    //     index,
-                                    //     context,
-                                    //     provider.allHomeSubCategories!
-                                    //         .data![index].links!.products
-                                    //         .toString());
 
-                                    child: Container(
-                                      margin: const EdgeInsets.all(10.0),
-                                      height: 50,
-                                      width: 100,
-                                      color: ColorRes.white,
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            height: deviceHeight * 0.16,
-                                            width: deviceWidth * 0.28,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(8.0)),
-                                              // color: ColorRes.appBarColor
-                                            ),
-                                            //color: ColorRes.blue,
-                                            child: Column(
-                                              children: [
-                                                Card(
-                                                  elevation: 5.0,
-                                                  shadowColor: ColorRes.black
-                                                      .withOpacity(0.5),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Container(
-                                                    height: deviceHeight * 0.11,
-                                                    width: deviceWidth,
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  16.0)),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: provider
-                                                            .allHomeSubCategories!
-                                                            .data![index1]
-                                                            .banner
-                                                            .toString(),
-                                                        //imageUrl: provider.allHomeCategories[index].banner.toString(),
-                                                        progressIndicatorBuilder: (context,
-                                                                url,
-                                                                downloadProgress) =>
-                                                            CircularProgressIndicator(
-                                                                value: downloadProgress
-                                                                    .progress),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Image.asset(
-                                                          AssetsImagesRes.girl1,
-                                                        ),
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Text(
-                                                  provider.allHomeSubCategories!
-                                                      .data![index1].name
-                                                      .toString(),
-                                                  style: robotoMediumTextStyle(
-                                                      fontSize: 13,
-                                                      color: ColorRes.black),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          // Text(provider.allHomeSubCategories!
-                                          //     .data![index1].name
-                                          //     .toString()),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }
-                              }),
-                        ),
+                        // SizedBox(height: deviceHeight * 0.01),
+                        // Row(children: [
+                        //   provider.allHomeSubCategories != null
+                        //       ? provider.allHomeSubCategories!.data!.isNotEmpty
+                        //           ? Text(
+                        //               "Sub Category",
+                        //               style: natoSemiBoldTextStyle(
+                        //                   fontSize: 15, color: ColorRes.grey),
+                        //             )
+                        //           : Text("")
+                        //       : Text(""),
+                        // ]),
+                        // Container(
+                        //   height: deviceHeight * 0.25,
+                        //   width: deviceWidth,
+                        //   //color: ColorRes.yellow,
+                        //   child: ListView.builder(
+                        //       scrollDirection: Axis.horizontal,
+                        //       itemCount: provider.allHomeSubCategories != null
+                        //           ? provider.allHomeSubCategories!.data!.length
+                        //           : 0,
+                        //       itemBuilder: (context, index1) {
+                        //         if (provider.loader) {
+                        //           return const Center(
+                        //             child: CircularProgressIndicator(),
+                        //           );
+                        //         } else {
+                        //           return GestureDetector(
+                        //             onTap: () {
+                        //               navigator.currentState!.push(
+                        //                   MaterialPageRoute(builder: (context) {
+                        //                 return SubCategoryScreen();
+                        //               }));
+                        //             },
+                        //             // provider2.onTapCategory(
+                        //             //     index,
+                        //             //     context,
+                        //             //     provider.allHomeSubCategories!
+                        //             //         .data![index].links!.products
+                        //             //         .toString());
+                        //
+                        //             child: Container(
+                        //               margin: const EdgeInsets.all(10.0),
+                        //               height: 50,
+                        //               width: 100,
+                        //               color: ColorRes.white,
+                        //               child: Column(
+                        //                 children: [
+                        //                   Container(
+                        //                     height: deviceHeight * 0.16,
+                        //                     width: deviceWidth * 0.28,
+                        //                     decoration: const BoxDecoration(
+                        //                       borderRadius: BorderRadius.all(
+                        //                           Radius.circular(8.0)),
+                        //                       // color: ColorRes.appBarColor
+                        //                     ),
+                        //                     //color: ColorRes.blue,
+                        //                     child: Column(
+                        //                       children: [
+                        //                         Card(
+                        //                           elevation: 5.0,
+                        //                           shadowColor: ColorRes.black
+                        //                               .withOpacity(0.5),
+                        //                           shape: RoundedRectangleBorder(
+                        //                             borderRadius:
+                        //                                 BorderRadius.circular(
+                        //                                     8.0),
+                        //                           ),
+                        //                           child: Container(
+                        //                             height: deviceHeight * 0.11,
+                        //                             width: deviceWidth,
+                        //                             child: ClipRRect(
+                        //                               borderRadius:
+                        //                                   const BorderRadius
+                        //                                           .all(
+                        //                                       Radius.circular(
+                        //                                           16.0)),
+                        //                               child: CachedNetworkImage(
+                        //                                 imageUrl: provider
+                        //                                     .allHomeSubCategories!
+                        //                                     .data![index1]
+                        //                                     .banner
+                        //                                     .toString(),
+                        //                                 //imageUrl: provider.allHomeCategories[index].banner.toString(),
+                        //                                 progressIndicatorBuilder: (context,
+                        //                                         url,
+                        //                                         downloadProgress) =>
+                        //                                     CircularProgressIndicator(
+                        //                                         value: downloadProgress
+                        //                                             .progress),
+                        //                                 errorWidget: (context,
+                        //                                         url, error) =>
+                        //                                     Image.asset(
+                        //                                   AssetsImagesRes.girl1,
+                        //                                 ),
+                        //                                 fit: BoxFit.fill,
+                        //                               ),
+                        //                             ),
+                        //                           ),
+                        //                         ),
+                        //                         Text(
+                        //                           provider.allHomeSubCategories!
+                        //                               .data![index1].name
+                        //                               .toString(),
+                        //                           style: robotoMediumTextStyle(
+                        //                               fontSize: 13,
+                        //                               color: ColorRes.black),
+                        //                           maxLines: 1,
+                        //                           overflow:
+                        //                               TextOverflow.ellipsis,
+                        //                         ),
+                        //                       ],
+                        //                     ),
+                        //                   ),
+                        //                   // Text(provider.allHomeSubCategories!
+                        //                   //     .data![index1].name
+                        //                   //     .toString()),
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //           );
+                        //         }
+                        //       }),
+                        // ),
+                        //
                       ],
                     ),
                   ),

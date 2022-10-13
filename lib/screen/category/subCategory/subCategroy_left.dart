@@ -18,8 +18,8 @@ class SubCategoryLeft extends StatelessWidget {
 
     return Flexible(
       child: ListView.builder(
+        // itemCount: provider.allHomeSubCategories!.data!.length,
         itemCount: provider2.allHomeCategories.length,
-        //itemCount:provider2.allCategories.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
           // print(provider.allCategories.length);

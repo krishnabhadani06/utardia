@@ -27,7 +27,7 @@ class SingInpApi {
             ? "Phone"
             : "email": Provider.of<LoginProvider>(context, listen: false)
                 .isPhone
-            ? "+${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}"
+            ? "${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}"
             : email.toString(),
 
         // "email_or_phone": Provider.of<LoginProvider>(context, listen: false)

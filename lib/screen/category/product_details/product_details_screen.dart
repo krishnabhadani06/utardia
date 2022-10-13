@@ -642,10 +642,7 @@ class ProductDetailScreen extends StatelessWidget {
                                           ///
                                           ///[ADD_TO_CART] function
                                           ///
-                                          pro.addToCartAPiData(
-                                              productDetail:
-                                                  pro.homeProductDetail,
-                                              context: context);
+                                          pro.addToCartAPiData(productDetail: pro.homeProductDetail, context: context);
                                         },
                                         child: Row(
                                           children: [

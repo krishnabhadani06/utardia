@@ -15,7 +15,6 @@ import 'package:utardia/model/home_top_category/home_top_product_detail_model.da
 import 'package:utardia/model/todays_product_model/todays_product_deal_model.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/addToCartApi/addToCart_Api.dart';
-
 import 'package:utardia/screen/category/product_details/productDetailScreenApi/productDetailsScreenApi.dart';
 import 'package:utardia/screen/category/product_details/product_details_screen.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
@@ -256,7 +255,7 @@ class ProductDetailsProvider extends ChangeNotifier {
     try {
       String? variant;
       if (homeProductDetail!.choices != null) {
-        homeProductDetail!.choices!.forEach((element) {
+        for (var element in homeProductDetail!.choices!) {
           if (element.color.toString() ==
                   homeProductDetail!.colors![currentColor].toString() &&
               element.option.toString() ==
@@ -264,9 +263,9 @@ class ProductDetailsProvider extends ChangeNotifier {
                       .toString()) {
             variant = element.variant.toString();
             // Logger().e(element.qty);
-            return;
+            continue;
           }
-        });
+        }
 
         if (variant != null) {
           addToCartModel = await AddToCartApi.addToCartApi(

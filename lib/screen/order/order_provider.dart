@@ -18,6 +18,7 @@ class OrderProvider extends ChangeNotifier {
   double Rating = 0.0;
   String? errorTxtComment;
   TextEditingController txtConComment = TextEditingController();
+
   void onTapNext(BuildContext context, int? data) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => OrderDetailsScreen(ind: data)));
@@ -33,18 +34,18 @@ class OrderProvider extends ChangeNotifier {
   void pushRate(String pid, String uid) {
     validateComment(txtConComment.text.toString());
     if (errorTxtComment == null) {
-      PushComment(pid, uid);
+      pushComment(pid, uid);
     }
   }
 
-  void PushComment(String pid, String uid) async {
+  void pushComment(String pid, String uid) async {
     try {
       http.Response? res =
           await HttpService.postApi(url: ApiEndPoint.pushRate, body: {
-        "product_id": "${pid}",
-        "user_id": "${uid}",
-        "rating": "${Rating}",
-        "comment": "${txtConComment.text.toString()}"
+        "product_id": pid,
+        "user_id": uid,
+        "rating": "$Rating",
+        "comment": txtConComment.text.toString()
       });
       if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> map =
@@ -76,6 +77,7 @@ class OrderProvider extends ChangeNotifier {
       http.Response? response = await HttpService.getApi(header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, url: "${ApiEndPoint.getOrders}${PrefService.getString(PrefKeys.uid)}");
+
       if (response!.statusCode == 200 && response != null) {
         orderModel = OrderModel.fromJson(jsonDecode(response.body));
         if (orderModel.data != null) {
@@ -92,11 +94,12 @@ class OrderProvider extends ChangeNotifier {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
       showToast(e.toString());
       loader = false;
-      notifyListeners();
+      //notifyListeners();
     } finally {
       loader = false;
-      notifyListeners();
+      // notifyListeners();
     }
+    notifyListeners();
   }
 
   int getSteps(String status) {

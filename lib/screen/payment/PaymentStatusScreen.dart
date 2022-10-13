@@ -49,7 +49,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
             },
           ),
           centerTitle: true,
-          title: Text(
+          title: const Text(
             "Place Order",
             style: TextStyle(fontSize: 22, color: ColorRes.white),
           )),

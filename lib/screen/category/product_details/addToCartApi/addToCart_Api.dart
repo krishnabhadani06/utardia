@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:utardia/common/toast_msg.dart';
@@ -30,7 +31,7 @@ class AddToCartApi {
       http.Response? response =
           await HttpService.postApi(url: url, body: param, header: {
         "X-Requested-With": "XMLHttpRequest",
-        'Authorization': "Bearer 64|8bdfMWvqVS06ClSymgGy6cpXIuzFIxvelRu3jK3D",
+        'Authorization': "Bearer $accesToken",
       });
       if (response != null && response.statusCode == 200) {
         var responseJson = json.decode(response.body);

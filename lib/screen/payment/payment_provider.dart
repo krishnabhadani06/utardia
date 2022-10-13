@@ -15,7 +15,6 @@ import 'package:utardia/model/payment_model/payment_drop_down.dart';
 import 'package:utardia/model/shipping_addrss_model/Shipping_address_model.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
-import 'package:utardia/screen/order/oder_screen.dart';
 import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/screen/payment/PaymentProcessScreen.dart';
 import 'package:utardia/screen/payment/PaymentStatusScreen.dart';
@@ -67,7 +66,7 @@ class PaymentProvider extends ChangeNotifier {
 
   void onTapPlaceOrder(BuildContext context) {
     UpdateAddress().then((value) {
-      PlaceOrder(context).then((value) {
+      placeOrder(context).then((value) {
         if (value != "") {
           Navigator.pushReplacement(
               context,
@@ -229,7 +228,7 @@ class PaymentProvider extends ChangeNotifier {
     }
   }
 
-  Future<String> PlaceOrder(BuildContext context) async {
+  Future<String> placeOrder(BuildContext context) async {
     try {
       http.Response? res =
           await HttpService.postApi(url: ApiEndPoint.plaeOrder, header: {

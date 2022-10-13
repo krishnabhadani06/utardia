@@ -192,17 +192,7 @@ class ProductDetailsProvider extends ChangeNotifier {
 
     checkWishList(pid, PrefService.getString(PrefKeys.uid));
     navigator.currentState!
-        .push(MaterialPageRoute(builder: (context) => ProductDetailScreen()))
-        .whenComplete(() {
-      Provider.of<CategoryProvider>(context, listen: false).init(
-          Provider.of<HomeProvider>(context, listen: false)
-              .allHomeCategories[
-                  Provider.of<CategoryProvider>(context, listen: false)
-                      .selectedPageInd]
-              .links!
-              .products
-              .toString());
-    });
+        .push(MaterialPageRoute(builder: (context) => ProductDetailScreen()));
     if (kDebugMode) {
       print('00000000------------ $url');
     }

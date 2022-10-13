@@ -20,11 +20,13 @@ class ForgotPasswordScreen extends StatelessWidget {
         child: Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.only(top: 74.0),
+        padding: const EdgeInsets.only(top: 40.0),
         child: Column(
           children: [
             Image.asset(
               AssetsImagesRes.loginUtradiyaImage,
+              height: deviceHeight * 0.174,
+              width: deviceWidth * 0.403,
               // height: 130,
               // width: 130,
               //fit: BoxFit.fill,
@@ -35,16 +37,16 @@ class ForgotPasswordScreen extends StatelessWidget {
             Text(
               Strings.utradia,
               style: robotoRegularTextStyle(
-                      fontSize: 25, color: ColorRes.dailogBoxColor)
+                      fontSize: 20, color: ColorRes.dailogBoxColor)
                   .copyWith(fontWeight: FontWeight.w600),
             ),
             Text(
               Strings.marketPlace,
               style: robotoRegularTextStyle(
-                  fontSize: 10, color: ColorRes.dailogBoxColor),
+                  fontSize: 09, color: ColorRes.dailogBoxColor),
             ),
             SizedBox(
-              height: deviceHeight * 0.04,
+              height: deviceHeight * 0.03,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16.0, right: 18),
@@ -160,7 +162,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: deviceHeight * 0.02),
+                  SizedBox(height: deviceHeight * 0.03),
                   Visibility(
                     visible: provider.isPhone,
                     child: Row(
@@ -267,7 +269,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 5),
                       padding: const EdgeInsets.only(right: 25),
                       alignment: Alignment.centerLeft,
-                      height: 20,
+                      // height: 20,
                       width: double.infinity,
                       // color: Colors.yellow,
                       child: Text(
@@ -280,7 +282,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: deviceHeight * 0.03,
+                    height: deviceHeight * 0.02,
                   ),
                   materialButton(
                       txtButton: Strings.reSetPassword,

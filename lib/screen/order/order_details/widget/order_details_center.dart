@@ -26,10 +26,11 @@ class OrderDetailsCenter extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
-                provider.orderModel.data![ind!].shippingAddress!.isNotEmpty
-                    ? provider
-                        .orderModel.data![ind!].shippingAddress![0].address!
-                    : "",
+                Strings.address,
+                // provider.orderModel.data![ind!].shippingAddress!.isNotEmpty
+                //     ? provider
+                //         .orderModel.data![ind!].shippingAddress![0].address!
+                //     : "",
                 style: robotoBoldTextStyle(fontSize: 16),
               ),
             ),

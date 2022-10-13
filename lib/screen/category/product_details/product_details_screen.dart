@@ -136,9 +136,9 @@ class ProductDetailScreen extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                height: deviceHeight * 0.35,
+                                height: deviceHeight * 0.34,
+                                // height: deviceHeight * 0.265,
                                 width: deviceWidth,
-                                // color: ColorRes.blackLight,
                                 child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: pro.allTodayProducts.length,
@@ -386,26 +386,35 @@ class ProductDetailScreen extends StatelessWidget {
                                                         height: deviceHeight *
                                                             0.004,
                                                       ),
-                                                      Wrap(
+                                                      Row(
                                                         children: [
                                                           //mainAxisAlignment: MainAxisAlignment.start,
-                                                          Text(
-                                                            // "Rs${mainPrice!.toString()}",
-                                                            pro
-                                                                .allTodayProducts[
-                                                                    index]
-                                                                .mainPrice
-                                                                .toString(),
-                                                            style:
-                                                                robotoBoldTextStyle(
-                                                                    fontSize:
-                                                                        12),
+                                                          Expanded(
+                                                            flex: 3,
+                                                            child: Text(
+                                                              // "Rs${mainPrice!.toString()}",
+                                                              pro
+                                                                  .allTodayProducts[
+                                                                      index]
+                                                                  .mainPrice
+                                                                  .toString(),
+                                                              style:
+                                                                  robotoBoldTextStyle(
+                                                                      fontSize:
+                                                                          12),
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            ),
                                                           ),
                                                           SizedBox(
                                                             width: deviceWidth *
                                                                 0.02,
                                                           ),
-                                                          Text(
+                                                          Expanded(
+                                                            flex: 2,
+                                                            child: Text(
                                                               // "Rs${strokedPrice!.toString()}",
                                                               pro
                                                                   .allTodayProducts[
@@ -426,17 +435,23 @@ class ProductDetailScreen extends StatelessWidget {
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
-                                                              )),
+                                                              ),
+                                                            ),
+                                                          ),
                                                           SizedBox(
                                                             width: deviceWidth *
                                                                 0.02,
                                                           ),
-                                                          Text(
-                                                            Strings.off57,
-                                                            style: natoMediumTextStyle(
-                                                                color: ColorRes
-                                                                    .darkGreen,
-                                                                fontSize: 12),
+                                                          Expanded(
+                                                            flex: 2,
+                                                            child: Text(
+                                                              Strings.off57,
+                                                              style: robotoBoldTextStyle(
+                                                                  color: ColorRes
+                                                                      .darkGreen,
+                                                                  fontSize:
+                                                                      8.0),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

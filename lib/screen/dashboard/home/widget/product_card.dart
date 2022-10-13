@@ -29,7 +29,8 @@ Widget ProductCard({
   final provider = Provider.of<FavoriteProvider>(context!);
   // final provider2 = Provider.of<ProductDetailsProvider>(context);
   return Container(
-    margin: const EdgeInsets.only(left: 5.0, right: 6.0, top: 7.0, bottom: 7.0),
+    margin:
+        const EdgeInsets.only(left: 10.0, right: 6.0, top: 7.0, bottom: 7.0),
     width: 155,
     decoration: BoxDecoration(
       color: Colors.white,

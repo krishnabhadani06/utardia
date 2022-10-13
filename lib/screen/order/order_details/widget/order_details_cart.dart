@@ -8,6 +8,7 @@ import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/pref_key.dart';
+import 'package:utardia/util/string.dart';
 
 class OrderDetailsCart extends StatelessWidget {
   int? i;
@@ -23,15 +24,15 @@ class OrderDetailsCart extends StatelessWidget {
           // shrinkWrap: true,
           //physics: NeverScrollableScrollPhysics(),
           physics: const BouncingScrollPhysics(),
-          padding: EdgeInsets.only(left: deviceWidth * 0.1),
+          padding: EdgeInsets.only(left: deviceWidth * 0.03),
           scrollDirection: Axis.horizontal,
           itemCount: provider.orderModel.data![i!].productDetail!.length,
           itemBuilder: (context, i) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  height: deviceHeight * 0.11,
+                  height: deviceHeight * 0.14,
                   width: deviceWidth * 0.50,
                   decoration: BoxDecoration(
                     color: ColorRes.white,
@@ -53,16 +54,43 @@ class OrderDetailsCart extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(left: 4.0, right: 4.0),
-                        height: deviceHeight * 0.16,
-                        width: deviceWidth * 0.20,
-                        child: Image.network(
-                          provider.orderModel.data![i].productDetail![i]
-                              .thumbnailImage
-                              .toString(),
-                          fit: BoxFit.fill,
-                        ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 4.0, right: 4.0, top: 4.0),
+                            child: Container(
+                              // margin: const EdgeInsets.only(
+                              //     left: 4.0, right: 4.0, top: 5.0, ),
+                              height: deviceHeight * 0.10,
+                              width: deviceWidth * 0.18,
+                              child: Image.network(
+                                provider.orderModel.data![i].productDetail![i]
+                                    .thumbnailImage
+                                    .toString(),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: deviceHeight * 0.006),
+                          Container(
+                            height: deviceHeight * 0.02,
+                            width: deviceWidth * 0.16,
+                            decoration: BoxDecoration(
+                                color: ColorRes.buttonBlue,
+                                borderRadius: BorderRadius.circular(3.0)),
+                            child: Center(
+                              child: InkWell(
+                                onTap: () {},
+                                child: Text(
+                                  "View",
+                                  style: robotoBoldTextStyle(
+                                      fontSize: 10.0, color: ColorRes.white),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,20 +105,65 @@ class OrderDetailsCart extends StatelessWidget {
                               provider.orderModel.data![i].productDetail![i]
                                   .productName
                                   .toString(),
-                              maxLines: 1,
+                              maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: robotoBoldTextStyle(
-                                  fontSize: 16, color: ColorRes.greyDark),
+                              style: robotoMediumTextStyle(
+                                  fontSize: 10, color: ColorRes.greyDark),
                             ),
                           ),
+                          // Row(
+                          //   children: [
+                          //     Container(
+                          //       margin: const EdgeInsets.only(right: 10.0),
+                          //       height: 22,
+                          //       width: 40,
+                          //       decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(4.0),
+                          //         color: ColorRes.yellow,
+                          //       ),
+                          //       child: Row(
+                          //         mainAxisAlignment: MainAxisAlignment.center,
+                          //         children: [
+                          //           Text(
+                          //             provider.orderModel.data![i]
+                          //                 .productDetail![i].rating
+                          //                 .toString(),
+                          //             style: const TextStyle(
+                          //                 color: ColorRes.white, fontSize: 12),
+                          //           ),
+                          //           const Icon(
+                          //             Icons.star,
+                          //             color: ColorRes.white,
+                          //             size: 15,
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //     const Spacer(),
+                          //     Text(
+                          //       Strings.tops,
+                          //       style: robotoSemiBoldTextStyle(
+                          //           color: ColorRes.grey, fontSize: 12),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       provider.orderModel.data![i].productDetail![i]
+                          //           .rating
+                          //           .toString(),
+                          //     )
+                          //   ],
+                          // ),
                           Padding(
                             padding:
                                 const EdgeInsets.only(top: 7.0, right: 15.0),
                             child: Row(
                               children: [
                                 Container(
-                                  height: 25,
-                                  width: 25,
+                                  height: 20,
+                                  width: 20,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(width: 1.0),
@@ -107,8 +180,8 @@ class OrderDetailsCart extends StatelessWidget {
                                 ),
                                 SizedBox(width: deviceWidth * 0.02),
                                 Container(
-                                  height: 25,
-                                  width: 25,
+                                  height: 20,
+                                  width: 20,
                                   decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       // border: Border.all(width: 1.0),
@@ -118,7 +191,7 @@ class OrderDetailsCart extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: deviceHeight * 0.002,
+                            height: deviceHeight * 0.005,
                           ),
                           Text(
                             provider.orderModel.data![i].productDetail![i]
@@ -127,6 +200,27 @@ class OrderDetailsCart extends StatelessWidget {
                             style: robotoBoldTextStyle(
                                 fontSize: 15, color: ColorRes.blue),
                           ),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //         provider.orderModel.data![i].productDetail![i]
+                          //             .strokedPrice!
+                          //             .toString(),
+                          //         style: robotoBoldTextStyle(
+                          //                 fontSize: 10,
+                          //                 color:
+                          //                     ColorRes.clrFont.withOpacity(0.7))
+                          //             .copyWith(
+                          //           decoration: TextDecoration.lineThrough,
+                          //         )),
+                          //     Spacer(),
+                          //     Text(
+                          //       Strings.off57,
+                          //       style: natoMediumTextStyle(
+                          //           color: ColorRes.darkGreen, fontSize: 7.3),
+                          //     ),
+                          //   ],
+                          // )
                         ],
                       )
                     ],
@@ -149,10 +243,10 @@ class OrderDetailsCart extends StatelessWidget {
                               });
                         },
                         style: ElevatedButton.styleFrom(
-                            fixedSize: Size(30.0, 20.0),
+                            fixedSize: const Size(30.0, 20.0),
                             backgroundColor: ColorRes.borderblue,
                             minimumSize: Size(deviceWidth * 0.2, 27.0)),
-                        child: Text("Rate"))
+                        child: const Text("Rate"))
                     : const SizedBox()
               ],
             );

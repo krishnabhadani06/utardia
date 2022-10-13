@@ -25,6 +25,7 @@ Widget rowCommon({required Image icon, required String title}) {
           style: robotoBoldTextStyle(fontSize: 16, color: ColorRes.buttonBlue),
         ),
       ),
+      // SizedBox(width: deviceWidth * 0.03),
       icons(iconData: IconRes.icNext, size: 30, color: ColorRes.buttonBlue),
     ],
   );

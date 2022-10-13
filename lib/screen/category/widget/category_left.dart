@@ -45,7 +45,7 @@ class CategoryLeft extends StatelessWidget {
                         ? BoxDecoration(
                             border: Border.all(color: ColorRes.blue, width: 1),
                             borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
+                                const BorderRadius.all(Radius.circular(8.0)),
                             color: ColorRes.white,
                             boxShadow: [
                               BoxShadow(

@@ -201,10 +201,11 @@ class OtpCenter extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: deviceHeight * 0.24,
+          height: deviceHeight * 0.05,
         ),
         materialButton(
-            txtButton: Strings.continues,
+            txtButton: Strings.submit,
+            // txtButton: Strings.continues,
             onPressed: () => provider.onTapContinue()),
       ],
     );

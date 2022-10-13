@@ -244,7 +244,7 @@ class RegistrationCenter extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 5),
               padding: const EdgeInsets.only(right: 25),
               alignment: Alignment.centerLeft,
-              height: 15,
+              // height: 15,
               width: double.infinity,
               // color: Colors.yellow,
               child: Text(
@@ -270,9 +270,8 @@ class RegistrationCenter extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.only(right: 25),
             alignment: Alignment.centerLeft,
-            height: 15,
+            // height: 15,
             width: double.infinity,
-            // color: Colors.yellow,
             child: Text(
               provider.errorTextPassword ?? "",
               style: robotoRegularTextStyle(
@@ -295,7 +294,7 @@ class RegistrationCenter extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.only(right: 25),
             alignment: Alignment.centerLeft,
-            height: 15,
+            // height: 15,
             width: double.infinity,
             // color: Colors.yellow,
             child: Text(

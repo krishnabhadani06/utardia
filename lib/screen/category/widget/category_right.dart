@@ -121,14 +121,28 @@ class _CategoryRightState extends State<CategoryRight> {
                               id: provider.categoryProducts!.data![index1].id
                                   .toString(),
                               onTap: () {
-                                provider1.onTapProductDetails(
-                                    index1,
-                                    provider.categoryProducts!.data![index1]
-                                        .links!.details
-                                        .toString(),
-                                    context,
-                                    provider.categoryProducts!.data![index1].id
-                                        .toString());
+                                provider1
+                                    .onTapProductDetails(
+                                        index1,
+                                        provider.categoryProducts!.data![index1]
+                                            .links!.details
+                                            .toString(),
+                                        context,
+                                        provider
+                                            .categoryProducts!.data![index1].id
+                                            .toString())
+                                    .whenComplete(() {
+                                  provider.init(Provider.of<HomeProvider>(
+                                          context,
+                                          listen: false)
+                                      .allHomeCategories[
+                                          Provider.of<CategoryProvider>(context,
+                                                  listen: false)
+                                              .selectedPageInd]
+                                      .links!
+                                      .products
+                                      .toString());
+                                });
                               },
                             );
                           },
@@ -195,7 +209,7 @@ class _CategoryRightState extends State<CategoryRight> {
                                                 Card(
                                                   elevation: 5.0,
                                                   shadowColor: ColorRes.black
-                                                      .withOpacity(0.3),
+                                                      .withOpacity(0.5),
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -204,26 +218,32 @@ class _CategoryRightState extends State<CategoryRight> {
                                                   child: Container(
                                                     height: deviceHeight * 0.11,
                                                     width: deviceWidth,
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: provider
-                                                          .allHomeSubCategories!
-                                                          .data![index1]
-                                                          .banner
-                                                          .toString(),
-                                                      //imageUrl: provider.allHomeCategories[index].banner.toString(),
-                                                      progressIndicatorBuilder: (context,
-                                                              url,
-                                                              downloadProgress) =>
-                                                          CircularProgressIndicator(
-                                                              value:
-                                                                  downloadProgress
-                                                                      .progress),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          Image.asset(
-                                                        AssetsImagesRes.girl1,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
+                                                                  16.0)),
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: provider
+                                                            .allHomeSubCategories!
+                                                            .data![index1]
+                                                            .banner
+                                                            .toString(),
+                                                        //imageUrl: provider.allHomeCategories[index].banner.toString(),
+                                                        progressIndicatorBuilder: (context,
+                                                                url,
+                                                                downloadProgress) =>
+                                                            CircularProgressIndicator(
+                                                                value: downloadProgress
+                                                                    .progress),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Image.asset(
+                                                          AssetsImagesRes.girl1,
+                                                        ),
+                                                        fit: BoxFit.fill,
                                                       ),
-                                                      fit: BoxFit.fill,
                                                     ),
                                                   ),
                                                 ),

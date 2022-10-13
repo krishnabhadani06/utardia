@@ -15,7 +15,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginProvider>(context);
-
     return SafeArea(
         child: Scaffold(
       resizeToAvoidBottomInset: false,
@@ -23,12 +22,14 @@ class LoginPage extends StatelessWidget {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 45.0),
+              padding: const EdgeInsets.only(top: 38.0),
               child: Column(
                 // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image.asset(
                     AssetsImagesRes.loginUtradiyaImage,
+                    height: deviceHeight * 0.174,
+                    width: deviceWidth * 0.403,
                     // height: 130,
                     // width: 130,
                     //fit: BoxFit.fill,
@@ -39,13 +40,14 @@ class LoginPage extends StatelessWidget {
                   Text(
                     Strings.utradia,
                     style: robotoRegularTextStyle(
-                            fontSize: 25, color: ColorRes.dailogBoxColor)
+                            fontSize: 20, color: ColorRes.borderblue)
                         .copyWith(fontWeight: FontWeight.w600),
                   ),
                   Text(
                     Strings.marketPlace,
                     style: robotoRegularTextStyle(
-                        fontSize: 10, color: ColorRes.dailogBoxColor),
+                        fontSize: 09, color: ColorRes.borderblue),
+                    // color: ColorRes.dailogBoxColor
                   ),
                   LoginCenter(),
                   SizedBox(

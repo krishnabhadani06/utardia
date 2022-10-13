@@ -5,7 +5,6 @@ import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/dashboard/favorite/widget/favorite_center.dart';
-import 'package:utardia/screen/dashboard/home/home_screen.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
@@ -85,7 +84,7 @@ class FavoriteScreen extends StatelessWidget {
                                 crossAxisSpacing: 10.0,
                                 mainAxisSpacing: 8.0,
                                 childAspectRatio:
-                                    deviceWidth / (deviceHeight * 0.80),
+                                    deviceWidth / (deviceHeight * 0.70),
                               ),
                               itemCount: provider.Wishlist2!.data!.length == 0
                                   ? 4

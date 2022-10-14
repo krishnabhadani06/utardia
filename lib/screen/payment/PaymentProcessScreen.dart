@@ -1,6 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +33,12 @@ class PaymentProcessScreen extends StatelessWidget {
             },
             initialUrlRequest: URLRequest(
                 url: Uri.parse(
-                    "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=${id}")),
+                    "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=$id")),
             onUpdateVisitedHistory: (_, Uri? uri, __) {
-              print("@@@@@@ ${uri!.path}");
-              if (uri.path.contains("success")) {
+              if (kDebugMode) {
+                print("@@@@@@ ${uri!.path}");
+              }
+              if (uri!.path.contains("success")) {
                 showToast("Payment successfull");
 
                 provider.callPaymentResponse(context, id.toString());
@@ -48,7 +49,7 @@ class PaymentProcessScreen extends StatelessWidget {
                         builder: (context) => PaymentStatusScreen(
                               isSuccess: 1,
                               link:
-                                  "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=${id}",
+                                  "${ApiEndPoint.baseUrl}paystack/init?payment_type=cart_payment&user_id=${PrefService.getString(PrefKeys.uid)}&combined_order_id=$id",
                             )),
                     (Route<dynamic> route) => false);
               }

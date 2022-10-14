@@ -11,7 +11,6 @@ import 'package:utardia/model/wishList_model/getWishList_model.dart';
 import 'package:utardia/model/wishList_model/wishlistModel.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
-import 'package:utardia/screen/dashboard/home/home_screen.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
@@ -122,11 +121,11 @@ class FavoriteProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> checkWishList(String id, String user_id) async {
+  Future<bool> checkWishList(String id, String userId) async {
     isLiked = false;
     try {
       String url =
-          "${ApiEndPoint.checkWishList}?product_id=${id}&user_id=${user_id}";
+          "${ApiEndPoint.checkWishList}?product_id=$id&user_id=$userId";
       http.Response? res = await HttpService.getApi(url: url);
       if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> map =

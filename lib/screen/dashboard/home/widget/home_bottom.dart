@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
-import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/category_screen.dart';
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/category_title.dart';
 import 'package:utardia/screen/dashboard/home/widget/imageSliderBottom.dart';
-import 'package:utardia/screen/dashboard/home/widget/slider.dart';
-
 import 'product_card.dart';
 
 class HomeBottom extends StatelessWidget {
@@ -19,7 +16,7 @@ class HomeBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context);
     final provider1 = Provider.of<ProductDetailsProvider>(context);
-    final provider2 = Provider.of<CategoryProvider>(context);
+    // final provider2 = Provider.of<CategoryProvider>(context);
     return Column(children: [
       // if (index % 2 == 0) sliderHome(context: context),
       if (index % 2 == 0)
@@ -35,7 +32,7 @@ class HomeBottom extends StatelessWidget {
                       provider.allHomeTopCategories[index].name.toString()));
             }));
           }),
-      Container(
+      SizedBox(
         height: 220,
         width: MediaQuery.of(context).size.width,
         //color: Colors.yellow,

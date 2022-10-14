@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/common/toast_msg.dart';
-import 'package:utardia/screen/category/product_details/product_details_provider.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
@@ -14,10 +13,10 @@ class CartCenter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider1 = Provider.of<ProductDetailsProvider>(context);
+    // final provider1 = Provider.of<ProductDetailsProvider>(context);
     final provider = Provider.of<CartProvider>(context);
     return Container(
-      margin: EdgeInsets.only(right: 20.0),
+      margin: const EdgeInsets.only(right: 20.0),
       height: deviceHeight / 30,
       width: deviceWidth / 5,
       decoration: BoxDecoration(

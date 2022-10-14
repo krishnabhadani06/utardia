@@ -111,7 +111,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
                     return DashScreen();
                   }));
                 },
-                child: Text(Strings.backHome))
+                child: const Text(Strings.backHome))
           ],
         ),
       ),

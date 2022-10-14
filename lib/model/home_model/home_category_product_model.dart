@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-HomeCategoryProductApi homeCategoryProductApiFromJson(String str) => HomeCategoryProductApi.fromJson(json.decode(str));
+HomeCategoryProductApi homeCategoryProductApiFromJson(String str) =>
+    HomeCategoryProductApi.fromJson(json.decode(str));
 
-String homeCategoryProductApiToJson(HomeCategoryProductApi data) => json.encode(data.toJson());
+String homeCategoryProductApiToJson(HomeCategoryProductApi data) =>
+    json.encode(data.toJson());
 
 class HomeCategoryProductApi {
   HomeCategoryProductApi({
@@ -23,21 +25,23 @@ class HomeCategoryProductApi {
   bool? success;
   int? status;
 
-  factory HomeCategoryProductApi.fromJson(Map<String, dynamic> json) => HomeCategoryProductApi(
-    data: List<HomeCategoryProduct>.from(json["data"].map((x) => HomeCategoryProduct.fromJson(x))),
-    links: HomeCategoryProductApiLinks.fromJson(json["links"]),
-    meta: Meta.fromJson(json["meta"]),
-    success: json["success"],
-    status: json["status"],
-  );
+  factory HomeCategoryProductApi.fromJson(Map<String, dynamic> json) =>
+      HomeCategoryProductApi(
+        data: List<HomeCategoryProduct>.from(
+            json["data"].map((x) => HomeCategoryProduct.fromJson(x))),
+        links: HomeCategoryProductApiLinks.fromJson(json["links"]),
+        meta: Meta.fromJson(json["meta"]),
+        success: json["success"],
+        status: json["status"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": List<dynamic>.from(data!.map((x) => x.toJson())),
-    "links": links!.toJson(),
-    "meta": meta!.toJson(),
-    "success": success,
-    "status": status,
-  };
+        "data": List<dynamic>.from(data!.map((x) => x.toJson())),
+        "links": links!.toJson(),
+        "meta": meta!.toJson(),
+        "success": success,
+        "status": status,
+      };
 }
 
 class HomeCategoryProduct {
@@ -67,33 +71,36 @@ class HomeCategoryProduct {
   List<ChoiceOption>? choiceOptions;
   DatumLinks? links;
 
-  factory HomeCategoryProduct.fromJson(Map<String, dynamic> json) => HomeCategoryProduct(
-    id: json["id"],
-    name: json["name"],
-    thumbnailImage: json["thumbnail_image"],
-    hasDiscount: json["has_discount"],
-    strokedPrice: json["stroked_price"],
-    mainPrice: json["main_price"],
-    rating: json["rating"],
-    sales: json["sales"],
-    isGrocery: json["is_grocery"],
-    choiceOptions: List<ChoiceOption>.from(json["choice_options"].map((x) => ChoiceOption.fromJson(x))),
-    links: DatumLinks.fromJson(json["links"]),
-  );
+  factory HomeCategoryProduct.fromJson(Map<String, dynamic> json) =>
+      HomeCategoryProduct(
+        id: json["id"],
+        name: json["name"],
+        thumbnailImage: json["thumbnail_image"],
+        hasDiscount: json["has_discount"],
+        strokedPrice: json["stroked_price"],
+        mainPrice: json["main_price"],
+        rating: json["rating"],
+        sales: json["sales"],
+        isGrocery: json["is_grocery"],
+        choiceOptions: List<ChoiceOption>.from(
+            json["choice_options"].map((x) => ChoiceOption.fromJson(x))),
+        links: DatumLinks.fromJson(json["links"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "thumbnail_image": thumbnailImage,
-    "has_discount": hasDiscount,
-    "stroked_price": strokedPrice,
-    "main_price": mainPrice,
-    "rating": rating,
-    "sales": sales,
-    "is_grocery": isGrocery,
-    "choice_options": List<dynamic>.from(choiceOptions!.map((x) => x.toJson())),
-    "links": links!.toJson(),
-  };
+        "id": id,
+        "name": name,
+        "thumbnail_image": thumbnailImage,
+        "has_discount": hasDiscount,
+        "stroked_price": strokedPrice,
+        "main_price": mainPrice,
+        "rating": rating,
+        "sales": sales,
+        "is_grocery": isGrocery,
+        "choice_options":
+            List<dynamic>.from(choiceOptions!.map((x) => x.toJson())),
+        "links": links!.toJson(),
+      };
 }
 
 class ChoiceOption {
@@ -108,16 +115,16 @@ class ChoiceOption {
   List<String>? options;
 
   factory ChoiceOption.fromJson(Map<String, dynamic> json) => ChoiceOption(
-    name: json["name"],
-    title: json["title"],
-    options: List<String>.from(json["options"].map((x) => x)),
-  );
+        name: json["name"],
+        title: json["title"],
+        options: List<String>.from(json["options"].map((x) => x)),
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "title": title,
-    "options": List<dynamic>.from(options!.map((x) => x)),
-  };
+        "name": name,
+        "title": title,
+        "options": List<dynamic>.from(options!.map((x) => x)),
+      };
 }
 
 class DatumLinks {
@@ -128,12 +135,12 @@ class DatumLinks {
   String? details;
 
   factory DatumLinks.fromJson(Map<String, dynamic> json) => DatumLinks(
-    details: json["details"],
-  );
+        details: json["details"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "details": details,
-  };
+        "details": details,
+      };
 }
 
 class HomeCategoryProductApiLinks {
@@ -149,19 +156,20 @@ class HomeCategoryProductApiLinks {
   dynamic prev;
   String? next;
 
-  factory HomeCategoryProductApiLinks.fromJson(Map<String, dynamic> json) => HomeCategoryProductApiLinks(
-    first: json["first"],
-    last: json["last"],
-    prev: json["prev"],
-    next: json["next"],
-  );
+  factory HomeCategoryProductApiLinks.fromJson(Map<String, dynamic> json) =>
+      HomeCategoryProductApiLinks(
+        first: json["first"],
+        last: json["last"],
+        prev: json["prev"],
+        next: json["next"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "first": first,
-    "last": last,
-    "prev": prev,
-    "next": next,
-  };
+        "first": first,
+        "last": last,
+        "prev": prev,
+        "next": next,
+      };
 }
 
 class Meta {
@@ -186,26 +194,26 @@ class Meta {
   int? total;
 
   factory Meta.fromJson(Map<String, dynamic> json) => Meta(
-    currentPage: json["current_page"],
-    from: json["from"],
-    lastPage: json["last_page"],
-    links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
-    path: json["path"],
-    perPage: json["per_page"],
-    to: json["to"],
-    total: json["total"],
-  );
+        currentPage: json["current_page"],
+        from: json["from"],
+        lastPage: json["last_page"],
+        links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
+        path: json["path"],
+        perPage: json["per_page"],
+        to: json["to"],
+        total: json["total"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "current_page": currentPage,
-    "from": from,
-    "last_page": lastPage,
-    "links": List<dynamic>.from(links!.map((x) => x.toJson())),
-    "path": path,
-    "per_page": perPage,
-    "to": to,
-    "total": total,
-  };
+        "current_page": currentPage,
+        "from": from,
+        "last_page": lastPage,
+        "links": List<dynamic>.from(links!.map((x) => x.toJson())),
+        "path": path,
+        "per_page": perPage,
+        "to": to,
+        "total": total,
+      };
 }
 
 class Link {
@@ -220,14 +228,14 @@ class Link {
   bool? active;
 
   factory Link.fromJson(Map<String, dynamic> json) => Link(
-    url: json["url"] == null ? null : json["url"],
-    label: json["label"],
-    active: json["active"],
-  );
+        url: json["url"],
+        label: json["label"],
+        active: json["active"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "url": url == null ? null : url,
-    "label": label,
-    "active": active,
-  };
+        "url": url,
+        "label": label,
+        "active": active,
+      };
 }

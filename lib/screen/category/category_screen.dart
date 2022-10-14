@@ -40,8 +40,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CategoryProvider>(context);
-    final provider2 = Provider.of<HomeProvider>(context);
+    // final provider = Provider.of<CategoryProvider>(context);
+    // final provider2 = Provider.of<HomeProvider>(context);
 
     // if (widget.select != 0) {
     //   provider.pageCon =

@@ -102,7 +102,7 @@ class AddressScreen extends StatelessWidget {
                                         size: 35,
                                       ),
                                       SizedBox(width: deviceWidth * 0.04),
-                                      Container(
+                                      SizedBox(
                                         width: deviceWidth * 0.66,
                                         // color: Colors.blue,
                                         child: Column(

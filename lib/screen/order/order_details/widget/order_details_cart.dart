@@ -149,10 +149,10 @@ class OrderDetailsCart extends StatelessWidget {
                               });
                         },
                         style: ElevatedButton.styleFrom(
-                            fixedSize: Size(30.0, 20.0),
+                            fixedSize: const Size(30.0, 20.0),
                             backgroundColor: ColorRes.borderblue,
                             minimumSize: Size(deviceWidth * 0.2, 27.0)),
-                        child: Text("Rate"))
+                        child: const Text("Rate"))
                     : const SizedBox()
               ],
             );

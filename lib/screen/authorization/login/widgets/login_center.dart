@@ -11,6 +11,8 @@ import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/string.dart';
 
 class LoginCenter extends StatelessWidget {
+  const LoginCenter({super.key});
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginProvider>(context);

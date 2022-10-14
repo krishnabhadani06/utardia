@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:http/http.dart' as http;
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/home_screen_slider_model/home_screen_slider_model.dart';

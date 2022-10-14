@@ -121,7 +121,9 @@ class ProductDetailsProvider extends ChangeNotifier {
       allTodaysProductDealData();
     } else {
       allTodayProducts = todayProduct!.data!;
-      print(allTodayProducts);
+      if (kDebugMode) {
+        print(allTodayProducts);
+      }
       loader = false;
       notifyListeners();
     }
@@ -279,7 +281,7 @@ class ProductDetailsProvider extends ChangeNotifier {
 
             navigator.currentState!
                 .pushReplacement(MaterialPageRoute(builder: (context) {
-              return CartScreen();
+              return const CartScreen();
             }));
           }
           showToast(addToCartModel.message.toString());
@@ -295,7 +297,9 @@ class ProductDetailsProvider extends ChangeNotifier {
       }
     } catch (e, x) {
       Logger().e(e.toString() + x.toString());
-      print(e.toString() + x.toString());
+      if (kDebugMode) {
+        print(e.toString() + x.toString());
+      }
       loader = false;
     }
   }
@@ -304,8 +308,8 @@ class ProductDetailsProvider extends ChangeNotifier {
     // Logger().e(homeProductDetail!.choiceOptions![0].options![currentMaterial]
     //     .toString());
 
-    if (homeProductDetail!.choiceOptions!.length != 0 &&
-        homeProductDetail!.colors!.length != 0) {
+    if (homeProductDetail!.choiceOptions!.isNotEmpty &&
+        homeProductDetail!.colors!.isNotEmpty) {
       for (var element in homeProductDetail!.choices!) {
         // Logger().e(element.qty!.toInt());
         if (element.color.toString() ==
@@ -315,7 +319,7 @@ class ProductDetailsProvider extends ChangeNotifier {
                     .toString()) {
           // Logger().e(element.qty);
           currentqty = element.qty!;
-          Logger().e("${currentqty}:::-> ${element.qty!}");
+          Logger().e("$currentqty:::-> ${element.qty!}");
           notifyListeners();
         }
       }
@@ -330,11 +334,10 @@ class ProductDetailsProvider extends ChangeNotifier {
     navigator.currentState!.pop();
   }
 
-  void checkWishList(String Pid, String uid) async {
+  void checkWishList(String pid, String uid) async {
     isLiked = false;
     try {
-      String url =
-          "${ApiEndPoint.checkWishList}?product_id=${Pid}&user_id=${uid}";
+      String url = "${ApiEndPoint.checkWishList}?product_id=$pid&user_id=$uid";
       http.Response? res = await HttpService.getApi(url: url);
       if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> map =
@@ -457,7 +460,7 @@ class ProductDetailsProvider extends ChangeNotifier {
     try {
       if (PrefService.getString(PrefKeys.uid) != "") {
         String url =
-            "${ApiEndPoint.removeWishList}?product_id=${id}&user_id=${PrefService.getString(PrefKeys.uid)}";
+            "${ApiEndPoint.removeWishList}?product_id=$id&user_id=${PrefService.getString(PrefKeys.uid)}";
         http.Response? res = await HttpService.getApi(url: url);
         if (res!.statusCode == 200) {
           Map<dynamic, dynamic> map = jsonDecode(res.body);
@@ -502,7 +505,7 @@ class ProductDetailsProvider extends ChangeNotifier {
     try {
       if (PrefService.getString(PrefKeys.uid) != "") {
         String url =
-            "${ApiEndPoint.addWishList}?product_id=${id}&user_id=${PrefService.getString(PrefKeys.uid)}";
+            "${ApiEndPoint.addWishList}?product_id=$id&user_id=${PrefService.getString(PrefKeys.uid)}";
         http.Response? res = await HttpService.getApi(url: url);
         if (res!.statusCode == 200) {
           Map<dynamic, dynamic> map = jsonDecode(res.body);
@@ -542,25 +545,25 @@ class ProductDetailsProvider extends ChangeNotifier {
   }
 
   void onTapSubmitQuery(
-      String productId, String uid, String Des, String pname) async {
-    checkConversation(productId, uid, Des, pname);
+      String productId, String uid, String des, String pName) async {
+    checkConversation(productId, uid, des, pName);
   }
 
   void checkConversation(
-      String pid, String uid, String des, String Pname) async {
+      String pid, String uid, String des, String pName) async {
     try {
       http.Response? res = await HttpService.getApi(header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
-      }, url: "${ApiEndPoint.checkConversation}?product_id=${pid}&user_id=${uid}");
-      if (res!.statusCode == 200 && res != null) {
+      }, url: "${ApiEndPoint.checkConversation}?product_id=$pid&user_id=$uid");
+      if (res!.statusCode == 200) {
         Map<dynamic, dynamic> data =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
         Logger().e(jsonDecode(res.body));
         if (data['is_conversation'] == false || data['conversation_id'] != 0) {
           insertMessage(
-              pid, uid, des, Pname, data['conversation_id'].toString());
+              pid, uid, des, pName, data['conversation_id'].toString());
         } else {
-          createConversation(pid, uid, des, Pname);
+          createConversation(pid, uid, des, pName);
         }
       } else {
         showToast("Error Code ${res.statusCode}");
@@ -572,7 +575,7 @@ class ProductDetailsProvider extends ChangeNotifier {
   }
 
   void createConversation(
-      String pid, String uid, String Des, String Pname) async {
+      String pid, String uid, String des, String pName) async {
     try {
       http.Response? res = await HttpService.postApi(
           url: ApiEndPoint.createConversation,
@@ -581,10 +584,10 @@ class ProductDetailsProvider extends ChangeNotifier {
                 "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
           },
           body: {
-            "product_id": "${pid}",
-            "user_id": "${uid}",
-            "title": " Query of ${Pname} Product ",
-            "message": "${Des}"
+            "product_id": pid,
+            "user_id": uid,
+            "title": " Query of $pName Product ",
+            "message": des
           });
 
       if (res != null && res.statusCode == 200) {
@@ -593,7 +596,7 @@ class ProductDetailsProvider extends ChangeNotifier {
 
         if (data['result']) {
           insertMessage(
-              pid, uid, Des, Pname, data['conversation_id'].toString());
+              pid, uid, des, pName, data['conversation_id'].toString());
         } else {
           kDebugMode ? Logger().e(data['message']) : "";
         }
@@ -606,19 +609,19 @@ class ProductDetailsProvider extends ChangeNotifier {
     }
   }
 
-  void insertMessage(String pid, String uid, String des, String pname,
+  void insertMessage(String pid, String uid, String des, String pName,
       String conversation_id) async {
     try {
       http.Response? res =
           await HttpService.postApi(url: ApiEndPoint.pushMessage, header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, body: {
-        "conversation_id": "${conversation_id}",
-        "user_id": "${uid}",
-        "message": "${des}"
+        "conversation_id": conversation_id,
+        "user_id": uid,
+        "message": des
       });
       Logger().e(jsonDecode(res!.body));
-      if (res != null && res.statusCode == 200) {
+      if (res.statusCode == 200) {
         Map<dynamic, dynamic> data =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
         if (data['success']) {

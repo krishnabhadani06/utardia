@@ -77,7 +77,7 @@ class _CategoryRightState extends State<CategoryRight> {
                                     style: natoMediumTextStyle(
                                         fontSize: 14, color: ColorRes.grey),
                                   )
-                                : Text("")),
+                                : const Text("")),
                         GridView.builder(
                           shrinkWrap: true,
                           physics: const BouncingScrollPhysics(),
@@ -142,10 +142,10 @@ class _CategoryRightState extends State<CategoryRight> {
                                       style: natoSemiBoldTextStyle(
                                           fontSize: 15, color: ColorRes.grey),
                                     )
-                                  : Text("")
-                              : Text(""),
+                                  : const Text("")
+                              : const Text(""),
                         ]),
-                        Container(
+                        SizedBox(
                           height: deviceHeight * 0.25,
                           width: deviceWidth,
                           //color: ColorRes.yellow,
@@ -164,7 +164,7 @@ class _CategoryRightState extends State<CategoryRight> {
                                     onTap: () {
                                       navigator.currentState!.push(
                                           MaterialPageRoute(builder: (context) {
-                                        return SubCategoryScreen();
+                                        return const SubCategoryScreen();
                                       }));
                                     },
                                     // provider2.onTapCategory(
@@ -201,7 +201,7 @@ class _CategoryRightState extends State<CategoryRight> {
                                                         BorderRadius.circular(
                                                             8.0),
                                                   ),
-                                                  child: Container(
+                                                  child: SizedBox(
                                                     height: deviceHeight * 0.11,
                                                     width: deviceWidth,
                                                     child: CachedNetworkImage(

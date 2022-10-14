@@ -4,11 +4,8 @@ import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/profile/profile_provider.dart';
 import 'package:utardia/screen/dashboard/profile/widget/icon_comma.dart';
-import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
-import 'package:utardia/util/icon_res.dart';
 import 'package:utardia/util/image_res.dart';
-import 'package:utardia/util/pref_key.dart';
 import 'package:utardia/util/string.dart';
 
 class ProfileDrawerAccount extends StatefulWidget {
@@ -40,8 +37,8 @@ class _ProfileDrawerAccountState extends State<ProfileDrawerAccount> {
       return SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 13.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 13.0),
               /* child: Row(
                 children: [
                   CircleAvatar(

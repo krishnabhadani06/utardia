@@ -84,7 +84,7 @@ class AddressProvider extends ChangeNotifier {
   String? errorTextLandmark;
   String? errorTextPincode;
 
-  userGetAddress? userAddress;
+  UserGetAddress? userAddress;
   bool isHome = true, isWork = false, isOther = false;
 
   void onTapCountry(Country country) {
@@ -296,7 +296,7 @@ class AddressProvider extends ChangeNotifier {
     }
   }
 
-  void getStates(String State_id, String City_id) async {
+  void getStates(String StateId, String CityId) async {
     String url = '';
     try {
       url = "${ApiEndPoint.getStateByCountries}101";
@@ -309,9 +309,9 @@ class AddressProvider extends ChangeNotifier {
           return StateModel.fromJson(e);
         }).toList();
         if (stateList.isNotEmpty) {
-          if (City_id != "" && State_id != "") {
+          if (CityId != "" && StateId != "") {
             for (var element in stateList) {
-              if (element.id.toString() == State_id) {
+              if (element.id.toString() == StateId) {
                 currentState = element;
               }
             }
@@ -319,13 +319,13 @@ class AddressProvider extends ChangeNotifier {
               print(currentState == null);
             }
             if (currentState != null) {
-              getCity(currentState!.id.toString(), City_id, State_id);
+              getCity(currentState!.id.toString(), CityId, StateId);
             }
 
             notifyListeners();
           } else {
             currentState = stateList[0];
-            getCity(currentState!.id.toString(), City_id, State_id);
+            getCity(currentState!.id.toString(), CityId, StateId);
             // notifyListeners();
           }
         }
@@ -338,7 +338,7 @@ class AddressProvider extends ChangeNotifier {
     }
   }
 
-  void getCity(String id, String City_id, String State_id) async {
+  void getCity(String id, String CityId, String StateId) async {
     String url = '';
     if (cityList.isNotEmpty) {
       cityList.clear();
@@ -356,10 +356,10 @@ class AddressProvider extends ChangeNotifier {
           return CityModel.fromJson(e);
         }).toList();
 
-        if (City_id != null && cityList.isNotEmpty) {
-          if (State_id == id) {
+        if (cityList.isNotEmpty) {
+          if (StateId == id) {
             for (var element in cityList) {
-              if (element.id.toString() == City_id) {
+              if (element.id.toString() == CityId) {
                 currentCity = element;
               }
             }
@@ -440,7 +440,7 @@ class AddressProvider extends ChangeNotifier {
       if (res != null && res.statusCode == 200) {
         Map<String, dynamic> map = jsonDecode(res.body) as Map<String, dynamic>;
 
-        userAddress = userGetAddress.fromJson(map);
+        userAddress = UserGetAddress.fromJson(map);
         if (userAddress != null) {
           notifyListeners();
         }

@@ -29,8 +29,8 @@ class PaymentProvider extends ChangeNotifier {
   late CartListModel cartListChoice;
   late CampaingListModel campaingListChoice = campaingDataList[0];
 
-  List<paymentModel>? paymentTypeList;
-  paymentModel? currentPayment;
+  List<PaymentModel>? paymentTypeList;
+  PaymentModel? currentPayment;
 
   //Coupen Codes
   List<CartBaseCoupenModel>? coupenList;
@@ -38,9 +38,9 @@ class PaymentProvider extends ChangeNotifier {
   //address model
   List<addressModel>? addressList;
   addressModel? currentAddress;
-  cartSummaryModel? cartSummary;
+  CartSummaryModel? cartSummary;
   bool loader = false;
-  shipingAddressModel? shippingAddress;
+  ShipingAddressModel? shippingAddress;
   // AddressListDataModel _addressListChoice = addressDataList[0];
 
   void onDropDownItemSelected(addressModel newSelectedBank) {
@@ -48,7 +48,7 @@ class PaymentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onDropDownCartSelected(paymentModel newSelectedCart) {
+  void onDropDownCartSelected(PaymentModel newSelectedCart) {
     currentPayment = newSelectedCart;
     notifyListeners();
   }
@@ -99,7 +99,7 @@ class PaymentProvider extends ChangeNotifier {
       if (res != null && res.statusCode == 200) {
         List<dynamic> paymentRawList = jsonDecode(res.body) as List<dynamic>;
         paymentTypeList = paymentRawList.map((e) {
-          return paymentModel.fromJson(e);
+          return PaymentModel.fromJson(e);
         }).toList();
         if (paymentTypeList != null) {
           paymentTypeList!.forEach((element) {
@@ -178,7 +178,7 @@ class PaymentProvider extends ChangeNotifier {
                 "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
           });
       if (res != null && res.statusCode == 200) {
-        cartSummary = cartSummaryModel.fromJson(jsonDecode(res.body));
+        cartSummary = CartSummaryModel.fromJson(jsonDecode(res.body));
         if (cartSummary != null) {
           notifyListeners();
         }

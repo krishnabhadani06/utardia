@@ -5,7 +5,6 @@ import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/profile/profile_provider.dart';
 import 'package:utardia/screen/dashboard/profile/widget/icon_comma.dart';
 import 'package:utardia/util/color_res.dart';
-import 'package:utardia/util/icon_res.dart';
 import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 

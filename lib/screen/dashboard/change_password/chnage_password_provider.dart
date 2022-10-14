@@ -156,8 +156,12 @@ class ChangePasswordProvider extends ChangeNotifier {
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
 
       if (response.statusCode == 200) {
-        print(response.body);
-        print("true condition");
+        if (kDebugMode) {
+          print(response.body);
+        }
+        if (kDebugMode) {
+          print("true condition");
+        }
         // Fluttertoast.showToast(msg: "password Change SuccessFully");
         Fluttertoast.showToast(msg: response.body);
         // navigator.currentState!.pushReplacement(

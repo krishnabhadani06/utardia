@@ -1,11 +1,11 @@
-class shipingAddressModel {
+class ShipingAddressModel {
   List<Data>? data;
   bool? success;
   int? status;
 
-  shipingAddressModel({this.data, this.success, this.status});
+  ShipingAddressModel({this.data, this.success, this.status});
 
-  shipingAddressModel.fromJson(Map<String, dynamic> json) {
+  ShipingAddressModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {

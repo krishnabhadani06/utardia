@@ -15,7 +15,7 @@ class CartListApi {
       {int? id, String? variant, int? quantity}) async {
     try {
       String uid = PrefService.getString(PrefKeys.uid);
-      String url = "${ApiEndPoint.cartList}${uid}";
+      String url = "${ApiEndPoint.cartList}$uid";
 
       String accesToken = PrefService.getString(PrefKeys.accessToken);
 
@@ -33,7 +33,9 @@ class CartListApi {
           return CartListModel();
         }
       } else {
-        print(jsonDecode(response!.body));
+        if (kDebugMode) {
+          print(jsonDecode(response!.body));
+        }
         return CartListModel.fromJson({});
       }
     } catch (e) {
@@ -47,7 +49,7 @@ class CartListApi {
   }) async {
     try {
       String accesToken = PrefService.getString(PrefKeys.accessToken);
-      String url = "${ApiEndPoint.deleteCart}${id}";
+      String url = "${ApiEndPoint.deleteCart}$id";
       http.Response? response = await HttpService.getApi(url: url, header: {
         "X-Requested-With": "XMLHttpRequest",
         'Authorization': "Bearer $accesToken",
@@ -82,8 +84,8 @@ class CartListApi {
         "X-Requested-With": "XMLHttpRequest",
         'Authorization': "Bearer $accessToken",
       }, body: {
-        "cart_ids": "${id}",
-        "cart_quantities": "${quantity}"
+        "cart_ids": "$id",
+        "cart_quantities": "$quantity"
       });
       if (response != null && response.statusCode == 200) {
         Map<dynamic, dynamic> data = jsonDecode(response.body);

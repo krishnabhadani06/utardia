@@ -20,10 +20,12 @@ class RegistrationScreen extends StatelessWidget {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 74.0),
+              padding: const EdgeInsets.only(top: 58.0),
               child: Column(children: [
                 Image.asset(
                   AssetsImagesRes.loginUtradiyaImage,
+                  height: deviceHeight * 0.174,
+                  width: deviceWidth * 0.403,
                   // height: 130,
                   // width: 130,
                   //fit: BoxFit.fill,
@@ -34,13 +36,13 @@ class RegistrationScreen extends StatelessWidget {
                 Text(
                   Strings.utradia,
                   style: robotoRegularTextStyle(
-                          fontSize: 25, color: ColorRes.dailogBoxColor)
+                          fontSize: 20.0, color: ColorRes.dailogBoxColor)
                       .copyWith(fontWeight: FontWeight.w600),
                 ),
                 Text(
                   Strings.marketPlace,
                   style: robotoRegularTextStyle(
-                      fontSize: 10, color: ColorRes.dailogBoxColor),
+                      fontSize: 09, color: ColorRes.dailogBoxColor),
                 ),
                 const RegistrationCenter(),
                 const RegistrationBottom(),

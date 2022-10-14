@@ -104,9 +104,9 @@ class _CartScreenState extends State<CartScreen> {
                                             color: ColorRes.white,
                                             boxShadow: [
                                               BoxShadow(
-                                                offset: Offset(2, 2),
+                                                offset: const Offset(2, 2),
                                                 blurRadius: 2,
-                                                color: Color.fromRGBO(
+                                                color: const Color.fromRGBO(
                                                         0, 0, 0, 0.25)
                                                     .withOpacity(0.15),
                                                 // color: ColorRes.lightGrey,
@@ -169,12 +169,17 @@ class _CartScreenState extends State<CartScreen> {
                                                           top: 12.0,
                                                           left: 10.0,
                                                         ),
-                                                        child: Container(
+                                                        child: SizedBox(
                                                           // color: Colors.black,
                                                           width: deviceWidth *
                                                               0.55,
                                                           child: Text(
-                                                            "${provider.cartListDataModel.cartItems![index].productName.toString()}",
+                                                            provider
+                                                                .cartListDataModel
+                                                                .cartItems![
+                                                                    index]
+                                                                .productName
+                                                                .toString(),
                                                             maxLines: 3,
                                                             overflow:
                                                                 TextOverflow
@@ -250,7 +255,12 @@ class _CartScreenState extends State<CartScreen> {
                                                                       .center,
                                                               child: Center(
                                                                   child: Text(
-                                                                "${provider.cartListDataModel.cartItems![index].variation.toString()}",
+                                                                provider
+                                                                    .cartListDataModel
+                                                                    .cartItems![
+                                                                        index]
+                                                                    .variation
+                                                                    .toString(),
                                                                 style: TextStyle(
                                                                     color: Colors
                                                                             .grey[

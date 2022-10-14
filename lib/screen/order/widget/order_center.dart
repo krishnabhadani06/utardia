@@ -127,6 +127,10 @@ class OrderCenter extends StatelessWidget {
                                       Container(
                                         height: 25,
                                         width: 25,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          // border: Border.all(width: 1.0),
+                                        ),
                                         child: Text(
                                           provider
                                               .orderModel
@@ -135,14 +139,10 @@ class OrderCenter extends StatelessWidget {
                                               .photos![0]
                                               .variant
                                               .toString(),
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: ColorRes.grey,
                                               fontSize: 10,
                                               fontWeight: FontWeight.w400),
-                                        ),
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          // border: Border.all(width: 1.0),
                                         ),
                                       ),
                                     ],
@@ -169,7 +169,7 @@ class OrderCenter extends StatelessWidget {
                                       provider.orderModel.data![inde!]
                                           .productDetail![i].strokedPrice
                                           .toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           decoration:
                                               TextDecoration.lineThrough,
                                           color: ColorRes.grey,
@@ -181,7 +181,7 @@ class OrderCenter extends StatelessWidget {
                                     ),
                                     Text(
                                       "(${provider.orderModel.data![inde!].productDetail![i].discount.toString()} ${provider.orderModel.data![inde!].productDetail![i].discountType == "percent" ? "%" : "Rs"} off)",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           // decoration: TextDecoration.lineThrough,
                                           color: ColorRes.green,
                                           fontSize: 11,

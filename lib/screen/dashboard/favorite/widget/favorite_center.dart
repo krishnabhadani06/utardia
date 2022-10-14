@@ -143,7 +143,9 @@ class FavoriteCenter extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "${provider.Wishlist2!.data![index ?? 0].product!.rating.toString()}",
+                              provider
+                                  .Wishlist2!.data![index ?? 0].product!.rating
+                                  .toString(),
                               // widget.rate!,
                               style: const TextStyle(
                                   color: ColorRes.white, fontSize: 12),

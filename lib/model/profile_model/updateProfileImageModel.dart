@@ -51,7 +51,7 @@ class UpdateImage {
   String? name;
   String? type;
   String? email;
-  dynamic? avatar;
+  dynamic avatar;
   String? avatarOriginal;
   String? address;
   String? city;

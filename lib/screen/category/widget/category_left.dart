@@ -45,7 +45,7 @@ class CategoryLeft extends StatelessWidget {
                         ? BoxDecoration(
                             border: Border.all(color: ColorRes.blue, width: 1),
                             borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
+                                const BorderRadius.all(Radius.circular(8.0)),
                             color: ColorRes.white,
                             boxShadow: [
                               BoxShadow(
@@ -67,7 +67,7 @@ class CategoryLeft extends StatelessWidget {
                         // crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
+                          SizedBox(
                             height: deviceHeight * 0.07,
                             width: deviceWidth * 0.22,
                             child: CachedNetworkImage(

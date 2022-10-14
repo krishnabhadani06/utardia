@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
@@ -29,7 +31,9 @@ class ForgotPasswordApi {
       http.Response? response = await http.post(Uri.parse(url),
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
       if (response.statusCode == 200) {
-        print(response.body);
+        if (kDebugMode) {
+          print(response.body);
+        }
         Fluttertoast.showToast(msg: response.body.toString());
         if (jsonDecode(response.body)['result']) {
           // Provider.of<OtpProvider>(context, listen: false).isForgot = true;

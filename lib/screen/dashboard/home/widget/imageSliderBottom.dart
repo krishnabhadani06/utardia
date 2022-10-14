@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:utardia/common/helper.dart';
@@ -18,7 +19,9 @@ Widget sliderBottomHome({
     indicatorColor: ColorRes.blue,
     indicatorBackgroundColor: Colors.grey,
     onPageChanged: (value) {
-      print('Page changed: $value');
+      if (kDebugMode) {
+        print('Page changed: $value');
+      }
     },
     autoPlayInterval: 3000,
     isLoop: true,

@@ -1,4 +1,4 @@
-class cartSummaryModel {
+class CartSummaryModel {
   String? subTotal;
   String? tax;
   String? shippingCost;
@@ -11,7 +11,7 @@ class cartSummaryModel {
   String? couponCode;
   bool? couponApplied;
 
-  cartSummaryModel(
+  CartSummaryModel(
       {this.subTotal,
       this.tax,
       this.shippingCost,
@@ -24,7 +24,7 @@ class cartSummaryModel {
       this.couponCode,
       this.couponApplied});
 
-  cartSummaryModel.fromJson(Map<String, dynamic> json) {
+  CartSummaryModel.fromJson(Map<String, dynamic> json) {
     subTotal = json['sub_total'];
     tax = json['tax'];
     shippingCost = json['shipping_cost'];

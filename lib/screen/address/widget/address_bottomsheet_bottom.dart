@@ -173,7 +173,7 @@ class AddressBottomSheetBottom extends StatelessWidget {
                   ),
                   curve: Curves.ease,
                   duration: const Duration(seconds: 1),
-                  child: provider.cityList.length != 0
+                  child: provider.cityList.isNotEmpty
                       ? DropdownButton<CityModel>(
                           value: provider.currentCity!,
                           icon: const Icon(Icons.arrow_drop_down),

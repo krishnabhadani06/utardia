@@ -1,4 +1,5 @@
-class paymentModel {
+class
+PaymentModel {
   String? paymentType;
   String? paymentTypeKey;
   String? image;
@@ -7,7 +8,7 @@ class paymentModel {
   int? offlinePaymentId;
   String? details;
 
-  paymentModel(
+  PaymentModel(
       {this.paymentType,
       this.paymentTypeKey,
       this.image,
@@ -16,7 +17,7 @@ class paymentModel {
       this.offlinePaymentId,
       this.details});
 
-  paymentModel.fromJson(Map<String, dynamic> json) {
+  PaymentModel.fromJson(Map<String, dynamic> json) {
     paymentType = json['payment_type'];
     paymentTypeKey = json['payment_type_key'];
     image = json['image'];

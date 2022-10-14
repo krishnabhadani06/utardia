@@ -1,11 +1,11 @@
-class userGetAddress {
+class UserGetAddress {
   List<Data>? data;
   bool? success;
   int? status;
 
-  userGetAddress({this.data, this.success, this.status});
+  UserGetAddress({this.data, this.success, this.status});
 
-  userGetAddress.fromJson(Map<String, dynamic> json) {
+  UserGetAddress.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {

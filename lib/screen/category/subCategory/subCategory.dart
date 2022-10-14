@@ -6,7 +6,6 @@ import 'package:utardia/screen/category/widget/category_right.dart';
 import 'package:utardia/screen/dashboard/dashboard_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
-import 'package:utardia/util/string.dart';
 
 class SubCategoryScreen extends StatelessWidget {
   const SubCategoryScreen({Key? key}) : super(key: key);

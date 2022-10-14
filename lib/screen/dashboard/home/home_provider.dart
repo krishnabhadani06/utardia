@@ -87,7 +87,9 @@ class HomeProvider extends ChangeNotifier {
       allHomeTopCategories.clear();
       allHomeTopCategories = homeTopCategoryModel.data!;
       getAllHomeTopCategoriesProducts();
-      print(allHomeTopCategories.length);
+      if (kDebugMode) {
+        print(allHomeTopCategories.length);
+      }
     }
   }
 
@@ -140,7 +142,9 @@ class HomeProvider extends ChangeNotifier {
   Future<bool> onLike(bool like) async {
     // like==true?like=false:like=true;
     like = !like;
-    print(like);
+    if (kDebugMode) {
+      print(like);
+    }
     notifyListeners();
     return like;
   }
@@ -220,7 +224,9 @@ class HomeProvider extends ChangeNotifier {
       //allCategoriesProducts.clear();
       // allCategoriesProducts.add(product);
       allCategoriesProducts[index] = product;
-      print('-----------------------------${product.data!.length}');
+      if (kDebugMode) {
+        print('-----------------------------${product.data!.length}');
+      }
       loader = false;
       notifyListeners();
     }
@@ -236,7 +242,9 @@ class HomeProvider extends ChangeNotifier {
     } else {
       allHomeCategories = homeCategoryModel!.data!;
       // getAllSubCategories();
-      print(allHomeCategories);
+      if (kDebugMode) {
+        print(allHomeCategories);
+      }
       loader = false;
       //notifyListeners();
     }
@@ -254,7 +262,9 @@ class HomeProvider extends ChangeNotifier {
       bannerData.forEach((element) {
         bannerImage.add(element.photo!);
       });
-      print(bannerData);
+      if (kDebugMode) {
+        print(bannerData);
+      }
       loader = false;
       //notifyListeners();
     }
@@ -272,7 +282,9 @@ class HomeProvider extends ChangeNotifier {
       sliderData.forEach((element) {
         sliderImage.add(element.photo!);
       });
-      print(sliderData);
+      if (kDebugMode) {
+        print(sliderData);
+      }
       loader = false;
       // notifyListeners();
     }

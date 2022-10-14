@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -47,7 +49,9 @@ class SingUpApi {
         var res = jsonDecode(response.body);
         // Map<dynamic, dynamic> res =
         //     jsonDecode(response.body) as Map<dynamic, dynamic>;
-        print("*****************************${res['user_id']}");
+        if (kDebugMode) {
+          print("*****************************${res['user_id']}");
+        }
         Logger().e(jsonDecode(response.body));
         navigator.currentState!
             .pushReplacement(MaterialPageRoute(builder: (context) {
@@ -61,7 +65,9 @@ class SingUpApi {
       return null;
     } catch (e, x) {
       Logger().e(e.toString() + x.toString());
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       return null;
     }
   }
@@ -79,8 +85,12 @@ class SingUpApi {
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
 
       if (response.statusCode == 200) {
-        print(response.body);
-        print("true condition");
+        if (kDebugMode) {
+          print(response.body);
+        }
+        if (kDebugMode) {
+          print("true condition");
+        }
         // navigator.currentState!
         //     .pushReplacement(MaterialPageRoute(builder: (context) {
         //   return const LoginPage();

@@ -57,7 +57,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
 
   @override
   Widget build(BuildContext context) {
-    final provider2 = Provider.of<FavoriteProvider>(context, listen: false);
+    // final provider2 = Provider.of<FavoriteProvider>(context, listen: false);
 
     return Consumer<FavoriteProvider>(builder: (context, pro, x) {
       return GestureDetector(
@@ -225,7 +225,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
                         Expanded(
                           flex: 1,
                           child: Text(
-                            "${widget.mainPrice!.toString()}",
+                            widget.mainPrice!.toString(),
                             style: robotoBoldTextStyle(fontSize: 12),
                             maxLines: 1,
                             overflow: TextOverflow.fade,
@@ -233,7 +233,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text("${widget.strokedPrice!.toString()}",
+                          child: Text(widget.strokedPrice!.toString(),
                               //widget.strokedPrice!,
                               style: robotoBoldTextStyle(
                                       fontSize: 10,

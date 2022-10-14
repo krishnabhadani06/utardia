@@ -8,6 +8,7 @@ import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/CartList_model/cartSummaryModel.dart';
 import 'package:utardia/screen/dashboard/cart/cart_api/cart_api.dart';
 import 'package:utardia/screen/payment/payment_screen.dart';
+import 'package:http/http.dart' as http;
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
@@ -26,7 +27,7 @@ class CartProvider extends ChangeNotifier {
   }
 
   CartListModel cartListDataModel = CartListModel();
-  cartSummaryModel? cartSummary;
+  CartSummaryModel? cartSummary;
 
   Future<void> getCartDate() async {
     loader = true;
@@ -51,7 +52,9 @@ class CartProvider extends ChangeNotifier {
       notifyListeners();
       Logger().e(e.toString() + x.toString());
       showToast("hello:${e.toString()}");
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     } finally {
       loader = false;
       notifyListeners();
@@ -95,7 +98,9 @@ class CartProvider extends ChangeNotifier {
       }
     } catch (e) {
       showToast(e.toString());
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
     loader = false;
     notifyListeners();
@@ -154,10 +159,10 @@ class CartProvider extends ChangeNotifier {
             "Authorization":
                 "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
           });
-      if (res!.statusCode == 200 && res != null) {
+      if (res!.statusCode == 200) {
         Logger().e(jsonDecode(res.body));
-        cartSummary = cartSummaryModel
-            .fromJson(jsonDecode(res.body) as Map<String, dynamic>);
+        cartSummary = CartSummaryModel.fromJson(
+            jsonDecode(res.body) as Map<String, dynamic>);
       } else {
         showToast("went Wrong ${res.statusCode}");
       }

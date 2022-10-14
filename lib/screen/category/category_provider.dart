@@ -1,17 +1,15 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
-import 'package:utardia/common/helper.dart';
-
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/home_model/home_category_model.dart';
 import 'package:utardia/model/home_model/home_category_product_model.dart';
 import 'package:utardia/model/home_model/home_subCategory_model.dart';
 import 'package:utardia/model/home_model/subCategory_Product_model.dart';
-import 'package:utardia/screen/category/subCategory/subCategory.dart';
-
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
@@ -51,7 +49,9 @@ class CategoryProvider extends ChangeNotifier {
       categoryProducts = products;
       await getWishList();
       // getSubCategoryData();
-      print('-----------------------------${categoryProducts!.data!.length}');
+      if (kDebugMode) {
+        print('-----------------------------${categoryProducts!.data!.length}');
+      }
       loader = false;
       notifyListeners();
     }
@@ -61,9 +61,13 @@ class CategoryProvider extends ChangeNotifier {
     pageCon.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
     notifyListeners();
-    print('00000000${url!}');
-    print(url1);
-    await homeCategoryProduct(url);
+    if (kDebugMode) {
+      print('00000000${url!}');
+    }
+    if (kDebugMode) {
+      print(url1);
+    }
+    await homeCategoryProduct(url!);
     getSubCategoryData(url1.toString());
     notifyListeners();
   }
@@ -92,7 +96,9 @@ class CategoryProvider extends ChangeNotifier {
 
   int decrementData(int count) {
     count -= 1;
-    print(count);
+    if (kDebugMode) {
+      print(count);
+    }
     notifyListeners();
     return count;
   }

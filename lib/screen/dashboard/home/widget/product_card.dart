@@ -55,7 +55,7 @@ Widget ProductCard({
               alignment: Alignment.bottomCenter,
               child: Stack(
                 children: [
-                  Container(
+                  SizedBox(
                     // color: ColorRes.blue,
                     height: deviceHeight * 0.22,
                     width: deviceWidth,
@@ -193,7 +193,7 @@ Widget ProductCard({
                       SizedBox(
                         width: deviceWidth * 0.02,
                       ),
-                      Text("${strokedPrice!.toString()}",
+                      Text(strokedPrice!.toString(),
                           //widget.strokedPrice!,
                           style: robotoRegularTextStyle(
                                   fontSize: 8.0, color: ColorRes.greyPriceText)

@@ -30,7 +30,6 @@ class AllProfileDetailApi {
       if (response != null && response.statusCode == 200) {
         Logger().e(jsonDecode(response.body));
         return ProfileModel.fromJson(jsonDecode(response.body));
-        ;
       } else {
         showToast("eror code from api ${response!.statusCode}");
         return ProfileModel();

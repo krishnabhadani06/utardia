@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -8,7 +9,6 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/model/SignUp_Model/signup_model.dart';
-import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_provider.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_screen.dart';
 import 'package:utardia/screen/authorization/registration/registration_provider.dart';
@@ -16,16 +16,18 @@ import 'package:utardia/services/http_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 
 class SingUpApi {
-  static Future<SingUpModel?> singUpApi(BuildContext context, String email,
-      String phone, String password, String retypePassword) async {
+  static Future<SingUpModel?> singUpApi(
+      BuildContext context,
+      String email,
+      String phone,
+      String password,
+      String retypePassword,
+      bool isPhone) async {
     try {
       String url = ApiEndPoint.signUp;
       Map<String, String> param = {
         "name": "ram",
-        "email_or_phone": Provider.of<RegistrationProvider>(context,
-                        listen: false)
-                    .isPhone ==
-                true
+        "email_or_phone": isPhone == true
             ? "${Provider.of<RegistrationProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
             : email.toString(),
         "country_code":
@@ -34,11 +36,7 @@ class SingUpApi {
                 .phoneCode,
         "password": password.toString(),
         "passowrd_confirmation": retypePassword.toString(),
-        "register_by":
-            Provider.of<RegistrationProvider>(context, listen: false).isPhone ==
-                    true
-                ? "Phone"
-                : "email",
+        "register_by": isPhone == true ? "Phone" : "email",
       };
       http.Response? response = await HttpService.postApi(
           url: url,

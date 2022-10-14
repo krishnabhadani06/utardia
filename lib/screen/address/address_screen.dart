@@ -83,7 +83,7 @@ class AddressScreen extends StatelessWidget {
                                     //color of shadow
                                     spreadRadius: 0, //spread radius
                                     blurRadius: 3, // blur radius
-                                    offset: Offset(
+                                    offset: const Offset(
                                         0, 0), // changes position of shadow
                                   ),
                                 ],
@@ -215,6 +215,6 @@ class AddressScreen extends StatelessWidget {
                             ],
                           )
                         : const Center(child: CircularProgressIndicator())
-                : Center(child: CircularProgressIndicator())));
+                : const Center(child: CircularProgressIndicator())));
   }
 }

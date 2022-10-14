@@ -6,8 +6,6 @@
 //
 //     final homeProductDetailApi = homeProductDetailApiFromJson(jsonString);
 
-import 'dart:convert';
-
 // HomeProductDetailApi homeProductDetailApiFromJson(String str) =>
 //     HomeProductDetailApi.fromJson(json.decode(str) as Map<String, dynamic>);
 //

@@ -28,6 +28,7 @@ import 'dart:convert';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:utardia/common/helper.dart';
@@ -159,7 +160,7 @@ class AddressProvider extends ChangeNotifier {
     try {
       String url = ApiEndPoint.deleteAddress;
       http.Response? res = await HttpService.getApi(
-        url: "${url}${currentAddress!.id}",
+        url: "$url${currentAddress!.id}",
         header: {
           "Authorization":
               "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
@@ -188,14 +189,14 @@ class AddressProvider extends ChangeNotifier {
           await HttpService.postApi(url: ApiEndPoint.updateAddss, header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, body: {
-        "id": "${addressId}",
-        "address": "${txtAddress.text.toString()}",
+        "id": "$addressId",
+        "address": txtAddress.text.toString(),
         "country_id": "${currentState!.countryId}",
         "city_id": "${currentCity!.id}",
         "state_id": "${currentState!.id}",
-        "postal_code": "${txtPincode.text.toString()}",
+        "postal_code": txtPincode.text.toString(),
         "phone": "${currentCountry!.phoneCode}${txtContact.text.toString()}",
-        "work_type": "${isSelect}"
+        "work_type": isSelect
       });
 
       if (res != null && res.statusCode == 200) {
@@ -229,15 +230,15 @@ class AddressProvider extends ChangeNotifier {
           "Authorization":
               "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
         }, body: {
-          "user_id": "${PrefService.getString(PrefKeys.uid)}",
+          "user_id": PrefService.getString(PrefKeys.uid),
           "address":
               "${txtAddress.text.toString()}${txtLandmark.text.toString()}",
           "country_id": "${currentState!.countryId}",
           "city_id": "${currentCity!.id}",
           "state_id": "${currentState!.id}",
-          "work_type": "${isSelect}",
-          "postal_code": "${txtPincode.text.toString()}",
-          "phone": "${txtContact.text.toString()}"
+          "work_type": isSelect,
+          "postal_code": txtPincode.text.toString(),
+          "phone": txtContact.text.toString()
         });
 
         if (res != null && res.statusCode == 200) {
@@ -309,12 +310,14 @@ class AddressProvider extends ChangeNotifier {
         }).toList();
         if (stateList.isNotEmpty) {
           if (City_id != "" && State_id != "") {
-            stateList.forEach((element) {
+            for (var element in stateList) {
               if (element.id.toString() == State_id) {
                 currentState = element;
               }
-            });
-            print(currentState == null);
+            }
+            if (kDebugMode) {
+              print(currentState == null);
+            }
             if (currentState != null) {
               getCity(currentState!.id.toString(), City_id, State_id);
             }
@@ -342,7 +345,7 @@ class AddressProvider extends ChangeNotifier {
       notifyListeners();
     }
     try {
-      url = "${ApiEndPoint.getCitiesByStates}${id}";
+      url = "${ApiEndPoint.getCitiesByStates}$id";
 
       http.Response? res = await HttpService.getApi(url: url);
       if (res != null && res.statusCode == 200) {
@@ -371,7 +374,9 @@ class AddressProvider extends ChangeNotifier {
       }
       notifyListeners();
     } on RangeError catch (e) {
-      print("hello");
+      if (kDebugMode) {
+        print("hello$e");
+      }
       currentCity = CityModel.fromJson({});
       notifyListeners();
     } catch (e, x) {

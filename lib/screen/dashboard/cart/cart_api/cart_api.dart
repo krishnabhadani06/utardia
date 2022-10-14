@@ -11,7 +11,7 @@ import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
 
 class CartListApi {
-  static Future<cartListModel> cartListApi(
+  static Future<CartListModel> cartListApi(
       {int? id, String? variant, int? quantity}) async {
     try {
       String uid = PrefService.getString(PrefKeys.uid);
@@ -28,17 +28,17 @@ class CartListApi {
         List<dynamic> list = jsonDecode(response.body);
         if (list.length != 0) {
           print("${list[list.length - 1]}");
-          return cartListModel.fromJson(list[list.length - 1]);
+          return CartListModel.fromJson(list[list.length - 1]);
         } else {
-          return cartListModel();
+          return CartListModel();
         }
       } else {
         print(jsonDecode(response!.body));
-        return cartListModel.fromJson({});
+        return CartListModel.fromJson({});
       }
     } catch (e) {
       showToast(e.toString());
-      return cartListModel.fromJson({});
+      return CartListModel.fromJson({});
     }
   }
 
@@ -76,11 +76,11 @@ class CartListApi {
 
   static minusCartApi({int? id, int? quantity}) async {
     try {
-      String accesToken = PrefService.getString(PrefKeys.accessToken);
-      String url = "${ApiEndPoint.updareCart}";
+      String accessToken = PrefService.getString(PrefKeys.accessToken);
+      String url = ApiEndPoint.updareCart;
       http.Response? response = await HttpService.postApi(url: url, header: {
         "X-Requested-With": "XMLHttpRequest",
-        'Authorization': "Bearer $accesToken",
+        'Authorization': "Bearer $accessToken",
       }, body: {
         "cart_ids": "${id}",
         "cart_quantities": "${quantity}"

@@ -9,7 +9,7 @@ class ProfileModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
     success = json['success'];
@@ -17,12 +17,12 @@ class ProfileModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['success'] = this.success;
-    data['status'] = this.status;
+    data['success'] = success;
+    data['status'] = status;
     return data;
   }
 }
@@ -61,7 +61,7 @@ class Data {
     avatar = json['avatar'];
     avatarOriginal = json['avatar_original'];
     address =
-        json['address'] != null ? new Address.fromJson(json['address']) : null;
+        json['address'] != null ? Address.fromJson(json['address']) : null;
     city = json['city'];
     country = json['country'];
     postalCode = json['postal_code'];
@@ -69,20 +69,20 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['type'] = this.type;
-    data['email'] = this.email;
-    data['avatar'] = this.avatar;
-    data['avatar_original'] = this.avatarOriginal;
-    if (this.address != null) {
-      data['address'] = this.address!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['type'] = type;
+    data['email'] = email;
+    data['avatar'] = avatar;
+    data['avatar_original'] = avatarOriginal;
+    if (address != null) {
+      data['address'] = address!.toJson();
     }
-    data['city'] = this.city;
-    data['country'] = this.country;
-    data['postal_code'] = this.postalCode;
-    data['phone'] = this.phone;
+    data['city'] = city;
+    data['country'] = country;
+    data['postal_code'] = postalCode;
+    data['phone'] = phone;
     return data;
   }
 }
@@ -96,13 +96,13 @@ class Address {
     if (json['data'] != null) {
       data = <Data2>[];
       json['data'].forEach((v) {
-        data!.add(new Data2.fromJson(v));
+        data!.add(Data2.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -166,23 +166,23 @@ class Data2 {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['address'] = this.address;
-    data['country_id'] = this.countryId;
-    data['state_id'] = this.stateId;
-    data['city_id'] = this.cityId;
-    data['country_name'] = this.countryName;
-    data['state_name'] = this.stateName;
-    data['city_name'] = this.cityName;
-    data['postal_code'] = this.postalCode;
-    data['work_type'] = this.workType;
-    data['phone'] = this.phone;
-    data['set_default'] = this.setDefault;
-    data['location_available'] = this.locationAvailable;
-    data['lat'] = this.lat;
-    data['lang'] = this.lang;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['address'] = address;
+    data['country_id'] = countryId;
+    data['state_id'] = stateId;
+    data['city_id'] = cityId;
+    data['country_name'] = countryName;
+    data['state_name'] = stateName;
+    data['city_name'] = cityName;
+    data['postal_code'] = postalCode;
+    data['work_type'] = workType;
+    data['phone'] = phone;
+    data['set_default'] = setDefault;
+    data['location_available'] = locationAvailable;
+    data['lat'] = lat;
+    data['lang'] = lang;
     return data;
   }
 }

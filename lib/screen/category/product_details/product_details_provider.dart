@@ -628,7 +628,7 @@ class ProductDetailsProvider extends ChangeNotifier {
           showToast("Error ");
         }
       } else {
-        showToast("error code from insertMessage Code:${res!.statusCode}");
+        showToast("error code from insertMessage Code:${res.statusCode}");
       }
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";

@@ -2,16 +2,17 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/CartList_model/cartSummaryModel.dart';
 import 'package:utardia/screen/dashboard/cart/cart_api/cart_api.dart';
 import 'package:utardia/screen/payment/payment_screen.dart';
-import 'package:http/http.dart' as http;
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
+
 import '../../../model/CartList_model/cartListModel.dart';
 
 class CartProvider extends ChangeNotifier {
@@ -24,8 +25,8 @@ class CartProvider extends ChangeNotifier {
     await getCartSummary();
   }
 
-  cartListModel cartListDataModel = cartListModel();
-  cartSummaryModel? cartsummary;
+  CartListModel cartListDataModel = CartListModel();
+  cartSummaryModel? cartSummary;
 
   Future<void> getCartDate() async {
     loader = true;
@@ -155,7 +156,7 @@ class CartProvider extends ChangeNotifier {
           });
       if (res!.statusCode == 200 && res != null) {
         Logger().e(jsonDecode(res.body));
-        cartsummary = cartSummaryModel
+        cartSummary = cartSummaryModel
             .fromJson(jsonDecode(res.body) as Map<String, dynamic>);
       } else {
         showToast("went Wrong ${res.statusCode}");

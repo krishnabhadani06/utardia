@@ -53,7 +53,7 @@ class CartBottom extends StatelessWidget {
                     color: ColorRes.white),
                 child: Center(
                   child: Text(
-                    "${provider.cartsummary != null ? provider.cartsummary!.grandTotal ?? 0 : 0}",
+                    "${provider.cartSummary != null ? provider.cartSummary!.grandTotal ?? 0 : 0}",
                     style: natoSemiBoldTextStyle(
                         fontSize: 16, color: ColorRes.blue),
                     //    textAlign: TextAlign.center,

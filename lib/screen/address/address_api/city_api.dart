@@ -1,8 +1,8 @@
-import 'package:http/http.dart' as http;
+/*import 'package:http/http.dart' as http;
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/address_model/city_model.dart';
 import 'package:utardia/services/http_service.dart';
-import 'package:utardia/util/api_endpoints.dart';
+import 'package:utardia/util/api_endpoints.dart';*/
 
 // class CityApiServices {
 //   static Future<CityApi> cityData() async {

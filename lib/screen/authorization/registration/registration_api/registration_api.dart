@@ -1,5 +1,8 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -8,7 +11,6 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/model/SignUp_Model/signup_model.dart';
-import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_provider.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_screen.dart';
 import 'package:utardia/screen/authorization/registration/registration_provider.dart';
@@ -16,16 +18,18 @@ import 'package:utardia/services/http_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 
 class SingUpApi {
-  static Future<SingUpModel?> singUpApi(BuildContext context, String email,
-      String phone, String password, String retypePassword) async {
+  static Future<SingUpModel?> singUpApi(
+      BuildContext context,
+      String email,
+      String phone,
+      String password,
+      String retypePassword,
+      bool isPhone) async {
     try {
       String url = ApiEndPoint.signUp;
       Map<String, String> param = {
         "name": "ram",
-        "email_or_phone": Provider.of<RegistrationProvider>(context,
-                        listen: false)
-                    .isPhone ==
-                true
+        "email_or_phone": isPhone == true
             ? "${Provider.of<RegistrationProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
             : email.toString(),
         "country_code":
@@ -34,11 +38,7 @@ class SingUpApi {
                 .phoneCode,
         "password": password.toString(),
         "passowrd_confirmation": retypePassword.toString(),
-        "register_by":
-            Provider.of<RegistrationProvider>(context, listen: false).isPhone ==
-                    true
-                ? "Phone"
-                : "email",
+        "register_by": isPhone == true ? "Phone" : "email",
       };
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -49,7 +49,9 @@ class SingUpApi {
         var res = jsonDecode(response.body);
         // Map<dynamic, dynamic> res =
         //     jsonDecode(response.body) as Map<dynamic, dynamic>;
-        print("*****************************${res['user_id']}");
+        if (kDebugMode) {
+          print("*****************************${res['user_id']}");
+        }
         Logger().e(jsonDecode(response.body));
         navigator.currentState!
             .pushReplacement(MaterialPageRoute(builder: (context) {
@@ -63,7 +65,9 @@ class SingUpApi {
       return null;
     } catch (e, x) {
       Logger().e(e.toString() + x.toString());
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       return null;
     }
   }
@@ -81,8 +85,12 @@ class SingUpApi {
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
 
       if (response.statusCode == 200) {
-        print(response.body);
-        print("true condition");
+        if (kDebugMode) {
+          print(response.body);
+        }
+        if (kDebugMode) {
+          print("true condition");
+        }
         // navigator.currentState!
         //     .pushReplacement(MaterialPageRoute(builder: (context) {
         //   return const LoginPage();

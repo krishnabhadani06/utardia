@@ -49,7 +49,7 @@ class LoginPage extends StatelessWidget {
                         fontSize: 09, color: ColorRes.borderblue),
                     // color: ColorRes.dailogBoxColor
                   ),
-                  LoginCenter(),
+                  const LoginCenter(),
                   SizedBox(
                     height: deviceHeight * 0.04,
                   ),

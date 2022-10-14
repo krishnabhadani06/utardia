@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,6 @@ import 'package:utardia/util/pref_key.dart';
 
 class CategoryProvider extends ChangeNotifier {
   var selectedPageInd = 0;
-  int index = 0;
 
   PageController pageCon = PageController();
   bool loader = false;
@@ -48,7 +49,9 @@ class CategoryProvider extends ChangeNotifier {
       categoryProducts = products;
       await getWishList();
       // getSubCategoryData();
-      print('-----------------------------${categoryProducts!.data!.length}');
+      if (kDebugMode) {
+        print('-----------------------------${categoryProducts!.data!.length}');
+      }
       loader = false;
       notifyListeners();
     }
@@ -58,9 +61,13 @@ class CategoryProvider extends ChangeNotifier {
     pageCon.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
     notifyListeners();
-    print('00000000${url!}');
-    print(url1);
-    await homeCategoryProduct(url);
+    if (kDebugMode) {
+      print('00000000${url!}');
+    }
+    if (kDebugMode) {
+      print(url1);
+    }
+    await homeCategoryProduct(url!);
     getSubCategoryData(url1.toString());
     notifyListeners();
   }
@@ -89,7 +96,9 @@ class CategoryProvider extends ChangeNotifier {
 
   int decrementData(int count) {
     count -= 1;
-    print(count);
+    if (kDebugMode) {
+      print(count);
+    }
     notifyListeners();
     return count;
   }

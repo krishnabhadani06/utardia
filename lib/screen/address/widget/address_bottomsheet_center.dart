@@ -1,5 +1,4 @@
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
@@ -7,7 +6,6 @@ import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/address/address_provider.dart';
 import 'package:utardia/screen/address/common_textfield.dart';
 import 'package:utardia/util/color_res.dart';
-import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 
 class AddressBottomSheetCenter extends StatelessWidget {

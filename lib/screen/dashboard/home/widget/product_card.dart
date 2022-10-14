@@ -29,8 +29,7 @@ Widget ProductCard({
   final provider = Provider.of<FavoriteProvider>(context!);
   // final provider2 = Provider.of<ProductDetailsProvider>(context);
   return Container(
-    margin:
-        const EdgeInsets.only(left: 10.0, right: 6.0, top: 7.0, bottom: 7.0),
+    margin: const EdgeInsets.only(left: 5.0, right: 6.0, top: 7.0, bottom: 7.0),
     width: 155,
     decoration: BoxDecoration(
       color: Colors.white,
@@ -56,7 +55,7 @@ Widget ProductCard({
               alignment: Alignment.bottomCenter,
               child: Stack(
                 children: [
-                  Container(
+                  SizedBox(
                     // color: ColorRes.blue,
                     height: deviceHeight * 0.22,
                     width: deviceWidth,
@@ -194,7 +193,7 @@ Widget ProductCard({
                       SizedBox(
                         width: deviceWidth * 0.02,
                       ),
-                      Text("${strokedPrice!.toString()}",
+                      Text(strokedPrice!.toString(),
                           //widget.strokedPrice!,
                           style: robotoRegularTextStyle(
                                   fontSize: 8.0, color: ColorRes.greyPriceText)

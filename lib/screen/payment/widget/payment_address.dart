@@ -61,19 +61,19 @@ class PaymentAddress extends StatelessWidget {
               child: provider.addressList != null
                   ? provider.addressList!.isNotEmpty && provider.loader == false
                       ? DropdownButtonHideUnderline(
-                          child: DropdownButton<addressModel>(
+                          child: DropdownButton<AddressModel>(
                             icon: Icon(IconRes.icDown),
                             iconSize: 24,
                             elevation: 16,
                             isExpanded: true,
-                            onChanged: (addressModel? newSelectedPayment) =>
+                            onChanged: (AddressModel? newSelectedPayment) =>
                                 provider.onDropDownItemSelected(
                                     newSelectedPayment!),
                             value:
                                 provider.currentAddress, //_addressListchoice,
                             items: provider.addressList!
-                                .map<DropdownMenuItem<addressModel>>(
-                                    (addressModel? value) {
+                                .map<DropdownMenuItem<AddressModel>>(
+                                    (AddressModel? value) {
                               return DropdownMenuItem(
                                 value: value,
                                 child: Row(

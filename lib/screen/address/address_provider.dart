@@ -28,6 +28,7 @@ import 'dart:convert';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:utardia/common/helper.dart';
@@ -83,7 +84,7 @@ class AddressProvider extends ChangeNotifier {
   String? errorTextLandmark;
   String? errorTextPincode;
 
-  userGetAddress? userAddress;
+  UserGetAddress? userAddress;
   bool isHome = true, isWork = false, isOther = false;
 
   void onTapCountry(Country country) {
@@ -159,7 +160,7 @@ class AddressProvider extends ChangeNotifier {
     try {
       String url = ApiEndPoint.deleteAddress;
       http.Response? res = await HttpService.getApi(
-        url: "${url}${currentAddress!.id}",
+        url: "$url${currentAddress!.id}",
         header: {
           "Authorization":
               "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
@@ -188,14 +189,14 @@ class AddressProvider extends ChangeNotifier {
           await HttpService.postApi(url: ApiEndPoint.updateAddss, header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, body: {
-        "id": "${addressId}",
-        "address": "${txtAddress.text.toString()}",
+        "id": "$addressId",
+        "address": txtAddress.text.toString(),
         "country_id": "${currentState!.countryId}",
         "city_id": "${currentCity!.id}",
         "state_id": "${currentState!.id}",
-        "postal_code": "${txtPincode.text.toString()}",
+        "postal_code": txtPincode.text.toString(),
         "phone": "${currentCountry!.phoneCode}${txtContact.text.toString()}",
-        "work_type": "${isSelect}"
+        "work_type": isSelect
       });
 
       if (res != null && res.statusCode == 200) {
@@ -229,15 +230,15 @@ class AddressProvider extends ChangeNotifier {
           "Authorization":
               "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
         }, body: {
-          "user_id": "${PrefService.getString(PrefKeys.uid)}",
+          "user_id": PrefService.getString(PrefKeys.uid),
           "address":
               "${txtAddress.text.toString()}${txtLandmark.text.toString()}",
           "country_id": "${currentState!.countryId}",
           "city_id": "${currentCity!.id}",
           "state_id": "${currentState!.id}",
-          "work_type": "${isSelect}",
-          "postal_code": "${txtPincode.text.toString()}",
-          "phone": "${txtContact.text.toString()}"
+          "work_type": isSelect,
+          "postal_code": txtPincode.text.toString(),
+          "phone": txtContact.text.toString()
         });
 
         if (res != null && res.statusCode == 200) {
@@ -295,7 +296,7 @@ class AddressProvider extends ChangeNotifier {
     }
   }
 
-  void getStates(String State_id, String City_id) async {
+  void getStates(String StateId, String CityId) async {
     String url = '';
     try {
       url = "${ApiEndPoint.getStateByCountries}101";
@@ -308,21 +309,23 @@ class AddressProvider extends ChangeNotifier {
           return StateModel.fromJson(e);
         }).toList();
         if (stateList.isNotEmpty) {
-          if (City_id != "" && State_id != "") {
-            stateList.forEach((element) {
-              if (element.id.toString() == State_id) {
+          if (CityId != "" && StateId != "") {
+            for (var element in stateList) {
+              if (element.id.toString() == StateId) {
                 currentState = element;
               }
-            });
-            print(currentState == null);
+            }
+            if (kDebugMode) {
+              print(currentState == null);
+            }
             if (currentState != null) {
-              getCity(currentState!.id.toString(), City_id, State_id);
+              getCity(currentState!.id.toString(), CityId, StateId);
             }
 
             notifyListeners();
           } else {
             currentState = stateList[0];
-            getCity(currentState!.id.toString(), City_id, State_id);
+            getCity(currentState!.id.toString(), CityId, StateId);
             // notifyListeners();
           }
         }
@@ -335,14 +338,14 @@ class AddressProvider extends ChangeNotifier {
     }
   }
 
-  void getCity(String id, String City_id, String State_id) async {
+  void getCity(String id, String CityId, String StateId) async {
     String url = '';
     if (cityList.isNotEmpty) {
       cityList.clear();
       notifyListeners();
     }
     try {
-      url = "${ApiEndPoint.getCitiesByStates}${id}";
+      url = "${ApiEndPoint.getCitiesByStates}$id";
 
       http.Response? res = await HttpService.getApi(url: url);
       if (res != null && res.statusCode == 200) {
@@ -353,10 +356,10 @@ class AddressProvider extends ChangeNotifier {
           return CityModel.fromJson(e);
         }).toList();
 
-        if (City_id != null && cityList.isNotEmpty) {
-          if (State_id == id) {
+        if (cityList.isNotEmpty) {
+          if (StateId == id) {
             for (var element in cityList) {
-              if (element.id.toString() == City_id) {
+              if (element.id.toString() == CityId) {
                 currentCity = element;
               }
             }
@@ -371,7 +374,9 @@ class AddressProvider extends ChangeNotifier {
       }
       notifyListeners();
     } on RangeError catch (e) {
-      print("hello");
+      if (kDebugMode) {
+        print("hello$e");
+      }
       currentCity = CityModel.fromJson({});
       notifyListeners();
     } catch (e, x) {
@@ -435,7 +440,7 @@ class AddressProvider extends ChangeNotifier {
       if (res != null && res.statusCode == 200) {
         Map<String, dynamic> map = jsonDecode(res.body) as Map<String, dynamic>;
 
-        userAddress = userGetAddress.fromJson(map);
+        userAddress = UserGetAddress.fromJson(map);
         if (userAddress != null) {
           notifyListeners();
         }

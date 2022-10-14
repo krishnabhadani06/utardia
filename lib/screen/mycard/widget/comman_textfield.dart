@@ -1,10 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/string.dart';
 
 String? validateCardType(val) {
-  print(val);
+  if (kDebugMode) {
+    print(val);
+  }
   RegExp regexVisa = RegExp(r'^4[0-9]{12}(?:[0-9]{3})?$');
   RegExp regexMaster = RegExp(
       r'^5[1-5][0-9]{5,}|222[1-9][0-9]{3,}|22[3-9][0-9]{4,}|2[3-6][0-9]{5,}|27[01][0-9]{4,}|2720[0-9]{3,}$');

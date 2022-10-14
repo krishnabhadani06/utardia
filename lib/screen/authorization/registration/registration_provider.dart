@@ -56,7 +56,6 @@ class RegistrationProvider extends ChangeNotifier {
       emailValidation();
       passwordValidation();
       rePasswordValidation();
-      // phoneValidation();
       if (errorTextEmail == null &&
           errorTextPassword == null &&
           errorTextRePassword == null) {
@@ -116,7 +115,8 @@ class RegistrationProvider extends ChangeNotifier {
   Future<void> singUpApiData(BuildContext context, String email,
       String password, String retypePassword, String phone) async {
     loader = true;
-    await SingUpApi.singUpApi(context, email, password, retypePassword, phone);
+    await SingUpApi.singUpApi(
+        context, email, password, retypePassword, phone, isPhone);
 
     loader = false;
     notifyListeners();

@@ -14,11 +14,11 @@ class CityModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['state_id'] = this.stateId;
-    data['name'] = this.name;
-    data['cost'] = this.cost;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['state_id'] = stateId;
+    data['name'] = name;
+    data['cost'] = cost;
     return data;
   }
 }

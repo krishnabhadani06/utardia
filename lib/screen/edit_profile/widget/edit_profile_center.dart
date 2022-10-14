@@ -1,5 +1,4 @@
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
@@ -34,7 +33,7 @@ class EditProfileCenter extends StatelessWidget {
                         context: context,
                         onSelect: (Country country) {
                           provider.currentCountry = country;
-                          provider.notifyListeners();
+                          // provider.notifyListeners();
                         });
                   },
                   // child: Center(child: Text("dmd")),
@@ -48,7 +47,7 @@ class EditProfileCenter extends StatelessWidget {
                                     provider.currentCountry!.flagEmoji,
                                     style: robotoRegularTextStyle(fontSize: 25),
                                   )
-                                : Center(
+                                : const Center(
                                     child: Text(""),
                                   )),
                         Expanded(
@@ -61,7 +60,7 @@ class EditProfileCenter extends StatelessWidget {
                                         color: ColorRes.greyTextHome),
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2)
-                                : Center(
+                                : const Center(
                                     child: Text("India"),
                                   )),
                       ],

@@ -45,60 +45,64 @@ class FavoriteCenter extends StatelessWidget {
         // onTap: () => widget.onTap(widget.index!, widget.url!),
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Stack(
-                children: [
-                  Container(
-                    height: deviceHeight * 0.18,
-                    width: deviceWidth,
-                    child: CachedNetworkImage(
-                        imageUrl: provider.Wishlist2!.data![index ?? 0].product!
-                            .thumbnailImage
-                            .toString(),
-                        progressIndicatorBuilder:
-                            (context, url, downloadProgress) => SizedBox(
-                                // height: 40,
-                                // width: 40,
-                                child: CircularProgressIndicator(
-                                    value: downloadProgress.progress)),
-                        errorWidget: (context, url, error) =>
-                            Image.asset(AssetsImagesRes.girl1)),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: ColorRes.white,
-                            radius: 15,
-                            child: Center(
-                              child: InkWell(
-                                  onTap: () {
-                                    final pro = Provider.of<FavoriteProvider>(
-                                        context,
-                                        listen: false);
+            Expanded(
+              flex: 1,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: deviceHeight * 0.20,
+                      width: deviceWidth,
+                      child: CachedNetworkImage(
+                          imageUrl: provider.Wishlist2!.data![index ?? 0]
+                              .product!.thumbnailImage
+                              .toString(),
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) => SizedBox(
+                                  // height: 40,
+                                  // width: 40,
+                                  child: CircularProgressIndicator(
+                                      value: downloadProgress.progress)),
+                          errorWidget: (context, url, error) =>
+                              Image.asset(AssetsImagesRes.girl1)),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: ColorRes.white,
+                              radius: 15,
+                              child: Center(
+                                child: InkWell(
+                                    onTap: () {
+                                      final pro = Provider.of<FavoriteProvider>(
+                                          context,
+                                          listen: false);
 
-                                    provider.addWishList(
-                                        pro.Wishlist2!.data![index!].product!.id
-                                            .toString(),
-                                        context,
-                                        '');
-                                  },
-                                  child: const Icon(
-                                    Icons.favorite,
-                                    color: ColorRes.red,
-                                    size: 18,
-                                  )),
+                                      provider.addWishList(
+                                          pro.Wishlist2!.data![index!].product!
+                                              .id
+                                              .toString(),
+                                          context,
+                                          '');
+                                    },
+                                    child: const Icon(
+                                      Icons.favorite,
+                                      color: ColorRes.red,
+                                      size: 18,
+                                    )),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: deviceHeight * 0.01),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                            SizedBox(height: deviceHeight * 0.01),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(
@@ -139,7 +143,9 @@ class FavoriteCenter extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "${provider.Wishlist2!.data![index ?? 0].product!.rating.toString()}",
+                              provider
+                                  .Wishlist2!.data![index ?? 0].product!.rating
+                                  .toString(),
                               // widget.rate!,
                               style: const TextStyle(
                                   color: ColorRes.white, fontSize: 12),

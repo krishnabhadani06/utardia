@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
@@ -127,14 +126,14 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
           ),
         ),
         pro.homeProductDetail!.choiceOptions!.isEmpty
-            ? SizedBox()
+            ? const SizedBox()
             : SizedBox(
                 height: deviceHeight * 0.01,
               ),
         Card(
           elevation: 5.0,
           child: pro.homeProductDetail!.choiceOptions!.isEmpty
-              ? SizedBox()
+              ? const SizedBox()
               : Container(
                   height: deviceHeight * 0.12,
                   decoration: BoxDecoration(
@@ -150,7 +149,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                   ),
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 30.0,
                         // color: Colors.black,
                         child: Padding(
@@ -270,12 +269,12 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                 ),
         ),
         pro.homeProductDetail!.colors!.isEmpty
-            ? SizedBox()
+            ? const SizedBox()
             : SizedBox(height: deviceHeight * 0.01),
         Card(
           elevation: 5.0,
           child: pro.homeProductDetail!.colors!.isEmpty
-              ? SizedBox()
+              ? const SizedBox()
               : Container(
                   height: deviceHeight * 0.12,
                   decoration: BoxDecoration(
@@ -291,7 +290,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                   ),
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 30.0,
                         child: Padding(
                           padding:
@@ -321,7 +320,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                                       pro.currentColor = pro
                                           .homeProductDetail!.colors!
                                           .indexOf(e);
-                                      pro.notifyListeners();
+                                      // pro.notifyListeners();
 
                                       pro.getQty();
                                     },
@@ -370,7 +369,7 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                 ),
         ),
         pro.homeProductDetail!.colors!.isEmpty
-            ? SizedBox()
+            ? const SizedBox()
             : SizedBox(height: deviceHeight * 0.01),
         Card(
           elevation: 5.0,

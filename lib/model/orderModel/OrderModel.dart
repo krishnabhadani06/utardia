@@ -9,7 +9,7 @@ class OrderModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
     success = json['success'];
@@ -17,12 +17,12 @@ class OrderModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['success'] = this.success;
-    data['status'] = this.status;
+    data['success'] = success;
+    data['status'] = status;
     return data;
   }
 }
@@ -52,7 +52,7 @@ class Data {
     if (json['shipping_address'] != null) {
       shippingAddress = <ShippingAddress>[];
       json['shipping_address'].forEach((v) {
-        shippingAddress!.add(new ShippingAddress.fromJson(v));
+        shippingAddress!.add(ShippingAddress.fromJson(v));
       });
     }
     paymentStatus = json['payment_status'];
@@ -63,26 +63,25 @@ class Data {
     if (json['product_detail'] != null) {
       productDetail = <ProductDetail>[];
       json['product_detail'].forEach((v) {
-        productDetail!.add(new ProductDetail.fromJson(v));
+        productDetail!.add(ProductDetail.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.shippingAddress != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (shippingAddress != null) {
       data['shipping_address'] =
-          this.shippingAddress!.map((v) => v.toJson()).toList();
+          shippingAddress!.map((v) => v.toJson()).toList();
     }
-    data['payment_status'] = this.paymentStatus;
-    data['delivery_status'] = this.deliveryStatus;
-    data['code'] = this.code;
-    data['coupon_discount'] = this.couponDiscount;
-    data['grand_total'] = this.grandTotal;
-    if (this.productDetail != null) {
-      data['product_detail'] =
-          this.productDetail!.map((v) => v.toJson()).toList();
+    data['payment_status'] = paymentStatus;
+    data['delivery_status'] = deliveryStatus;
+    data['code'] = code;
+    data['coupon_discount'] = couponDiscount;
+    data['grand_total'] = grandTotal;
+    if (productDetail != null) {
+      data['product_detail'] = productDetail!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -120,15 +119,15 @@ class ShippingAddress {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['address'] = this.address;
-    data['country'] = this.country;
-    data['state'] = this.state;
-    data['city'] = this.city;
-    data['postal_code'] = this.postalCode;
-    data['phone'] = this.phone;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['email'] = email;
+    data['address'] = address;
+    data['country'] = country;
+    data['state'] = state;
+    data['city'] = city;
+    data['postal_code'] = postalCode;
+    data['phone'] = phone;
     return data;
   }
 }
@@ -178,7 +177,7 @@ class ProductDetail {
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
-        photos!.add(new Photos.fromJson(v));
+        photos!.add(Photos.fromJson(v));
       });
     }
     rating = json['rating'];
@@ -191,48 +190,47 @@ class ProductDetail {
     if (json['choice_options'] != null) {
       choiceOptions = <ChoiceOptions>[];
       json['choice_options'].forEach((v) {
-        choiceOptions!.add(new ChoiceOptions.fromJson(v));
+        choiceOptions!.add(ChoiceOptions.fromJson(v));
       });
     }
     colors = json['colors'].cast<String>();
     if (json['choices'] != null) {
       choices = <Choices>[];
       json['choices'].forEach((v) {
-        choices!.add(new Choices.fromJson(v));
+        choices!.add(Choices.fromJson(v));
       });
     }
     tags = json['tags'].cast<String>();
     date = json['date'];
-    links = json['links'] != null ? new Links.fromJson(json['links']) : null;
+    links = json['links'] != null ? Links.fromJson(json['links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['product_name'] = this.productName;
-    data['product_category'] = this.productCategory;
-    if (this.photos != null) {
-      data['photos'] = this.photos!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['product_name'] = productName;
+    data['product_category'] = productCategory;
+    if (photos != null) {
+      data['photos'] = photos!.map((v) => v.toJson()).toList();
     }
-    data['rating'] = this.rating;
-    data['thumbnail_image'] = this.thumbnailImage;
-    data['discount_type'] = this.discountType;
-    data['discount'] = this.discount;
-    data['has_discount'] = this.hasDiscount;
-    data['stroked_price'] = this.strokedPrice;
-    data['price_high_low'] = this.priceHighLow;
-    if (this.choiceOptions != null) {
-      data['choice_options'] =
-          this.choiceOptions!.map((v) => v.toJson()).toList();
+    data['rating'] = rating;
+    data['thumbnail_image'] = thumbnailImage;
+    data['discount_type'] = discountType;
+    data['discount'] = discount;
+    data['has_discount'] = hasDiscount;
+    data['stroked_price'] = strokedPrice;
+    data['price_high_low'] = priceHighLow;
+    if (choiceOptions != null) {
+      data['choice_options'] = choiceOptions!.map((v) => v.toJson()).toList();
     }
-    data['colors'] = this.colors;
-    if (this.choices != null) {
-      data['choices'] = this.choices!.map((v) => v.toJson()).toList();
+    data['colors'] = colors;
+    if (choices != null) {
+      data['choices'] = choices!.map((v) => v.toJson()).toList();
     }
-    data['tags'] = this.tags;
-    data['date'] = this.date;
-    if (this.links != null) {
-      data['links'] = this.links!.toJson();
+    data['tags'] = tags;
+    data['date'] = date;
+    if (links != null) {
+      data['links'] = links!.toJson();
     }
     return data;
   }
@@ -250,9 +248,9 @@ class Photos {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['variant'] = this.variant;
-    data['path'] = this.path;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['variant'] = variant;
+    data['path'] = path;
     return data;
   }
 }
@@ -271,10 +269,10 @@ class ChoiceOptions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['title'] = this.title;
-    data['options'] = this.options;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['title'] = title;
+    data['options'] = options;
     return data;
   }
 }
@@ -308,14 +306,14 @@ class Choices {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['variant'] = this.variant;
-    data['sku'] = this.sku;
-    data['price'] = this.price;
-    data['color'] = this.color;
-    data['option'] = this.option;
-    data['qty'] = this.qty;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['variant'] = variant;
+    data['sku'] = sku;
+    data['price'] = price;
+    data['color'] = color;
+    data['option'] = option;
+    data['qty'] = qty;
+    data['image'] = image;
     return data;
   }
 }
@@ -330,8 +328,8 @@ class Links {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['details'] = this.details;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['details'] = details;
     return data;
   }
 }

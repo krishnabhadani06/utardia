@@ -1,27 +1,27 @@
-class cartListModel {
+class CartListModel {
   String? name;
   int? ownerId;
-  List<CartItems>? cartItems=[];
+  List<CartItems>? cartItems = [];
 
-  cartListModel({this.name, this.ownerId, this.cartItems});
+  CartListModel({this.name, this.ownerId, this.cartItems});
 
-  cartListModel.fromJson(Map<String, dynamic> json) {
+  CartListModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     ownerId = json['owner_id'];
     if (json['cart_items'] != null) {
       cartItems = <CartItems>[];
       json['cart_items'].forEach((v) {
-        cartItems!.add(new CartItems.fromJson(v));
+        cartItems!.add(CartItems.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['owner_id'] = this.ownerId;
-    if (this.cartItems != null) {
-      data['cart_items'] = this.cartItems!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['owner_id'] = ownerId;
+    if (cartItems != null) {
+      data['cart_items'] = cartItems!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -45,19 +45,19 @@ class CartItems {
 
   CartItems(
       {this.id,
-        this.ownerId,
-        this.userId,
-        this.productId,
-        this.productName,
-        this.productThumbnailImage,
-        this.variation,
-        this.price,
-        this.currencySymbol,
-        this.tax,
-        this.shippingCost,
-        this.quantity,
-        this.lowerLimit,
-        this.upperLimit});
+      this.ownerId,
+      this.userId,
+      this.productId,
+      this.productName,
+      this.productThumbnailImage,
+      this.variation,
+      this.price,
+      this.currencySymbol,
+      this.tax,
+      this.shippingCost,
+      this.quantity,
+      this.lowerLimit,
+      this.upperLimit});
 
   CartItems.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -77,21 +77,21 @@ class CartItems {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['owner_id'] = this.ownerId;
-    data['user_id'] = this.userId;
-    data['product_id'] = this.productId;
-    data['product_name'] = this.productName;
-    data['product_thumbnail_image'] = this.productThumbnailImage;
-    data['variation'] = this.variation;
-    data['price'] = this.price;
-    data['currency_symbol'] = this.currencySymbol;
-    data['tax'] = this.tax;
-    data['shipping_cost'] = this.shippingCost;
-    data['quantity'] = this.quantity;
-    data['lower_limit'] = this.lowerLimit;
-    data['upper_limit'] = this.upperLimit;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['owner_id'] = ownerId;
+    data['user_id'] = userId;
+    data['product_id'] = productId;
+    data['product_name'] = productName;
+    data['product_thumbnail_image'] = productThumbnailImage;
+    data['variation'] = variation;
+    data['price'] = price;
+    data['currency_symbol'] = currencySymbol;
+    data['tax'] = tax;
+    data['shipping_cost'] = shippingCost;
+    data['quantity'] = quantity;
+    data['lower_limit'] = lowerLimit;
+    data['upper_limit'] = upperLimit;
     return data;
   }
 }

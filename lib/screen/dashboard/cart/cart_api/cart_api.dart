@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -11,11 +13,11 @@ import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
 
 class CartListApi {
-  static Future<cartListModel> cartListApi(
+  static Future<CartListModel> cartListApi(
       {int? id, String? variant, int? quantity}) async {
     try {
       String uid = PrefService.getString(PrefKeys.uid);
-      String url = "${ApiEndPoint.cartList}${uid}";
+      String url = "${ApiEndPoint.cartList}$uid";
 
       String accesToken = PrefService.getString(PrefKeys.accessToken);
 
@@ -26,19 +28,23 @@ class CartListApi {
       });
       if (response != null && response.statusCode == 200) {
         List<dynamic> list = jsonDecode(response.body);
-        if (list.length != 0) {
-          print("${list[list.length - 1]}");
-          return cartListModel.fromJson(list[list.length - 1]);
+        if (list.isNotEmpty) {
+          if (kDebugMode) {
+            print("${list[list.length - 1]}");
+          }
+          return CartListModel.fromJson(list[list.length - 1]);
         } else {
-          return cartListModel();
+          return CartListModel();
         }
       } else {
-        print(jsonDecode(response!.body));
-        return cartListModel.fromJson({});
+        if (kDebugMode) {
+          print(jsonDecode(response!.body));
+        }
+        return CartListModel.fromJson({});
       }
     } catch (e) {
       showToast(e.toString());
-      return cartListModel.fromJson({});
+      return CartListModel.fromJson({});
     }
   }
 
@@ -47,7 +53,7 @@ class CartListApi {
   }) async {
     try {
       String accesToken = PrefService.getString(PrefKeys.accessToken);
-      String url = "${ApiEndPoint.deleteCart}${id}";
+      String url = "${ApiEndPoint.deleteCart}$id";
       http.Response? response = await HttpService.getApi(url: url, header: {
         "X-Requested-With": "XMLHttpRequest",
         'Authorization': "Bearer $accesToken",
@@ -76,14 +82,14 @@ class CartListApi {
 
   static minusCartApi({int? id, int? quantity}) async {
     try {
-      String accesToken = PrefService.getString(PrefKeys.accessToken);
-      String url = "${ApiEndPoint.updareCart}";
+      String accessToken = PrefService.getString(PrefKeys.accessToken);
+      String url = ApiEndPoint.updareCart;
       http.Response? response = await HttpService.postApi(url: url, header: {
         "X-Requested-With": "XMLHttpRequest",
-        'Authorization': "Bearer $accesToken",
+        'Authorization': "Bearer $accessToken",
       }, body: {
-        "cart_ids": "${id}",
-        "cart_quantities": "${quantity}"
+        "cart_ids": "$id",
+        "cart_quantities": "$quantity"
       });
       if (response != null && response.statusCode == 200) {
         Map<dynamic, dynamic> data = jsonDecode(response.body);

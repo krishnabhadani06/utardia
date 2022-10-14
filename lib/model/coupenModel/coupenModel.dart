@@ -25,7 +25,7 @@ class CoupenModel {
     if (json['details'] != null) {
       details = <Details>[];
       json['details'].forEach((v) {
-        details!.add(new Details.fromJson(v));
+        details!.add(Details.fromJson(v));
       });
     }
     discount = json['discount'];
@@ -35,17 +35,17 @@ class CoupenModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['type'] = this.type;
-    data['code'] = this.code;
-    if (this.details != null) {
-      data['details'] = this.details!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['type'] = type;
+    data['code'] = code;
+    if (details != null) {
+      data['details'] = details!.map((v) => v.toJson()).toList();
     }
-    data['discount'] = this.discount;
-    data['discount_type'] = this.discountType;
-    data['start_date'] = this.startDate;
-    data['end_date'] = this.endDate;
+    data['discount'] = discount;
+    data['discount_type'] = discountType;
+    data['start_date'] = startDate;
+    data['end_date'] = endDate;
     return data;
   }
 }
@@ -60,8 +60,8 @@ class Details {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['product_id'] = this.productId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['product_id'] = productId;
     return data;
   }
 }

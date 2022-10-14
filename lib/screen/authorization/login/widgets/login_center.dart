@@ -8,10 +8,11 @@ import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/common/textform_field.dart';
 import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/util/color_res.dart';
-import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 
 class LoginCenter extends StatelessWidget {
+  const LoginCenter({super.key});
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginProvider>(context);
@@ -32,7 +33,7 @@ class LoginCenter extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: deviceHeight * 0.02),
+          SizedBox(height: deviceHeight * 0.03),
           Center(
             child: Container(
               height: deviceHeight * 0.050,
@@ -73,16 +74,10 @@ class LoginCenter extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            AssetsImagesRes.mail,
-                            color: provider.isPhone == false
-                                ? ColorRes.white
-                                : ColorRes.black,
-                          ),
-                          // Icon(Icons.email,
-                          //     color: provider.isPhone == false
-                          //         ? ColorRes.white
-                          //         : ColorRes.black),
+                          Icon(Icons.email,
+                              color: provider.isPhone == false
+                                  ? ColorRes.white
+                                  : ColorRes.black),
                           SizedBox(
                             width: deviceWidth * 0.02,
                           ),
@@ -124,12 +119,6 @@ class LoginCenter extends StatelessWidget {
                               color: provider.isPhone == true
                                   ? ColorRes.white
                                   : ColorRes.black),
-                          // Image.asset(
-                          //   AssetsImagesRes.call,
-                          //   color: provider.isPhone == false
-                          //       ? ColorRes.white
-                          //       : ColorRes.black,
-                          // ),
                           SizedBox(
                             width: deviceWidth * 0.02,
                           ),
@@ -316,27 +305,19 @@ class LoginCenter extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              InkWell(
-                  onTap: () => provider.onTapForgot(),
-                  child: Text(
-                    Strings.forgotPassword,
-                    style: robotoBoldTextStyle(
-                        fontSize: 15, color: ColorRes.textBlue),
-                  ))
-              // TextButton(
-              //   onPressed: () => provider.onTapForgot(),
-              //   child: Text(
-              //     Strings.forgotPassword,
-              //     style: robotoBoldTextStyle(
-              //         fontSize: 14, color: ColorRes.textBlue),
-              //   ),
-              // ),
+              TextButton(
+                onPressed: () => provider.onTapForgot(),
+                child: Text(
+                  Strings.forgotPassword,
+                  style: robotoBoldTextStyle(
+                      fontSize: 16, color: ColorRes.textBlue),
+                ),
+              ),
             ],
           ),
           SizedBox(
-            height: deviceHeight * 0.03,
+            height: deviceHeight * 0.01,
           ),
           Center(
             child: materialButton(

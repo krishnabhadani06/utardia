@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-AddToCartModel addToCartModelFromJson(String str) => AddToCartModel.fromJson(json.decode(str));
+AddToCartModel addToCartModelFromJson(String str) =>
+    AddToCartModel.fromJson(json.decode(str));
 
 String addToCartModelToJson(AddToCartModel data) => json.encode(data.toJson());
 
@@ -18,12 +19,12 @@ class AddToCartModel {
   String? message;
 
   factory AddToCartModel.fromJson(Map<String, dynamic> json) => AddToCartModel(
-    result: json["result"] == null ? null : json["result"],
-    message: json["message"] == null ? null : json["message"],
-  );
+        result: json["result"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "result": result == null ? null : result,
-    "message": message == null ? null : message,
-  };
+        "result": result,
+        "message": message,
+      };
 }

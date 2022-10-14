@@ -77,7 +77,7 @@ class EditAddressDetailBottom extends StatelessWidget {
                               spreadRadius: 0, //spread radius
                               blurRadius: 3, // blur radius
                               offset:
-                                  Offset(0, 0), // changes position of shadow
+                                  const Offset(0, 0), // changes position of shadow
                             ),
                           ],
                         ),
@@ -87,7 +87,7 @@ class EditAddressDetailBottom extends StatelessWidget {
                           items: provider.stateList
                               .map((e) => DropdownMenuItem<StateModel>(
                                   value: e,
-                                  child: Container(
+                                  child: SizedBox(
                                     width: deviceWidth * 0.20,
                                     child: Text(
                                       e.name.toString(),
@@ -114,7 +114,7 @@ class EditAddressDetailBottom extends StatelessWidget {
                     ? Container(
                         height: deviceHeight * 0.06,
                         width: deviceWidth * 0.20,
-                        padding: EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 10),
                         decoration: BoxDecoration(
                           color: ColorRes.white,
                           border: Border.all(
@@ -129,7 +129,7 @@ class EditAddressDetailBottom extends StatelessWidget {
                               spreadRadius: 0, //spread radius
                               blurRadius: 3, // blur radius
                               offset:
-                                  Offset(0, 0), // changes position of shadow
+                                 const  Offset(0, 0), // changes position of shadow
                             ),
                           ],
                         ),
@@ -139,7 +139,7 @@ class EditAddressDetailBottom extends StatelessWidget {
                           items: provider.cityList
                               .map((e) => DropdownMenuItem<CityModel>(
                                   value: e,
-                                  child: Container(
+                                  child: SizedBox(
                                     width: deviceWidth * 0.20,
                                     child: Text(
                                       e.name.toString(),

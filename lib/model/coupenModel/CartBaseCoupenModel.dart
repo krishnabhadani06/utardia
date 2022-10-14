@@ -23,7 +23,7 @@ class CartBaseCoupenModel {
     type = json['type'];
     code = json['code'];
     details =
-        json['details'] != null ? new Details.fromJson(json['details']) : null;
+        json['details'] != null ? Details.fromJson(json['details']) : null;
     discount = json['discount'];
     discountType = json['discount_type'];
     startDate = json['start_date'];
@@ -31,17 +31,17 @@ class CartBaseCoupenModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['type'] = this.type;
-    data['code'] = this.code;
-    if (this.details != null) {
-      data['details'] = this.details!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['type'] = type;
+    data['code'] = code;
+    if (details != null) {
+      data['details'] = details!.toJson();
     }
-    data['discount'] = this.discount;
-    data['discount_type'] = this.discountType;
-    data['start_date'] = this.startDate;
-    data['end_date'] = this.endDate;
+    data['discount'] = discount;
+    data['discount_type'] = discountType;
+    data['start_date'] = startDate;
+    data['end_date'] = endDate;
     return data;
   }
 }
@@ -58,9 +58,9 @@ class Details {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['min_buy'] = this.minBuy;
-    data['max_discount'] = this.maxDiscount;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['min_buy'] = minBuy;
+    data['max_discount'] = maxDiscount;
     return data;
   }
 }

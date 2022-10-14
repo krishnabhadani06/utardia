@@ -1,4 +1,4 @@
-class cartSummaryModel {
+class CartSummaryModel {
   String? subTotal;
   String? tax;
   String? shippingCost;
@@ -11,7 +11,7 @@ class cartSummaryModel {
   String? couponCode;
   bool? couponApplied;
 
-  cartSummaryModel(
+  CartSummaryModel(
       {this.subTotal,
       this.tax,
       this.shippingCost,
@@ -24,7 +24,7 @@ class cartSummaryModel {
       this.couponCode,
       this.couponApplied});
 
-  cartSummaryModel.fromJson(Map<String, dynamic> json) {
+  CartSummaryModel.fromJson(Map<String, dynamic> json) {
     subTotal = json['sub_total'];
     tax = json['tax'];
     shippingCost = json['shipping_cost'];
@@ -40,18 +40,18 @@ class cartSummaryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['sub_total'] = this.subTotal;
-    data['tax'] = this.tax;
-    data['shipping_cost'] = this.shippingCost;
-    data['discount'] = this.discount;
-    data['saved_amount'] = this.savedAmount;
-    data['saved_amount_in_percentage'] = this.savedAmountInPercentage;
-    data['club_point'] = this.clubPoint;
-    data['grand_total'] = this.grandTotal;
-    data['grand_total_value'] = this.grandTotalValue;
-    data['coupon_code'] = this.couponCode;
-    data['coupon_applied'] = this.couponApplied;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['sub_total'] = subTotal;
+    data['tax'] = tax;
+    data['shipping_cost'] = shippingCost;
+    data['discount'] = discount;
+    data['saved_amount'] = savedAmount;
+    data['saved_amount_in_percentage'] = savedAmountInPercentage;
+    data['club_point'] = clubPoint;
+    data['grand_total'] = grandTotal;
+    data['grand_total_value'] = grandTotalValue;
+    data['coupon_code'] = couponCode;
+    data['coupon_applied'] = couponApplied;
     return data;
   }
 }

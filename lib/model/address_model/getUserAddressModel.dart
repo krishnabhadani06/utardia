@@ -1,15 +1,15 @@
-class userGetAddress {
+class UserGetAddress {
   List<Data>? data;
   bool? success;
   int? status;
 
-  userGetAddress({this.data, this.success, this.status});
+  UserGetAddress({this.data, this.success, this.status});
 
-  userGetAddress.fromJson(Map<String, dynamic> json) {
+  UserGetAddress.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
     success = json['success'];
@@ -17,12 +17,12 @@ class userGetAddress {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['success'] = this.success;
-    data['status'] = this.status;
+    data['success'] = success;
+    data['status'] = status;
     return data;
   }
 }
@@ -83,23 +83,23 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['address'] = this.address;
-    data['country_id'] = this.countryId;
-    data['state_id'] = this.stateId;
-    data['city_id'] = this.cityId;
-    data['country_name'] = this.countryName;
-    data['state_name'] = this.stateName;
-    data['city_name'] = this.cityName;
-    data['postal_code'] = this.postalCode;
-    data['work_type'] = this.workType;
-    data['phone'] = this.phone;
-    data['set_default'] = this.setDefault;
-    data['location_available'] = this.locationAvailable;
-    data['lat'] = this.lat;
-    data['lang'] = this.lang;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['address'] = address;
+    data['country_id'] = countryId;
+    data['state_id'] = stateId;
+    data['city_id'] = cityId;
+    data['country_name'] = countryName;
+    data['state_name'] = stateName;
+    data['city_name'] = cityName;
+    data['postal_code'] = postalCode;
+    data['work_type'] = workType;
+    data['phone'] = phone;
+    data['set_default'] = setDefault;
+    data['location_available'] = locationAvailable;
+    data['lat'] = lat;
+    data['lang'] = lang;
     return data;
   }
 }

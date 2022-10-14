@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,9 @@ class OtpProvider extends ChangeNotifier {
         txtOtp6.text.isNotEmpty) {
       String otp =
           "${txtOtp1.text}${txtOtp2.text}${txtOtp3.text}${txtOtp4.text}${txtOtp5.text}${txtOtp6.text}";
-      print(uid);
+      if (kDebugMode) {
+        print(uid);
+      }
       if (isForgot) {
         navigator.currentState!
             .pushReplacement(MaterialPageRoute(builder: (context) {

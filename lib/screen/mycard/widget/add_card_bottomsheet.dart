@@ -48,7 +48,7 @@ class AddCardBottomSheet extends StatelessWidget {
                         )),
                     Flexible(
                         flex: 7,
-                        child: Container(
+                        child: SizedBox(
                             width: deviceWidth / 1,
                             // color: ColorRes.grey,
                             child: Center(
@@ -63,7 +63,7 @@ class AddCardBottomSheet extends StatelessWidget {
                             ))),
                     Flexible(
                       flex: 1,
-                      child: Container(
+                      child: SizedBox(
                         width: deviceWidth / 20,
                         child: Icon(
                           IconRes.icClose,

@@ -8,8 +8,6 @@ class AssetsImagesRes {
   static const coin1 = 'assets/images/login/coin1.png';
   static const goldCoin = 'assets/images/login/goldcoin.png';
   static const coin = 'assets/images/login/Coin.png';
-  static const mail = 'assets/images/login/mail.png';
-  static const call = 'assets/images/login/call.png';
 
   ///----------------------------Model Class -----------------------------------
   static const mensFashion = 'assets/images/dashboardImages/dashboard 2.png';
@@ -63,7 +61,6 @@ class AssetsImagesRes {
 
   ///----------------------------order Page-----------------------------------------
   static const noOrderImage = 'assets/images/EmptyPageScreen/noOrderImage.png';
-  static const orderFail = 'assets/images/EmptyPageScreen/orderFailed.png';
 
   ///-------------------------------connection Lost Screen ---------------------------
   static const connectionLostImage =

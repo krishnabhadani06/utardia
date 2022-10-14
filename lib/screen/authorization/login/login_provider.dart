@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:country_picker/country_picker.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:utardia/common/helper.dart';
@@ -58,12 +57,11 @@ class LoginProvider extends ChangeNotifier {
       phoneValidation();
       passwordValidation();
       if (errorTxtPhone == null && errorTxtPass == null) {
-        await singUpApiData(
-            isPhone
-                ? "${currentCountry!.phoneCode} ${txtPhone.text}"
-                : txtId.text,
-            txtPassword.text,
-            context);
+        await singInWithPhoneApiData(
+          txtPhone.text,
+          txtPassword.text,
+          context,
+        );
         txtPhone.clear();
         txtPassword.clear();
       } else {}
@@ -71,30 +69,11 @@ class LoginProvider extends ChangeNotifier {
       emailValidation();
       passwordValidation();
       if (errorTxtId == null && errorTxtPass == null) {
-        singUpApiData(
-            isPhone
-                ? "${currentCountry!.phoneCode} ${txtPhone.text}"
-                : txtId.text,
-            txtPassword.text,
-            context);
+        singInWithEmailApiData(txtId.text, txtPassword.text, context);
         txtId.clear();
         txtPassword.clear();
       } else {}
     }
-    // emailValidation();
-    // passwordValidation();
-    // phoneValidation();
-    // if (errorTxtPass == null && errorTxtId == null && errorTxtPhone == null) {
-    //   singUpApiData(
-    //       isPhone
-    //           ? "${currentCountry!.phoneCode} ${txtPhone.text}"
-    //           : txtId.text,
-    //       txtPassword.text,
-    //       context);
-    //   txtId.clear();
-    //   txtPassword.clear();
-    //   txtPhone.clear();
-    // }
   }
 
   void emailValidation() {
@@ -112,10 +91,35 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> singUpApiData(
+  Future<void> singInWithEmailApiData(
       String email, String password, BuildContext context) async {
     loader = true;
-    SingInModel? model = await SingInpApi.singInApi(email, password, context);
+    SingInModel? model =
+        await SingInpApi.singInWithEmailApi(email, password, context);
+    if (model != null) {
+      writeSignInData(model.toJson());
+    } else {
+      if (kDebugMode) {
+        print("user not found developer");
+      }
+    }
+    loader = false;
+    notifyListeners();
+  }
+
+  Future<void> singInWithPhoneApiData(
+    String phone,
+    String password,
+    BuildContext context,
+  ) async {
+    loader = true;
+    String country = currentCountry?.phoneCode ?? "91";
+
+    SingInModel? model = await SingInpApi.singInWithPhoneApi(
+        phone: phone,
+        password: password,
+        context: context,
+        country: country.split("+").last);
     if (model != null) {
       writeSignInData(model.toJson());
     } else {

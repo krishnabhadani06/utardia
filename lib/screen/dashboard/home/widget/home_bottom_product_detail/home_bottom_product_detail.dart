@@ -42,7 +42,7 @@ class TopProductDetailScreen extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: deviceHeight * 0.40,
                 width: deviceWidth * 100,
                 // color: ColorRes.yellow,

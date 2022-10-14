@@ -122,7 +122,7 @@ Widget txtFieldMulti({
         borderSide: const BorderSide(
           // color: Colors.transparent,
           color: ColorRes.lightGrey,
-          width: 1.0,
+          width: 2.0,
         ),
       ),
       errorBorder: OutlineInputBorder(

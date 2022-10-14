@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/screen/dashboard/dashboard_provider.dart';
 import 'package:utardia/util/color_res.dart';
-import 'package:utardia/util/icon_res.dart';
 import 'package:utardia/util/image_res.dart';
 
 class BottomBar extends StatelessWidget {

@@ -8,7 +8,6 @@ import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/widget/product_details_bottom.dart';
 import 'package:utardia/screen/category/product_details/widget/product_detials_center.dart';
-import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/services/pref_service.dart';
@@ -22,9 +21,11 @@ import 'product_details_provider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   bool isLike = false;
+
+  ProductDetailScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CartProvider>(context);
+    // final provider = Provider.of<CartProvider>(context);
     // final provider1 = Provider.of<FavoriteProvider>(context);
     return Consumer<ProductDetailsProvider>(builder: (context, pro, x) {
       return WillPopScope(
@@ -135,10 +136,10 @@ class ProductDetailScreen extends StatelessWidget {
                                       fontSize: 15, color: ColorRes.blackLight),
                                 ),
                               ),
-                              Container(
-                                height: deviceHeight * 0.34,
-                                // height: deviceHeight * 0.265,
+                              SizedBox(
+                                height: deviceHeight * 0.35,
                                 width: deviceWidth,
+                                // color: ColorRes.blackLight,
                                 child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: pro.allTodayProducts.length,
@@ -169,7 +170,7 @@ class ProductDetailScreen extends StatelessWidget {
                                                 //color of shadow
                                                 spreadRadius: 0, //spread radius
                                                 blurRadius: 3, // blur radius
-                                                offset: Offset(0,
+                                                offset: const Offset(0,
                                                     0), // changes position of shadow
                                               ),
                                             ],
@@ -182,7 +183,7 @@ class ProductDetailScreen extends StatelessWidget {
                                                     Alignment.bottomCenter,
                                                 child: Stack(
                                                   children: [
-                                                    Container(
+                                                    SizedBox(
                                                       // color: ColorRes.blue,
                                                       height:
                                                           deviceHeight * 0.18,
@@ -386,35 +387,26 @@ class ProductDetailScreen extends StatelessWidget {
                                                         height: deviceHeight *
                                                             0.004,
                                                       ),
-                                                      Row(
+                                                      Wrap(
                                                         children: [
                                                           //mainAxisAlignment: MainAxisAlignment.start,
-                                                          Expanded(
-                                                            flex: 3,
-                                                            child: Text(
-                                                              // "Rs${mainPrice!.toString()}",
-                                                              pro
-                                                                  .allTodayProducts[
-                                                                      index]
-                                                                  .mainPrice
-                                                                  .toString(),
-                                                              style:
-                                                                  robotoBoldTextStyle(
-                                                                      fontSize:
-                                                                          12),
-                                                              maxLines: 1,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                            ),
+                                                          Text(
+                                                            // "Rs${mainPrice!.toString()}",
+                                                            pro
+                                                                .allTodayProducts[
+                                                                    index]
+                                                                .mainPrice
+                                                                .toString(),
+                                                            style:
+                                                                robotoBoldTextStyle(
+                                                                    fontSize:
+                                                                        12),
                                                           ),
                                                           SizedBox(
                                                             width: deviceWidth *
                                                                 0.02,
                                                           ),
-                                                          Expanded(
-                                                            flex: 2,
-                                                            child: Text(
+                                                          Text(
                                                               // "Rs${strokedPrice!.toString()}",
                                                               pro
                                                                   .allTodayProducts[
@@ -435,23 +427,17 @@ class ProductDetailScreen extends StatelessWidget {
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
-                                                              ),
-                                                            ),
-                                                          ),
+                                                              )),
                                                           SizedBox(
                                                             width: deviceWidth *
                                                                 0.02,
                                                           ),
-                                                          Expanded(
-                                                            flex: 2,
-                                                            child: Text(
-                                                              Strings.off57,
-                                                              style: robotoBoldTextStyle(
-                                                                  color: ColorRes
-                                                                      .darkGreen,
-                                                                  fontSize:
-                                                                      8.0),
-                                                            ),
+                                                          Text(
+                                                            Strings.off57,
+                                                            style: natoMediumTextStyle(
+                                                                color: ColorRes
+                                                                    .darkGreen,
+                                                                fontSize: 12),
                                                           ),
                                                         ],
                                                       ),
@@ -642,7 +628,10 @@ class ProductDetailScreen extends StatelessWidget {
                                           ///
                                           ///[ADD_TO_CART] function
                                           ///
-                                          pro.addToCartAPiData(productDetail: pro.homeProductDetail, context: context);
+                                          pro.addToCartAPiData(
+                                              productDetail:
+                                                  pro.homeProductDetail,
+                                              context: context);
                                         },
                                         child: Row(
                                           children: [

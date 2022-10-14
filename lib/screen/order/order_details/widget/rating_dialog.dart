@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/util/color_res.dart';
 
@@ -31,7 +26,7 @@ class Rating_dialog extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 fontSize: 20.0),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5.0,
           ),
           const Text("It will help us serve better, next time.",
@@ -42,15 +37,15 @@ class Rating_dialog extends StatelessWidget {
           RatingBar(
             //  initialRating: 3,
             ratingWidget: RatingWidget(
-              full: Icon(
+              full: const Icon(
                 Icons.star_rounded,
                 color: Colors.amber,
               ),
-              half: Icon(
+              half: const Icon(
                 Icons.star_border_rounded,
                 color: Colors.amber,
               ),
-              empty: Icon(
+              empty: const Icon(
                 Icons.star_border_rounded,
                 color: Colors.amber,
               ),
@@ -61,7 +56,7 @@ class Rating_dialog extends StatelessWidget {
             itemCount: 5,
             glow: false,
             unratedColor: Colors.amber,
-            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+            itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
 
             onRatingUpdate: (rating) {
               Provider.of<OrderProvider>(context, listen: false).Rating =
@@ -76,25 +71,25 @@ class Rating_dialog extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Your comment",
+                const Text("Your comment",
                     style: TextStyle(color: ColorRes.grey, fontSize: 11.0)),
                 TextField(
                   controller: provider.txtConComment,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     // Enabled Border
-                    enabledBorder: const UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: ColorRes.grey),
                     ),
                     // Focused Border
-                    focusedBorder: const UnderlineInputBorder(
+                    focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: ColorRes.grey, width: 1),
                     ),
                     // Error Border
-                    errorBorder: const UnderlineInputBorder(
+                    errorBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: ColorRes.grey, width: 1),
                     ),
                     // Focused Error Border
-                    focusedErrorBorder: const UnderlineInputBorder(
+                    focusedErrorBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: ColorRes.grey, width: 1),
                     ),
                   ),
@@ -103,7 +98,7 @@ class Rating_dialog extends StatelessWidget {
                   provider.errorTxtComment == null
                       ? ""
                       : provider.errorTxtComment!.toString(),
-                  style: TextStyle(color: ColorRes.red, fontSize: 11.0),
+                  style: const TextStyle(color: ColorRes.red, fontSize: 11.0),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
@@ -123,7 +118,7 @@ class Rating_dialog extends StatelessWidget {
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: ColorRes.blue),
-                            child: Text("Rate")),
+                            child: const Text("Rate")),
                       ],
                     ))
               ],

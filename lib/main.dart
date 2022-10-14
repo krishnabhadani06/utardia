@@ -19,8 +19,6 @@ import 'package:utardia/screen/dashboard/profile/profile_provider.dart';
 import 'package:utardia/screen/dashboard/search/search_provider.dart';
 import 'package:utardia/screen/edit_profile/editprofile_provider.dart';
 import 'package:utardia/screen/mycard/my_card_provider.dart';
-import 'package:utardia/screen/order/order_details/order_details_screen.dart';
-import 'package:utardia/screen/order/order_details/widget/order_details_cart.dart';
 import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/screen/payment/payment_provider.dart';
 import 'package:utardia/screen/splash/splash_provider.dart';
@@ -69,9 +67,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigator,
         debugShowCheckedModeBanner: false,
+        //home: const HomeScreen(),
         builder: EasyLoading.init(),
         home: const SplashScreen(),
-        // home: OrderDetailsCart(),
       ),
     );
   }

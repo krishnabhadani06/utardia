@@ -39,14 +39,16 @@ class PaymentCart extends StatelessWidget {
               ),
               child: provider.paymentTypeList != null
                   ? DropdownButtonHideUnderline(
-                      child: DropdownButton<paymentModel>(
+                      child: DropdownButton<PaymentModel>(
                         icon: Icon(IconRes.icDown),
                         iconSize: 24,
                         elevation: 16,
                         isExpanded: true,
                         onChanged: null,
                         value: provider.currentPayment,
-                        items: provider.paymentTypeList!.map<DropdownMenuItem<paymentModel>>((paymentModel value) {
+                        items: provider.paymentTypeList!
+                            .map<DropdownMenuItem<PaymentModel>>(
+                                (PaymentModel value) {
                           return DropdownMenuItem(
                             value: value,
                             child: Row(

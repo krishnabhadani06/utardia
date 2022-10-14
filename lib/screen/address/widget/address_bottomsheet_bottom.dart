@@ -115,7 +115,8 @@ class AddressBottomSheetBottom extends StatelessWidget {
                         //color of shadow
                         spreadRadius: 0, //spread radius
                         blurRadius: 3, // blur radius
-                        offset: Offset(0, 0), // changes position of shadow
+                        offset:
+                            const Offset(0, 0), // changes position of shadow
                       ),
                     ],
                   ),
@@ -128,7 +129,7 @@ class AddressBottomSheetBottom extends StatelessWidget {
                           items: provider.stateList
                               .map((e) => DropdownMenuItem<StateModel>(
                                   value: e,
-                                  child: Container(
+                                  child: SizedBox(
                                     width: deviceWidth * 0.25,
                                     child: Text(
                                       e.name.toString(),
@@ -165,20 +166,21 @@ class AddressBottomSheetBottom extends StatelessWidget {
                         //color of shadow
                         spreadRadius: 0, //spread radius
                         blurRadius: 3, // blur radius
-                        offset: Offset(0, 0), // changes position of shadow
+                        offset:
+                            const Offset(0, 0), // changes position of shadow
                       ),
                     ],
                   ),
                   curve: Curves.ease,
                   duration: const Duration(seconds: 1),
-                  child: provider.cityList.length != 0
+                  child: provider.cityList.isNotEmpty
                       ? DropdownButton<CityModel>(
                           value: provider.currentCity!,
                           icon: const Icon(Icons.arrow_drop_down),
                           items: provider.cityList
                               .map((e) => DropdownMenuItem<CityModel>(
                                   value: e,
-                                  child: Container(
+                                  child: SizedBox(
                                     width: deviceWidth * 0.25,
                                     child: Text(
                                       e.name.toString(),

@@ -73,7 +73,7 @@ class OtpCenter extends StatelessWidget {
                     color: ColorRes.black.withOpacity(0.4),
                     spreadRadius: 0, //spread radius
                     blurRadius: 3, // blur radius
-                    offset: Offset(0, 0), // changes position of shadow
+                    offset: const Offset(0, 0), // changes position of shadow
                   ),
                 ],
                 borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -101,7 +101,7 @@ class OtpCenter extends StatelessWidget {
                     color: ColorRes.black.withOpacity(0.4),
                     spreadRadius: 0, //spread radius
                     blurRadius: 3, // blur radius
-                    offset: Offset(0, 0), // changes position of shadow
+                    offset: const Offset(0, 0), // changes position of shadow
                   ),
                 ],
                 borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -130,7 +130,7 @@ class OtpCenter extends StatelessWidget {
                     //color of shadow
                     spreadRadius: 0, //spread radius
                     blurRadius: 3, // blur radius
-                    offset: Offset(0, 0), // changes position of shadow
+                    offset: const Offset(0, 0), // changes position of shadow
                   ),
                 ],
                 borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -159,7 +159,7 @@ class OtpCenter extends StatelessWidget {
                     //color of shadow
                     spreadRadius: 0, //spread radius
                     blurRadius: 3, // blur radius
-                    offset: Offset(0, 0), // changes position of shadow
+                    offset: const Offset(0, 0), // changes position of shadow
                   ),
                 ],
                 borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -188,7 +188,7 @@ class OtpCenter extends StatelessWidget {
                     //color of shadow
                     spreadRadius: 0, //spread radius
                     blurRadius: 3, // blur radius
-                    offset: Offset(0, 0), // changes position of shadow
+                    offset: const Offset(0, 0), // changes position of shadow
                   ),
                 ],
                 borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -201,11 +201,10 @@ class OtpCenter extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: deviceHeight * 0.05,
+          height: deviceHeight * 0.24,
         ),
         materialButton(
-            txtButton: Strings.submit,
-            // txtButton: Strings.continues,
+            txtButton: Strings.continues,
             onPressed: () => provider.onTapContinue()),
       ],
     );

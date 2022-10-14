@@ -1,4 +1,7 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -77,7 +80,7 @@ class OrderProvider extends ChangeNotifier {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, url: "${ApiEndPoint.getOrders}${PrefService.getString(PrefKeys.uid)}");
 
-      if (response!.statusCode == 200 && response != null) {
+      if (response!.statusCode == 200) {
         orderModel = OrderModel.fromJson(jsonDecode(response.body));
         if (orderModel.data != null) {
           Logger().e(jsonDecode(response.body));

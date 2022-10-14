@@ -1,12 +1,10 @@
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/common/textform_field.dart';
-import 'package:utardia/screen/authorization/login/login_provider.dart';
 import 'package:utardia/screen/authorization/registration/registration_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/string.dart';
@@ -17,7 +15,6 @@ class RegistrationCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<RegistrationProvider>(context);
-    final provider1 = Provider.of<LoginProvider>(context);
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 18),
       child: Column(
@@ -176,7 +173,7 @@ class RegistrationCenter extends StatelessWidget {
                             context: context,
                             onSelect: (Country country) {
                               provider.currentCountry = country;
-                              provider.notifyListeners();
+                              // provider.notifyListeners();
                             });
                       },
                       child: Center(
@@ -244,7 +241,7 @@ class RegistrationCenter extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 5),
               padding: const EdgeInsets.only(right: 25),
               alignment: Alignment.centerLeft,
-              // height: 15,
+              height: 15,
               width: double.infinity,
               // color: Colors.yellow,
               child: Text(
@@ -270,8 +267,9 @@ class RegistrationCenter extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.only(right: 25),
             alignment: Alignment.centerLeft,
-            // height: 15,
+            height: 15,
             width: double.infinity,
+            // color: Colors.yellow,
             child: Text(
               provider.errorTextPassword ?? "",
               style: robotoRegularTextStyle(
@@ -294,7 +292,7 @@ class RegistrationCenter extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.only(right: 25),
             alignment: Alignment.centerLeft,
-            // height: 15,
+            height: 15,
             width: double.infinity,
             // color: Colors.yellow,
             child: Text(

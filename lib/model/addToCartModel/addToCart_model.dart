@@ -19,12 +19,12 @@ class AddToCartModel {
   String? message;
 
   factory AddToCartModel.fromJson(Map<String, dynamic> json) => AddToCartModel(
-        result: json["result"],
-        message: json["message"],
+        result: json["result"] == null ? null : json["result"],
+        message: json["message"] == null ? null : json["message"],
       );
 
   Map<String, dynamic> toJson() => {
-        "result": result,
-        "message": message,
+        "result": result == null ? null : result,
+        "message": message == null ? null : message,
       };
 }

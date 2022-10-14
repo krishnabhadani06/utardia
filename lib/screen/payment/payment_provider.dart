@@ -36,14 +36,14 @@ class PaymentProvider extends ChangeNotifier {
   List<CartBaseCoupenModel>? coupenList;
   CartBaseCoupenModel? currentCoupen;
   //address model
-  List<AddressModel>? addressList;
-  AddressModel? currentAddress;
+  List<addressModel>? addressList;
+  addressModel? currentAddress;
   CartSummaryModel? cartSummary;
   bool loader = false;
   ShipingAddressModel? shippingAddress;
   // AddressListDataModel _addressListChoice = addressDataList[0];
 
-  void onDropDownItemSelected(AddressModel newSelectedBank) {
+  void onDropDownItemSelected(addressModel newSelectedBank) {
     currentAddress = newSelectedBank;
     notifyListeners();
   }
@@ -143,7 +143,7 @@ class PaymentProvider extends ChangeNotifier {
         List<dynamic> addressRawList = data['data'] as List<dynamic>;
 
         addressList = addressRawList.map((e) {
-          return AddressModel.fromJson(e);
+          return addressModel.fromJson(e);
         }).toList();
         if (addressList!.isNotEmpty) {
           currentAddress = addressList![0];

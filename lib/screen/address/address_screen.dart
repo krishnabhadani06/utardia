@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/address/address_provider.dart';
@@ -214,7 +215,7 @@ class AddressScreen extends StatelessWidget {
                               ),
                             ],
                           )
-                        : const Center(child: CircularProgressIndicator())
-                : const Center(child: CircularProgressIndicator())));
+                        : commonLoader()
+                : commonLoader()));
   }
 }

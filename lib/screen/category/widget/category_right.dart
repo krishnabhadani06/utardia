@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
@@ -52,9 +53,11 @@ class _CategoryRightState extends State<CategoryRight> {
             onPageChanged: (n) async => provider.currentSelect(n),
             itemBuilder: (context, index) {
               if (provider.loader) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return provider.loader == true
+                    ? commonLoader()
+                    : const SizedBox();
+                // return const Center(
+                //   child: CircularProgressIndicator(),
               } else {
                 return SingleChildScrollView(
                   physics: const BouncingScrollPhysics(), // important

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/authorization/registration/registration_provider.dart';
@@ -45,11 +46,12 @@ class RegistrationScreen extends StatelessWidget {
                 const RegistrationBottom(),
               ]),
             ),
-            provider.loader == true
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : const SizedBox()
+            provider.loader == true ? commonLoader() : const SizedBox()
+            // provider.loader == true
+            //     ? const Center(
+            //         child: CircularProgressIndicator(),
+            //       )
+            //     : const SizedBox()
           ],
         ),
       ),

@@ -3,7 +3,6 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
-
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
@@ -316,14 +315,13 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                                     width: 10,
                                   ),
                                   InkWell(
-                                    onTap: () {
-                                      pro.currentColor = pro
-                                          .homeProductDetail!.colors!
-                                          .indexOf(e);
-                                      // pro.notifyListeners();
-
-                                      pro.getQty();
-                                    },
+                                    onTap: () => pro.onTapColor(e),
+                                    // onTap: () {
+                                    //   pro.currentColor = pro
+                                    //       .homeProductDetail!.colors!
+                                    //       .indexOf(e);
+                                    //   pro.getQty();
+                                    // },
                                     child: Stack(
                                       children: [
                                         Container(

@@ -1,9 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +26,11 @@ class OtpProvider extends ChangeNotifier {
   bool isPhone = false;
   Timer? timer;
   int start = 30;
+  bool loader = false;
 
   void startTimer() {
-    const oneSec = const Duration(seconds: 1);
-    timer = new Timer.periodic(
+    const oneSec = Duration(seconds: 1);
+    timer = Timer.periodic(
       oneSec,
       (Timer timer) {
         if (start == 0) {

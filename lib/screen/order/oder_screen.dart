@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
@@ -45,9 +46,7 @@ class OrderScreen extends StatelessWidget {
               title: const Text(Strings.order, style: TextStyle(fontSize: 22)),
             ),
             body: provider.orderModel.data == null && provider.loader == true
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
+                ? commonLoader()
                 : provider.orderModel.data == null && provider.loader == false
                     ? Center(
                         child: Column(

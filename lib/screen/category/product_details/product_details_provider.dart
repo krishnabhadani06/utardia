@@ -61,11 +61,11 @@ class ProductDetailsProvider extends ChangeNotifier {
   TodaysProductDealModel? todayProduct;
   List<TodayProductDealList> allTodayProducts = [];
 
-  String selectDropDown(String? newValue) {
-    select = newValue.toString();
-    notifyListeners();
-    return select;
-  }
+  // String selectDropDown(String? newValue) {
+  //   select = newValue.toString();
+  //   notifyListeners();
+  //   return select;
+  // }
 
   void onTapButtonSize(int index) {
     if (index == 0) {
@@ -85,6 +85,17 @@ class ProductDetailsProvider extends ChangeNotifier {
     getQty();
     notifyListeners();
   }
+
+  void onTapColor(String e) {
+    currentColor = homeProductDetail!.colors!.indexOf(e);
+    getQty();
+    notifyListeners();
+  }
+  // pro.currentColor = pro
+  //     .homeProductDetail!.colors!
+  //     .indexOf(e);
+  // // pro.notifyListeners();
+  // pro.getQty()
 
   // bool press = false;
 

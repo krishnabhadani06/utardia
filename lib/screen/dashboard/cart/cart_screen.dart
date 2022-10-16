@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
@@ -70,9 +71,7 @@ class _CartScreenState extends State<CartScreen> {
                             fontSize: 22, color: ColorRes.white)),
                   ),
                   body: provider.loader == true
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
+                      ? commonLoader()
                       : Stack(
                           children: [
                             Column(

@@ -29,7 +29,7 @@ Widget ProductCard({
   final provider = Provider.of<FavoriteProvider>(context!);
   // final provider2 = Provider.of<ProductDetailsProvider>(context);
   return Container(
-    margin: const EdgeInsets.only(left: 5.0, right: 6.0, top: 7.0, bottom: 7.0),
+    margin: const EdgeInsets.only(left: 6.0, right: 6.0, top: 7.0, bottom: 7.0),
     width: 155,
     decoration: BoxDecoration(
       color: Colors.white,
@@ -180,36 +180,43 @@ Widget ProductCard({
                   SizedBox(
                     height: deviceHeight * 0.008,
                   ),
-                  Wrap(
+                  Row(
                     children: [
                       //mainAxisAlignment: MainAxisAlignment.start,
-                      Text(
-                        "Rs${mainPrice!.toString()}",
-                        // widget.mainPrice!,
-                        style: robotoMediumTextStyle(
-                                fontSize: 12, color: ColorRes.blackText)
-                            .copyWith(fontWeight: FontWeight.w700),
+                      Expanded(
+                        child: Text(
+                          "Rs${mainPrice!.toString()}",
+                          // widget.mainPrice!,
+                          style: robotoMediumTextStyle(
+                                  fontSize: 12, color: ColorRes.blackText)
+                              .copyWith(fontWeight: FontWeight.w700),
+                        ),
                       ),
-                      SizedBox(
-                        width: deviceWidth * 0.02,
+                      // SizedBox(
+                      //   width: deviceWidth * 0.02,
+                      // ),
+                      Expanded(
+                        child: Text(strokedPrice!.toString(),
+                            //widget.strokedPrice!,
+                            style: robotoRegularTextStyle(
+                                    fontSize: 8.0,
+                                    color: ColorRes.greyPriceText)
+                                //color: ColorRes.clrFont.withOpacity(0.7))
+                                .copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              overflow: TextOverflow.ellipsis,
+                            )),
                       ),
-                      Text(strokedPrice!.toString(),
-                          //widget.strokedPrice!,
-                          style: robotoRegularTextStyle(
-                                  fontSize: 8.0, color: ColorRes.greyPriceText)
-                              //color: ColorRes.clrFont.withOpacity(0.7))
-                              .copyWith(
-                            decoration: TextDecoration.lineThrough,
-                            overflow: TextOverflow.ellipsis,
-                          )),
-                      SizedBox(
-                        width: deviceWidth * 0.02,
-                      ),
-                      Text(
-                        Strings.off57,
-                        style: robotoSemiBoldTextStyle(
-                                color: ColorRes.darkGreen, fontSize: 8)
-                            .copyWith(fontWeight: FontWeight.w700),
+                      // SizedBox(
+                      //   width: deviceWidth * 0.02,
+                      // ),
+                      Expanded(
+                        child: Text(
+                          Strings.off57,
+                          style: robotoSemiBoldTextStyle(
+                                  color: ColorRes.darkGreen, fontSize: 8)
+                              .copyWith(fontWeight: FontWeight.w700),
+                        ),
                       ),
                     ],
                   ),

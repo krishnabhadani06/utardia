@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
@@ -33,7 +34,7 @@ class FavoriteScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: provider.Wishlist2 != null
                   ? provider.loader == true && provider.Wishlist2!.data!.isEmpty
-                      ? const Center(child: CircularProgressIndicator())
+                      ? commonLoader()
                       : provider.loader == false &&
                               provider.Wishlist2!.data!.isEmpty
                           ? Column(
@@ -99,7 +100,7 @@ class FavoriteScreen extends StatelessWidget {
                                 );
                               },
                             )
-                  : const CircularProgressIndicator()),
+                  : commonLoader()),
         ),
       );
     });

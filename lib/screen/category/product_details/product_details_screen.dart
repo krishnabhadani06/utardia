@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/category/category_provider.dart';
@@ -52,10 +53,8 @@ class ProductDetailScreen extends StatelessWidget {
                   style:
                       ubuntuBoldTextStyle(fontSize: 22, color: ColorRes.white)),
             ),
-            body: pro.loader
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
+            body: pro.loader == true
+                ? commonLoader()
                 : Stack(
                     children: [
                       SingleChildScrollView(
@@ -137,7 +136,7 @@ class ProductDetailScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: deviceHeight * 0.32,
+                                height: deviceHeight * 0.34,
                                 width: deviceWidth,
                                 // color: ColorRes.blackLight,
                                 child: ListView.builder(

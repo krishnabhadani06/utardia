@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/home_center.dart';
@@ -62,67 +63,83 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           body: Scaffold(
-            appBar: AppBar(
-              toolbarHeight: 0.0,
-              primary: false,
-              backgroundColor: Colors.transparent,
-            ),
-            drawerEnableOpenDragGesture: false,
-            key: provider.drawerScaffoldLKey,
-            drawer: Theme(
-              data: Theme.of(context).copyWith(
-                canvasColor: ColorRes.lightGrey, //desired color
+              appBar: AppBar(
+                toolbarHeight: 0.0,
+                primary: false,
+                backgroundColor: Colors.transparent,
               ),
-              child: Drawer(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(30),
-                      bottomRight: Radius.circular(30)),
+              drawerEnableOpenDragGesture: false,
+              key: provider.drawerScaffoldLKey,
+              drawer: Theme(
+                data: Theme.of(context).copyWith(
+                  canvasColor: ColorRes.lightGrey, //desired color
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 23.0),
-                        child: Column(
-                          children: const [
-                            ProfileDrawer(),
-                          ],
-                        ),
-                      ),
-                    ],
+                child: Drawer(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        bottomRight: Radius.circular(30)),
                   ),
-                ),
-              ),
-            ),
-            //body:SingleChildScrollView(
-            body: provider.loader
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                      //itemCount: 1 + 1 + provider.allCategoriesProducts.length,
-                      itemCount: 2 + provider.allHomeTopProducts.length,
-                      padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height * 0.02),
-                      itemBuilder: (context, index) {
-                        if (index == 0) {
-                          return const HomeTop();
-                        } else if (index == 1) {
-                          return const HomeCenter();
-                        } else {
-                          return provider.homeBottomLoader
-                              ? const Center(
-                                  child: CircularProgressIndicator(),
-                                )
-                              : HomeBottom(index: index - 2);
-                        }
-                      },
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(left: 23.0),
+                          child: Column(
+                            children: const [
+                              ProfileDrawer(),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-          ),
+                ),
+              ),
+              //body:SingleChildScrollView(
+              body: provider.loader == true
+                  ? commonLoader()
+                  : SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          HomeTop(),
+                          HomeCenter(),
+                          ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: 2 + provider.allHomeTopProducts.length,
+                              padding: EdgeInsets.only(
+                                  top: MediaQuery.of(context).size.height *
+                                      0.02),
+                              itemBuilder: (context, index) {
+                                return HomeBottom(index: index);
+                              })
+                        ],
+                      ),
+                    )
+              // : SizedBox(
+              //     width: MediaQuery.of(context).size.width,
+              //     child: ListView.builder(
+              //       //itemCount: 1 + 1 + provider.allCategoriesProducts.length,
+              //       itemCount: 2 + provider.allHomeTopProducts.length,
+              //       padding: EdgeInsets.only(
+              //           top: MediaQuery.of(context).size.height * 0.02),
+              //       itemBuilder: (context, index) {
+              //         if (index == 0) {
+              //           return const HomeTop();
+              //         } else if (index == 1) {
+              //           return const HomeCenter();
+              //         } else {
+              //           return provider.homeBottomLoader
+              //               ? const Center(
+              //                   child: CircularProgressIndicator(),
+              //                 )
+              //               : HomeBottom(index: index - 2);
+              //         }
+              //       },
+              //     ),
+              //   ),
+              ),
         ),
       );
     });

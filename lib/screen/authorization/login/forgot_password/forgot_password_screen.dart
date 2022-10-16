@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
@@ -282,7 +283,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: deviceHeight * 0.02,
+                    height: deviceHeight * 0.15,
                   ),
                   materialButton(
                       txtButton: Strings.reSetPassword,
@@ -290,6 +291,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ],
               ),
             ),
+            provider.loader == true ? commonLoader() : const SizedBox()
           ],
         ),
       ),

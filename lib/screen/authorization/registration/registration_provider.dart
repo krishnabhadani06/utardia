@@ -116,15 +116,8 @@ class RegistrationProvider extends ChangeNotifier {
   Future<void> singUpApiData(BuildContext context, String email,
       String password, String retypePassword, String phone) async {
     loader = true;
-    await SingUpApi.singUpApi(
-        context: context,
-        email: email,
-        password: password,
-        retypePassword: retypePassword,
-        phone: phone,
-        isPhone: isPhone,
-        code: currentCountry?.phoneCode ?? "91");
-
+    await SingUpApi.singUpApi(context, email, phone, password, retypePassword,
+        currentCountry?.phoneCode.toString() ?? "91", isPhone);
     loader = false;
     notifyListeners();
   }

@@ -23,10 +23,10 @@ class SingUpApi {
       String phone,
       String password,
       String retypePassword,
+      String cCode,
       bool isPhone) async {
     try {
       String url = ApiEndPoint.signUp;
-      String cCode = code.split("+").last;
       Map<String, String> param = {
         "name": "ram",
         "email_or_phone": isPhone == true ? phone : email,

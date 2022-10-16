@@ -58,7 +58,7 @@ class LoginCenter extends StatelessWidget {
                   Expanded(
                       child: InkWell(
                     onTap: () {
-                      provider.onTapButtonOption(0);
+                      provider.onTapButtonOption();
                     },
                     child: Container(
                       height: deviceHeight * 0.050,
@@ -98,7 +98,7 @@ class LoginCenter extends StatelessWidget {
                   Expanded(
                       child: InkWell(
                     onTap: () {
-                      provider.onTapButtonOption(1);
+                      provider.onTapButtonOption();
                     },
                     child: Container(
                       height: deviceHeight * 0.050,

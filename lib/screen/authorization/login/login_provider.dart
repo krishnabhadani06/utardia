@@ -41,7 +41,7 @@ class LoginProvider extends ChangeNotifier {
         MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()));
   }
 
-  void onTapButtonOption(int index) {
+  void onTapButtonOption() {
     isPhone = !isPhone;
     notifyListeners();
   }

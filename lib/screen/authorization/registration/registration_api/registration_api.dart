@@ -13,7 +13,6 @@ import 'package:utardia/common/helper.dart';
 import 'package:utardia/model/SignUp_Model/signup_model.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_provider.dart';
 import 'package:utardia/screen/authorization/registration/otp_verification/otp_verification_screen.dart';
-import 'package:utardia/screen/authorization/registration/registration_provider.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 
@@ -27,17 +26,14 @@ class SingUpApi {
       bool isPhone) async {
     try {
       String url = ApiEndPoint.signUp;
-      String country = Provider.of<RegistrationProvider>(context, listen: false)
-          .currentCountry!
-          .phoneCode;
+      String cCode = code.split("+").last;
       Map<String, String> param = {
         "name": "ram",
-        "email_or_phone":
-            isPhone == true ? "${phone.toString()}" : email.toString(),
-        "country_code": country,
-        "password": password.toString(),
-        "password_confirmation": retypePassword.toString(),
-        "register_by": isPhone == true ? "Phone" : "email",
+        "email_or_phone": isPhone == true ? phone : email,
+        "country_code": cCode,
+        "password": password,
+        "passowrd_confirmation": retypePassword,
+        "register_by": isPhone == true ? "phone" : "email",
       };
 
       Logger().e(param);

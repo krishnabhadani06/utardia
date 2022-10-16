@@ -42,7 +42,6 @@ class RegistrationProvider extends ChangeNotifier {
       phoneValidation();
       passwordValidation();
       rePasswordValidation();
-      // phoneValidation();
       if (errorTextPhone == null &&
           errorTextPassword == null &&
           errorTextRePassword == null) {
@@ -53,7 +52,7 @@ class RegistrationProvider extends ChangeNotifier {
           txtPassword.text,
           txtRePassword.text,
         );
-      } else {}
+      }
     } else {
       emailValidation();
       passwordValidation();
@@ -68,7 +67,7 @@ class RegistrationProvider extends ChangeNotifier {
           txtPassword.text,
           txtRePassword.text,
         );
-      } else {}
+      }
     }
   }
 
@@ -118,7 +117,13 @@ class RegistrationProvider extends ChangeNotifier {
       String password, String retypePassword, String phone) async {
     loader = true;
     await SingUpApi.singUpApi(
-        context, email, password, retypePassword, phone, isPhone);
+        context: context,
+        email: email,
+        password: password,
+        retypePassword: retypePassword,
+        phone: phone,
+        isPhone: isPhone,
+        code: currentCountry?.phoneCode ?? "91");
 
     loader = false;
     notifyListeners();

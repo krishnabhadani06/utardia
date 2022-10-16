@@ -226,6 +226,24 @@ class RegistrationCenter extends StatelessWidget {
             ),
           ),
           Visibility(
+            visible: provider.isPhone,
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 5),
+              padding: const EdgeInsets.only(right: 25),
+              alignment: Alignment.centerLeft,
+              height: 15,
+              width: double.infinity,
+              // color: Colors.yellow,
+              child: Text(
+                provider.errorTextPhone ?? "",
+                style: robotoRegularTextStyle(
+                  fontSize: 12,
+                  color: ColorRes.red,
+                ),
+              ),
+            ),
+          ),
+          Visibility(
             visible: !provider.isPhone,
             child: CommonTextField(
                 controller: provider.txtEmail,

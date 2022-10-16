@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/authorization/login/login_provider.dart';
@@ -24,15 +25,11 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 38.0),
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image.asset(
                     AssetsImagesRes.loginUtradiyaImage,
                     height: deviceHeight * 0.174,
                     width: deviceWidth * 0.403,
-                    // height: 130,
-                    // width: 130,
-                    //fit: BoxFit.fill,
                   ),
                   SizedBox(
                     height: deviceHeight * 0.015,
@@ -47,7 +44,6 @@ class LoginPage extends StatelessWidget {
                     Strings.marketPlace,
                     style: robotoRegularTextStyle(
                         fontSize: 09, color: ColorRes.borderblue),
-                    // color: ColorRes.dailogBoxColor
                   ),
                   const LoginCenter(),
                   SizedBox(
@@ -57,11 +53,7 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-            provider.loader == true
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : const SizedBox()
+            provider.loader == true ? commonLoader() : const SizedBox()
           ],
         ),
       ),

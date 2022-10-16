@@ -22,8 +22,8 @@ class ProfileImageUpdateApi {
       http.Response? response =
           await HttpService.postApi(url: url, body: param, header: {
         "X-Requested-With": "XMLHttpRequest",
-        //'Authorization': "Bearer $accesToken",
-        "Authorization": "Bearer 443|OeR04DIOgGc84IzEDWu4AHoGOpIDkulWGaB7qt5z",
+        "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+        // "Authorization": "Bearer 443|OeR04DIOgGc84IzEDWu4AHoGOpIDkulWGaB7qt5z",
       });
 
       if (response != null && response.statusCode == 200) {

@@ -27,16 +27,16 @@ class SingUpApi {
       bool isPhone) async {
     try {
       String url = ApiEndPoint.signUp;
+      String country = Provider.of<RegistrationProvider>(context, listen: false)
+          .currentCountry!
+          .phoneCode;
       Map<String, String> param = {
         "name": "ram",
         "email_or_phone":
             isPhone == true ? "${phone.toString()}" : email.toString(),
-        "country_code":
-            Provider.of<RegistrationProvider>(context, listen: false)
-                .currentCountry!
-                .phoneCode,
+        "country_code": country,
         "password": password.toString(),
-        "passowrd_confirmation": retypePassword.toString(),
+        "password_confirmation": retypePassword.toString(),
         "register_by": isPhone == true ? "Phone" : "email",
       };
 
@@ -47,6 +47,7 @@ class SingUpApi {
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 201) {
         Fluttertoast.showToast(msg: response.body);
+        // Fluttertoast.showToast(msg:"Register SuccessFully");
         var res = jsonDecode(response.body);
         // Map<dynamic, dynamic> res =
         //     jsonDecode(response.body) as Map<dynamic, dynamic>;
@@ -100,6 +101,7 @@ class SingUpApi {
         //     .pushReplacement(MaterialPageRoute(builder: (context) {
         //   return const LoginPage();
         // }));
+        // Fluttertoast.showToast(msg: "Otp Verification");
         Fluttertoast.showToast(msg: response.body);
         return jsonDecode(response.body);
       } else {
@@ -137,10 +139,10 @@ class SingUpApi {
         if (kDebugMode) {
           print("true condition");
         }
-        // navigator.currentState!
-        //     .pushReplacement(MaterialPageRoute(builder: (context) {
-        //   return const LoginPage();
-        // }));
+        navigator.currentState!
+            .pushReplacement(MaterialPageRoute(builder: (context) {
+          return const OtpReceiverScreen();
+        }));
         Fluttertoast.showToast(msg: response.body);
         return jsonDecode(response.body);
       } else {

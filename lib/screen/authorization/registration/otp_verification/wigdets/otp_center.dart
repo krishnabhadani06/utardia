@@ -200,8 +200,9 @@ class OtpCenter extends StatelessWidget {
             )
           ],
         ),
+        SizedBox(height: deviceHeight * 0.07),
         Align(
-          alignment: Alignment.centerRight,
+          alignment: Alignment.center,
           child: provider.isResend == false
               ? Text("00:${provider.start}")
               : TextButton(
@@ -210,12 +211,13 @@ class OtpCenter extends StatelessWidget {
                   },
                   child: Text(
                     "Resend code",
-                    style: robotoSemiBoldTextStyle(fontSize: 12),
+                    style: robotoSemiBoldTextStyle(
+                        fontSize: 13, color: ColorRes.titleTextBlue),
                   ),
                 ),
         ),
         SizedBox(
-          height: deviceHeight * 0.24,
+          height: deviceHeight * 0.16,
         ),
         materialButton(
             txtButton: Strings.continues,

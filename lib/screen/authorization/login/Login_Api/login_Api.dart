@@ -67,6 +67,7 @@ class SingInpApi {
         "login_type": "phone",
         "country_code": country.replaceAll("+", ""),
         // "country_code": "+${country}",
+        // "email_or_phone": "+91${phone}",
         "email_or_phone": phone,
         "password": password,
         "identity_matrix": true.toString(),

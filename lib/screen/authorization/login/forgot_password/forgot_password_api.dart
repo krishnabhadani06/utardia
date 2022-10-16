@@ -15,18 +15,19 @@ import 'package:utardia/util/api_endpoints.dart';
 
 class ForgotPasswordApi {
   static Future<Map<dynamic, dynamic>> forgotPassword(
-      BuildContext context, String email, String phone) async {
+      BuildContext context, String email, String phone, bool isPhone) async {
     try {
       String url = ApiEndPoint.forgotPassword;
       Map<String, String> param = {
-        "email or phone": Provider.of<ForgotPasswordProvider>(context,
-                        listen: false)
-                    .isPhone ==
-                true
-            ? "${Provider.of<ForgotPasswordProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
-            : email.toString(),
-        // "email or phone": email,
-        "send_code_by": "email",
+        "email_or_phone": isPhone == true ? phone.toString() : email.toString(),
+        "send_code_by": isPhone == true ? "Phone" : "email",
+        // "email or phone": Provider.of<ForgotPasswordProvider>(context,
+        //                 listen: false)
+        //             .isPhone ==
+        //         true
+        //     ? "${Provider.of<ForgotPasswordProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
+        //     : email.toString(),
+        // "send_code_by": "email",
       };
       http.Response? response = await http.post(Uri.parse(url),
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);

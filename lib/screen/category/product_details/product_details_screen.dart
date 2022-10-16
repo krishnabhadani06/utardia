@@ -137,7 +137,7 @@ class ProductDetailScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: deviceHeight * 0.35,
+                                height: deviceHeight * 0.32,
                                 width: deviceWidth,
                                 // color: ColorRes.blackLight,
                                 child: ListView.builder(
@@ -384,60 +384,63 @@ class ProductDetailScreen extends StatelessWidget {
                                                         ],
                                                       ),
                                                       SizedBox(
-                                                        height: deviceHeight *
-                                                            0.004,
+                                                        height:
+                                                            deviceHeight * 0.01,
                                                       ),
-                                                      Wrap(
+                                                      Row(
                                                         children: [
                                                           //mainAxisAlignment: MainAxisAlignment.start,
-                                                          Text(
-                                                            // "Rs${mainPrice!.toString()}",
-                                                            pro
-                                                                .allTodayProducts[
-                                                                    index]
-                                                                .mainPrice
-                                                                .toString(),
-                                                            style:
-                                                                robotoBoldTextStyle(
-                                                                    fontSize:
-                                                                        12),
-                                                          ),
-                                                          SizedBox(
-                                                            width: deviceWidth *
-                                                                0.02,
-                                                          ),
-                                                          Text(
-                                                              // "Rs${strokedPrice!.toString()}",
+                                                          Expanded(
+                                                            child: Text(
                                                               pro
                                                                   .allTodayProducts[
                                                                       index]
-                                                                  .strokedPrice
+                                                                  .mainPrice
                                                                   .toString(),
-                                                              style: robotoBoldTextStyle(
+                                                              style:
+                                                                  robotoBoldTextStyle(
                                                                       fontSize:
-                                                                          10,
-                                                                      color: ColorRes
-                                                                          .clrFont
-                                                                          .withOpacity(
-                                                                              0.7))
-                                                                  .copyWith(
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                              )),
-                                                          SizedBox(
-                                                            width: deviceWidth *
-                                                                0.02,
+                                                                          12),
+                                                            ),
                                                           ),
-                                                          Text(
-                                                            Strings.off57,
-                                                            style: natoMediumTextStyle(
-                                                                color: ColorRes
-                                                                    .darkGreen,
-                                                                fontSize: 12),
+                                                          // SizedBox(
+                                                          //   width: deviceWidth *
+                                                          //       0.02,
+                                                          // ),
+                                                          Expanded(
+                                                            child: Text(
+                                                                pro
+                                                                    .allTodayProducts[
+                                                                        index]
+                                                                    .strokedPrice
+                                                                    .toString(),
+                                                                style: robotoBoldTextStyle(
+                                                                        fontSize:
+                                                                            10,
+                                                                        color: ColorRes
+                                                                            .clrFont
+                                                                            .withOpacity(0.7))
+                                                                    .copyWith(
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .lineThrough,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                )),
+                                                          ),
+                                                          // SizedBox(
+                                                          //   width: deviceWidth *
+                                                          //       0.02,
+                                                          // ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              Strings.off57,
+                                                              style: natoMediumTextStyle(
+                                                                  color: ColorRes
+                                                                      .darkGreen,
+                                                                  fontSize: 08),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

@@ -19,134 +19,164 @@ Widget messagesellerDialog(
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Container(
-        height: deviceHeight * 0.60,
-        width: deviceWidth * 0.90,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          color: ColorRes.white,
-        ),
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: deviceWidth,
-              height: deviceHeight * 0.10,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.0),
-                    topRight: Radius.circular(8.0)),
-                color: ColorRes.dailogBoxColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      Strings.areYouSure,
-                      style: robotoSemiBoldTextStyle(
-                        fontSize: 18,
-                        color: ColorRes.white,
-                      ),
+      Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: Container(
+          height: deviceHeight * 0.60,
+          width: deviceWidth * 0.90,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            color: ColorRes.white,
+          ),
+          child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: deviceWidth,
+                height: deviceHeight * 0.10,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      topRight: Radius.circular(8.0)),
+                  color: ColorRes.dailogBoxColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: ColorRes.dailogBoxColor.withOpacity(0.5),
+                      blurRadius: 5,
+                      offset: Offset.zero,
+                      spreadRadius: 1,
                     ),
-                    const Spacer(),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              navigator.currentState!.pop();
-                            },
-                            child: Icon(
-                              IconRes.icClose,
-                              size: 30,
-                              color: ColorRes.white,
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        Strings.areYouSure,
+                        style: robotoSemiBoldTextStyle(
+                          fontSize: 18,
+                          color: ColorRes.white,
+                        ),
+                      ),
+                      const Spacer(),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!.pop();
+                              },
+                              child: Icon(
+                                IconRes.icClose,
+                                size: 30,
+                                color: ColorRes.white,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      Strings.productName,
+                      style: robotoSemiBoldTextStyle(
+                          color: ColorRes.dailogTextColor, fontSize: 15),
+                    ),
+                    SizedBox(height: deviceHeight * 0.005),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: ColorRes.white,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            blurRadius: 5,
+                            offset: Offset.zero,
+                            spreadRadius: 0,
+                          ),
+                        ],
+                      ),
+                      child: txtfield(
+                          validate: (val) {},
+                          // validate: (val) => validateEmail1(val),
+                          controllerValue: provider.productName,
+                          hintTxt: Strings.productName),
+                    ),
+                    SizedBox(height: deviceHeight * 0.03),
+                    Text(
+                      Strings.description,
+                      style: robotoSemiBoldTextStyle(
+                          color: ColorRes.dailogTextColor, fontSize: 15),
+                    ),
+                    SizedBox(
+                      height: deviceHeight * 0.005,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: ColorRes.white,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8.0)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.15),
+                              blurRadius: 5,
+                              offset: Offset.zero,
+                              spreadRadius: 0,
+                            )
+                          ]),
+                      child: txtFieldMulti(
+                          validate: (val) {},
+                          // validate: (val) => validateEmail1(val),
+                          controllerValue: provider.description,
+                          hintTxt: Strings.description),
+                    ),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    Strings.productName,
-                    style: robotoSemiBoldTextStyle(
-                        color: ColorRes.dailogTextColor, fontSize: 15),
-                  ),
-                  Card(
-                    elevation: 4.0,
-                    shadowColor: ColorRes.borderblue.withOpacity(0.7),
-                    borderOnForeground: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: txtfield(
-                        validate: (val) => validateEmail1(val),
-                        controllerValue: provider.productName,
-                        hintTxt: Strings.productName),
-                  ),
-                  SizedBox(height: deviceHeight * 0.03),
-                  Text(
-                    Strings.description,
-                    style: robotoSemiBoldTextStyle(
-                        color: ColorRes.dailogTextColor, fontSize: 15),
-                  ),
-                  Card(
-                    elevation: 4.0,
-                    shadowColor: ColorRes.borderblue.withOpacity(0.7),
-                    borderOnForeground: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: txtFieldMulti(
-                        validate: (val) => validateEmail1(val),
-                        controllerValue: provider.description,
-                        hintTxt: Strings.description),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                children: [
-                  materialButton(
-                      txtButton: Strings.submit,
-                      onPressed: () {
-                        provider.onTapSubmitQuery(
-                            provider.homeProductDetail!.id.toString(),
-                            PrefService.getString(PrefKeys.uid).toString(),
-                            provider.description.text.toString(),
-                            provider.homeProductDetail!.name.toString());
-                      })
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    navigator.currentState!.pop();
-                  },
-                  child: Text(
-                    Strings.cancel,
-                    style: natoSemiBoldTextStyle(
-                        fontSize: 15, color: ColorRes.buttonBlue),
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  children: [
+                    materialButton(
+                        txtButton: Strings.submit,
+                        onPressed: () {
+                          provider.onTapSubmitQuery(
+                              provider.homeProductDetail!.id.toString(),
+                              PrefService.getString(PrefKeys.uid).toString(),
+                              provider.description.text.toString(),
+                              provider.homeProductDetail!.name.toString());
+                        })
+                  ],
                 ),
-              ],
-            )
-          ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      navigator.currentState!.pop();
+                    },
+                    child: Text(
+                      Strings.cancel,
+                      style: natoSemiBoldTextStyle(
+                          fontSize: 15, color: ColorRes.buttonBlue),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     ],

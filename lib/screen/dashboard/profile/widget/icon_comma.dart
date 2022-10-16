@@ -17,15 +17,25 @@ Widget rowCommon({required Image icon, required String title}) {
       icon,
       // icons(iconData: icon, size: 28, color: ColorRes.buttonBlue),
       SizedBox(width: deviceWidth * 0.03),
-      Container(
-        width: deviceWidth * 0.48,
-        alignment: Alignment.centerLeft,
-        child: Text(
-          title,
-          style: robotoBoldTextStyle(fontSize: 16, color: ColorRes.buttonBlue),
-        ),
+      // Container(
+      //   width: deviceWidth * 0.48,
+      //   color: ColorRes.clrFont,
+      //   alignment: Alignment.centerLeft,
+      //   child: Text(
+      //     title,
+      //     style: robotoBoldTextStyle(fontSize: 16, color: ColorRes.buttonBlue),
+      //   ),
+      // ),
+      Expanded(
+        flex: 2,
+        child: Text(title,
+            style:
+                robotoBoldTextStyle(fontSize: 16, color: ColorRes.buttonBlue)),
       ),
-      icons(iconData: IconRes.icNext, size: 30, color: ColorRes.buttonBlue),
+      Expanded(
+          flex: 1,
+          child: icons(
+              iconData: IconRes.icNext, size: 30, color: ColorRes.buttonBlue)),
     ],
   );
 }

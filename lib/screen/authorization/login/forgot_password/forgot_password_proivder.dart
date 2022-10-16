@@ -13,7 +13,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
   // Country? currentCountry;
 
   Country? currentCountry = Country(
-      phoneCode: "+91",
+      phoneCode: "91",
       countryCode: "IN",
       e164Sc: 0,
       geographic: true,
@@ -45,7 +45,6 @@ class ForgotPasswordProvider extends ChangeNotifier {
       }
     } else {
       emailValidation();
-
       if (errorTextEmail == null) {
         forgotPasswordData(
           context,
@@ -75,7 +74,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
   Future<void> forgotPasswordData(
       BuildContext context, String email, String phone) async {
     loader = true;
-    await ForgotPasswordApi.forgotPassword(context, email, phone)
+    await ForgotPasswordApi.forgotPassword(context, email, phone, isPhone)
         .then((value) => {txtEmail.clear(), txtPhone.clear()});
     loader = false;
     notifyListeners();

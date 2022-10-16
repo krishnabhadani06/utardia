@@ -57,11 +57,20 @@ class AddressBottomSheetCenter extends StatelessWidget {
                       height: deviceHeight * 0.071,
                       // width: deviceWidth * 0.10,
                       decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10.0)),
-                        border:
-                            Border.all(color: ColorRes.lightGrey, width: 2.0),
-                      ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
+                          border:
+                              Border.all(color: ColorRes.lightGrey, width: 2.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: ColorRes.black.withOpacity(0.1),
+                              //color of shadow
+                              spreadRadius: 0, //spread radius
+                              blurRadius: 3, // blur radius
+                              offset: const Offset(0, 0),
+                            ),
+                          ],
+                          color: ColorRes.white),
                       child: InkWell(
                         onTap: () {
                           showCountryPicker(

@@ -8,17 +8,13 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
-import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 import 'package:utardia/screen/authorization/registration/registration_api/registration_api.dart';
 import 'package:utardia/screen/dashboard/change_password/change_password_screen.dart';
 import 'package:utardia/screen/dashboard/change_password/chnage_password_provider.dart';
-import 'package:utardia/services/http_service.dart';
-import 'package:utardia/util/api_endpoints.dart';
 
 class OtpProvider extends ChangeNotifier {
   TextEditingController txtOtp1 = TextEditingController();
@@ -30,6 +26,7 @@ class OtpProvider extends ChangeNotifier {
   String? uid;
   bool isForgot = false;
   bool isResend = false;
+  bool isPhone = false;
   Timer? timer;
   int start = 30;
 
@@ -53,7 +50,7 @@ class OtpProvider extends ChangeNotifier {
   void onTapResendButton() {
     isResend = !isResend;
     startTimer();
-    SingUpApi.reSendApi(uid.toString(), true);
+    SingUpApi.reSendApi(uid.toString(), isPhone);
     // reSendApi()
   }
 
@@ -115,6 +112,7 @@ class OtpProvider extends ChangeNotifier {
             });
       }
     } else {
+      SingUpApi.reSendApi(uid.toString(), isPhone);
       Fluttertoast.showToast(msg: "please fill Otp!!");
       notifyListeners();
     }

@@ -27,7 +27,7 @@ String? validateLandMark(val) {
   if (kDebugMode) {
     print(val);
   }
-  return (val!.isEmpty) ? Strings.pleaseEnterName : null;
+  return (val!.isEmpty) ? "Please Enter Land Mark" : null;
 }
 
 String? validatePinCode(val) {

@@ -17,7 +17,7 @@ class RegistrationProvider extends ChangeNotifier {
 
   // Country? currentCountry;
   Country? currentCountry = Country(
-      phoneCode: "+91",
+      phoneCode: "91",
       countryCode: "IN",
       e164Sc: 0,
       geographic: true,

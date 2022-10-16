@@ -48,7 +48,8 @@ class PaymentBottom extends StatelessWidget {
                               Text(Strings.subTotal,
                                   style: natoMediumTextStyle(fontSize: 16)),
                               Text(
-                                '${provider.cartSummary!.subTotal!.substring(0, provider.cartSummary!.subTotal!.length - 2)}',
+                                provider.cartSummary!.subTotal!.substring(0,
+                                    provider.cartSummary!.subTotal!.length - 2),
                                 style: natoMediumTextStyle(
                                     fontSize: 16, color: ColorRes.grey),
                               ),
@@ -81,7 +82,8 @@ class PaymentBottom extends StatelessWidget {
                               Text(Strings.disCount,
                                   style: natoMediumTextStyle(fontSize: 16)),
                               Text(
-                                '${provider.cartSummary!.discount!.substring(0, provider.cartSummary!.discount!.length - 2)}',
+                                provider.cartSummary!.discount!.substring(0,
+                                    provider.cartSummary!.discount!.length - 2),
                                 style: natoMediumTextStyle(
                                     fontSize: 16, color: ColorRes.grey),
                               ),

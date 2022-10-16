@@ -5,7 +5,6 @@ import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/dashboard/favorite/widget/favorite_center.dart';
-import 'package:utardia/screen/dashboard/home/home_screen.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
@@ -13,6 +12,8 @@ import 'package:utardia/util/string.dart';
 import '../../../util/icon_res.dart';
 
 class FavoriteScreen extends StatelessWidget {
+  const FavoriteScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     // final provider = Provider.of<FavoriteProvider>(context);
@@ -87,7 +88,7 @@ class FavoriteScreen extends StatelessWidget {
                                 childAspectRatio:
                                     deviceWidth / (deviceHeight * 0.80),
                               ),
-                              itemCount: provider.Wishlist2!.data!.length == 0
+                              itemCount: provider.Wishlist2!.data!.isEmpty
                                   ? 4
                                   : provider.Wishlist2!.data!.length,
                               itemBuilder: (context, i) {

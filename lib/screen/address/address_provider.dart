@@ -23,6 +23,8 @@
 // import 'package:http/http.dart' as http;
 //
 
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:country_picker/country_picker.dart';

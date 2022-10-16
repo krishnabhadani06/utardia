@@ -62,8 +62,8 @@ class ProfileProvider extends ChangeNotifier {
   }
 
   void onTapEdit(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => EditProfileScreen()));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const EditProfileScreen()));
   }
 
   void onTapChangePassword(BuildContext context) {
@@ -80,7 +80,7 @@ class ProfileProvider extends ChangeNotifier {
   void onTapFavorite(BuildContext context) {
     Provider.of<FavoriteProvider>(context, listen: false).getWishList();
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => FavoriteScreen()));
+        .push(MaterialPageRoute(builder: (context) => const FavoriteScreen()));
   }
 
   void onTapMyCard(BuildContext context) {

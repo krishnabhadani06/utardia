@@ -11,6 +11,8 @@ import 'package:utardia/util/color_res.dart';
 import 'widgets/bottom_bar.dart';
 
 class DashScreen extends StatelessWidget {
+  const DashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final DashboardProvider provider = Provider.of<DashboardProvider>(context);
@@ -40,7 +42,7 @@ class DashScreen extends StatelessWidget {
             //pro.onBottomBarChange(4, con);
 
             //return const ProfileScreen();
-            return EditProfileScreen();
+            return const EditProfileScreen();
           }
         }),
       ),

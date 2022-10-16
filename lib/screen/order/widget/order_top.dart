@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/text_styles.dart';
@@ -22,7 +24,6 @@ class OrderTop extends StatelessWidget {
                   .toString(),
               style: natoMediumTextStyle(fontSize: 14, color: ColorRes.grey),
             ),
-         
             const Spacer(),
             const SizedBox(width: 8),
             Text(

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
@@ -43,7 +45,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
               } else {
                 navigator.currentState!
                     .pushReplacement(MaterialPageRoute(builder: (context) {
-                  return DashScreen();
+                  return const DashScreen();
                 }));
               }
             },
@@ -108,7 +110,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
                 onPressed: () {
                   navigator.currentState!
                       .pushReplacement(MaterialPageRoute(builder: (context) {
-                    return DashScreen();
+                    return const DashScreen();
                   }));
                 },
                 child: const Text(Strings.backHome))

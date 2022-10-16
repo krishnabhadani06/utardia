@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:utardia/util/image_res.dart';
 
 class IconRes {
   static IconData icClose = Icons.close;

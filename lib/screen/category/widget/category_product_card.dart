@@ -10,7 +10,7 @@ import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 
-class categoryProductCard extends StatefulWidget {
+class CategoryProductCard extends StatelessWidget {
   // bool? isLike = false;
   //bool? like = false,
   BuildContext? context;
@@ -26,7 +26,7 @@ class categoryProductCard extends StatefulWidget {
   String? url;
   String? productUrl;
   void Function() onTap;
-  categoryProductCard(
+  CategoryProductCard(
       {Key? key,
       this.context,
       this.index,
@@ -43,17 +43,7 @@ class categoryProductCard extends StatefulWidget {
       required this.onTap})
       : super(key: key);
 
-  @override
-  State<categoryProductCard> createState() => _categoryProductCardState();
-}
-
-class _categoryProductCardState extends State<categoryProductCard> {
   bool isLiked = false;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +51,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
 
     return Consumer<FavoriteProvider>(builder: (context, pro, x) {
       return GestureDetector(
-        onTap: widget.onTap,
+        onTap: onTap,
         child: Container(
           margin: const EdgeInsets.only(
               left: 3.0, right: 3.0, top: 7.0, bottom: 7.0),
@@ -91,7 +81,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
                         height: deviceHeight * 0.24,
                         width: deviceWidth,
                         child: CachedNetworkImage(
-                            imageUrl: widget.image!,
+                            imageUrl: image!,
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => SizedBox(
                                     height: 40,
@@ -131,14 +121,12 @@ class _categoryProductCardState extends State<categoryProductCard> {
                                     child: Center(
                                       child: InkWell(
                                           onTap: () {
-                                            pro.addWishList(
-                                                widget.id.toString(),
-                                                context,
-                                                widget.productUrl.toString());
+                                            pro.addWishList(id.toString(),
+                                                context, productUrl.toString());
                                           },
                                           child: Icon(
                                             Icons.favorite,
-                                            color: widget.islike ?? false
+                                            color: islike ?? false
                                                 ? ColorRes.red
                                                 : ColorRes.grey,
                                             size: 18,
@@ -173,7 +161,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 4.0),
                         child: Text(
-                          widget.name!,
+                          name!,
                           style: robotoMediumTextStyle(
                               color: ColorRes.greyDark, fontSize: 12),
                           maxLines: 1,
@@ -196,7 +184,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                widget.rate!,
+                                rate!,
                                 style: const TextStyle(
                                     color: ColorRes.white, fontSize: 12),
                               ),
@@ -225,7 +213,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
                         Expanded(
                           flex: 1,
                           child: Text(
-                            widget.mainPrice!.toString(),
+                            mainPrice!.toString(),
                             style: robotoBoldTextStyle(fontSize: 12),
                             maxLines: 1,
                             overflow: TextOverflow.fade,
@@ -233,7 +221,7 @@ class _categoryProductCardState extends State<categoryProductCard> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text(widget.strokedPrice!.toString(),
+                          child: Text(strokedPrice!.toString(),
                               //widget.strokedPrice!,
                               style: robotoBoldTextStyle(
                                       fontSize: 10,

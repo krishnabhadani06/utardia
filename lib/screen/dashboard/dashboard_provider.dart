@@ -4,7 +4,6 @@ import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/dashboard/campaigns/campaigns_provider.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
-import 'package:utardia/screen/dashboard/profile/profile_provider.dart';
 import 'package:utardia/screen/edit_profile/editprofile_provider.dart';
 
 class DashboardProvider extends ChangeNotifier {

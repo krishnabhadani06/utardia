@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -264,9 +266,11 @@ class PaymentProvider extends ChangeNotifier {
   void applyCoupenCode(BuildContext context, CartBaseCoupenModel coupen) async {
     try {
       Map<String, dynamic> param = {
-        "user_id": "${PrefService.getString(PrefKeys.uid)}",
-        "owner_id":
-            "${Provider.of<CartProvider>(context, listen: false).cartListDataModel.ownerId.toString()}",
+        "user_id": PrefService.getString(PrefKeys.uid),
+        "owner_id": Provider.of<CartProvider>(context, listen: false)
+            .cartListDataModel
+            .ownerId
+            .toString(),
         "coupon_code": "${coupen.code}"
       };
       http.Response? res = await HttpService.postApi(
@@ -277,7 +281,7 @@ class PaymentProvider extends ChangeNotifier {
           },
           body: param);
       Logger().e(jsonDecode(res!.body));
-      if (res.statusCode == 200 && res != null) {
+      if (res.statusCode == 200) {
         if (jsonDecode(res.body)['result'] == true) {
           getCartSummary();
         }
@@ -300,7 +304,7 @@ class PaymentProvider extends ChangeNotifier {
                 "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
           },
           body: {
-            "user_id": "${PrefService.getString(PrefKeys.uid)}",
+            "user_id": PrefService.getString(PrefKeys.uid),
             "address_id": "${currentAddress!.id}"
           });
 
@@ -324,7 +328,7 @@ class PaymentProvider extends ChangeNotifier {
           await HttpService.postApi(url: ApiEndPoint.paymentResponse, header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, body: {
-        "combined_order_id": "${id}",
+        "combined_order_id": id,
         "status": "success",
         "payment_type": "cart_payment"
       });

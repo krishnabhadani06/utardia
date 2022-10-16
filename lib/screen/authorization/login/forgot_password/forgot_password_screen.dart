@@ -174,7 +174,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0)),
+                                  const BorderRadius.all(Radius.circular(8.0)),
                               border: Border.all(
                                 color: ColorRes.white,
                                 // style: BorderStyle.solid,
@@ -186,7 +186,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                   //color of shadow
                                   spreadRadius: 1, //spread radius
                                   blurRadius: 3, // blur radius
-                                  offset: Offset(
+                                  offset: const Offset(
                                       0, 0), // changes position of shadow
                                 ),
                               ],

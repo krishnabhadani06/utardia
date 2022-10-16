@@ -5,7 +5,7 @@ String? validatePassword(val) {
   if (kDebugMode) {
     print(val);
   }
-  if (val.length != 8) return Strings.enterMinimumPassword;
+  if (val.length < 8) return Strings.enterMinimumPassword;
   return (val!.isEmpty) ? Strings.pleaseEnterPassword : null;
 }
 

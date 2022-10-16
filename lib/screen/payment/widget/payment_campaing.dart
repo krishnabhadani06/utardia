@@ -33,7 +33,7 @@ class PaymentCampaing extends StatelessWidget {
           child: Container(
             height: deviceHeight / 15,
             width: deviceWidth / 1,
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               left: 10.0,
               top: 6.0,
             ),
@@ -61,7 +61,7 @@ class PaymentCampaing extends StatelessWidget {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.discount,
                                   color: ColorRes.blue,
                                 ),
@@ -74,7 +74,7 @@ class PaymentCampaing extends StatelessWidget {
                                   children: [
                                     Text(
                                       value.code.toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 12.0,
                                           fontWeight: FontWeight.w600),
                                     ),

@@ -93,7 +93,7 @@ class _CategoryRightState extends State<CategoryRight> {
                               ? 0
                               : provider.categoryProducts!.data!.length,
                           itemBuilder: (context, index1) {
-                            return categoryProductCard(
+                            return CategoryProductCard(
                               context: context,
                               index: index1,
                               strokedPrice: provider.categoryProducts!

@@ -36,7 +36,7 @@ class OrderScreen extends StatelessWidget {
                   } else {
                     navigator.currentState!
                         .pushReplacement(MaterialPageRoute(builder: (con) {
-                      return DashScreen();
+                      return const DashScreen();
                     }));
                   }
                 },

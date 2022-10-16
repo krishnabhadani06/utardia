@@ -93,7 +93,7 @@ class EditProfileProvider extends ChangeNotifier {
         "email": txtEmail.text.toString(),
         "address": txtAddress.text.toString(),
         "phone": txtContact.text.toString(),
-        "country": "${currentCountry!.name.toString()}"
+        "country": currentCountry!.name.toString()
       });
       if (res != null && res.statusCode == 200) {
         Logger().e(jsonDecode(res.body));
@@ -143,8 +143,9 @@ class EditProfileProvider extends ChangeNotifier {
       profileModel = await AllProfileDetailApi.allProfileData();
       if (profileModel != null) {
         txtName.text = profileModel!.data![0].name ?? "";
-        txtAddress.text =
-            "${profileModel!.data![0].address!.data != null ? profileModel!.data![0].address!.data![0].address ?? "" : "No Address"}";
+        txtAddress.text = profileModel!.data![0].address!.data != null
+            ? profileModel!.data![0].address!.data![0].address ?? ""
+            : "No Address";
         txtContact.text = profileModel!.data![0].phone ?? "";
         txtEmail.text = profileModel!.data![0].email ?? "";
       }

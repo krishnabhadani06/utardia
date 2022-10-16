@@ -9,7 +9,6 @@ import 'package:utardia/model/SinIn_Model/singin_model.dart';
 import 'package:utardia/screen/authorization/login/Login_Api/login_Api.dart';
 import 'package:utardia/screen/authorization/login/forgot_password/forgot_password_screen.dart';
 import 'package:utardia/services/pref_service.dart';
-
 import '../registration/registration_screen.dart';
 
 class LoginProvider extends ChangeNotifier {
@@ -48,7 +47,7 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void onTapCreate() {
-    navigator.currentState!.pushReplacement(
+    navigator.currentState!.push(
         MaterialPageRoute(builder: (context) => const RegistrationScreen()));
   }
 

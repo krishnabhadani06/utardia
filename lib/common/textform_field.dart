@@ -208,6 +208,7 @@ class CommonTextField extends StatelessWidget {
         controller: controller,
         focusNode: focusNode,
         obscureText: obscure,
+        autofocus: true,
         obscuringCharacter: "⬤",
         decoration: InputDecoration(
           border: const OutlineInputBorder(

@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/model/adddressListMdoel/addressModel.dart';
-import 'package:utardia/model/payment_model/pamentModel.dart';
-import 'package:utardia/model/payment_model/payment_drop_down.dart';
 import 'package:utardia/screen/address/address_provider.dart';
 import 'package:utardia/screen/address/address_screen.dart';
 import 'package:utardia/screen/payment/payment_provider.dart';
@@ -149,11 +147,11 @@ class PaymentAddress extends StatelessWidget {
                         )
                       : provider.addressList!.isEmpty &&
                               provider.loader == false
-                          ? Center(child: Text("No Address"))
-                          : Center(
+                          ? const Center(child: Text("No Address"))
+                          : const Center(
                               child: CircularProgressIndicator(),
                             )
-                  : SizedBox()),
+                  : const SizedBox()),
         ),
       ],
     );

@@ -1,13 +1,24 @@
+// ignore_for_file: avoid_print
+
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:ui';
+import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
+import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 import 'package:utardia/screen/authorization/registration/registration_api/registration_api.dart';
 import 'package:utardia/screen/dashboard/change_password/change_password_screen.dart';
 import 'package:utardia/screen/dashboard/change_password/chnage_password_provider.dart';
+import 'package:utardia/services/http_service.dart';
+import 'package:utardia/util/api_endpoints.dart';
 
 class OtpProvider extends ChangeNotifier {
   TextEditingController txtOtp1 = TextEditingController();
@@ -18,6 +29,42 @@ class OtpProvider extends ChangeNotifier {
   TextEditingController txtOtp6 = TextEditingController();
   String? uid;
   bool isForgot = false;
+  bool isResend = false;
+  Timer? timer;
+  int start = 30;
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (start == 0) {
+          timer.cancel();
+          isResend = true;
+          notifyListeners();
+        } else {
+          start--;
+          notifyListeners();
+        }
+      },
+    );
+  }
+
+  void onTapResendButton() {
+    isResend = !isResend;
+    startTimer();
+    SingUpApi.reSendApi(uid.toString(), true);
+    // reSendApi()
+  }
+
+  // void reSendApi( String uid, String code) async
+  // {
+  // try{
+  //   http.Response? res= await HttpService.postApi(url: )
+  // }catch(e,x){
+  //   kDebugMode?Logger().e(e.toString()+x.toString()):"";
+  //   showToast(e.toString());
+  // }
 
   void onTapContinue() async {
     if (txtOtp1.text.isNotEmpty &&

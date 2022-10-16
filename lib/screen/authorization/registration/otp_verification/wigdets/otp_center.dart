@@ -200,6 +200,20 @@ class OtpCenter extends StatelessWidget {
             )
           ],
         ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: provider.isResend == false
+              ? Text("00:${provider.start}")
+              : TextButton(
+                  onPressed: () {
+                    provider.onTapResendButton();
+                  },
+                  child: Text(
+                    "Resend code",
+                    style: robotoSemiBoldTextStyle(fontSize: 12),
+                  ),
+                ),
+        ),
         SizedBox(
           height: deviceHeight * 0.24,
         ),

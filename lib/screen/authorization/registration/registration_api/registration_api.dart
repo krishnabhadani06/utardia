@@ -29,9 +29,8 @@ class SingUpApi {
       String url = ApiEndPoint.signUp;
       Map<String, String> param = {
         "name": "ram",
-        "email_or_phone": isPhone == true
-            ? "${Provider.of<RegistrationProvider>(context, listen: false).currentCountry!.phoneCode}${phone.toString()}"
-            : email.toString(),
+        "email_or_phone":
+            isPhone == true ? "${phone.toString()}" : email.toString(),
         "country_code":
             Provider.of<RegistrationProvider>(context, listen: false)
                 .currentCountry!
@@ -40,6 +39,8 @@ class SingUpApi {
         "passowrd_confirmation": retypePassword.toString(),
         "register_by": isPhone == true ? "Phone" : "email",
       };
+
+      Logger().e(param);
       http.Response? response = await HttpService.postApi(
           url: url,
           body: param,
@@ -53,13 +54,17 @@ class SingUpApi {
           print("*****************************${res['user_id']}");
         }
         Logger().e(jsonDecode(response.body));
-        navigator.currentState!
-            .pushReplacement(MaterialPageRoute(builder: (context) {
-          Provider.of<OtpProvider>(context, listen: false).uid =
-              res['user_id'].toString();
-          Provider.of<OtpProvider>(context, listen: false).isForgot = false;
-          return const OtpReceiverScreen();
-        }));
+        if (res['user_id'] != 0) {
+          navigator.currentState!
+              .pushReplacement(MaterialPageRoute(builder: (context) {
+            Provider.of<OtpProvider>(context, listen: false).startTimer();
+            Provider.of<OtpProvider>(context, listen: false).uid =
+                res['user_id'].toString();
+            Provider.of<OtpProvider>(context, listen: false).isForgot = false;
+            return const OtpReceiverScreen();
+          }));
+        }
+
         return singUpModelFromJson(response.body);
       }
       return null;
@@ -84,6 +89,47 @@ class SingUpApi {
       http.Response? response = await http.post(Uri.parse(url),
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
 
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print(response.body);
+        }
+        if (kDebugMode) {
+          print("true condition");
+        }
+        // navigator.currentState!
+        //     .pushReplacement(MaterialPageRoute(builder: (context) {
+        //   return const LoginPage();
+        // }));
+        Fluttertoast.showToast(msg: response.body);
+        return jsonDecode(response.body);
+      } else {
+        Fluttertoast.showToast(msg: response.body.toString());
+        return {};
+      }
+    } on SocketException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return {};
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return {};
+    }
+  }
+
+  static Future<Map<dynamic, dynamic>> reSendApi(
+      String uid, bool isPhone) async {
+    try {
+      String url = ApiEndPoint.reSendOtp;
+      Map<String, String> param = {
+        "user_id": uid,
+        "register_by": isPhone == true ? "Phone" : "email",
+      };
+      Logger().e(param);
+      http.Response? response = await http.post(Uri.parse(url),
+          headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
       if (response.statusCode == 200) {
         if (kDebugMode) {
           print(response.body);

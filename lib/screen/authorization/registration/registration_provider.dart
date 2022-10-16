@@ -46,11 +46,11 @@ class RegistrationProvider extends ChangeNotifier {
           errorTextPassword == null &&
           errorTextRePassword == null) {
         singUpApiData(
-          context,
-          txtEmail.text,
-          txtPhone.text,
-          txtPassword.text,
-          txtRePassword.text,
+          context: context,
+          email: txtEmail.text,
+          phone: txtPhone.text,
+          password: txtPassword.text,
+          retypePassword: txtRePassword.text,
         );
       }
     } else {
@@ -61,11 +61,11 @@ class RegistrationProvider extends ChangeNotifier {
           errorTextPassword == null &&
           errorTextRePassword == null) {
         singUpApiData(
-          context,
-          txtEmail.text,
-          txtPhone.text,
-          txtPassword.text,
-          txtRePassword.text,
+          context: context,
+          email: txtEmail.text,
+          phone: txtPhone.text,
+          password: txtPassword.text,
+          retypePassword: txtRePassword.text,
         );
       }
     }
@@ -113,11 +113,21 @@ class RegistrationProvider extends ChangeNotifier {
     return TermsBottomSheet(title, subText);
   }
 
-  Future<void> singUpApiData(BuildContext context, String email,
-      String password, String retypePassword, String phone) async {
+  Future<void> singUpApiData(
+      {required BuildContext context,
+      required String email,
+      required String password,
+      required String retypePassword,
+      required String phone}) async {
     loader = true;
-    await SingUpApi.singUpApi(context, email, phone, password, retypePassword,
-        currentCountry?.phoneCode.toString() ?? "91", isPhone);
+    await SingUpApi.singUpApi(
+        context: context,
+        email: email,
+        phone: phone,
+        password: password,
+        retypePassword: retypePassword,
+        cCode: currentCountry?.phoneCode.toString() ?? "91",
+        isPhone: isPhone);
     loader = false;
     notifyListeners();
   }

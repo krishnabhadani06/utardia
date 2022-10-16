@@ -18,13 +18,13 @@ import 'package:utardia/util/api_endpoints.dart';
 
 class SingUpApi {
   static Future<SingUpModel?> singUpApi(
-      BuildContext context,
-      String email,
-      String phone,
-      String password,
-      String retypePassword,
-      String cCode,
-      bool isPhone) async {
+      {required BuildContext context,
+      required String email,
+      required String phone,
+      required String password,
+      required String retypePassword,
+      required String cCode,
+      required bool isPhone}) async {
     try {
       String url = ApiEndPoint.signUp;
       Map<String, String> param = {

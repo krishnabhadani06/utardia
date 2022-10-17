@@ -199,9 +199,12 @@ class AddressBottomSheetBottom extends StatelessWidget {
           ],
         ),
         SizedBox(height: deviceHeight * 0.02),
-        materialButton(
-            txtButton: Strings.add,
-            onPressed: () => provider.onTapNewAdd(context)),
+        Align(
+          alignment: Alignment.center,
+          child: materialButton(
+              txtButton: Strings.add,
+              onPressed: () => provider.onTapNewAdd(context)),
+        ),
       ]),
     );
   }

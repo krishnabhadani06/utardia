@@ -39,7 +39,7 @@ class HomeTop extends StatelessWidget {
                     ),
                     TextButton(
                       // onPressed: () {},
-                      onPressed: () => provider.onTapViewCategory(),
+                      onPressed: () => provider.onTapViewCategory(context),
                       child: Text(
                         Strings.viewAll,
                         style: robotoMediumTextStyle(

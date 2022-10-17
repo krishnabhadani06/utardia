@@ -43,7 +43,8 @@ class CategoryProvider extends ChangeNotifier {
     HomeCategoryProductApi products =
         await HomeCategoryApiService.homeCategoryProductData(url);
     if (products.status != 200) {
-      showToast("went Wrong code ${products.status}");
+      categoryProducts = products;
+      // showToast("went Wrong code ${products.status}");
       // await homeCategoryProduct(url);
     } else {
       categoryProducts = products;
@@ -52,12 +53,14 @@ class CategoryProvider extends ChangeNotifier {
       if (kDebugMode) {
         print('-----------------------------${categoryProducts!.data!.length}');
       }
-      loader = false;
-      notifyListeners();
     }
+
+    loader = false;
+    notifyListeners();
   }
 
   void onGesterTap(int index, String? url, String? url1) async {
+    selectedPageInd = index;
     pageCon.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
     notifyListeners();

@@ -1,6 +1,9 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/home_top_category/home_all_top_category.dart';
 import 'package:utardia/model/home_top_category/home_all_top_category_product.dart';
@@ -30,15 +33,16 @@ class HomeTopCategoryAPiServices {
     try {
       String url = url1;
       http.Response? response = await HttpService.getApi(url: url);
-
+      Logger().e(jsonDecode(response!.body));
       if (response != null && response.statusCode == 200) {
         return homeTopCategoryProductFromJson(response.body);
       } else {
-        return homeTopCategoryProductFromJson("");
+        return HomeTopCategoryProduct(status: 200);
+        // throw Exception();
       }
-    } catch (e) {
+    } catch (e, x) {
       showToast(e.toString());
-      return homeTopCategoryProductFromJson("");
+      return HomeTopCategoryProduct(status: 200);
     }
   }
 

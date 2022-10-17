@@ -202,7 +202,7 @@ class ProductDetailsProvider extends ChangeNotifier {
     homeProductDetail = null;
     await homeProductDetails(url);
     currentProdductLink = url;
-    await allTodaysProductDealData();
+    // await allTodaysProductDealData();
 
     checkWishList(pid, PrefService.getString(PrefKeys.uid));
     navigator.currentState!

@@ -102,18 +102,21 @@ class HomeScreen extends StatelessWidget {
                   : SingleChildScrollView(
                       child: Column(
                         children: [
-                          HomeTop(),
-                          HomeCenter(),
+                          const HomeTop(),
+                          const HomeCenter(),
                           ListView.builder(
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: 2 + provider.allHomeTopProducts.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount:
+                                  provider.allHomeTopCategories.length != 0
+                                      ? provider.allHomeTopCategories.length
+                                      : 0,
                               padding: EdgeInsets.only(
                                   top: MediaQuery.of(context).size.height *
                                       0.02),
                               itemBuilder: (context, index) {
                                 return HomeBottom(index: index);
-                              })
+                              }),
                         ],
                       ),
                     )

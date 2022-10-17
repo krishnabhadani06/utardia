@@ -156,7 +156,6 @@ class CategoryProductCard extends StatelessWidget {
                     SizedBox(height: deviceHeight * 0.006),
                     SizedBox(
                       width: deviceWidth * 0.36,
-                      // width: deviceWidth * 0.20,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 4.0),
                         child: Text(
@@ -191,7 +190,7 @@ class CategoryProductCard extends StatelessWidget {
                                 Icons.star,
                                 color: ColorRes.white,
                                 size: 15,
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -205,31 +204,40 @@ class CategoryProductCard extends StatelessWidget {
                     ),
                     SizedBox(height: deviceHeight * 0.01),
                     Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //mainAxisAlignment: MainAxisAlignment.start,
-                        Text(
-                          mainPrice!.toString(),
-                          style: robotoBoldTextStyle(fontSize: 12),
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            mainPrice!.toString(),
+                            style: robotoBoldTextStyle(fontSize: 12),
+                            maxLines: 1,
+                            overflow: TextOverflow.fade,
+                          ),
                         ),
-                        const Spacer(),
-                        Text(strokedPrice!.toString(),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            strokedPrice!.toString(),
                             //widget.strokedPrice!,
                             style: robotoBoldTextStyle(
                                     fontSize: 10,
                                     color: ColorRes.clrFont.withOpacity(0.7))
                                 .copyWith(
                               decoration: TextDecoration.lineThrough,
-                              overflow: TextOverflow.ellipsis,
-                            )),
-                        const Spacer(),
-                        Text(
-                          Strings.off57,
-                          style: natoMediumTextStyle(
-                              color: ColorRes.darkGreen, fontSize: 7.3),
+                              overflow: TextOverflow.fade,
+                            ),
+                            maxLines: 1,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            Strings.off57,
+                            style: natoMediumTextStyle(
+                                color: ColorRes.darkGreen, fontSize: 7.3),
+                          ),
                         ),
                       ],
                     ),

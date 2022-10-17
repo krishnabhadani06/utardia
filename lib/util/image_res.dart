@@ -36,7 +36,7 @@ class AssetsImagesRes {
   static const cartEmpty = 'assets/images/EmptyPageScreen/cart_image.png';
 
   ///---------------------------404 Page--------------------------------------
-  static const Image404 = 'assets/images/EmptyPageScreen/404Page.png';
+  static const image404 = 'assets/images/EmptyPageScreen/404Page.png';
 
   ///--------------------------favourite Page ----------------------------------
   static const favouriteImage =

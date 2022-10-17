@@ -284,8 +284,8 @@ class Strings {
   static const productName = 'Product Name';
   static const discription = 'Discription';
   static const cancel = 'Cancel';
-  static const Noorders = 'No orders yet';
-  static const NoOrderDes = "Looks like you haven't ordered yet.";
+  static const noOrders1 = 'No orders yet';
+  static const noOrderDes1 = "Looks like you haven't ordered yet.";
 
   ///
 }

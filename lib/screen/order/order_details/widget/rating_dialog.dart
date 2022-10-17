@@ -59,7 +59,7 @@ class Rating_dialog extends StatelessWidget {
             itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
 
             onRatingUpdate: (rating) {
-              Provider.of<OrderProvider>(context, listen: false).Rating =
+              Provider.of<OrderProvider>(context, listen: false).rating =
                   rating;
             },
           ),

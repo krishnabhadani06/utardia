@@ -169,7 +169,7 @@ Widget ProductCard({
                           ],
                         ),
                       ),
-                      const Spacer(),
+                      // const Spacer(),
                       Text(
                         Strings.tops,
                         style: robotoSemiBoldTextStyle(
@@ -178,52 +178,39 @@ Widget ProductCard({
                     ],
                   ),
                   SizedBox(
-                    height: deviceHeight * 0.008,
+                    height: deviceHeight * 0.01,
                   ),
                   Row(
                     children: [
                       //mainAxisAlignment: MainAxisAlignment.start,
-                      Expanded(
-                        child: Text(
-                          "Rs${mainPrice!.toString()}",
-                          // widget.mainPrice!,
-                          style: robotoMediumTextStyle(
-                                  fontSize: 12, color: ColorRes.blackText)
-                              .copyWith(fontWeight: FontWeight.w700),
-                        ),
+                      Text(
+                        mainPrice!.toString(),
+                        style: robotoMediumTextStyle(
+                                fontSize: 12, color: ColorRes.blackText)
+                            .copyWith(fontWeight: FontWeight.w700),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      // SizedBox(
-                      //   width: deviceWidth * 0.02,
-                      // ),
-                      Expanded(
-                        child: Text(strokedPrice!.toString(),
-                            //widget.strokedPrice!,
-                            style: robotoRegularTextStyle(
-                                    fontSize: 8.0,
-                                    color: ColorRes.greyPriceText)
-                                //color: ColorRes.clrFont.withOpacity(0.7))
-                                .copyWith(
-                              decoration: TextDecoration.lineThrough,
-                              overflow: TextOverflow.ellipsis,
-                            )),
-                      ),
-                      // SizedBox(
-                      //   width: deviceWidth * 0.02,
-                      // ),
-                      Expanded(
-                        child: Text(
-                          Strings.off57,
-                          style: robotoSemiBoldTextStyle(
-                                  color: ColorRes.darkGreen, fontSize: 8)
-                              .copyWith(fontWeight: FontWeight.w700),
-                        ),
+                      const Spacer(),
+                      Text(strokedPrice!.toString(),
+                          style: robotoRegularTextStyle(
+                                  fontSize: 8.0, color: ColorRes.greyPriceText)
+                              //color: ColorRes.clrFont.withOpacity(0.7))
+                              .copyWith(
+                            decoration: TextDecoration.lineThrough,
+                            overflow: TextOverflow.ellipsis,
+                          )),
+                      const Spacer(),
+                      Text(
+                        Strings.off57,
+                        style: robotoSemiBoldTextStyle(
+                                color: ColorRes.darkGreen, fontSize: 8)
+                            .copyWith(fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
-                  // ),
                 ],
               ),
-              //],
             ),
           ),
         ],

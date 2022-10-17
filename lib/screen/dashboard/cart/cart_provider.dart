@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, unnecessary_null_comparison
 
 import 'dart:convert';
 
@@ -10,7 +10,6 @@ import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/CartList_model/cartSummaryModel.dart';
 import 'package:utardia/screen/dashboard/cart/cart_api/cart_api.dart';
 import 'package:utardia/screen/payment/payment_screen.dart';
-import 'package:http/http.dart' as http;
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';

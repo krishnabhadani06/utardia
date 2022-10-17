@@ -76,8 +76,8 @@ class EditAddressDetailBottom extends StatelessWidget {
                               //color of shadow
                               spreadRadius: 0, //spread radius
                               blurRadius: 3, // blur radius
-                              offset:
-                                  const Offset(0, 0), // changes position of shadow
+                              offset: const Offset(
+                                  0, 0), // changes position of shadow
                             ),
                           ],
                         ),
@@ -105,58 +105,57 @@ class EditAddressDetailBottom extends StatelessWidget {
                         ),
                       )
                     : const Center(child: CircularProgressIndicator())),
-
             const SizedBox(width: 10),
             Expanded(
                 flex: 2,
-                child: provider.cityList.isNotEmpty &&
-                        provider.currentCity != null
-                    ? Container(
-                        height: deviceHeight * 0.06,
-                        width: deviceWidth * 0.20,
-                        padding: const EdgeInsets.only(left: 10),
-                        decoration: BoxDecoration(
-                          color: ColorRes.white,
-                          border: Border.all(
-                            color: ColorRes.lightGrey,
-                          ),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: ColorRes.black.withOpacity(0.3),
-                              //color of shadow
-                              spreadRadius: 0, //spread radius
-                              blurRadius: 3, // blur radius
-                              offset:
-                                 const  Offset(0, 0), // changes position of shadow
+                child:
+                    provider.cityList.isNotEmpty && provider.currentCity != null
+                        ? Container(
+                            height: deviceHeight * 0.06,
+                            width: deviceWidth * 0.20,
+                            padding: const EdgeInsets.only(left: 10),
+                            decoration: BoxDecoration(
+                              color: ColorRes.white,
+                              border: Border.all(
+                                color: ColorRes.lightGrey,
+                              ),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(8)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: ColorRes.black.withOpacity(0.3),
+                                  //color of shadow
+                                  spreadRadius: 0, //spread radius
+                                  blurRadius: 3, // blur radius
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: DropdownButton<CityModel>(
-                          value: provider.currentCity!,
-                          icon: const Icon(Icons.arrow_drop_down),
-                          items: provider.cityList
-                              .map((e) => DropdownMenuItem<CityModel>(
-                                  value: e,
-                                  child: SizedBox(
-                                    width: deviceWidth * 0.20,
-                                    child: Text(
-                                      e.name.toString(),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  )))
-                              .toList(),
-                          onChanged: (value) {
-                            provider.currentCity = value;
-                            provider.setStateCustom();
-                          },
-                        ),
-                      )
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      )),
+                            child: DropdownButton<CityModel>(
+                              value: provider.currentCity!,
+                              icon: const Icon(Icons.arrow_drop_down),
+                              items: provider.cityList
+                                  .map((e) => DropdownMenuItem<CityModel>(
+                                      value: e,
+                                      child: SizedBox(
+                                        width: deviceWidth * 0.20,
+                                        child: Text(
+                                          e.name.toString(),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      )))
+                                  .toList(),
+                              onChanged: (value) {
+                                provider.currentCity = value;
+                                provider.setStateCustom();
+                              },
+                            ),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          )),
             // child: txtfield(controllerValue: provider.txtCity,
             //     hintTxt: Strings.city)),
           ],

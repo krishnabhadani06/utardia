@@ -17,7 +17,7 @@ import 'package:utardia/util/pref_key.dart';
 
 class OrderProvider extends ChangeNotifier {
   OrderModel orderModel = OrderModel();
-  double Rating = 0.0;
+  double rating = 0.0;
   String? errorTxtComment;
   TextEditingController txtConComment = TextEditingController();
 
@@ -46,7 +46,7 @@ class OrderProvider extends ChangeNotifier {
           await HttpService.postApi(url: ApiEndPoint.pushRate, body: {
         "product_id": pid,
         "user_id": uid,
-        "rating": "$Rating",
+        "rating": "$rating",
         "comment": txtConComment.text.toString()
       });
       if (res != null && res.statusCode == 200) {

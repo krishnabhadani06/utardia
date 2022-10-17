@@ -6,6 +6,7 @@ import 'package:utardia/screen/order/order_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/string.dart';
 
+// ignore: must_be_immutable
 class OrderDetailsBottom extends StatelessWidget {
   int? ind;
   OrderDetailsBottom({Key? key, this.ind}) : super(key: key);

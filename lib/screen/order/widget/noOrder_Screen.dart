@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:utardia/common/material_button.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
+import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 
 import '../../../common/text_styles.dart';
@@ -34,7 +35,7 @@ class NoOrderScreen extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.13,
           ),
-          //Image.asset(AssetsString.noOrderImage),
+          Image.asset(AssetsImagesRes.noOrderImage),
           SizedBox(height: MediaQuery.of(context).size.height * 0.04),
           Text(
             Strings.noOrder,

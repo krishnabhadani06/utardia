@@ -7,6 +7,7 @@ import 'package:utardia/screen/dashboard/home/widget/home_center.dart';
 import 'package:utardia/screen/dashboard/profile/widget/profile_drawer.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
+
 import 'widget/home_bottom.dart';
 import 'widget/home_top.dart';
 
@@ -102,12 +103,12 @@ class HomeScreen extends StatelessWidget {
                   : SingleChildScrollView(
                       child: Column(
                         children: [
-                          HomeTop(),
-                          HomeCenter(),
+                          const HomeTop(),
+                          const HomeCenter(),
                           ListView.builder(
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: 2 + provider.allHomeTopProducts.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: provider.allHomeTopProducts.length,
                               padding: EdgeInsets.only(
                                   top: MediaQuery.of(context).size.height *
                                       0.02),

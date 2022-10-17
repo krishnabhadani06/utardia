@@ -54,7 +54,7 @@ class CategoryProductCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           margin: const EdgeInsets.only(
-              left: 3.0, right: 3.0, top: 7.0, bottom: 7.0),
+              left: 3.0, right: 3.0, top: 7.0, bottom: 5.0),
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: const BorderRadius.all(
@@ -135,7 +135,6 @@ class CategoryProductCard extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: deviceHeight * 0.01),
-
                                 // ),
                               ],
                             ),
@@ -196,7 +195,7 @@ class CategoryProductCard extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const Spacer(),
+                        // const Spacer(),
                         Text(
                           Strings.tops,
                           style: robotoSemiBoldTextStyle(
@@ -210,33 +209,27 @@ class CategoryProductCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //mainAxisAlignment: MainAxisAlignment.start,
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            mainPrice!.toString(),
-                            style: robotoBoldTextStyle(fontSize: 12),
-                            maxLines: 1,
-                            overflow: TextOverflow.fade,
-                          ),
+                        Text(
+                          mainPrice!.toString(),
+                          style: robotoBoldTextStyle(fontSize: 12),
+                          maxLines: 1,
+                          overflow: TextOverflow.fade,
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(strokedPrice!.toString(),
-                              //widget.strokedPrice!,
-                              style: robotoBoldTextStyle(
-                                      fontSize: 10,
-                                      color: ColorRes.clrFont.withOpacity(0.7))
-                                  .copyWith(
-                                decoration: TextDecoration.lineThrough,
-                                overflow: TextOverflow.ellipsis,
-                              )),
-                        ),
-                        Expanded(
-                          child: Text(
-                            Strings.off57,
-                            style: natoMediumTextStyle(
-                                color: ColorRes.darkGreen, fontSize: 7.3),
-                          ),
+                        const Spacer(),
+                        Text(strokedPrice!.toString(),
+                            //widget.strokedPrice!,
+                            style: robotoBoldTextStyle(
+                                    fontSize: 10,
+                                    color: ColorRes.clrFont.withOpacity(0.7))
+                                .copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              overflow: TextOverflow.ellipsis,
+                            )),
+                        const Spacer(),
+                        Text(
+                          Strings.off57,
+                          style: natoMediumTextStyle(
+                              color: ColorRes.darkGreen, fontSize: 7.3),
                         ),
                       ],
                     ),

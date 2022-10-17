@@ -279,7 +279,6 @@ class AddressProvider extends ChangeNotifier {
       // txtAddress;
       // txtContact;
       postAddress(isNew: true);
-
       notifyListeners();
     }
   }
@@ -290,6 +289,7 @@ class AddressProvider extends ChangeNotifier {
       txtLandmark;
       txtName;
       txtAddress;
+      txtContact;
       postAddress(
         id: currentAddress!.id.toString(),
         isNew: false,

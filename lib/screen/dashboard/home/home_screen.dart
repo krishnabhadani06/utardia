@@ -108,13 +108,16 @@ class HomeScreen extends StatelessWidget {
                           ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: provider.allHomeTopProducts.length,
+                              itemCount:
+                                  provider.allHomeTopCategories.length != 0
+                                      ? provider.allHomeTopCategories.length
+                                      : 0,
                               padding: EdgeInsets.only(
                                   top: MediaQuery.of(context).size.height *
                                       0.02),
                               itemBuilder: (context, index) {
                                 return HomeBottom(index: index);
-                              })
+                              }),
                         ],
                       ),
                     )

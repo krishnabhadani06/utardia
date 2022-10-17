@@ -119,7 +119,7 @@ class ProfileProvider extends ChangeNotifier {
     if (profileMode != null) {
       // Logger().e(profileMode!.data);
       Provider.of<EditProfileProvider>(context, listen: false).profileModel =
-          profileMode;
+          profileMode!;
       Provider.of<EditProfileProvider>(context, listen: false)
           .notifyListeners();
     } else {

@@ -23,7 +23,7 @@ class EditProfileProvider extends ChangeNotifier {
   Country? intialCountry;
   String? intialCountryCode;
 
-  ProfileModel? profileModel;
+  ProfileModel profileModel = ProfileModel();
   Country? currentCountry = Country(
       phoneCode: "91",
       countryCode: "IN",
@@ -141,13 +141,13 @@ class EditProfileProvider extends ChangeNotifier {
   void getProFileData() async {
     try {
       profileModel = await AllProfileDetailApi.allProfileData();
-      if (profileModel != null) {
-        txtName.text = profileModel!.data![0].name ?? "";
-        txtAddress.text = profileModel!.data![0].address!.data != null
-            ? profileModel!.data![0].address!.data![0].address ?? ""
+      if (profileModel.data!.isNotEmpty) {
+        txtName.text = profileModel.data![0].name ?? "";
+        txtAddress.text = profileModel.data![0].address!.data!.isNotEmpty
+            ? profileModel.data![0].address!.data![0].address ?? ""
             : "No Address";
-        txtContact.text = profileModel!.data![0].phone ?? "";
-        txtEmail.text = profileModel!.data![0].email ?? "";
+        txtContact.text = profileModel.data![0].phone ?? "";
+        txtEmail.text = profileModel.data![0].email ?? "";
       }
       notifyListeners();
     } catch (e, x) {

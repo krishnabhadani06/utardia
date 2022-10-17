@@ -33,15 +33,16 @@ class HomeCategoryApiService {
     try {
       String url = url1;
       http.Response? response = await HttpService.getApi(url: url);
-
+      Logger().e(jsonDecode(response!.body));
       if (response != null && response.statusCode == 200) {
         return homeCategoryProductApiFromJson(response.body);
       } else {
-        return homeCategoryProductApiFromJson("");
+        return HomeCategoryProductApi(status: 200, data: [], success: true);
+        // throw Exception("");
       }
-    } catch (e) {
+    } catch (e, x) {
       showToast(e.toString());
-      return homeCategoryProductApiFromJson("");
+      return HomeCategoryProductApi(status: 200, data: [], success: true);
     }
   }
 

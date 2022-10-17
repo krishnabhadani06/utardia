@@ -161,11 +161,14 @@ class EditAddressDetailBottom extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 20),
-        materialButton(
-            txtButton: Strings.add,
-            onPressed: () => provider.onTapAddEdit(
-                  context,
-                )),
+        Align(
+          alignment: Alignment.center,
+          child: materialButton(
+              txtButton: Strings.add,
+              onPressed: () => provider.onTapAddEdit(
+                    context,
+                  )),
+        ),
         SizedBox(
           height: deviceHeight / 80,
         ),

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/category_model/all_category_detail_model.dart';
@@ -14,6 +15,7 @@ import 'package:utardia/model/home_screen_slider_model/home_screen_banner_model.
 import 'package:utardia/model/home_screen_slider_model/home_screen_slider_model.dart';
 import 'package:utardia/model/home_top_category/home_all_top_category.dart';
 import 'package:utardia/model/home_top_category/home_all_top_category_product.dart';
+import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/category_screen.dart';
 import 'package:utardia/screen/dashboard/home/category_api/all_category_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
@@ -125,6 +127,15 @@ class HomeProvider extends ChangeNotifier {
     BuildContext context,
     String url,
   ) async {
+    Provider.of<CategoryProvider>(context, listen: false).selectedPageInd =
+        Provider.of<HomeProvider>(context, listen: false)
+            .allHomeCategories
+            .indexWhere((element) =>
+                element.name.toString() ==
+                Provider.of<HomeProvider>(context, listen: false)
+                    .allHomeCategories[index]
+                    .name
+                    .toString());
     //Provider.of<CategoryProvider>(context,listen: false).homeCategoryProduct(allHomeCategories[index].links!.products!);
     navigator.currentState!.push(MaterialPageRoute(
         builder: (context) => CategoryScreen(
@@ -132,7 +143,11 @@ class HomeProvider extends ChangeNotifier {
             )));
   }
 
-  void onTapViewCategory() {
+  void onTapViewCategory(BuildContext context) {
+    final pro = Provider.of<CategoryProvider>(context, listen: false);
+    if (pro.selectedPageInd != 0) {
+      Provider.of<CategoryProvider>(context, listen: false).selectedPageInd = 0;
+    }
     navigator.currentState!.push(MaterialPageRoute(
         builder: (context) => CategoryScreen(
               select: 0,

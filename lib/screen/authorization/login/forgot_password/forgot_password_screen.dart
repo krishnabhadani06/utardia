@@ -70,9 +70,20 @@ class ForgotPasswordScreen extends StatelessWidget {
                       height: deviceHeight * 0.050,
                       width: deviceWidth * 0.60,
                       decoration: BoxDecoration(
-                          border: Border.all(color: ColorRes.buttonBlue),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15.0))),
+                        boxShadow: [
+                          BoxShadow(
+                            color: ColorRes.buttonBlue.withOpacity(0.5),
+                            //color of shadow
+                            spreadRadius: 0, //spread radius
+                            blurRadius: 3, // blur radius
+                            offset: const Offset(
+                                0, 0), // changes position of shadow
+                          )
+                        ],
+                        border: Border.all(color: ColorRes.buttonBlue),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15.0)),
+                      ),
                       child: Row(
                         children: [
                           Expanded(
@@ -87,8 +98,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                                     ? ColorRes.buttonBlue
                                     : ColorRes.white,
                                 borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    bottomLeft: Radius.circular(15)),
+                                    topLeft: Radius.circular(14.0),
+                                    bottomLeft: Radius.circular(14.0)),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -128,8 +139,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                                       ? ColorRes.buttonBlue
                                       : ColorRes.white,
                                   borderRadius: const BorderRadius.only(
-                                    bottomRight: Radius.circular(15),
-                                    topRight: Radius.circular(15),
+                                    bottomRight: Radius.circular(14.0),
+                                    topRight: Radius.circular(14.0),
                                   ),
                                 ),
                                 child: Row(

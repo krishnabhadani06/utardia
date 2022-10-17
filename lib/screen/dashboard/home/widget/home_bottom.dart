@@ -51,10 +51,15 @@ class HomeBottom extends StatelessWidget {
                   }));
                 }),
             SizedBox(
-              height: 220,
+              height:
+              provider.allHomeTopProducts[index].data != null?
+              220:null,
               width: MediaQuery.of(context).size.width,
               //color: Colors.yellow,
-              child: ListView.builder(
+              child:
+        provider.allHomeTopProducts[index].data != null?
+
+              ListView.builder(
                   scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
@@ -100,7 +105,7 @@ class HomeBottom extends StatelessWidget {
                   },
                   itemCount: provider.allHomeTopProducts[index].data != null
                       ? provider.allHomeTopProducts[index].data!.length
-                      : 0),
+                      : 0):Center(child: Text('No Products'),)
               //itemCount: provider.allHomeCategoriesProducts[index].data!.length),
             )
           ],

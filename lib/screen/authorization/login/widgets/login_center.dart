@@ -42,7 +42,7 @@ class LoginCenter extends StatelessWidget {
                 border: Border.all(color: ColorRes.buttonBlue),
                 boxShadow: [
                   BoxShadow(
-                    color: ColorRes.black.withOpacity(0.5),
+                    color: ColorRes.buttonBlue.withOpacity(0.5),
                     //color of shadow
                     spreadRadius: 0, //spread radius
                     blurRadius: 3, // blur radius
@@ -50,7 +50,7 @@ class LoginCenter extends StatelessWidget {
                   )
                 ],
                 borderRadius: const BorderRadius.all(
-                  Radius.circular(15),
+                  Radius.circular(15.0),
                 ),
               ),
               child: Row(
@@ -67,8 +67,8 @@ class LoginCenter extends StatelessWidget {
                             ? ColorRes.buttonBlue
                             : ColorRes.white,
                         borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
+                            topLeft: Radius.circular(14.0),
+                            bottomLeft: Radius.circular(14.0)),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -107,8 +107,8 @@ class LoginCenter extends StatelessWidget {
                             ? ColorRes.buttonBlue
                             : ColorRes.white,
                         borderRadius: const BorderRadius.only(
-                          bottomRight: Radius.circular(15),
-                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(14.0),
+                          topRight: Radius.circular(14.0),
                         ),
                       ),
                       child: Row(

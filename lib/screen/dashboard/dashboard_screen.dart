@@ -26,22 +26,14 @@ class DashScreen extends StatelessWidget {
         child: Consumer<DashboardProvider>(builder: (con, pro, widget) {
           // pro.initAllProvider(context);
           if (pro.currentTab == 0) {
-            //pro.onBottomBarChange(0, con);
             return const HomeScreen();
           } else if (pro.currentTab == 1) {
-            //pro.onBottomBarChange(1, con);
             return CategoryScreen(select: 0);
-            //return  const ViewAllCategoryScreen();
           } else if (pro.currentTab == 2) {
-            //pro.onBottomBarChange(2, con);
             return const CartScreen();
           } else if (pro.currentTab == 3) {
-            //pro.onBottomBarChange(3, con);
             return const CampaingScreen();
           } else {
-            //pro.onBottomBarChange(4, con);
-
-            //return const ProfileScreen();
             return const EditProfileScreen();
           }
         }),

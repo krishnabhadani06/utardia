@@ -67,7 +67,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigator,
         debugShowCheckedModeBanner: false,
-        //home: const HomeScreen(),
         builder: EasyLoading.init(),
         home: const SplashScreen(),
       ),

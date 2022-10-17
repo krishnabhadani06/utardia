@@ -31,7 +31,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
           .links!
           .products
           .toString());
-
       if (widget.select != 0) {
         provider.onchangedIndex(widget.select);
       }
@@ -62,10 +61,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 Provider.of<DashboardProvider>(context, listen: false)
                     .onBottomBarChange(0, context);
               }
-              // navigator.currentState!.pushReplacement(MaterialPageRoute(builder: (context){
-              //   return const HomeScreen();
-              // }
-              // ));
             },
           ),
           centerTitle: true,

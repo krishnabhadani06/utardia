@@ -54,11 +54,11 @@ class CategoryProvider extends ChangeNotifier {
         print('-----------------------------${categoryProducts!.data!.length}');
       }
     }
-
     loader = false;
     notifyListeners();
   }
 
+  /// category left onTap
   void onGesterTap(int index, String? url, String? url1) async {
     selectedPageInd = index;
     pageCon.animateToPage(index,
@@ -91,19 +91,9 @@ class CategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int incrementData(int count) {
-    count += 1;
+  void onchangedIndex(int select) {
+    selectedPageInd = select;
     notifyListeners();
-    return count;
-  }
-
-  int decrementData(int count) {
-    count -= 1;
-    if (kDebugMode) {
-      print(count);
-    }
-    notifyListeners();
-    return count;
   }
 
   void getSubCategoryData(String url) async {
@@ -152,7 +142,6 @@ class CategoryProvider extends ChangeNotifier {
       http.Response? res = await HttpService.getApi(
         url: "${ApiEndPoint.getWishList}${PrefService.getString(PrefKeys.uid)}",
       );
-
       if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> map =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
@@ -173,9 +162,19 @@ class CategoryProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  void onchangedIndex(int select) {
-    selectedPageInd = select;
-    notifyListeners();
-  }
 }
+
+// int incrementData(int count) {
+//   count += 1;
+//   notifyListeners();
+//   return count;
+// }
+
+// int decrementData(int count) {
+//   count -= 1;
+//   if (kDebugMode) {
+//     print(count);
+//   }
+//   notifyListeners();
+//   return count;
+// }

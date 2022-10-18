@@ -7,8 +7,6 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/toast_msg.dart';
-import 'package:utardia/model/category_model/all_category_detail_model.dart';
-import 'package:utardia/model/category_model/all_category_model.dart';
 import 'package:utardia/model/home_model/home_category_model.dart';
 import 'package:utardia/model/home_model/home_category_product_model.dart';
 import 'package:utardia/model/home_screen_slider_model/home_screen_banner_model.dart';
@@ -17,7 +15,6 @@ import 'package:utardia/model/home_top_category/home_all_top_category.dart';
 import 'package:utardia/model/home_top_category/home_all_top_category_product.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/category_screen.dart';
-import 'package:utardia/screen/dashboard/home/category_api/all_category_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_top_category_apii/home_top_category_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_slider_api/home_banner_api.dart';
@@ -25,7 +22,6 @@ import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
-
 import 'home_screen_slider_api/home_slider_api.dart';
 
 class HomeProvider extends ChangeNotifier {
@@ -35,9 +31,9 @@ class HomeProvider extends ChangeNotifier {
   final GlobalKey<ScaffoldState> drawerScaffoldLKey =
       GlobalKey<ScaffoldState>();
 
-  /// view all
-  List<AllCategory> allCategories = [];
-  List<AllCategoryDetailApi> allCategoriesProducts = [];
+  // /// view all
+  // List<AllCategory> allCategories = [];
+  // List<AllCategoryDetailApi> allCategoriesProducts = [];
 
   /// slider
   HomeBannerApi bannerModel = HomeBannerApi();
@@ -51,9 +47,7 @@ class HomeProvider extends ChangeNotifier {
   /// homeCenter
   HomeCategoryApi? homeCategoryModel;
   List<HomeCategory> allHomeCategories = [];
-  List<HomeCategoryProductApi> allHomeCategoriesProducts = [];
-
-  // List<HomeSubCategoryList> allSubCategories = [];
+  // List<HomeCategoryProductApi> allHomeCategoriesProducts = [];
 
   /// home Bottom TopCategory
   List<HomeTopCategoryList> allHomeTopCategories = [];
@@ -154,16 +148,6 @@ class HomeProvider extends ChangeNotifier {
             )));
   }
 
-  Future<bool> onLike(bool like) async {
-    // like==true?like=false:like=true;
-    like = !like;
-    if (kDebugMode) {
-      print(like);
-    }
-    notifyListeners();
-    return like;
-  }
-
   getWishList() async {
     try {
       http.Response? res = await HttpService.getApi(
@@ -187,62 +171,6 @@ class HomeProvider extends ChangeNotifier {
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
       showToast(e.toString());
-      notifyListeners();
-    }
-  }
-
-  ///homeTop view all
-
-  Future<void> allCategoryData() async {
-    loader = true;
-    // notifyListeners();
-    AllCategoryApi viewCategoryModel =
-        await AllCategoryProductApi.allCategoryData();
-    if (viewCategoryModel.status != 200) {
-      allCategoryData();
-    } else {
-      allCategories.clear();
-      allCategories = viewCategoryModel.data!;
-      getAllCategoriesProducts();
-      if (kDebugMode) {
-        print(allCategories);
-      }
-      //loader = false;
-      // notifyListeners();
-    }
-  }
-
-  Future<void> getAllCategoriesProducts() async {
-    allCategoriesProducts =
-        List.generate(allCategories.length, (index) => AllCategoryDetailApi());
-    int index = 0;
-    for (var element in allCategories) {
-      await allCategoryProduct(element.links!.products!, index);
-      index++;
-    }
-    loader = false;
-    notifyListeners();
-    // allCategoriesProducts.clear();
-    //   // for (var element in allCategories) {
-    //   //   await allCategoryProduct(element.links!.products!);
-    //   // }
-  }
-
-  Future<void> allCategoryProduct(String url, int index) async {
-    loader = true;
-    notifyListeners();
-    AllCategoryDetailApi product =
-        await AllCategoryProductApi.categoryProductView(url);
-    if (product.status != 200) {
-      allCategoryProduct(url, index);
-    } else {
-      //allCategoriesProducts.clear();
-      // allCategoriesProducts.add(product);
-      allCategoriesProducts[index] = product;
-      if (kDebugMode) {
-        print('-----------------------------${product.data!.length}');
-      }
-      loader = false;
       notifyListeners();
     }
   }
@@ -317,5 +245,62 @@ class HomeProvider extends ChangeNotifier {
 //     print(bannerData);
 //     loader = false;
 //     //notifyListeners();
+//   }
+// }
+
+//
+// ///homeTop view all
+//
+// Future<void> allCategoryData() async {
+//   loader = true;
+//   // notifyListeners();
+//   AllCategoryApi viewCategoryModel =
+//   await AllCategoryProductApi.allCategoryData();
+//   if (viewCategoryModel.status != 200) {
+//     allCategoryData();
+//   } else {
+//     allCategories.clear();
+//     allCategories = viewCategoryModel.data!;
+//     getAllCategoriesProducts();
+//     if (kDebugMode) {
+//       print(allCategories);
+//     }
+//     //loader = false;
+//     // notifyListeners();
+//   }
+// }
+//
+// Future<void> getAllCategoriesProducts() async {
+//   allCategoriesProducts =
+//       List.generate(allCategories.length, (index) => AllCategoryDetailApi());
+//   int index = 0;
+//   for (var element in allCategories) {
+//     await allCategoryProduct(element.links!.products!, index);
+//     index++;
+//   }
+//   loader = false;
+//   notifyListeners();
+//   // allCategoriesProducts.clear();
+//   //   // for (var element in allCategories) {
+//   //   //   await allCategoryProduct(element.links!.products!);
+//   //   // }
+// }
+//
+// Future<void> allCategoryProduct(String url, int index) async {
+//   loader = true;
+//   notifyListeners();
+//   AllCategoryDetailApi product =
+//   await AllCategoryProductApi.categoryProductView(url);
+//   if (product.status != 200) {
+//     allCategoryProduct(url, index);
+//   } else {
+//     //allCategoriesProducts.clear();
+//     // allCategoriesProducts.add(product);
+//     allCategoriesProducts[index] = product;
+//     if (kDebugMode) {
+//       print('-----------------------------${product.data!.length}');
+//     }
+//     loader = false;
+//     notifyListeners();
 //   }
 // }

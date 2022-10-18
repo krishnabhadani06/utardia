@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/addToCartModel/addToCart_model.dart';
-import 'package:utardia/model/category_model/product_description_model.dart';
 import 'package:utardia/model/home_model/home_category_product_detail_model.dart';
 import 'package:utardia/model/home_top_category/home_top_product_detail_model.dart';
 import 'package:utardia/model/todays_product_model/todays_product_deal_model.dart';
@@ -22,7 +21,6 @@ import 'package:utardia/screen/category/product_details/product_details_screen.d
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/dashboard/cart/cart_screen.dart';
 import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
-import 'package:utardia/screen/dashboard/home/category_api/all_category_api.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_top_category_apii/home_top_category_api.dart';
@@ -56,8 +54,9 @@ class ProductDetailsProvider extends ChangeNotifier {
   TextEditingController description = TextEditingController();
   GlobalKey<FormState> productKey = GlobalKey<FormState>();
 
-  ProductDescriptionApi productDescriptionModel = ProductDescriptionApi();
-  List<ProductDetailList> allProductDescription = [];
+  // ProductDescriptionApi productDescriptionModel = ProductDescriptionApi();
+  // List<ProductDetailList> allProductDescription = [];
+
   TodaysProductDealModel? todayProduct;
   List<TodayProductDealList> allTodayProducts = [];
 
@@ -136,36 +135,6 @@ class ProductDetailsProvider extends ChangeNotifier {
       allTodayProducts = todayProduct!.data!;
       if (kDebugMode) {
         print(allTodayProducts);
-      }
-      loader = false;
-      notifyListeners();
-    }
-  }
-
-  /// view all
-  void onTapProduct(int index, String url) {
-    selectedIndex = index;
-    notifyListeners();
-    allProductDescription.clear();
-    productDescriptionDetail(url);
-    if (kDebugMode) {
-      print('00000000------------ $url');
-    }
-    notifyListeners();
-  }
-
-  Future<void> productDescriptionDetail(String url) async {
-    loader = true;
-    notifyListeners();
-    productDescriptionModel = await AllCategoryProductApi.productDetail(url);
-    if (productDescriptionModel.status != 200) {
-      productDescriptionDetail(url);
-    } else {
-      navigator.currentState!
-          .push(MaterialPageRoute(builder: (context) => ProductDetailScreen()));
-      allProductDescription = productDescriptionModel.data!;
-      if (kDebugMode) {
-        print('-----------------------------${allProductDescription.length}');
       }
       loader = false;
       notifyListeners();
@@ -652,3 +621,33 @@ class ProductDetailsProvider extends ChangeNotifier {
     }
   }
 }
+
+// /// view all
+// void onTapProduct(int index, String url) {
+//   selectedIndex = index;
+//   notifyListeners();
+//   allProductDescription.clear();
+//   productDescriptionDetail(url);
+//   if (kDebugMode) {
+//     print('00000000------------ $url');
+//   }
+//   notifyListeners();
+// }
+//
+// Future<void> productDescriptionDetail(String url) async {
+//   loader = true;
+//   notifyListeners();
+//   productDescriptionModel = await AllCategoryProductApi.productDetail(url);
+//   if (productDescriptionModel.status != 200) {
+//     productDescriptionDetail(url);
+//   } else {
+//     navigator.currentState!
+//         .push(MaterialPageRoute(builder: (context) => ProductDetailScreen()));
+//     allProductDescription = productDescriptionModel.data!;
+//     if (kDebugMode) {
+//       print('-----------------------------${allProductDescription.length}');
+//     }
+//     loader = false;
+//     notifyListeners();
+//   }
+// }

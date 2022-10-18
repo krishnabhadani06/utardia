@@ -54,7 +54,7 @@ class CategoryProductCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           margin: const EdgeInsets.only(
-              left: 3.0, right: 3.0, top: 7.0, bottom: 7.0),
+              left: 3.0, right: 3.0, top: 7.0, bottom: 5.0),
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: const BorderRadius.all(
@@ -135,7 +135,6 @@ class CategoryProductCard extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: deviceHeight * 0.01),
-
                                 // ),
                               ],
                             ),
@@ -157,7 +156,6 @@ class CategoryProductCard extends StatelessWidget {
                     SizedBox(height: deviceHeight * 0.006),
                     SizedBox(
                       width: deviceWidth * 0.36,
-                      // width: deviceWidth * 0.20,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 4.0),
                         child: Text(
@@ -192,11 +190,11 @@ class CategoryProductCard extends StatelessWidget {
                                 Icons.star,
                                 color: ColorRes.white,
                                 size: 15,
-                              )
+                              ),
                             ],
                           ),
                         ),
-                        const Spacer(),
+                        // const Spacer(),
                         Text(
                           Strings.tops,
                           style: robotoSemiBoldTextStyle(
@@ -206,7 +204,6 @@ class CategoryProductCard extends StatelessWidget {
                     ),
                     SizedBox(height: deviceHeight * 0.01),
                     Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //mainAxisAlignment: MainAxisAlignment.start,
@@ -221,17 +218,21 @@ class CategoryProductCard extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text(strokedPrice!.toString(),
-                              //widget.strokedPrice!,
-                              style: robotoBoldTextStyle(
-                                      fontSize: 10,
-                                      color: ColorRes.clrFont.withOpacity(0.7))
-                                  .copyWith(
-                                decoration: TextDecoration.lineThrough,
-                                overflow: TextOverflow.ellipsis,
-                              )),
+                          child: Text(
+                            strokedPrice!.toString(),
+                            //widget.strokedPrice!,
+                            style: robotoBoldTextStyle(
+                                    fontSize: 10,
+                                    color: ColorRes.clrFont.withOpacity(0.7))
+                                .copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              overflow: TextOverflow.fade,
+                            ),
+                            maxLines: 1,
+                          ),
                         ),
                         Expanded(
+                          flex: 1,
                           child: Text(
                             Strings.off57,
                             style: natoMediumTextStyle(

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -62,9 +64,7 @@ class _CategoryRightState extends State<CategoryRight> {
                 return SingleChildScrollView(
                   physics: const BouncingScrollPhysics(), // important
                   child: Container(
-                    // color: Colors.blue,
                     color: Colors.white12,
-                    // height: 480,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

@@ -17,7 +17,7 @@ class Page404 extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.22),
-          Image.asset(AssetsImagesRes.Image404),
+          Image.asset(AssetsImagesRes.image404),
           SizedBox(height: MediaQuery.of(context).size.height * 0.05),
           Text(Strings.pageNotFound,
               style: robotoBoldTextStyle(fontSize: 20, color: ColorRes.black)),

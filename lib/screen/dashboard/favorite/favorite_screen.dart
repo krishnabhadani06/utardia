@@ -13,6 +13,8 @@ import 'package:utardia/util/string.dart';
 import '../../../util/icon_res.dart';
 
 class FavoriteScreen extends StatelessWidget {
+  const FavoriteScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     // final provider = Provider.of<FavoriteProvider>(context);
@@ -82,12 +84,12 @@ class FavoriteScreen extends StatelessWidget {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                crossAxisSpacing: 10.0,
+                                crossAxisSpacing: 15.0,
                                 mainAxisSpacing: 8.0,
                                 childAspectRatio:
-                                    deviceWidth / (deviceHeight * 0.75),
+                                    deviceWidth / (deviceHeight * 0.68),
                               ),
-                              itemCount: provider.Wishlist2!.data!.length == 0
+                              itemCount: provider.Wishlist2!.data!.isEmpty
                                   ? 4
                                   : provider.Wishlist2!.data!.length,
                               itemBuilder: (context, i) {

@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

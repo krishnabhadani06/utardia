@@ -105,7 +105,6 @@ class EditAddressDetailBottom extends StatelessWidget {
                         ),
                       )
                     : const Center(child: CircularProgressIndicator())),
-
             const SizedBox(width: 10),
             Expanded(
                 flex: 2,

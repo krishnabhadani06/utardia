@@ -61,7 +61,6 @@ class HomeProvider extends ChangeNotifier {
 
     ///home center
     await allHomeCategoryData();
-
     await homeBannerData();
     await homeSliderData();
     await getWishList();
@@ -74,6 +73,7 @@ class HomeProvider extends ChangeNotifier {
   ///home bottom
   Future<void> homeAllTopCategoryData() async {
     homeBottomLoader = true;
+    loader = true;
     notifyListeners();
     HomeTopCategory homeTopCategoryModel =
         await HomeTopCategoryAPiServices.homeAllTopCategoryData();

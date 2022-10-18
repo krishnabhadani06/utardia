@@ -49,8 +49,8 @@ class FavoriteCenter extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Stack(
                 children: [
-                  Container(
-                    height: deviceHeight * 0.18,
+                  SizedBox(
+                    height: deviceHeight * 0.17,
                     width: deviceWidth,
                     child: CachedNetworkImage(
                         imageUrl: provider.Wishlist2!.data![index ?? 0].product!
@@ -70,30 +70,47 @@ class FavoriteCenter extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          CircleAvatar(
-                            backgroundColor: ColorRes.white,
-                            radius: 15,
-                            child: Center(
-                              child: InkWell(
-                                  onTap: () {
-                                    final pro = Provider.of<FavoriteProvider>(
-                                        context,
-                                        listen: false);
+                          Container(
+                            height: 25,
+                            width: 30,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: ColorRes.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.20),
+                                  blurRadius: 5,
+                                  offset: Offset.zero,
+                                  spreadRadius: 0,
+                                ),
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              backgroundColor: ColorRes.white,
+                              radius: 15,
+                              child: Center(
+                                child: InkWell(
+                                    onTap: () {
+                                      final pro = Provider.of<FavoriteProvider>(
+                                          context,
+                                          listen: false);
 
-                                    provider.addWishList(
-                                        pro.Wishlist2!.data![index!].product!.id
-                                            .toString(),
-                                        context,
-                                        '');
-                                  },
-                                  child: const Icon(
-                                    Icons.favorite,
-                                    color: ColorRes.red,
-                                    size: 18,
-                                  )),
+                                      provider.addWishList(
+                                          pro.Wishlist2!.data![index!].product!
+                                              .id
+                                              .toString(),
+                                          context,
+                                          '');
+                                    },
+                                    child: const Icon(
+                                      Icons.favorite,
+                                      color: ColorRes.red,
+                                      size: 18,
+                                    )),
+                              ),
                             ),
                           ),
-                          SizedBox(height: deviceHeight * 0.01),
+                          // SizedBox(height: deviceHeight * 0.01),
                         ],
                       ),
                     ],
@@ -119,7 +136,7 @@ class FavoriteCenter extends StatelessWidget {
                               .toString(),
                       style: robotoMediumTextStyle(
                           color: ColorRes.greyDark, fontSize: 12),
-                      maxLines: 2,
+                      maxLines: 1,
                     ),
                   ),
                   SizedBox(
@@ -142,7 +159,6 @@ class FavoriteCenter extends StatelessWidget {
                               provider
                                   .Wishlist2!.data![index ?? 0].product!.rating
                                   .toString(),
-                              // widget.rate!,
                               style: const TextStyle(
                                   color: ColorRes.white, fontSize: 12),
                             ),
@@ -154,7 +170,7 @@ class FavoriteCenter extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Spacer(),
+                      // const Spacer(),
                       Text(
                         Strings.tops,
                         style: robotoSemiBoldTextStyle(
@@ -167,51 +183,39 @@ class FavoriteCenter extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Expanded(
-                        flex: 1,
-                        child: Text(
+                      Text(
+                        index == null
+                            ? Strings.rs3800
+                            : "Rs.${provider.Wishlist2!.data![index ?? 0].product!.basePrice.toString()}",
+                        style: robotoBoldTextStyle(fontSize: 15).copyWith(
+                          fontWeight: FontWeight.w700,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        maxLines: 1,
+                      ),
+                      const Spacer(),
+                      Text(
                           index == null
                               ? Strings.rs3800
                               : "Rs.${provider.Wishlist2!.data![index ?? 0].product!.basePrice.toString()}",
-                          style: robotoBoldTextStyle(fontSize: 15).copyWith(
-                            fontWeight: FontWeight.w700,
+                          style: TextStyle(
+                                  fontSize: 8,
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorRes.clrFont.withOpacity(0.7))
+                              .copyWith(
+                            decoration: TextDecoration.lineThrough,
                             overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ),
-                      // SizedBox(
-                      //   width: deviceWidth * 0.02,
-                      // ),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                            index == null
-                                ? Strings.rs3800
-                                : "Rs.${provider.Wishlist2!.data![index ?? 0].product!.basePrice.toString()}",
-                            style: TextStyle(
-                                    fontSize: 8,
-                                    fontWeight: FontWeight.w400,
-                                    color: ColorRes.clrFont.withOpacity(0.7))
-                                .copyWith(
-                              decoration: TextDecoration.lineThrough,
-                              overflow: TextOverflow.ellipsis,
-                            )),
-                      ),
-                      // SizedBox(
-                      //   width: deviceWidth * 0.02,
-                      // ),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          index != null
-                              ? Strings.off57
-                              : provider.Wishlist2!.data![index ?? 0].product!
-                                  .basePrice
-                                  .toString(),
-                          style: robotoBoldTextStyle(
-                                  fontSize: 8, color: ColorRes.darkGreen)
-                              .copyWith(fontWeight: FontWeight.w700),
-                        ),
+                          )),
+                      const Spacer(),
+                      Text(
+                        index != null
+                            ? Strings.off57
+                            : provider
+                                .Wishlist2!.data![index ?? 0].product!.basePrice
+                                .toString(),
+                        style: robotoBoldTextStyle(
+                                fontSize: 8, color: ColorRes.darkGreen)
+                            .copyWith(fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),

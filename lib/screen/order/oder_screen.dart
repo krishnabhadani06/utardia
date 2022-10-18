@@ -55,7 +55,7 @@ class OrderScreen extends StatelessWidget {
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.12),
-                            Image.asset(AssetsImagesRes.favouriteImage),
+                            Image.asset(AssetsImagesRes.noOrderImage),
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.05),
@@ -67,7 +67,7 @@ class OrderScreen extends StatelessWidget {
                                 height:
                                     MediaQuery.of(context).size.height * 0.01),
                             Text(
-                              Strings.NoOrderDes,
+                              Strings.orderedYet,
                               style: natoMediumTextStyle(
                                   fontSize: 16, color: ColorRes.grayText),
                             ),

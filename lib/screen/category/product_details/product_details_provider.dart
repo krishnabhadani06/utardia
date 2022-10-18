@@ -24,7 +24,6 @@ import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_top_category_apii/home_top_category_api.dart';
-import 'package:utardia/screen/dashboard/home/widget/home_bottom_product_detail/home_bottom_product_detail.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
@@ -222,8 +221,8 @@ class ProductDetailsProvider extends ChangeNotifier {
     notifyListeners();
     homeTopProductDetail = null;
     await topProductDetails(url);
-    navigator.currentState!.push(MaterialPageRoute(
-        builder: (context) => const TopProductDetailScreen()));
+    // navigator.currentState!.push(MaterialPageRoute(
+    //     builder: (context) => const TopProductDetailScreen()));
     if (kDebugMode) {
       print('00000000------------ $url');
     }

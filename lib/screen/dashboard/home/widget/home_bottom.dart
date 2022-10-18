@@ -17,13 +17,10 @@ class HomeBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context);
     final provider1 = Provider.of<ProductDetailsProvider>(context);
-    // final provider2 = Provider.of<CategoryProvider>(context);
-    return Column(children: [
-      // if (index % 2 == 0) sliderHome(context: context),
-      if (index % 2 == 0)
-        // sliderBottomHome(context: context, sliderImage: provider.sliderImage),
-        sliderBottomHome(context: context, bannerImage: provider.bannerImage),
 
+    return Column(children: [
+      if (index % 2 == 0)
+        sliderBottomHome(context: context, bannerImage: provider.bannerImage),
       Builder(builder: (context) {
         return Column(
           children: [
@@ -32,16 +29,13 @@ class HomeBottom extends StatelessWidget {
                 onTap: () {
                   navigator.currentState!
                       .push(MaterialPageRoute(builder: (context) {
-                    // if (Provider.of<CategoryProvider>(context, listen: false)
-                    //         .selectedPageInd !=
-                    //     0) {
                     Provider.of<CategoryProvider>(context, listen: false)
                             .selectedPageInd =
                         provider.allHomeCategories.indexWhere((element) =>
                             element.name.toString() ==
                             provider.allHomeTopCategories[index].name
                                 .toString());
-                    // }
+
                     return CategoryScreen(
                         select: provider.allHomeCategories.indexWhere(
                             (element) =>
@@ -51,58 +45,62 @@ class HomeBottom extends StatelessWidget {
                   }));
                 }),
             SizedBox(
-              height: 220,
-              width: MediaQuery.of(context).size.width,
-              //color: Colors.yellow,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  // shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index1) {
-                    return ProductCard(
-                      context: context,
-                      index: index1,
-                      strokedPrice: provider.allHomeTopProducts[index]
-                          .data![index1].strokedPrice!,
-                      mainPrice: provider
-                          .allHomeTopProducts[index].data![index1].mainPrice!,
-                      image: provider.allHomeTopProducts[index].data![index1]
-                          .thumbnailImage!,
-                      name: provider
-                          .allHomeTopProducts[index].data![index1].name!,
-                      gro: provider
-                          .allHomeTopProducts[index].data![index1].isGrocery!,
-                      rate: provider
-                          .allHomeTopProducts[index].data![index1].rating
-                          .toString(),
-                      url: provider.allHomeTopProducts[index].data![index1]
-                          .links!.details
-                          .toString(),
-                      productUrl: provider
-                          .allHomeTopCategories[index].links!.products
-                          .toString(),
-                      like: provider.wishListId.contains(provider
-                          .allHomeTopProducts[index].data![index1].id
-                          .toString()),
-                      id: provider.allHomeTopProducts[index].data![index1].id
-                          .toString(),
-                      onTap: () {
-                        provider1.onTapProductDetails(
-                            index1,
-                            provider.allHomeTopProducts[index].data![index1]
-                                .links!.details
+                height: 220,
+                width: MediaQuery.of(context).size.width,
+                //color: Colors.yellow,
+                child: provider.allHomeTopProducts[index].data != null
+                    ? ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index1) {
+                          return ProductCard(
+                            context: context,
+                            index: index1,
+                            strokedPrice: provider.allHomeTopProducts[index]
+                                .data![index1].strokedPrice!,
+                            mainPrice: provider.allHomeTopProducts[index]
+                                .data![index1].mainPrice!,
+                            image: provider.allHomeTopProducts[index]
+                                .data![index1].thumbnailImage!,
+                            name: provider
+                                .allHomeTopProducts[index].data![index1].name!,
+                            gro: provider.allHomeTopProducts[index]
+                                .data![index1].isGrocery!,
+                            rate: provider
+                                .allHomeTopProducts[index].data![index1].rating
                                 .toString(),
-                            context,
-                            provider.allHomeTopProducts[index].data![index1].id
-                                .toString());
-                      },
-                    );
-                  },
-                  itemCount: provider.allHomeTopProducts[index].data != null
-                      ? provider.allHomeTopProducts[index].data!.length
-                      : 0),
-              //itemCount: provider.allHomeCategoriesProducts[index].data!.length),
-            )
+                            url: provider.allHomeTopProducts[index]
+                                .data![index1].links!.details
+                                .toString(),
+                            productUrl: provider
+                                .allHomeTopCategories[index].links!.products
+                                .toString(),
+                            like: provider.wishListId.contains(provider
+                                .allHomeTopProducts[index].data![index1].id
+                                .toString()),
+                            id: provider
+                                .allHomeTopProducts[index].data![index1].id
+                                .toString(),
+                            onTap: () {
+                              provider1.onTapProductDetails(
+                                  index1,
+                                  provider.allHomeTopProducts[index]
+                                      .data![index1].links!.details
+                                      .toString(),
+                                  context,
+                                  provider.allHomeTopProducts[index]
+                                      .data![index1].id
+                                      .toString());
+                            },
+                          );
+                        },
+                        itemCount: provider.allHomeTopProducts[index].data !=
+                                null
+                            ? provider.allHomeTopProducts[index].data!.length
+                            : 0)
+                    : const Center(
+                        child: Text("No Any Products"),
+                      ))
           ],
         );
       }),

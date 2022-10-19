@@ -11,6 +11,7 @@ import 'package:utardia/screen/category/product_details/widget/product_details_b
 import 'package:utardia/screen/category/product_details/widget/product_detials_center.dart';
 import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
+import 'package:utardia/screen/splash/splash_provider.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
@@ -26,6 +27,7 @@ class ProductDetailScreen extends StatelessWidget {
   ProductDetailScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    final splashProvider = Provider.of<SplashProvider>(context, listen: false);
     // final provider = Provider.of<CartProvider>(context);
     // final provider1 = Provider.of<FavoriteProvider>(context);
     return Consumer<ProductDetailsProvider>(builder: (context, pro, x) {
@@ -100,23 +102,6 @@ class ProductDetailScreen extends StatelessWidget {
                                             fit: BoxFit.fill,
                                           ),
                                         ],
-                                        // children: pro.homeProductDetail != null
-                                        //     ? pro.homeProductDetail!.photos!
-                                        //         .map((e) {
-                                        //         return CachedNetworkImage(
-                                        //           imageUrl:
-                                        //               "https://dharmeshs42.sg-host.com/public/${e.path.toString()}",
-                                        //           placeholder: (context, x) {
-                                        //             return const Center(
-                                        //                 child:
-                                        //                     CircularProgressIndicator());
-                                        //           },
-                                        //         );
-                                        //       }).toList()
-                                        //     : [
-                                        //         Image.asset(AssetsImagesRes
-                                        //             .productGirl),
-                                        //       ],
                                       ),
                                       const ProductDetailsCenter()
                                     ],
@@ -252,14 +237,14 @@ class ProductDetailScreen extends StatelessWidget {
                                                                   child: Center(
                                                                     child: InkWell(
                                                                         onTap: () async {
-                                                                          pro.onTapTodaysDealLikeButton(
+                                                                          pro.addToWishList(
                                                                               context,
-                                                                              index);
+                                                                              pro.homeProductDetail!.id.toString());
                                                                         },
                                                                         child: Icon(
                                                                           Icons
                                                                               .favorite,
-                                                                          color: Provider.of<CategoryProvider>(context, listen: false).wishListId.contains(pro.allTodayProducts[index].id.toString())
+                                                                          color: splashProvider.wishListid.contains(pro.allTodayProducts[index].id.toString())
                                                                               ? ColorRes.red
                                                                               : ColorRes.grey,
                                                                           // color: like!
@@ -480,32 +465,25 @@ class ProductDetailScreen extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: ColorRes.white,
                               radius: 15,
-                              child: Center(
-                                  child: InkWell(
-                                onTap: () {
-                                  pro.addToWishList(context);
-                                  Provider.of<CategoryProvider>(context,
-                                          listen: false)
-                                      .getWishList();
-                                  Provider.of<HomeProvider>(context,
-                                          listen: false)
-                                      .getWishList();
-                                  Provider.of<FavoriteProvider>(context,
-                                          listen: false)
-                                      .checkWishList(
-                                          pro.homeProductDetail!.id.toString(),
-                                          PrefService.getString(PrefKeys.uid));
-                                  pro.homeProductDetails(
-                                      pro.currentProdductLink);
-                                },
-                                child: Icon(
-                                  Icons.favorite,
-                                  color: pro.isLiked
-                                      ? ColorRes.red
-                                      : ColorRes.grey,
-                                  size: 18,
-                                ),
-                              )),
+                              child: Consumer<SplashProvider>(
+                                  builder: (context, con, child) {
+                                return Center(
+                                    child: InkWell(
+                                  onTap: () {
+                                    con.wishListOperation(
+                                        pro.homeProductDetail!.id.toString());
+                                  },
+                                  child: Icon(
+                                    Icons.favorite,
+                                    color: con.wishListid.contains(pro
+                                            .homeProductDetail!.id
+                                            .toString())
+                                        ? ColorRes.red
+                                        : ColorRes.grey,
+                                    size: 18,
+                                  ),
+                                ));
+                              }),
                             ),
                           )),
                       Positioned(

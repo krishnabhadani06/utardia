@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
 import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
+import 'package:utardia/screen/splash/splash_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
@@ -26,8 +27,9 @@ Widget ProductCard({
   String? productUrl,
   required void Function() onTap,
 }) {
-  final provider = Provider.of<FavoriteProvider>(context!);
+  final splashProvider = Provider.of<SplashProvider>(context!, listen: false);
   // final provider2 = Provider.of<ProductDetailsProvider>(context);
+
   return Container(
     margin: const EdgeInsets.only(left: 6.0, right: 6.0, top: 7.0, bottom: 7.0),
     width: 155,
@@ -96,18 +98,26 @@ Widget ProductCard({
                                 backgroundColor: ColorRes.white,
                                 radius: 15,
                                 child: Center(
-                                  child: InkWell(
-                                      onTap: () {
-                                        provider.addWishList(id.toString(),
-                                            context, productUrl.toString());
-                                      },
-                                      child: Icon(
-                                        Icons.favorite,
-                                        color: like!
-                                            ? ColorRes.red
-                                            : ColorRes.grey,
-                                        size: 18,
-                                      )),
+                                  child: Consumer<SplashProvider>(
+                                      builder: (context, con, child) {
+                                    return InkWell(
+                                        onTap: () {
+                                          con.wishListOperation(
+                                              id.toString(),
+                                              con.wishListid
+                                                      .contains(id.toString())
+                                                  ? true
+                                                  : false);
+                                        },
+                                        child: Icon(
+                                          Icons.favorite,
+                                          color: con.wishListid
+                                                  .contains(id.toString())
+                                              ? ColorRes.red
+                                              : ColorRes.grey,
+                                          size: 18,
+                                        ));
+                                  }),
                                 ),
                               ),
                             ),

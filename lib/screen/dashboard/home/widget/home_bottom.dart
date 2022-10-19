@@ -36,14 +36,6 @@ class HomeBottom extends StatelessWidget {
                             provider.allHomeTopCategories[index].name
                                 .toString());
 
-                    if (indezxx == -1) {
-                      indezxx = 0;
-                      Provider.of<CategoryProvider>(context, listen: false)
-                          .selectedPageInd = indezxx;
-                      debugPrint(indezxx.toString());
-                    }
-
-                    // }
                     return CategoryScreen(
                         select: provider.allHomeCategories.indexWhere(
                             (element) =>

@@ -7,6 +7,8 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/toast_msg.dart';
+import 'package:utardia/model/category_model/all_category_detail_model.dart';
+import 'package:utardia/model/category_model/all_category_model.dart';
 import 'package:utardia/model/home_model/home_category_model.dart';
 import 'package:utardia/model/home_screen_slider_model/home_screen_banner_model.dart';
 import 'package:utardia/model/home_screen_slider_model/home_screen_slider_model.dart';
@@ -14,6 +16,7 @@ import 'package:utardia/model/home_top_category/home_all_top_category.dart';
 import 'package:utardia/model/home_top_category/home_all_top_category_product.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/category_screen.dart';
+import 'package:utardia/screen/dashboard/home/category_api/all_category_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_top_category_apii/home_top_category_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_slider_api/home_banner_api.dart';
@@ -30,9 +33,9 @@ class HomeProvider extends ChangeNotifier {
   final GlobalKey<ScaffoldState> drawerScaffoldLKey =
       GlobalKey<ScaffoldState>();
 
-  // /// view all
-  // List<AllCategory> allCategories = [];
-  // List<AllCategoryDetailApi> allCategoriesProducts = [];
+  /// view all
+  List<AllCategory> allCategories = [];
+  List<AllCategoryDetailApi> allCategoriesProducts = [];
 
   /// slider
   HomeBannerApi bannerModel = HomeBannerApi();

@@ -5,6 +5,7 @@ import 'package:utardia/screen/dashboard/campaigns/campaigns_provider.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/edit_profile/editprofile_provider.dart';
+import 'package:utardia/util/api_endpoints.dart';
 
 class DashboardProvider extends ChangeNotifier {
   int currentTab = 0;
@@ -25,14 +26,14 @@ class DashboardProvider extends ChangeNotifier {
   void onBottomBarChange(int index, BuildContext context) {
     currentTab = index;
     if (index == 0) {
-      if (homeProvider.allHomeTopProducts.isEmpty ||
-          homeProvider.allHomeTopCategories.isEmpty) {
+      if (homeProvider.allHomeTopCategories.isEmpty ||
+          homeProvider.allHomeTopProducts.isEmpty) {
         homeProvider.init();
       }
 
       // notifyListeners();
     } else if (index == 1) {
-      //categoryProvider.init();
+      categoryProvider.init(ApiEndPoint.allCategoryProduct);
       // notifyListeners();
     } else if (index == 4) {
       Provider.of<EditProfileProvider>(context, listen: false)

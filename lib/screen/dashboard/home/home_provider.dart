@@ -52,24 +52,29 @@ class HomeProvider extends ChangeNotifier {
   List<HomeTopCategoryProduct> allHomeTopProducts = [];
 
   Future<void> init() async {
-    // loader = true;
+    loader = true;
+    notifyListeners();
+
+    ///view all
+    // await allCategoryData();
 
     ///home center
     allHomeCategoryData();
     homeBannerData();
     homeSliderData();
-    getWishList();
+    // await getWishList();
 
     /// home bottom
-    homeAllTopCategoryData();
-    // loader = false;
+    await homeAllTopCategoryData();
+    loader = false;
+    notifyListeners();
   }
 
   ///home bottom
   Future<void> homeAllTopCategoryData() async {
-    homeBottomLoader = true;
-    loader = true;
-    notifyListeners();
+    // homeBottomLoader = true;
+    // loader = true;
+    // notifyListeners();
     HomeTopCategory homeTopCategoryModel =
         await HomeTopCategoryAPiServices.homeAllTopCategoryData();
     if (homeTopCategoryModel.status != 200) {
@@ -77,7 +82,7 @@ class HomeProvider extends ChangeNotifier {
     } else {
       allHomeTopCategories.clear();
       allHomeTopCategories = homeTopCategoryModel.data!;
-      getAllHomeTopCategoriesProducts();
+      await getAllHomeTopCategoriesProducts();
       if (kDebugMode) {
         print(allHomeTopCategories.length);
       }
@@ -170,9 +175,65 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
+  ///homeTop view all
+
+  Future<void> allCategoryData() async {
+    // loader = true;
+    // notifyListeners();
+    AllCategoryApi viewCategoryModel =
+        await AllCategoryProductApi.allCategoryData();
+    if (viewCategoryModel.status != 200) {
+      allCategoryData();
+    } else {
+      allCategories.clear();
+      allCategories = viewCategoryModel.data!;
+      getAllCategoriesProducts();
+      if (kDebugMode) {
+        print(allCategories);
+      }
+      //loader = false;
+      // notifyListeners();
+    }
+  }
+
+  Future<void> getAllCategoriesProducts() async {
+    allCategoriesProducts =
+        List.generate(allCategories.length, (index) => AllCategoryDetailApi());
+    int index = 0;
+    for (var element in allCategories) {
+      await allCategoryProduct(element.links!.products!, index);
+      index++;
+    }
+    loader = false;
+    notifyListeners();
+    // allCategoriesProducts.clear();
+    //   // for (var element in allCategories) {
+    //   //   await allCategoryProduct(element.links!.products!);
+    //   // }
+  }
+
+  Future<void> allCategoryProduct(String url, int index) async {
+    // loader = true;
+    // notifyListeners();
+    AllCategoryDetailApi product =
+        await AllCategoryProductApi.categoryProductView(url);
+    if (product.status != 200) {
+      allCategoryProduct(url, index);
+    } else {
+      //allCategoriesProducts.clear();
+      // allCategoriesProducts.add(product);
+      allCategoriesProducts[index] = product;
+      if (kDebugMode) {
+        print('-----------------------------${product.data!.length}');
+      }
+      // loader = false;
+      // notifyListeners();
+    }
+  }
+
   ///homeCategory
   Future<void> allHomeCategoryData() async {
-    loader = true;
+    // loader = true;
     // notifyListeners();
     homeCategoryModel = await HomeCategoryApiService.homeAllCategoryData();
     if (homeCategoryModel!.status != 200) {
@@ -183,13 +244,13 @@ class HomeProvider extends ChangeNotifier {
       if (kDebugMode) {
         print(allHomeCategories);
       }
-      loader = false;
+      // loader = false;
       //notifyListeners();
     }
   }
 
   Future<void> homeBannerData() async {
-    loader = true;
+    // loader = true;
     //notifyListeners();
     bannerModel = await HomeBannerApiServices.homeBannerData();
     if (bannerModel.status != 200) {
@@ -203,13 +264,13 @@ class HomeProvider extends ChangeNotifier {
       if (kDebugMode) {
         print(bannerData);
       }
-      loader = false;
+      // loader = false;
       //notifyListeners();
     }
   }
 
   Future<void> homeSliderData() async {
-    loader = true;
+    // loader = true;
     //notifyListeners();
     sliderModel = await HomeSliderApiServices.homeSliderData();
     if (sliderModel.status != 200) {
@@ -223,7 +284,7 @@ class HomeProvider extends ChangeNotifier {
       if (kDebugMode) {
         print(sliderData);
       }
-      loader = false;
+      // loader = false;
       // notifyListeners();
     }
   }
@@ -240,62 +301,5 @@ class HomeProvider extends ChangeNotifier {
 //     print(bannerData);
 //     loader = false;
 //     //notifyListeners();
-//   }
-// }
-
-//
-// ///homeTop view all
-//
-// Future<void> allCategoryData() async {
-//   loader = true;
-//   // notifyListeners();
-//   AllCategoryApi viewCategoryModel =
-//   await AllCategoryProductApi.allCategoryData();
-//   if (viewCategoryModel.status != 200) {
-//     allCategoryData();
-//   } else {
-//     allCategories.clear();
-//     allCategories = viewCategoryModel.data!;
-//     getAllCategoriesProducts();
-//     if (kDebugMode) {
-//       print(allCategories);
-//     }
-//     //loader = false;
-//     // notifyListeners();
-//   }
-// }
-//
-// Future<void> getAllCategoriesProducts() async {
-//   allCategoriesProducts =
-//       List.generate(allCategories.length, (index) => AllCategoryDetailApi());
-//   int index = 0;
-//   for (var element in allCategories) {
-//     await allCategoryProduct(element.links!.products!, index);
-//     index++;
-//   }
-//   loader = false;
-//   notifyListeners();
-//   // allCategoriesProducts.clear();
-//   //   // for (var element in allCategories) {
-//   //   //   await allCategoryProduct(element.links!.products!);
-//   //   // }
-// }
-//
-// Future<void> allCategoryProduct(String url, int index) async {
-//   loader = true;
-//   notifyListeners();
-//   AllCategoryDetailApi product =
-//   await AllCategoryProductApi.categoryProductView(url);
-//   if (product.status != 200) {
-//     allCategoryProduct(url, index);
-//   } else {
-//     //allCategoriesProducts.clear();
-//     // allCategoriesProducts.add(product);
-//     allCategoriesProducts[index] = product;
-//     if (kDebugMode) {
-//       print('-----------------------------${product.data!.length}');
-//     }
-//     loader = false;
-//     notifyListeners();
 //   }
 // }

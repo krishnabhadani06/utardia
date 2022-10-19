@@ -100,25 +100,27 @@ class HomeScreen extends StatelessWidget {
               //body:SingleChildScrollView(
               body: provider.loader == true
                   ? commonLoader()
-                  : SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          const HomeTop(),
-                          const HomeCenter(),
-                          ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount:
-                                  provider.allHomeTopCategories.length != 0
-                                      ? provider.allHomeTopCategories.length
-                                      : 0,
-                              padding: EdgeInsets.only(
-                                  top: MediaQuery.of(context).size.height *
-                                      0.02),
-                              itemBuilder: (context, index) {
-                                return HomeBottom(index: index);
-                              }),
-                        ],
+                  : RefreshIndicator(
+                      onRefresh: () async {
+                        provider.init();
+                      },
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            const HomeTop(),
+                            const HomeCenter(),
+                            ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: provider.allHomeTopCategories.length,
+                                padding: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height *
+                                        0.02),
+                                itemBuilder: (context, index) {
+                                  return HomeBottom(index: index);
+                                }),
+                          ],
+                        ),
                       ),
                     )
               // : SizedBox(

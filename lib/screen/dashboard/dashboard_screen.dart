@@ -17,18 +17,18 @@ class DashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final DashboardProvider provider = Provider.of<DashboardProvider>(context);
     provider.initAllProvider(context);
-    // provider1.allProfileDataList(context);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           color: ColorRes.appBarColor,
         ),
         child: Consumer<DashboardProvider>(builder: (con, pro, widget) {
-          // pro.initAllProvider(context);
           if (pro.currentTab == 0) {
             return const HomeScreen();
           } else if (pro.currentTab == 1) {
-            return CategoryScreen(select: 0);
+            return CategoryScreen(
+              select: 0,
+            );
           } else if (pro.currentTab == 2) {
             return const CartScreen();
           } else if (pro.currentTab == 3) {

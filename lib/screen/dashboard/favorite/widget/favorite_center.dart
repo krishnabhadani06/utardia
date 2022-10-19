@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
+import 'package:utardia/screen/splash/splash_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
@@ -21,6 +22,7 @@ class FavoriteCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<FavoriteProvider>(context);
+    final splashProvider = Provider.of<SplashProvider>(context, listen: false);
     return Container(
       margin:
           const EdgeInsets.only(left: 3.0, right: 3.0, top: 7.0, bottom: 7.0),
@@ -91,16 +93,10 @@ class FavoriteCenter extends StatelessWidget {
                               child: Center(
                                 child: InkWell(
                                     onTap: () {
-                                      final pro = Provider.of<FavoriteProvider>(
+                                      provider.removeWishList(
                                           context,
-                                          listen: false);
-
-                                      provider.addWishList(
-                                          pro.Wishlist2!.data![index!].product!
-                                              .id
-                                              .toString(),
-                                          context,
-                                          '');
+                                          provider.Wishlist2!.data![index!].id
+                                              .toString());
                                     },
                                     child: const Icon(
                                       Icons.favorite,

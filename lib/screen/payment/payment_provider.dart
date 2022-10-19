@@ -233,7 +233,8 @@ class PaymentProvider extends ChangeNotifier {
   Future<String> placeOrder(BuildContext context) async {
     try {
       http.Response? res =
-          await HttpService.postApi(url: ApiEndPoint.plaeOrder, header: {
+          await HttpService.postApi(url: ApiEndPoint.
+          plaeOrder, header: {
         "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
       }, body: {
         "owner_id": Provider.of<CartProvider>(context, listen: false)

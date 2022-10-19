@@ -17,11 +17,9 @@ class HomeBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context);
     final provider1 = Provider.of<ProductDetailsProvider>(context);
-    // final provider2 = Provider.of<CategoryProvider>(context);
+
     return Column(children: [
-      // if (index % 2 == 0) sliderHome(context: context),
       if (index % 2 == 0)
-        // sliderBottomHome(context: context, sliderImage: provider.sliderImage),
         sliderBottomHome(context: context, bannerImage: provider.bannerImage),
       Builder(builder: (context) {
         return Column(
@@ -31,14 +29,9 @@ class HomeBottom extends StatelessWidget {
                 onTap: () {
                   navigator.currentState!
                       .push(MaterialPageRoute(builder: (context) {
-                    // if (Provider.of<CategoryProvider>(context, listen: false)
-                    //         .selectedPageInd !=
-                    //     0) {
-                    // Provider.of<CategoryProvider>(context, listen: false)
-                    //         .selectedPageInd
-
-                    int indezxx = provider.allHomeCategories.indexWhere(
-                        (element) =>
+                    Provider.of<CategoryProvider>(context, listen: false)
+                            .selectedPageInd =
+                        provider.allHomeCategories.indexWhere((element) =>
                             element.name.toString() ==
                             provider.allHomeTopCategories[index].name
                                 .toString());

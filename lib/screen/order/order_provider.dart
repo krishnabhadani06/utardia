@@ -82,16 +82,11 @@ class OrderProvider extends ChangeNotifier {
 
       if (response!.statusCode == 200) {
         orderModel = OrderModel.fromJson(jsonDecode(response.body));
-        if (orderModel.data != null) {
-          Logger().e(jsonDecode(response.body));
-          loader = false;
-          notifyListeners();
-        }
+        loader = false;
       } else {
         showToast("code ${response.statusCode}");
       }
       loader = false;
-      notifyListeners();
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
       showToast(e.toString());
@@ -105,12 +100,13 @@ class OrderProvider extends ChangeNotifier {
   }
 
   int getSteps(String status) {
+    print(status);
     if (status == "pending") {
-      return 0;
-    } else if (status == "on the way") {
       return 1;
-    } else {
+    } else if (status == "on_the_way") {
       return 2;
+    } else {
+      return 3;
     }
   }
 }

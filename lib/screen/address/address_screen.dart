@@ -158,7 +158,6 @@ class AddressScreen extends StatelessWidget {
                                               topLeft: Radius.circular(32.0),
                                               topRight: Radius.circular(32.0)),
                                         ),
-
                                         builder: (context) =>
                                             provider.onTapEditAddress(provider
                                                 .userAddress!.data![index]),

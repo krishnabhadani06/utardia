@@ -33,6 +33,10 @@ class CategoryProvider extends ChangeNotifier {
   List<HomeCategory> allHomeCategories = [];
 
   Future<void> init(String url) async {
+    if (selectedPageInd != 0) {
+      selectedPageInd = 0;
+      notifyListeners();
+    }
     await homeCategoryProduct(url);
     await getWishList();
   }
@@ -70,7 +74,7 @@ class CategoryProvider extends ChangeNotifier {
     if (kDebugMode) {
       print(url1);
     }
-    await homeCategoryProduct(url!);
+    homeCategoryProduct(url!);
     getSubCategoryData(url1.toString());
     notifyListeners();
   }

@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
     final provider = Provider.of<LoginProvider>(context);
     return SafeArea(
         child: Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Stack(
           children: [

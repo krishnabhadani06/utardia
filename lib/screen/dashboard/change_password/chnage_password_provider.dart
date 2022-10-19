@@ -164,8 +164,8 @@ class ChangePasswordProvider extends ChangeNotifier {
         if (kDebugMode) {
           print("true condition");
         }
-        // Fluttertoast.showToast(msg: "password Change SuccessFully");
-        Fluttertoast.showToast(msg: response.body);
+        Fluttertoast.showToast(msg: "password Change SuccessFully");
+        // Fluttertoast.showToast(msg: response.body);
         // navigator.currentState!.pushReplacement(
         //     MaterialPageRoute(builder: (context) => const LoginPage()));
         return jsonDecode(response.body);

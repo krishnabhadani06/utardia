@@ -36,22 +36,15 @@ class ForgotPasswordProvider extends ChangeNotifier {
   void onTapResetPassword(BuildContext context) {
     if (isPhone == true) {
       phoneValidation();
-      if (errorPhone == null) {
-        forgotPasswordData(
-          context,
-          txtEmail.text,
-          txtPhone.text,
-        );
-      }
     } else {
       emailValidation();
-      if (errorTextEmail == null) {
-        forgotPasswordData(
-          context,
-          txtEmail.text,
-          txtPhone.text,
-        );
-      }
+    }
+    if (errorPhone == null || errorPhone == null) {
+      forgotPasswordData(
+        context,
+        txtEmail.text,
+        txtPhone.text,
+      );
     }
     // if (errorTextEmail == null && errorPhone == null) {
     //   forgotPasswordData(

@@ -157,38 +157,42 @@ class ProductDetailsProvider extends ChangeNotifier {
         print(
             '-----------------------------${homeProductDetailModel.data!.length}');
       }
-      loader = false;
-      notifyListeners();
     }
+    loader = false;
+    notifyListeners();
   }
 
   ///product detail onTap
   Future<void> onTapProductDetails(
       int index, String url, BuildContext context, String pid) async {
     //selectedIndex = index;
-    notifyListeners();
-    homeProductDetail = null;
-    await homeProductDetails(url);
+    // notifyListeners();
+    // homeProductDetail = null;
+    homeProductDetails(url);
     currentProdductLink = url;
-    // await allTodaysProductDealData();
+    allTodaysProductDealData();
 
     checkWishList(pid, PrefService.getString(PrefKeys.uid));
     navigator.currentState!
         .push(MaterialPageRoute(builder: (context) => ProductDetailScreen()))
         .whenComplete(() {
-      Provider.of<CategoryProvider>(context, listen: false).init(
-          Provider.of<HomeProvider>(context, listen: false)
-              .allHomeCategories[
-                  Provider.of<CategoryProvider>(context, listen: false)
-                      .selectedPageInd]
-              .links!
-              .products
-              .toString());
+      if (Provider.of<CategoryProvider>(context, listen: false)
+              .categoryProducts ==
+          null) {
+        Provider.of<CategoryProvider>(context, listen: false).init(
+            Provider.of<HomeProvider>(context, listen: false)
+                .allHomeCategories[
+                    Provider.of<CategoryProvider>(context, listen: false)
+                        .selectedPageInd]
+                .links!
+                .products
+                .toString());
+      }
     });
     if (kDebugMode) {
       print('00000000------------ $url');
     }
-    notifyListeners();
+    // notifyListeners();
     // navigator.currentState!.pushReplacement(
     //     MaterialPageRoute(builder: (context) => const ProductDetailScreen()));
   }

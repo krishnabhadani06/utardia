@@ -207,7 +207,7 @@ class OtpCenter extends StatelessWidget {
               ? Text("00:${provider.start}")
               : TextButton(
                   onPressed: () {
-                    provider.onTapResendButton();
+                    provider.onTapResendButton(context);
                   },
                   child: Text(
                     "Resend code",

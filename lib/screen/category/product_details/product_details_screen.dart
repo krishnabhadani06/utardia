@@ -85,9 +85,12 @@ class ProductDetailScreen extends StatelessWidget {
                                         isLoop: true,
                                         children: [
                                           CachedNetworkImage(
-                                            imageUrl: pro.homeProductDetail!
-                                                .thumbnailImage
-                                                .toString(),
+                                            imageUrl:
+                                                pro.homeProductDetail != null
+                                                    ? pro.homeProductDetail!
+                                                        .thumbnailImage
+                                                        .toString()
+                                                    : "",
                                             progressIndicatorBuilder: (context,
                                                     url, downloadProgress) =>
                                                 CircularProgressIndicator(

@@ -52,12 +52,13 @@ class HomeCategoryApiService {
       if (response != null && response.statusCode == 200) {
         return HomeProductDetailApi.fromJson(jsonDecode(response.body));
       } else {
-        return HomeProductDetailApi.fromJson({});
+        return HomeProductDetailApi(status: 200);
       }
     } catch (e, x) {
       Logger().e(e.toString() + x.toString());
       showToast(e.toString());
-      return HomeProductDetailApi.fromJson({});
+      return HomeProductDetailApi(status: 200);
+      ;
     }
   }
 

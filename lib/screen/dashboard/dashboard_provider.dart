@@ -25,7 +25,11 @@ class DashboardProvider extends ChangeNotifier {
   void onBottomBarChange(int index, BuildContext context) {
     currentTab = index;
     if (index == 0) {
-      homeProvider.init();
+      if (homeProvider.allHomeTopProducts.isEmpty ||
+          homeProvider.allHomeTopCategories.isEmpty) {
+        homeProvider.init();
+      }
+
       // notifyListeners();
     } else if (index == 1) {
       //categoryProvider.init();

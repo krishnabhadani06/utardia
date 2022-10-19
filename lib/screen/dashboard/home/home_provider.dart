@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/toast_msg.dart';
 import 'package:utardia/model/home_model/home_category_model.dart';
-import 'package:utardia/model/home_model/home_category_product_model.dart';
 import 'package:utardia/model/home_screen_slider_model/home_screen_banner_model.dart';
 import 'package:utardia/model/home_screen_slider_model/home_screen_slider_model.dart';
 import 'package:utardia/model/home_top_category/home_all_top_category.dart';
@@ -47,27 +46,23 @@ class HomeProvider extends ChangeNotifier {
   /// homeCenter
   HomeCategoryApi? homeCategoryModel;
   List<HomeCategory> allHomeCategories = [];
-  // List<HomeCategoryProductApi> allHomeCategoriesProducts = [];
 
   /// home Bottom TopCategory
   List<HomeTopCategoryList> allHomeTopCategories = [];
   List<HomeTopCategoryProduct> allHomeTopProducts = [];
 
   Future<void> init() async {
-    loader = true;
-
-    ///view all
-    // await allCategoryData();
+    // loader = true;
 
     ///home center
-    await allHomeCategoryData();
-    await homeBannerData();
-    await homeSliderData();
-    await getWishList();
+    allHomeCategoryData();
+    homeBannerData();
+    homeSliderData();
+    getWishList();
 
     /// home bottom
     homeAllTopCategoryData();
-    loader = false;
+    // loader = false;
   }
 
   ///home bottom

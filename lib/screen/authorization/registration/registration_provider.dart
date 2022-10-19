@@ -52,6 +52,10 @@ class RegistrationProvider extends ChangeNotifier {
           password: txtPassword.text,
           retypePassword: txtRePassword.text,
         );
+        txtEmail.clear();
+        txtPhone.clear();
+        txtPassword.clear();
+        txtRePassword.clear();
       }
     } else {
       emailValidation();
@@ -67,6 +71,10 @@ class RegistrationProvider extends ChangeNotifier {
           password: txtPassword.text,
           retypePassword: txtRePassword.text,
         );
+        txtEmail.clear();
+        txtPhone.clear();
+        txtPassword.clear();
+        txtRePassword.clear();
       }
     }
   }

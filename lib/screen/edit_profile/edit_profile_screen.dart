@@ -11,6 +11,7 @@ import 'package:utardia/screen/dashboard/dashboard_provider.dart';
 import 'package:utardia/screen/edit_profile/editprofile_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
+import 'package:utardia/util/image_res.dart';
 import 'package:utardia/util/string.dart';
 
 import 'widget/edit_profile_center.dart';
@@ -96,7 +97,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     // Border.all(color: ColorRes.buttonBlue)
                                   ),
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
+                                    borderRadius: BorderRadius.circular(100),
                                     // borderRadius:
                                     // BorderRadius.all(Radius.circular(100)),
                                     child: x.img != null
@@ -107,22 +108,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             fit: BoxFit.fill,
                                           )
                                         : x.profileModel != null &&
-                                                x.profileModel!.data != null
-                                            ? x.profileModel!.data![0]
+                                                x.profileModel.data != null
+                                            ? x.profileModel.data![0]
                                                             .avatarOriginal !=
                                                         null &&
-                                                    x.profileModel!.data![0]
+                                                    x.profileModel.data![0]
                                                             .avatarOriginal !=
                                                         ""
                                                 ? Image.network(
-                                                    x.profileModel!.data![0]
+                                                    x.profileModel.data![0]
                                                         .avatarOriginal
                                                         .toString(),
                                                     fit: BoxFit.fill,
                                                   )
-                                                : const Text("No Image")
-                                            : Image.network(
-                                                "https://picsum.photos/250?image=9"),
+                                                : Image.asset(
+                                                    AssetsImagesRes.productGirl,
+                                                    fit: BoxFit.fill,
+                                                  )
+                                            : Image.asset(
+                                                AssetsImagesRes.productGirl,
+                                                fit: BoxFit.fill),
+                                    // : Image.network(
+                                    //     "https://picsum.photos/250?image=9"),
                                   ),
                                 ),
                                 Padding(
@@ -194,7 +201,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 onPressed: () => x.onTapUpdate(context)),
                             SizedBox(
                               height: deviceHeight * 0.05,
-                            )
+                            ),
                           ],
                         ),
                       ),

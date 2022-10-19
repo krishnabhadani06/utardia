@@ -10,6 +10,7 @@ import 'package:utardia/common/helper.dart';
 import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/screen/authorization/registration/Bottomsheet/terms_bottom_sheet.dart';
 import 'package:utardia/screen/authorization/registration/registration_api/registration_api.dart';
+import 'package:utardia/screen/authorization/registration/registration_provider.dart';
 import 'package:utardia/screen/dashboard/change_password/change_password_screen.dart';
 import 'package:utardia/screen/dashboard/change_password/chnage_password_provider.dart';
 
@@ -28,7 +29,9 @@ class OtpProvider extends ChangeNotifier {
   int start = 30;
   bool loader = false;
 
+  ///for Timer in otp verification screen
   void startTimer() {
+    start = 30;
     const oneSec = Duration(seconds: 1);
     timer = Timer.periodic(
       oneSec,
@@ -45,10 +48,29 @@ class OtpProvider extends ChangeNotifier {
     );
   }
 
-  void onTapResendButton() {
+  void onTapResendButton(BuildContext con) {
     isResend = !isResend;
-    startTimer();
-    SingUpApi.reSendApi(uid.toString(), isPhone);
+
+    if (isForgot) {
+      SingUpApi.sendForgotRequestAgain(
+              phone: Provider.of<RegistrationProvider>(con, listen: false)
+                  .txtPhone
+                  .text
+                  .toString(),
+              email: Provider.of<RegistrationProvider>(con, listen: false)
+                  .txtEmail
+                  .text
+                  .toString(),
+              isPhone: isPhone)
+          .then((value) {
+        startTimer();
+      });
+    } else {
+      SingUpApi.reSendApi(uid.toString(), isPhone).then((value) {
+        startTimer();
+      });
+    }
+
     // reSendApi()
   }
 

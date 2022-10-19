@@ -48,6 +48,7 @@ class _CategoryRightState extends State<CategoryRight> {
         child: Padding(
           padding: const EdgeInsets.only(top: 11.0),
           child: PageView.builder(
+            scrollDirection: Axis.vertical,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: provider2.allHomeCategories.length,
             //scrollDirection: Axis.vertical,

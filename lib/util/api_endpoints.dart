@@ -25,11 +25,10 @@ class ApiEndPoint {
   static const addWishList = "${baseUrl}wishlists-add-product";
   static const removeWishList = "${baseUrl}wishlists-remove-product";
   static const updateAddressInCart = "${baseUrl}update-address-in-cart";
-  // static const resetPassword = "${baseUrl}/get-user-by-access_token";
 
   static const homeAllCenterCategory = "${baseUrl}categories/featured";
   static const homeTopCategory = "${baseUrl}categories/top";
-  static const allCategoryProduct = "${baseUrl}categories";
+  // static const allCategoryProduct = "${baseUrl}categories";
   static const allCategoryProductBottom = "${baseUrl}categories/top";
   static const homeBanner = "${baseUrl}banners";
   static const homeSlider = "${baseUrl}sliders";
@@ -56,9 +55,7 @@ class ApiEndPoint {
   static const getState = "${baseUrl}states";
   static const updateAddss = "${baseUrl}user/shipping/update";
   static const deleteAddress = "${baseUrl}user/shipping/delete/";
-
   static const cartSummary = "${baseUrl}cart-summary/";
-
   static var plaeOrder = "${baseUrl}order/store";
   static var applyCoupen = "${baseUrl}coupon-apply";
 

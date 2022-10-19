@@ -42,8 +42,8 @@ class SingUpApi {
           body: param,
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 201) {
-        Fluttertoast.showToast(msg: response.body);
-        // Fluttertoast.showToast(msg:"Register SuccessFully");
+        // Fluttertoast.showToast(msg: response.body);
+        Fluttertoast.showToast(msg: "Register SuccessFully");
         var res = jsonDecode(response.body);
         // Map<dynamic, dynamic> res =
         //     jsonDecode(response.body) as Map<dynamic, dynamic>;
@@ -97,8 +97,8 @@ class SingUpApi {
         //     .pushReplacement(MaterialPageRoute(builder: (context) {
         //   return const LoginPage();
         // }));
-        // Fluttertoast.showToast(msg: "Otp Verification");
-        Fluttertoast.showToast(msg: response.body);
+        Fluttertoast.showToast(msg: "Otp Verification");
+        // Fluttertoast.showToast(msg: response.body);
         return jsonDecode(response.body);
       } else {
         Fluttertoast.showToast(msg: response.body.toString());
@@ -129,6 +129,7 @@ class SingUpApi {
       http.Response? response = await http.post(Uri.parse(url),
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
       if (response.statusCode == 200) {
+        Logger().e(jsonDecode(response.body));
         if (kDebugMode) {
           print(response.body);
         }
@@ -139,7 +140,8 @@ class SingUpApi {
             .pushReplacement(MaterialPageRoute(builder: (context) {
           return const OtpReceiverScreen();
         }));
-        Fluttertoast.showToast(msg: response.body);
+        Fluttertoast.showToast(msg: "Your code is reSent SuccessFully");
+        // Fluttertoast.showToast(msg: response.body);
         return jsonDecode(response.body);
       } else {
         Fluttertoast.showToast(msg: response.body.toString());
@@ -155,6 +157,49 @@ class SingUpApi {
         print(e);
       }
       return {};
+    }
+  }
+
+  static Future<void> sendForgotRequestAgain(
+      {required String phone, String? email, required bool isPhone}) async {
+    try {
+      String url = ApiEndPoint.reSendOtp;
+      Map<String, String> param = {
+        "email_or_phone": isPhone ? phone : email!,
+        "verify_by": isPhone ? "phone" : "email"
+      };
+      Logger().e(param);
+      http.Response? response = await http.post(Uri.parse(url),
+          headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
+      if (response.statusCode == 200) {
+        Logger().e(jsonDecode(response.body));
+        if (kDebugMode) {
+          print(response.body);
+        }
+        if (kDebugMode) {
+          print("true condition");
+        }
+        navigator.currentState!
+            .pushReplacement(MaterialPageRoute(builder: (context) {
+          return const OtpReceiverScreen();
+        }));
+
+        Fluttertoast.showToast(msg: response.body);
+        return jsonDecode(response.body);
+      } else {
+        Fluttertoast.showToast(msg: response.body.toString());
+        // return {};
+      }
+    } on SocketException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      // return {};
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      // return {};
     }
   }
 }

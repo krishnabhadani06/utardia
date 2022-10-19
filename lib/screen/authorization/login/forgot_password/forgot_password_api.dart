@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/screen/authorization/login/forgot_password/forgot_password_proivder.dart';
@@ -19,7 +20,6 @@ class ForgotPasswordApi {
     try {
       String url = ApiEndPoint.forgotPassword;
       Map<String, String> param = {
-        // "email_or_phone": isPhone == true ? phone.toString() : email.toString(),
         "email or phone": Provider.of<ForgotPasswordProvider>(context,
                         listen: false)
                     .isPhone ==
@@ -29,17 +29,21 @@ class ForgotPasswordApi {
         "send_code_by": isPhone == true ? "Phone" : "email",
         // "send_code_by": "email",
       };
+      Logger().e(param);
       http.Response? response = await http.post(Uri.parse(url),
           headers: {"X-Requested-With": "XMLHttpRequest"}, body: param);
       if (response.statusCode == 200) {
+        Logger().e(jsonDecode(response.body));
         if (kDebugMode) {
           print(response.body);
         }
-        Fluttertoast.showToast(msg: response.body.toString());
+        Fluttertoast.showToast(msg: "Code is sent Successfully");
+        // Fluttertoast.showToast(msg: response.body.toString());
         if (jsonDecode(response.body)['result']) {
           // Provider.of<OtpProvider>(context, listen: false).isForgot = true;
           navigator.currentState!
               .pushReplacement(MaterialPageRoute(builder: (context) {
+            Provider.of<OtpProvider>(context, listen: false).startTimer();
             Provider.of<OtpProvider>(context, listen: false).isForgot = true;
             return const OtpReceiverScreen();
           }));

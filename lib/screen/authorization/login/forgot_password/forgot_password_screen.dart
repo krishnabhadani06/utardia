@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
@@ -19,297 +20,310 @@ class ForgotPasswordScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 40.0),
-        child: Column(
-          children: [
-            Image.asset(
-              AssetsImagesRes.loginUtradiyaImage,
-              height: deviceHeight * 0.174,
-              width: deviceWidth * 0.403,
-              // height: 130,
-              // width: 130,
-              //fit: BoxFit.fill,
-            ),
-            SizedBox(
-              height: deviceHeight * 0.015,
-            ),
-            Text(
-              Strings.utradia,
-              style: robotoRegularTextStyle(
-                      fontSize: 20, color: ColorRes.dailogBoxColor)
-                  .copyWith(fontWeight: FontWeight.w600),
-            ),
-            Text(
-              Strings.marketPlace,
-              style: robotoRegularTextStyle(
-                  fontSize: 09, color: ColorRes.dailogBoxColor),
-            ),
-            SizedBox(
-              height: deviceHeight * 0.03,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 18),
+      body: provider.loader == true
+          ? Center(child: commonLoader())
+          //     : const SizedBox()
+          : Padding(
+              padding: const EdgeInsets.only(top: 40.0),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        Strings.forgotPassword1,
-                        style: title,
-                      ),
-                    ],
+                  Image.asset(
+                    AssetsImagesRes.loginUtradiyaImage,
+                    height: deviceHeight * 0.174,
+                    width: deviceWidth * 0.403,
+                    // height: 130,
+                    // width: 130,
+                    //fit: BoxFit.fill,
+                  ),
+                  SizedBox(
+                    height: deviceHeight * 0.015,
+                  ),
+                  Text(
+                    Strings.utradia,
+                    style: robotoRegularTextStyle(
+                            fontSize: 20, color: ColorRes.dailogBoxColor)
+                        .copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    Strings.marketPlace,
+                    style: robotoRegularTextStyle(
+                        fontSize: 09, color: ColorRes.dailogBoxColor),
                   ),
                   SizedBox(
                     height: deviceHeight * 0.03,
                   ),
-                  Center(
-                    child: Container(
-                      height: deviceHeight * 0.050,
-                      width: deviceWidth * 0.60,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorRes.buttonBlue.withOpacity(0.5),
-                            //color of shadow
-                            spreadRadius: 0, //spread radius
-                            blurRadius: 3, // blur radius
-                            offset: const Offset(
-                                0, 0), // changes position of shadow
-                          )
-                        ],
-                        border: Border.all(color: ColorRes.buttonBlue),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(15.0)),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: InkWell(
-                            onTap: () {
-                              provider.onTapButtonForgotPassword(0);
-                            },
-                            child: Container(
-                              height: deviceHeight * 0.050,
-                              decoration: BoxDecoration(
-                                color: provider.isPhone == false
-                                    ? ColorRes.buttonBlue
-                                    : ColorRes.white,
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(14.0),
-                                    bottomLeft: Radius.circular(14.0)),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.email,
-                                      color: provider.isPhone == false
-                                          ? ColorRes.white
-                                          : ColorRes.black),
-                                  SizedBox(
-                                    width: deviceWidth * 0.02,
-                                  ),
-                                  Text(
-                                    "Email",
-                                    style: provider.isPhone == false
-                                        ? robotoBoldTextStyle(
-                                            fontSize: 16,
-                                            color: ColorRes.white,
-                                          )
-                                        : robotoBoldTextStyle(
-                                            fontSize: 16,
-                                            color: ColorRes.black),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                provider.onTapButtonForgotPassword(1);
-                              },
-                              child: Container(
-                                height: deviceHeight * 0.050,
-                                decoration: BoxDecoration(
-                                  color: provider.isPhone
-                                      ? ColorRes.buttonBlue
-                                      : ColorRes.white,
-                                  borderRadius: const BorderRadius.only(
-                                    bottomRight: Radius.circular(14.0),
-                                    topRight: Radius.circular(14.0),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.call,
-                                        color: provider.isPhone == true
-                                            ? ColorRes.white
-                                            : ColorRes.black),
-                                    SizedBox(
-                                      width: deviceWidth * 0.02,
-                                    ),
-                                    Text(
-                                      "Call",
-                                      style: provider.isPhone == true
-                                          ? robotoBoldTextStyle(
-                                              fontSize: 16,
-                                              color: ColorRes.white,
-                                            )
-                                          : robotoBoldTextStyle(
-                                              fontSize: 16,
-                                              color: ColorRes.black),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: deviceHeight * 0.03),
-                  Visibility(
-                    visible: provider.isPhone,
-                    child: Row(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0, right: 18),
+                    child: Column(
                       children: [
-                        Expanded(
-                          flex: 2,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              Strings.forgotPassword1,
+                              style: title,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: deviceHeight * 0.03,
+                        ),
+                        Center(
                           child: Container(
-                            height: 50,
+                            height: deviceHeight * 0.050,
+                            width: deviceWidth * 0.60,
                             decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8.0)),
-                              border: Border.all(
-                                color: ColorRes.white,
-                                // style: BorderStyle.solid,
-                                width: 1.0,
-                              ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: ColorRes.black.withOpacity(0.2),
+                                  color: ColorRes.buttonBlue.withOpacity(0.5),
                                   //color of shadow
-                                  spreadRadius: 1, //spread radius
+                                  spreadRadius: 0, //spread radius
                                   blurRadius: 3, // blur radius
                                   offset: const Offset(
                                       0, 0), // changes position of shadow
+                                )
+                              ],
+                              border: Border.all(color: ColorRes.buttonBlue),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(15.0)),
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: InkWell(
+                                  onTap: () {
+                                    provider.onTapButtonForgotPassword(0);
+                                  },
+                                  child: Container(
+                                    height: deviceHeight * 0.050,
+                                    decoration: BoxDecoration(
+                                      color: provider.isPhone == false
+                                          ? ColorRes.buttonBlue
+                                          : ColorRes.white,
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(14.0),
+                                          bottomLeft: Radius.circular(14.0)),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.email,
+                                            color: provider.isPhone == false
+                                                ? ColorRes.white
+                                                : ColorRes.black),
+                                        SizedBox(
+                                          width: deviceWidth * 0.02,
+                                        ),
+                                        Text(
+                                          "Email",
+                                          style: provider.isPhone == false
+                                              ? robotoBoldTextStyle(
+                                                  fontSize: 16,
+                                                  color: ColorRes.white,
+                                                )
+                                              : robotoBoldTextStyle(
+                                                  fontSize: 16,
+                                                  color: ColorRes.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                                Expanded(
+                                  child: InkWell(
+                                    onTap: () {
+                                      provider.onTapButtonForgotPassword(1);
+                                    },
+                                    child: Container(
+                                      height: deviceHeight * 0.050,
+                                      decoration: BoxDecoration(
+                                        color: provider.isPhone
+                                            ? ColorRes.buttonBlue
+                                            : ColorRes.white,
+                                        borderRadius: const BorderRadius.only(
+                                          bottomRight: Radius.circular(14.0),
+                                          topRight: Radius.circular(14.0),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.call,
+                                              color: provider.isPhone == true
+                                                  ? ColorRes.white
+                                                  : ColorRes.black),
+                                          SizedBox(
+                                            width: deviceWidth * 0.02,
+                                          ),
+                                          Text(
+                                            "Call",
+                                            style: provider.isPhone == true
+                                                ? robotoBoldTextStyle(
+                                                    fontSize: 16,
+                                                    color: ColorRes.white,
+                                                  )
+                                                : robotoBoldTextStyle(
+                                                    fontSize: 16,
+                                                    color: ColorRes.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
-                            child: InkWell(
-                              onTap: () {
-                                showCountryPicker(
-                                    context: context,
-                                    onSelect: (Country country) {
-                                      provider.currentCountry = country;
-                                      // provider.notifyListeners();
-                                    });
-                              },
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: provider.currentCountry != null
-                                              ? Text(
-                                                  provider.currentCountry!
-                                                      .flagEmoji,
-                                                  style: robotoRegularTextStyle(
-                                                      fontSize: 25),
-                                                )
-                                              : const Center(
-                                                  child: Text(""),
-                                                )),
-                                      Expanded(
-                                          child: provider.currentCountry != null
-                                              ? Text(
-                                                  " ${provider.currentCountry!.phoneCode.toString()}",
-                                                  style: robotoMediumTextStyle(
-                                                      fontSize: 18,
-                                                      color: ColorRes
-                                                          .greyTextHome),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 2)
-                                              : const Center(
-                                                  child: Text(""),
-                                                )),
+                          ),
+                        ),
+                        SizedBox(height: deviceHeight * 0.03),
+                        Visibility(
+                          visible: provider.isPhone,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(8.0)),
+                                    border: Border.all(
+                                      color: ColorRes.white,
+                                      // style: BorderStyle.solid,
+                                      width: 1.0,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ColorRes.black.withOpacity(0.2),
+                                        //color of shadow
+                                        spreadRadius: 1, //spread radius
+                                        blurRadius: 3, // blur radius
+                                        offset: const Offset(
+                                            0, 0), // changes position of shadow
+                                      ),
                                     ],
+                                  ),
+                                  child: InkWell(
+                                    onTap: () {
+                                      showCountryPicker(
+                                          context: context,
+                                          onSelect: (Country country) {
+                                            provider.currentCountry = country;
+                                            // provider.notifyListeners();
+                                          });
+                                    },
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                                child: provider
+                                                            .currentCountry !=
+                                                        null
+                                                    ? Text(
+                                                        provider.currentCountry!
+                                                            .flagEmoji,
+                                                        style:
+                                                            robotoRegularTextStyle(
+                                                                fontSize: 25),
+                                                      )
+                                                    : const Center(
+                                                        child: Text(""),
+                                                      )),
+                                            Expanded(
+                                                child: provider
+                                                            .currentCountry !=
+                                                        null
+                                                    ? Text(
+                                                        " ${provider.currentCountry!.phoneCode.toString()}",
+                                                        style: robotoMediumTextStyle(
+                                                            fontSize: 18,
+                                                            color: ColorRes
+                                                                .greyTextHome),
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        maxLines: 2)
+                                                    : const Center(
+                                                        child: Text(""),
+                                                      )),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    // child: _buildCountryPickerDropdownSoloExpanded(
+                                    //     context),
                                   ),
                                 ),
                               ),
-                              // child: _buildCountryPickerDropdownSoloExpanded(
-                              //     context),
-                            ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                flex: 5,
+                                child: CommonTextField(
+                                    controller: provider.txtPhone,
+                                    obscure: false,
+                                    hintText: Strings.enterMobileNo,
+                                    error: false,
+                                    width: deviceWidth,
+                                    border: false),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          flex: 5,
+                        Visibility(
+                          visible: !provider.isPhone,
                           child: CommonTextField(
-                              controller: provider.txtPhone,
+                              controller: provider.txtEmail,
                               obscure: false,
-                              hintText: Strings.enterMobileNo,
+                              hintText: Strings.enterYourEmail,
                               error: false,
                               width: deviceWidth,
                               border: false),
                         ),
+                        Visibility(
+                          visible: !provider.isPhone,
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 5),
+                            padding: const EdgeInsets.only(right: 25),
+                            alignment: Alignment.centerLeft,
+                            // height: 20,
+                            width: double.infinity,
+                            // color: Colors.yellow,
+                            child: Text(
+                              provider.errorTextEmail ?? "",
+                              style: robotoRegularTextStyle(
+                                fontSize: 12,
+                                color: ColorRes.red,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: deviceHeight * 0.15,
+                        ),
+                        materialButton(
+                            txtButton: Strings.reSetPassword,
+                            onPressed: () =>
+                                provider.onTapResetPassword(context)),
                       ],
                     ),
                   ),
-                  Visibility(
-                    visible: !provider.isPhone,
-                    child: CommonTextField(
-                        controller: provider.txtEmail,
-                        obscure: false,
-                        hintText: Strings.enterYourEmail,
-                        error: false,
-                        width: deviceWidth,
-                        border: false),
-                  ),
-                  Visibility(
-                    visible: !provider.isPhone,
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 5),
-                      padding: const EdgeInsets.only(right: 25),
-                      alignment: Alignment.centerLeft,
-                      // height: 20,
-                      width: double.infinity,
-                      // color: Colors.yellow,
-                      child: Text(
-                        provider.errorTextEmail ?? "",
-                        style: robotoRegularTextStyle(
-                          fontSize: 12,
-                          color: ColorRes.red,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: deviceHeight * 0.15,
-                  ),
-                  materialButton(
-                      txtButton: Strings.reSetPassword,
-                      onPressed: () => provider.onTapResetPassword(context)),
+                  // provider.loader
+                  //     ? Center(child: CircularProgressIndicator())
+                  //     : const SizedBox()
+                  // provider.loader == true
+                  //     ? Center(child: commonLoader())
+                  //     : const SizedBox()
                 ],
               ),
             ),
-            provider.loader
-                ? Center(child: CircularProgressIndicator())
-                : const SizedBox()
-            // provider.loader == true
-            //     ? Center(child: commonLoader())
-            //     : const SizedBox()
-          ],
-        ),
-      ),
     ));
   }
 }

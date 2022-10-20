@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/text_styles.dart';
@@ -101,7 +102,9 @@ class HomeScreen extends StatelessWidget {
               body: provider.loader == true
                   ? commonLoader()
                   : RefreshIndicator(
+                      triggerMode: RefreshIndicatorTriggerMode.anywhere,
                       onRefresh: () async {
+                        Logger().e("refresh");
                         provider.init();
                       },
                       child: SingleChildScrollView(
@@ -122,30 +125,7 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
-              // : SizedBox(
-              //     width: MediaQuery.of(context).size.width,
-              //     child: ListView.builder(
-              //       //itemCount: 1 + 1 + provider.allCategoriesProducts.length,
-              //       itemCount: 2 + provider.allHomeTopProducts.length,
-              //       padding: EdgeInsets.only(
-              //           top: MediaQuery.of(context).size.height * 0.02),
-              //       itemBuilder: (context, index) {
-              //         if (index == 0) {
-              //           return const HomeTop();
-              //         } else if (index == 1) {
-              //           return const HomeCenter();
-              //         } else {
-              //           return provider.homeBottomLoader
-              //               ? const Center(
-              //                   child: CircularProgressIndicator(),
-              //                 )
-              //               : HomeBottom(index: index - 2);
-              //         }
-              //       },
-              //     ),
-              //   ),
-              ),
+                    )),
         ),
       );
     });

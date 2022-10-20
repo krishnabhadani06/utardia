@@ -52,9 +52,10 @@ class OrderProvider extends ChangeNotifier {
       if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> map =
             jsonDecode(res.body) as Map<dynamic, dynamic>;
-        if (map['result']) {
-          navigator.currentState!.pop();
-        }
+
+        txtConComment.clear();
+        navigator.currentState!.pop();
+
         showToast(jsonDecode(res.body)['message']);
       } else {
         showToast("Error Code ${res!.statusCode}");

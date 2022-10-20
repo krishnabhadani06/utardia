@@ -316,12 +316,6 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                                   ),
                                   InkWell(
                                     onTap: () => pro.onTapColor(e),
-                                    // onTap: () {
-                                    //   pro.currentColor = pro
-                                    //       .homeProductDetail!.colors!
-                                    //       .indexOf(e);
-                                    //   pro.getQty();
-                                    // },
                                     child: Stack(
                                       children: [
                                         Container(
@@ -343,13 +337,18 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                                             height: 40,
                                             width: 40,
                                             decoration: BoxDecoration(
-                                              // border: Border.all(
-                                              //     color: provider.currentColor ==
-                                              //             provider.homeProductDetail!
-                                              //                 .colors!
-                                              //                 .indexOf(e)
-                                              //         ? ColorRes.black
-                                              //         : ColorRes.white),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: ColorRes.black
+                                                      .withOpacity(0.5),
+                                                  //color of shadow
+                                                  spreadRadius:
+                                                      0, //spread radius
+                                                  blurRadius: 3, // blur radius
+                                                  offset: const Offset(0,
+                                                      0), // changes position of shadow
+                                                )
+                                              ],
                                               shape: BoxShape.circle,
                                               color: toColor(e),
                                             ),
@@ -372,7 +371,8 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
         Card(
           elevation: 5.0,
           child: Container(
-            constraints: const BoxConstraints(maxHeight: 307),
+            padding: const EdgeInsets.only(left: 8.0),
+            constraints: const BoxConstraints(minHeight: 20),
             //height: deviceHeight * 0.50,
             decoration: BoxDecoration(
               color: ColorRes.white,
@@ -385,30 +385,25 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                 ),
               ],
             ),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 6.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            Strings.description,
-                            style: robotoMediumTextStyle(fontSize: 13),
-                          ),
-                        ],
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        Strings.description,
+                        style: robotoMediumTextStyle(fontSize: 13),
                       ),
-                    ),
-                    SizedBox(height: deviceHeight / 90),
-                    HtmlWidget(
-                      pro.homeProductDetail!.description.toString(),
-                    ),
-                    SizedBox(height: deviceHeight / 40),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+                SizedBox(height: deviceHeight / 90),
+                HtmlWidget(
+                  pro.homeProductDetail!.description.toString(),
+                ),
+                SizedBox(height: deviceHeight / 40),
+              ],
             ),
           ),
         ),

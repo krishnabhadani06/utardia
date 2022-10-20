@@ -190,6 +190,9 @@ class ProductDetailsProvider extends ChangeNotifier {
         print(
             '-----------------------------${homeProductDetailModel.data!.length}');
       }
+      if (homeProductDetail != null) {
+        getReviews();
+      }
       loader = false;
       notifyListeners();
     }
@@ -201,7 +204,8 @@ class ProductDetailsProvider extends ChangeNotifier {
     //selectedIndex = index;
     notifyListeners();
     homeProductDetail = null;
-    await homeProductDetails(url);
+    homeProductDetails(url);
+
     currentProdductLink = url;
 
     navigator.currentState!
@@ -439,6 +443,15 @@ class ProductDetailsProvider extends ChangeNotifier {
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
       showToast(e.toString());
+    }
+  }
+
+  void getReviews() async {
+    try {
+      // String url= ApiEndPoint.getReviews;
+      http.Response? res = await HttpService.getApi(url: "");
+    } catch (e, x) {
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
     }
   }
 }

@@ -200,7 +200,7 @@ class ProductDetailsProvider extends ChangeNotifier {
     //selectedIndex = index;
     notifyListeners();
     homeProductDetail = null;
-    await homeProductDetails(url);
+    homeProductDetails(url);
     currentProdductLink = url;
 
     navigator.currentState!

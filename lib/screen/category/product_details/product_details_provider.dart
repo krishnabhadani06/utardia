@@ -14,6 +14,7 @@ import 'package:utardia/model/addToCartModel/addToCart_model.dart';
 import 'package:utardia/model/category_model/product_description_model.dart';
 import 'package:utardia/model/home_model/home_category_product_detail_model.dart';
 import 'package:utardia/model/home_top_category/home_top_product_detail_model.dart';
+import 'package:utardia/model/reviewModel/reviewModel.dart';
 import 'package:utardia/model/todays_product_model/todays_product_deal_model.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/addToCartApi/addToCart_Api.dart';
@@ -46,6 +47,7 @@ class ProductDetailsProvider extends ChangeNotifier {
   int currentMaterial = 0;
   int currentColor = 0;
   int counter = 1;
+  List<reviewModel> reviews = [];
   int currentqty = 0;
 
   // static int currentQty = 0;
@@ -126,9 +128,6 @@ class ProductDetailsProvider extends ChangeNotifier {
 
   ///todaysProductDeal
   Future<void> allTodaysProductDealData() async {
-    loader = true;
-    notifyListeners();
-
     todayProduct = await TodayProductDealServices.allTodaysProduct();
     if (todayProduct!.status != 200) {
       allTodaysProductDealData();
@@ -137,8 +136,6 @@ class ProductDetailsProvider extends ChangeNotifier {
       if (kDebugMode) {
         print(allTodayProducts);
       }
-      loader = false;
-      notifyListeners();
     }
   }
 
@@ -148,6 +145,7 @@ class ProductDetailsProvider extends ChangeNotifier {
     notifyListeners();
     allProductDescription.clear();
     productDescriptionDetail(url);
+    allTodaysProductDealData();
     if (kDebugMode) {
       print('00000000------------ $url');
     }
@@ -204,7 +202,7 @@ class ProductDetailsProvider extends ChangeNotifier {
     notifyListeners();
     homeProductDetail = null;
     homeProductDetails(url);
-
+    allTodaysProductDealData();
     currentProdductLink = url;
 
     navigator.currentState!
@@ -447,10 +445,18 @@ class ProductDetailsProvider extends ChangeNotifier {
 
   void getReviews() async {
     try {
-      // String url= ApiEndPoint.getReviews;
-      http.Response? res = await HttpService.getApi(url: "");
+      String url = "${ApiEndPoint.getReviews}${homeProductDetail!.id}";
+      http.Response? res = await HttpService.getApi(url: url);
+
+      if (res != null && res.statusCode == 200) {
+        Map<dynamic, dynamic> data = jsonDecode(res.body);
+        List<dynamic> listData = data['data'] as List<dynamic>;
+        reviews = listData.map((e) => reviewModel.fromJson(e)).toList();
+        Logger().e(listData);
+      }
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
     }
+    notifyListeners();
   }
 }

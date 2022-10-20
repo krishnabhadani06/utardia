@@ -17,11 +17,9 @@ class CategoryLeft extends StatelessWidget {
     final provider2 = Provider.of<HomeProvider>(context);
     final provider = Provider.of<CategoryProvider>(context);
 
-    // print('00000000000000000000000000${provider2.allCategories.length}');
     return Flexible(
       child: ListView.builder(
         itemCount: provider2.allHomeCategories.length,
-        //itemCount:provider2.allCategories.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
           // print(provider.allCategories.length);

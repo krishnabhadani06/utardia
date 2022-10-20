@@ -233,36 +233,51 @@ class ProductDetailScreen extends StatelessWidget {
                                                                       ColorRes
                                                                           .white,
                                                                   radius: 15,
-                                                                  child: Center(
-                                                                    child: Consumer<
-                                                                            SplashProvider>(
-                                                                        builder: (context,
-                                                                            con,
-                                                                            child) {
-                                                                      return InkWell(
-                                                                          onTap:
-                                                                              () {
-                                                                            con.wishListOperation(pro.homeProductDetail!.id.toString(),
-                                                                                con.wishListid.contains(pro.allTodayProducts[index].id.toString()) ? true : false);
-                                                                            pro.allTodaysProductDealData();
-                                                                          },
-                                                                          child:
-                                                                              Icon(
-                                                                            Icons.favorite,
-                                                                            color: con.wishListid.contains(pro.allTodayProducts[index].id.toString())
-                                                                                ? ColorRes.red
-                                                                                : ColorRes.grey,
-                                                                            // color: like!
-                                                                            //     ? ColorRes.red
-                                                                            //     : ColorRes.grey,
-                                                                            size:
-                                                                                18,
-                                                                          ));
-                                                                    }),
-                                                                  ),
+                                                                  child: Center(child: Consumer<
+                                                                          SplashProvider>(
+                                                                      builder: (context,
+                                                                          con,
+                                                                          child) {
+                                                                    return InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          con.wishListOperation(
+                                                                              pro.homeProductDetail!.id.toString(),
+                                                                              con.wishListid.contains(pro.allTodayProducts[index].id.toString()) ? true : false);
+                                                                          pro.allTodaysProductDealData();
+                                                                        },
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .favorite,
+                                                                          color: con.wishListid.contains(pro.allTodayProducts[index].id.toString())
+                                                                              ? ColorRes.red
+                                                                              : ColorRes.grey,
+                                                                          // color: like!
+                                                                          //     ? ColorRes.red
+                                                                          //     : ColorRes.grey,
+                                                                          size:
+                                                                              18,
+                                                                        ));
+                                                                  })),
+                                                                  // child: InkWell(
+                                                                  //     onTap: () async {
+                                                                  //       pro.addToWishList(
+                                                                  //           context,
+                                                                  //           pro.homeProductDetail!.id.toString());
+                                                                  //     },
+                                                                  //     child: Icon(
+                                                                  //       Icons
+                                                                  //           .favorite,
+                                                                  //       color: splashProvider.wishListid.contains(pro.allTodayProducts[index].id.toString())
+                                                                  //           ? ColorRes.red
+                                                                  //           : ColorRes.grey,
+                                                                  //       size:
+                                                                  //           18,
+                                                                  //     )),
                                                                 ),
                                                               ),
-                                                              //SizedBox(height: deviceHeight * 0.01),
+                                                              // ),
                                                             ],
                                                           ),
                                                         ),

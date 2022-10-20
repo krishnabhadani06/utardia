@@ -225,24 +225,24 @@ class RegistrationCenter extends StatelessWidget {
               ],
             ),
           ),
-          Visibility(
-            visible: provider.isPhone,
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 5),
-              padding: const EdgeInsets.only(right: 25),
-              alignment: Alignment.centerLeft,
-              height: 15,
-              width: double.infinity,
-              // color: Colors.yellow,
-              child: Text(
-                provider.errorTextPhone ?? "",
-                style: robotoRegularTextStyle(
-                  fontSize: 12,
-                  color: ColorRes.red,
-                ),
-              ),
-            ),
-          ),
+          // Visibility(
+          //   visible: provider.isPhone,
+          //   child: Container(
+          //     margin: const EdgeInsets.only(bottom: 5),
+          //     padding: const EdgeInsets.only(right: 25),
+          //     alignment: Alignment.centerLeft,
+          //     height: 15,
+          //     width: double.infinity,
+          //     // color: Colors.yellow,
+          //     child: Text(
+          //       provider.errorTextPhone ?? "",
+          //       style: robotoRegularTextStyle(
+          //         fontSize: 12,
+          //         color: ColorRes.red,
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Visibility(
             visible: !provider.isPhone,
             child: CommonTextField(
@@ -321,28 +321,6 @@ class RegistrationCenter extends StatelessWidget {
               ),
             ),
           ),
-
-          // Card(
-          //   elevation: 4.0,
-          //   shadowColor: ColorRes.borderblue.withOpacity(0.7),
-          //   borderOnForeground: true,
-          //   shape: RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.circular(8.0),
-          //   ),
-          //   child: txtfield(
-          //       isObs: true,
-          //       validate: (val) {
-          //         if (val!.isEmpty) {
-          //           return 'Please re-enter your new password';
-          //         }
-          //         if (val != provider.txtRePassword.text) {
-          //           return 'Password must be same..';
-          //         }
-          //         return null;
-          //       },
-          //       controllerValue: provider.txtRePassword,
-          //       hintTxt: Strings.verifyPass),
-          // ),
           SizedBox(
             height: deviceHeight * 0.03,
           ),

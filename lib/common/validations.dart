@@ -81,7 +81,7 @@ String? validateEmail(String? value) {
 }
 
 String? phoneNumberValidator(String value) {
-  String pattern = '(^[0-9]{10}\$)';
+  String pattern = '(^[0-9])';
   RegExp regex = RegExp(pattern);
   if (!regex.hasMatch(value)) {
     return 'Please enter valid mobile number';

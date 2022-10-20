@@ -37,6 +37,11 @@ class RegistrationProvider extends ChangeNotifier {
   String? errorTextPhone;
   bool isPhone = false;
 
+  void onTapCountry(Country country){
+    currentCountry = country;
+    notifyListeners();
+  }
+
   void onTapRegistration(BuildContext context) {
     if (isPhone == true) {
       phoneValidation();

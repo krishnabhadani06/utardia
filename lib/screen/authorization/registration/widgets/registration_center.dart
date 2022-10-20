@@ -171,10 +171,7 @@ class RegistrationCenter extends StatelessWidget {
                       onTap: () {
                         showCountryPicker(
                             context: context,
-                            onSelect: (Country country) {
-                              provider.currentCountry = country;
-                              // provider.notifyListeners();
-                            });
+                            onSelect: provider.onTapCountry);
                       },
                       child: Center(
                         child: Padding(

@@ -26,6 +26,7 @@ class CategoryProductCard extends StatelessWidget {
   String? url;
   String? productUrl;
   void Function() onTap;
+
   CategoryProductCard(
       {Key? key,
       this.context,
@@ -99,7 +100,8 @@ class CategoryProductCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
+                            padding:
+                                const EdgeInsets.only(top: 5.0, right: 4.0),
                             child: Column(
                               children: [
                                 Container(

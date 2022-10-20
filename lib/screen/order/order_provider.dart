@@ -102,11 +102,11 @@ class OrderProvider extends ChangeNotifier {
   int getSteps(String status) {
     print(status);
     if (status == "pending") {
-      return 1;
+      return 0;
     } else if (status == "on_the_way") {
-      return 2;
+      return 1;
     } else {
-      return 3;
+      return 2;
     }
   }
 }

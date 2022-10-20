@@ -116,8 +116,6 @@ class EditAddressDetail extends StatelessWidget {
                                   : robotoRegularTextStyle(
                                       fontSize: 16, color: ColorRes.grey),
                             ),
-                            // Icon(AssetsString.icwork),
-                            // const Text(Strings.work)
                           ],
                         )),
                     const SizedBox(width: 14),
@@ -151,8 +149,6 @@ class EditAddressDetail extends StatelessWidget {
                                   : robotoRegularTextStyle(
                                       fontSize: 16, color: ColorRes.grey),
                             ),
-                            // Icon(AssetsString.icother),
-                            // const Text(Strings.other)
                           ],
                         )),
                   ],

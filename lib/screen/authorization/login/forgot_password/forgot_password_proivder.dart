@@ -53,12 +53,6 @@ class ForgotPasswordProvider extends ChangeNotifier {
         );
       }
     }
-    // if (errorTextEmail == null && errorPhone == null) {
-    //   forgotPasswordData(
-    //     txtEmail.text,
-    //     txtPhone.text,
-    //   );
-    // }
   }
 
   void emailValidation() {
@@ -79,9 +73,4 @@ class ForgotPasswordProvider extends ChangeNotifier {
     loader = false;
     notifyListeners();
   }
-
-  // void onchangedCountryValue(Country country) {
-  //   currentCountry = country;
-  //   notifyListeners();
-  // }
 }

@@ -19,7 +19,6 @@ class ForgotPasswordApi {
     try {
       String url = ApiEndPoint.forgotPassword;
       Map<String, String> param = {
-        // "email_or_phone": isPhone == true ? phone.toString() : email.toString(),
         "email or phone": Provider.of<ForgotPasswordProvider>(context,
                         listen: false)
                     .isPhone ==
@@ -37,7 +36,6 @@ class ForgotPasswordApi {
         }
         Fluttertoast.showToast(msg: response.body.toString());
         if (jsonDecode(response.body)['result']) {
-          // Provider.of<OtpProvider>(context, listen: false).isForgot = true;
           navigator.currentState!
               .pushReplacement(MaterialPageRoute(builder: (context) {
             Provider.of<OtpProvider>(context, listen: false).isForgot = true;

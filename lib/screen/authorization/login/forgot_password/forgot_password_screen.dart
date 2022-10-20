@@ -177,13 +177,12 @@ class ForgotPasswordScreen extends StatelessWidget {
                                   const BorderRadius.all(Radius.circular(8.0)),
                               border: Border.all(
                                 color: ColorRes.white,
-                                // style: BorderStyle.solid,
                                 width: 1.0,
                               ),
                               boxShadow: [
                                 BoxShadow(
                                   color: ColorRes.black.withOpacity(0.2),
-                                  //color of shadow
+
                                   spreadRadius: 1, //spread radius
                                   blurRadius: 3, // blur radius
                                   offset: const Offset(
@@ -197,7 +196,6 @@ class ForgotPasswordScreen extends StatelessWidget {
                                     context: context,
                                     onSelect: (Country country) {
                                       provider.currentCountry = country;
-                                      // provider.notifyListeners();
                                     });
                               },
                               child: Center(
@@ -234,8 +232,6 @@ class ForgotPasswordScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              // child: _buildCountryPickerDropdownSoloExpanded(
-                              //     context),
                             ),
                           ),
                         ),
@@ -293,55 +289,9 @@ class ForgotPasswordScreen extends StatelessWidget {
             provider.loader
                 ? Center(child: CircularProgressIndicator())
                 : const SizedBox()
-            // provider.loader == true
-            //     ? Center(child: commonLoader())
-            //     : const SizedBox()
           ],
         ),
       ),
     ));
   }
 }
-
-// _buildCountryPickerDropdownSoloExpanded(BuildContext context) {
-//   return CountryPickerDropdown(
-//     /* underline: Container(
-//         height: 2,
-//         color: Colors.red,
-//       ),*/
-//     //show'em (the text fields) you're in charge now
-//     onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-//     //if you want your dropdown button's selected item UI to be different
-//     //than itemBuilder's(dropdown menu item UI), then provide this selectedItemBuilder.
-//     onValuePicked: (Country country) {
-//       Provider.of<ForgotPasswordProvider>(context, listen: false)
-//           .onchangedCountryValue(country);
-//       // if (kDebugMode) {
-//       //   print(country.phoneCode);
-//       // }
-//     },
-//     initialValue: "IN",
-//     itemBuilder: (Country country) {
-//       return Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: <Widget>[
-//           // const SizedBox(width: 2.0),
-//           Expanded(
-//               flex: 1, child: CountryPickerUtils.getDefaultFlagImage(country)),
-//           // SizedBox(width: 8.0),
-//           Expanded(
-//               flex: 2,
-//               child: Text(
-//                 '+${country.phoneCode},',
-//                 maxLines: 1,
-//                 overflow: TextOverflow.ellipsis,
-//               )),
-//         ],
-//       );
-//     },
-//     itemHeight: null, //50,
-//     isExpanded: true,
-//     //initialValue: 'TR',
-//     icon: const Icon(Icons.keyboard_arrow_down_rounded),
-//   );
-// }

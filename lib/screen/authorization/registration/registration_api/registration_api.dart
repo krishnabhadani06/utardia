@@ -43,10 +43,9 @@ class SingUpApi {
           header: {"X-Requested-With": "XMLHttpRequest"});
       if (response != null && response.statusCode == 201) {
         Fluttertoast.showToast(msg: response.body);
-        // Fluttertoast.showToast(msg:"Register SuccessFully");
+
         var res = jsonDecode(response.body);
-        // Map<dynamic, dynamic> res =
-        //     jsonDecode(response.body) as Map<dynamic, dynamic>;
+
         if (kDebugMode) {
           print("*****************************${res['user_id']}");
         }
@@ -93,11 +92,7 @@ class SingUpApi {
         if (kDebugMode) {
           print("true condition");
         }
-        // navigator.currentState!
-        //     .pushReplacement(MaterialPageRoute(builder: (context) {
-        //   return const LoginPage();
-        // }));
-        // Fluttertoast.showToast(msg: "Otp Verification");
+
         Fluttertoast.showToast(msg: response.body);
         return jsonDecode(response.body);
       } else {

@@ -72,7 +72,6 @@ class AddressBottomSheet extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4.0)),
                           height: deviceHeight * 0.045,
-                          // minWidth: deviceWidth* 0.19,
                           color: provider.isSelect == Strings.home
                               ? ColorRes.blueBox
                               : ColorRes.greyBox,
@@ -95,8 +94,6 @@ class AddressBottomSheet extends StatelessWidget {
                                     : robotoBoldTextStyle(
                                         fontSize: 16, color: ColorRes.grey),
                               ),
-                              // Icon(AssetsString.icHome),
-                              // const Text(Strings.home)
                             ],
                           ),
                           onPressed: () {
@@ -133,8 +130,6 @@ class AddressBottomSheet extends StatelessWidget {
                                     : robotoBoldTextStyle(
                                         fontSize: 16, color: ColorRes.grey),
                               ),
-                              // Icon(AssetsString.icwork),
-                              // const Text(Strings.work)
                             ],
                           )),
                       const SizedBox(width: 14),
@@ -168,8 +163,6 @@ class AddressBottomSheet extends StatelessWidget {
                                     : robotoBoldTextStyle(
                                         fontSize: 16, color: ColorRes.grey),
                               ),
-                              // Icon(AssetsString.icother),
-                              // const Text(Strings.other)
                             ],
                           )),
                     ],

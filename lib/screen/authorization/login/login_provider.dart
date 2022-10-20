@@ -137,28 +137,4 @@ class LoginProvider extends ChangeNotifier {
   void onTapCountry(Country country) {
     currentCountry = country;
   }
-
-// void writeSignInData(Map<String, dynamic> userdata) {
-//   PrefService.init();
-//   List<String> list = userdata.entries.map((e) => e.toString()).toList();
-//   print(list);
-//   PrefService.setValue("UserData", list);
-// }
 }
-
-// void onClickLogin(BuildContext context) async {
-//   emailValidation();
-//   passwordValidation();
-//   phoneValidation();
-//   if (errorTxtPass == null && errorTxtId == null && errorTxtPhone == null) {
-//     singUpApiData(
-//         isPhone == true
-//             ? "${currentCountry!.phoneCode} ${txtPhone.text}"
-//             : txtId.text,
-//         txtPassword.text,
-//         context);
-//     txtId.clear();
-//     txtPassword.clear();
-//     txtPhone.clear();
-//   }
-// }

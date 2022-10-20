@@ -27,9 +27,6 @@ class OtpReceiverScreen extends StatelessWidget {
                   AssetsImagesRes.loginUtradiyaImage,
                   height: deviceHeight * 0.174,
                   width: deviceWidth * 0.403,
-                  // height: 130,
-                  // width: 130,
-                  //fit: BoxFit.fill,
                 ),
                 SizedBox(
                   height: deviceHeight * 0.015,

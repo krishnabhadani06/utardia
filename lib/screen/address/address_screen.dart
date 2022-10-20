@@ -152,13 +152,11 @@ class AddressScreen extends StatelessWidget {
                                         context: context,
                                         backgroundColor: Colors.transparent,
                                         isScrollControlled: true,
-                                        // constraints: BoxConstraints(minHeight: deviceHeight/4),
                                         shape: const RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(32.0),
                                               topRight: Radius.circular(32.0)),
                                         ),
-
                                         builder: (context) =>
                                             provider.onTapEditAddress(provider
                                                 .userAddress!.data![index]),

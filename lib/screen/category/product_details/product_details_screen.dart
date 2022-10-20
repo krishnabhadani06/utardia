@@ -263,7 +263,6 @@ class ProductDetailScreen extends StatelessWidget {
                                                                   ),
                                                                 ),
                                                               ),
-                                                              //SizedBox(height: deviceHeight * 0.01),
                                                             ],
                                                           ),
                                                         ),

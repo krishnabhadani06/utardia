@@ -4,6 +4,8 @@ import 'package:utardia/common/helper.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/category_screen.dart';
 import 'package:utardia/screen/category/product_details/product_details_provider.dart';
+import 'package:utardia/screen/category/product_list_screen/product_list_Screen.dart';
+import 'package:utardia/screen/category/product_list_screen/product_list_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/widget/category_title.dart';
 import 'package:utardia/screen/dashboard/home/widget/imageSliderBottom.dart';
@@ -17,7 +19,7 @@ class HomeBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context);
     final provider1 = Provider.of<ProductDetailsProvider>(context);
-
+    final provider2 = Provider.of<ProductListProvider>(context);
     return Column(children: [
       if (index % 2 == 0)
         sliderBottomHome(context: context, bannerImage: provider.bannerImage),
@@ -27,21 +29,11 @@ class HomeBottom extends StatelessWidget {
             categoryTitle(
                 title: provider.allHomeTopCategories[index].name,
                 onTap: () {
-                  navigator.currentState!
-                      .push(MaterialPageRoute(builder: (context) {
-                    int indezxx = provider.allHomeCategories.indexWhere(
-                        (element) =>
-                            element.name.toString() ==
-                            provider.allHomeTopCategories[index].name
-                                .toString());
-
-                    return CategoryScreen(
-                        select: provider.allHomeCategories.indexWhere(
-                            (element) =>
-                                element.name.toString() ==
-                                provider.allHomeTopCategories[index].name
-                                    .toString()));
-                  }));
+                  provider2.onTapViewall(
+                      context,
+                      provider.allHomeTopCategories[index].name.toString(),
+                      provider.allHomeTopCategories[index].links!.products
+                          .toString());
                 }),
             SizedBox(
                 height: provider.allHomeTopProducts[index].data != null

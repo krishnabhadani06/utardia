@@ -16,7 +16,6 @@ import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
 import 'package:utardia/util/image_res.dart';
-import 'package:utardia/util/pref_key.dart';
 import 'package:utardia/util/string.dart';
 
 import 'product_details_provider.dart';
@@ -25,6 +24,7 @@ class ProductDetailScreen extends StatelessWidget {
   bool isLike = false;
 
   ProductDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final splashProvider = Provider.of<SplashProvider>(context, listen: false);

@@ -79,8 +79,10 @@ class ProfileProvider extends ChangeNotifier {
 
   void onTapFavorite(BuildContext context) {
     Provider.of<FavoriteProvider>(context, listen: false).getWishList();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const FavoriteScreen()));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => FavoriteScreen(
+              index1: 0,
+            )));
   }
 
   void onTapMyCard(BuildContext context) {

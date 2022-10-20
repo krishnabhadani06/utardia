@@ -16,7 +16,7 @@
         <!--#docregion android-queries-->
     </queries>
    <application
-        android:label="utardia"
+        android:label="Utradia"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

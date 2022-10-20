@@ -95,10 +95,8 @@ class OrderDetailsTop extends StatelessWidget {
               StepsIndicator(
                 selectedStep: provider.getSteps(
                     provider.orderModel.data![ind!].deliveryStatus.toString()),
-
                 nbSteps: 3,
                 // selectedStep: 2,
-
                 doneStepColor: Colors.green,
                 undoneLineColor: ColorRes.grey,
                 doneLineColor: ColorRes.green,
@@ -110,11 +108,7 @@ class OrderDetailsTop extends StatelessWidget {
                 unselectedStepSize: 16,
                 selectedStepSize: 16,
                 selectedStepBorderSize: 8,
-
                 selectedStepColorOut: ColorRes.appBarColor,
-                // lineLengthCustomStep: [
-                //   StepsIndicatorCustomLine(nbStep: 1, length: 105)
-                // ],
                 enableLineAnimation: true,
                 enableStepAnimation: true,
                 selectedStepColorIn: Colors.red,

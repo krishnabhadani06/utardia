@@ -68,17 +68,17 @@ class EditProfileProvider extends ChangeNotifier {
   void onTapUpdate(BuildContext context) async {
     if (img != null) {
       updateImage();
-      if (txtName.text.toString() != profileModel!.data![0].name ||
-          txtEmail.text.toString() != profileModel!.data![0].email ||
-          txtAddress.text.toString() != profileModel!.data![0].address ||
+      if (txtName.text.toString() != profileModel.data![0].name ||
+          txtEmail.text.toString() != profileModel.data![0].email ||
+          txtAddress.text.toString() != profileModel.data![0].address ||
           txtContact.text.toString() !=
-              profileModel!.data![0].phone.toString()) {
+              profileModel.data![0].phone.toString()) {
         updateProfile();
       }
     } else {
       updateProfile();
-      String path = profileModel!.data![0].avatarOriginal.toString();
-      if (path != profileModel!.data![0].avatarOriginal.toString()) {
+      String path = profileModel.data![0].avatarOriginal.toString();
+      if (path != profileModel.data![0].avatarOriginal.toString()) {
         updateImage();
       }
     }
@@ -88,7 +88,7 @@ class EditProfileProvider extends ChangeNotifier {
     try {
       http.Response? res =
           await HttpService.postApi(url: ApiEndPoint.updateProfile, body: {
-        "id": profileModel!.data![0].id.toString(),
+        "id": profileModel.data![0].id.toString(),
         "name": txtName.text.toString(),
         "email": txtEmail.text.toString(),
         "address": txtAddress.text.toString(),
@@ -114,7 +114,7 @@ class EditProfileProvider extends ChangeNotifier {
     try {
       http.Response? res =
           await HttpService.postApi(url: ApiEndPoint.profileImageUpdate, body: {
-        "id": profileModel!.data![0].id.toString(),
+        "id": profileModel.data![0].id.toString(),
         // "id": 190.toString(),
         "filename":
             img == null ? "" : img!.path.toString().split("/").last.toString(),

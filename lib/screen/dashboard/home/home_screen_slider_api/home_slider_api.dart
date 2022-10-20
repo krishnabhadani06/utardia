@@ -15,11 +15,11 @@ class HomeSliderApiServices {
       if (response != null && response.statusCode == 200) {
         return homeSliderApiFromJson(response.body);
       } else {
-        return homeSliderApiFromJson("");
+        return HomeSliderApi();
       }
     } catch (e) {
       showToast(e.toString());
-      return homeSliderApiFromJson("");
+      return HomeSliderApi();
     }
   }
 }

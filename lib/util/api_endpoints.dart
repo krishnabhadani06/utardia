@@ -28,7 +28,7 @@ class ApiEndPoint {
 
   static const homeAllCenterCategory = "${baseUrl}categories/featured";
   static const homeTopCategory = "${baseUrl}categories/top";
-  // static const allCategoryProduct = "${baseUrl}categories";
+  static const allCategoryProduct = "${baseUrl}categories";
   static const allCategoryProductBottom = "${baseUrl}categories/top";
   static const homeBanner = "${baseUrl}banners";
   static const homeSlider = "${baseUrl}sliders";

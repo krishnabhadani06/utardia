@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -29,118 +30,88 @@ class FavoriteProvider extends ChangeNotifier {
     return !isLiked;
   }
 
-  addWishList(String productId, BuildContext context, String urly) async {
-    EasyLoading.show();
-    loader = true;
-    notifyListeners();
-    if (await checkWishList(
-            productId, PrefService.getString(PrefKeys.uid).toString()) !=
-        true) {
-      try {
-        if (PrefService.getString(PrefKeys.uid) != "") {
-          String url =
-              "${ApiEndPoint.addWishList}?product_id=$productId&user_id=${PrefService.getString(PrefKeys.uid)}";
-          http.Response? res = await HttpService.getApi(url: url);
-          if (res!.statusCode == 200) {
-            Map<dynamic, dynamic> map = jsonDecode(res.body);
-            if (kDebugMode) {
-              print("aaaaaaaaaaaaaaaaaaaa $map");
-            }
-
-            // ignore: use_build_context_synchronously
-            if (urly != '') {
-              Provider.of<CategoryProvider>(context, listen: false)
-                  .homeCategoryProduct(urly);
-            } else {
-              getWishList();
-            }
-            Provider.of<HomeProvider>(context, listen: false).getWishList();
-
-            Logger().e(jsonDecode(res.body));
-            showToast(map['message']);
-          } else {
-            loader = false;
-            // notifyListeners();
-            showToast("response is null!!");
-          }
-          notifyListeners();
-        } else {
-          loader = false;
-          // notifyListeners();
-          showToast("pls login");
-        }
-      } catch (e, x) {
-        kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
-        showToast(e.toString());
-        loader = false;
-        // notifyListeners();
-      } finally {
-        EasyLoading.dismiss();
-      }
-    } else {
-      try {
-        if (PrefService.getString(PrefKeys.uid) != "") {
-          String url =
-              "${ApiEndPoint.removeWishList}?product_id=$productId&user_id=${PrefService.getString(PrefKeys.uid)}";
-          http.Response? res = await HttpService.getApi(url: url);
-          if (res!.statusCode == 200) {
-            Map<dynamic, dynamic> map = jsonDecode(res.body);
-            if (kDebugMode) {
-              print("aaaaaaaaaaaaaaaaaaaa $map");
-            }
-
-            if (urly == '') {
-              getWishList();
-            } else {
-              Provider.of<CategoryProvider>(context, listen: false)
-                  .homeCategoryProduct(urly);
-            }
-            // ignore: use_build_context_synchronously
-            Provider.of<HomeProvider>(context, listen: false).getWishList();
-
-            showToast(map['message']);
-            Logger().e(jsonDecode(res.body));
-          } else {
-            loader = false;
-            // notifyListeners();
-            showToast("response is null!!");
-          }
-        } else {
-          loader = false;
-          // notifyListeners();
-          showToast("pls login");
-        }
-      } catch (e, x) {
-        kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
-        showToast(e.toString());
-        loader = false;
-        // notifyListeners();
-      } finally {
-        EasyLoading.dismiss();
-      }
-    }
-  }
-
-  Future<bool> checkWishList(String id, String userId) async {
-    isLiked = false;
+  removeWishList(BuildContext context, String pid) async {
     try {
-      String url =
-          "${ApiEndPoint.checkWishList}?product_id=$id&user_id=$userId";
-      http.Response? res = await HttpService.getApi(url: url);
-      if (res != null && res.statusCode == 200) {
-        Map<dynamic, dynamic> map =
-            jsonDecode(res.body) as Map<dynamic, dynamic>;
-        isLiked = map['is_in_wishlist'] as bool;
-        return map["is_in_wishlist"] as bool;
+      if (PrefService.getString(PrefKeys.uid) != "") {
+        String url =
+            "${ApiEndPoint.removeWishList}?product_id=${pid}&user_id=${PrefService.getString(PrefKeys.uid)}";
+        http.Response? res = await HttpService.getApi(url: url);
+        if (res!.statusCode == 200) {
+          Map<dynamic, dynamic> map = jsonDecode(res.body);
+          if (kDebugMode) {
+            print("aaaaaaaaaaaaaaaaaaaa $map");
+          }
+
+          // ignore: use_build_context_synchronously
+
+          showToast(map['message']);
+          Logger().e(jsonDecode(res.body));
+          getWishList();
+        } else {
+          loader = false;
+          // notifyListeners();
+          showToast("response is null!!");
+        }
       } else {
-        return false;
+        loader = false;
+        // notifyListeners();
+        showToast("pls login");
       }
     } catch (e, x) {
-      Logger().e(e.toString(), x.toString());
+      kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+      showToast(e.toString());
+      loader = false;
       // notifyListeners();
-      return false;
+    } finally {
+      EasyLoading.dismiss();
     }
   }
+
+  // addWishList(String productId, BuildContext context, String urly) async {
+  //   EasyLoading.show();
+  //   loader = true;
+  //   notifyListeners();
+
+  // try {
+  //   if (PrefService.getString(PrefKeys.uid) != "") {
+  //     String url =
+  //         "${ApiEndPoint.removeWishList}?product_id=$productId&user_id=${PrefService.getString(PrefKeys.uid)}";
+  //     http.Response? res = await HttpService.getApi(url: url);
+  //     if (res!.statusCode == 200) {
+  //       Map<dynamic, dynamic> map = jsonDecode(res.body);
+  //       if (kDebugMode) {
+  //         print("aaaaaaaaaaaaaaaaaaaa $map");
+  //       }
+
+  //       if (urly == '') {
+  //         getWishList();
+  //       } else {
+  //         Provider.of<CategoryProvider>(context, listen: false)
+  //             .homeCategoryProduct(urly);
+  //       }
+  //       // ignore: use_build_context_synchronously
+
+  //       showToast(map['message']);
+  //       Logger().e(jsonDecode(res.body));
+  //     } else {
+  //       loader = false;
+  //       // notifyListeners();
+  //       showToast("response is null!!");
+  //     }
+  //   } else {
+  //     loader = false;
+  //     // notifyListeners();
+  //     showToast("pls login");
+  //   }
+  // } catch (e, x) {
+  //   kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
+  //   showToast(e.toString());
+  //   loader = false;
+  //   // notifyListeners();
+  // } finally {
+  //   EasyLoading.dismiss();
+  // }
+  // }
 
   void getWishList() async {
     loader = true;

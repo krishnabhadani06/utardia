@@ -60,7 +60,7 @@ class ApiEndPoint {
   static var applyCoupen = "${baseUrl}coupon-apply";
 
   //review api
-  // static const String getReviews="${baseUrl}"
+  static const String getReviews = "${baseUrl}reviews/product/";
 
   ///todayProductDeal
   static const todayProductDeal = "${baseUrl}products/todays-deal";

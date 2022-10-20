@@ -13,6 +13,7 @@ import 'package:utardia/screen/authorization/login/login_screen.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
+import 'package:utardia/util/pref_key.dart';
 import '../../../common/toast_msg.dart';
 
 class ChangePasswordProvider extends ChangeNotifier {
@@ -125,7 +126,8 @@ class ChangePasswordProvider extends ChangeNotifier {
         "confirm_password": textRe,
         "user_id": userData["user"]["id"].toString()
       }, header: {
-        "Authorization": "Bearer ${userData['access_token']}"
+        "Authorization": "Bearer ${PrefService.getString(PrefKeys.accessToken)}"
+        // "Authorization": "Bearer ${userData['access_token']}"
       });
       if (res != null && res.statusCode == 200) {
         Map<dynamic, dynamic> map =

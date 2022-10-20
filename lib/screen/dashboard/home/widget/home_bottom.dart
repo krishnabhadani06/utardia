@@ -29,9 +29,8 @@ class HomeBottom extends StatelessWidget {
                 onTap: () {
                   navigator.currentState!
                       .push(MaterialPageRoute(builder: (context) {
-                    Provider.of<CategoryProvider>(context, listen: false)
-                            .selectedPageInd =
-                        provider.allHomeCategories.indexWhere((element) =>
+                    int indezxx = provider.allHomeCategories.indexWhere(
+                        (element) =>
                             element.name.toString() ==
                             provider.allHomeTopCategories[index].name
                                 .toString());
@@ -109,7 +108,7 @@ class HomeBottom extends StatelessWidget {
                                 null
                             ? provider.allHomeTopProducts[index].data!.length
                             : 0)
-                    : Center(
+                    : const Center(
                         child: Text('No Products'),
                       )
                 //itemCount: provider.allHomeCategoriesProducts[index].data!.length),

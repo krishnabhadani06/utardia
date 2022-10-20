@@ -33,7 +33,7 @@ class SubCategoryScreen extends StatelessWidget {
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
-          SubCategoryLeft(),
+          // SubCategoryLeft(),
           SubCategoryRight(),
         ],
       ),

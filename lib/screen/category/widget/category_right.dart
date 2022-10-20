@@ -171,13 +171,6 @@ class _CategoryRightState extends State<CategoryRight> {
                                         return const SubCategoryScreen();
                                       }));
                                     },
-                                    // provider2.onTapCategory(
-                                    //     index,
-                                    //     context,
-                                    //     provider.allHomeSubCategories!
-                                    //         .data![index].links!.products
-                                    //         .toString());
-
                                     child: Container(
                                       margin: const EdgeInsets.all(10.0),
                                       height: 50,

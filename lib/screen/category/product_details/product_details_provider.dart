@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -16,15 +15,12 @@ import 'package:utardia/model/home_model/home_category_product_detail_model.dart
 import 'package:utardia/model/home_top_category/home_top_product_detail_model.dart';
 import 'package:utardia/model/reviewModel/reviewModel.dart';
 import 'package:utardia/model/todays_product_model/todays_product_deal_model.dart';
-import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/addToCartApi/addToCart_Api.dart';
 import 'package:utardia/screen/category/product_details/productDetailScreenApi/productDetailsScreenApi.dart';
 import 'package:utardia/screen/category/product_details/product_details_screen.dart';
 import 'package:utardia/screen/dashboard/cart/cart_provider.dart';
 import 'package:utardia/screen/dashboard/cart/cart_screen.dart';
-import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/dashboard/home/category_api/all_category_api.dart';
-import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_top_category_apii/home_top_category_api.dart';
 import 'package:utardia/screen/splash/splash_provider.dart';

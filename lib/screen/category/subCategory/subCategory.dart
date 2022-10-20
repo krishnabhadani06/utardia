@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
-import 'package:utardia/screen/category/widget/category_left.dart';
-import 'package:utardia/screen/category/widget/category_right.dart';
+import 'package:utardia/screen/category/subCategory/subCategory_right.dart';
+import 'package:utardia/screen/category/subCategory/subCategroy_left.dart';
 import 'package:utardia/screen/dashboard/dashboard_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
@@ -33,8 +33,8 @@ class SubCategoryScreen extends StatelessWidget {
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
-          CategoryLeft(),
-          CategoryRight(),
+          // SubCategoryLeft(),
+          SubCategoryRight(),
         ],
       ),
     ));

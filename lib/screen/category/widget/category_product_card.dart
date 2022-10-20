@@ -2,11 +2,9 @@ import 'dart:core';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
-import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/splash/splash_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
@@ -28,6 +26,7 @@ class CategoryProductCard extends StatelessWidget {
   String? url;
   String? productUrl;
   void Function() onTap;
+
   CategoryProductCard(
       {Key? key,
       this.context,
@@ -101,7 +100,8 @@ class CategoryProductCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
+                            padding:
+                                const EdgeInsets.only(top: 5.0, right: 4.0),
                             child: Column(
                               children: [
                                 Container(

@@ -92,7 +92,7 @@ class ChangePasswordScreen extends StatelessWidget {
                     width: double.infinity,
                     // color: Colors.yellow,
                     child: Text(
-                      provider.errorReNewPassword ?? "",
+                      provider.errorNewPassword ?? "",
                       style: robotoRegularTextStyle(
                         fontSize: 12,
                         color: ColorRes.red,

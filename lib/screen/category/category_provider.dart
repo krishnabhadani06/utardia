@@ -18,7 +18,7 @@ import 'package:utardia/util/pref_key.dart';
 
 class CategoryProvider extends ChangeNotifier {
   var selectedPageInd = 0;
-
+  var selectIndex = 0;
   PageController pageCon = PageController();
   bool loader = false;
 

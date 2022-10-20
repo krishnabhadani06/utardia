@@ -6,17 +6,12 @@ import 'package:provider/provider.dart';
 import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
-import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/product_details/widget/product_details_bottom.dart';
 import 'package:utardia/screen/category/product_details/widget/product_detials_center.dart';
-import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
-import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/screen/splash/splash_provider.dart';
-import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/icon_res.dart';
 import 'package:utardia/util/image_res.dart';
-import 'package:utardia/util/pref_key.dart';
 import 'package:utardia/util/string.dart';
 
 import 'product_details_provider.dart';
@@ -25,6 +20,7 @@ class ProductDetailScreen extends StatelessWidget {
   bool isLike = false;
 
   ProductDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final splashProvider = Provider.of<SplashProvider>(context, listen: false);
@@ -237,33 +233,48 @@ class ProductDetailScreen extends StatelessWidget {
                                                                       ColorRes
                                                                           .white,
                                                                   radius: 15,
-                                                                  child: Center(
-                                                                    child: Consumer<
-                                                                            SplashProvider>(
-                                                                        builder: (context,
-                                                                            con,
-                                                                            child) {
-                                                                      return InkWell(
-                                                                          onTap:
-                                                                              () {
-                                                                            con.wishListOperation(pro.homeProductDetail!.id.toString(),
-                                                                                con.wishListid.contains(pro.allTodayProducts[index].id.toString()) ? true : false);
-                                                                            pro.allTodaysProductDealData();
-                                                                          },
-                                                                          child:
-                                                                              Icon(
-                                                                            Icons.favorite,
-                                                                            color: con.wishListid.contains(pro.allTodayProducts[index].id.toString())
-                                                                                ? ColorRes.red
-                                                                                : ColorRes.grey,
-                                                                            // color: like!
-                                                                            //     ? ColorRes.red
-                                                                            //     : ColorRes.grey,
-                                                                            size:
-                                                                                18,
-                                                                          ));
-                                                                    }),
-                                                                  ),
+                                                                  child: Center(child: Consumer<
+                                                                          SplashProvider>(
+                                                                      builder: (context,
+                                                                          con,
+                                                                          child) {
+                                                                    return InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          con.wishListOperation(
+                                                                              pro.homeProductDetail!.id.toString(),
+                                                                              con.wishListid.contains(pro.allTodayProducts[index].id.toString()) ? true : false);
+                                                                          pro.allTodaysProductDealData();
+                                                                        },
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .favorite,
+                                                                          color: con.wishListid.contains(pro.allTodayProducts[index].id.toString())
+                                                                              ? ColorRes.red
+                                                                              : ColorRes.grey,
+                                                                          // color: like!
+                                                                          //     ? ColorRes.red
+                                                                          //     : ColorRes.grey,
+                                                                          size:
+                                                                              18,
+                                                                        ));
+                                                                  })),
+                                                                  // child: InkWell(
+                                                                  //     onTap: () async {
+                                                                  //       pro.addToWishList(
+                                                                  //           context,
+                                                                  //           pro.homeProductDetail!.id.toString());
+                                                                  //     },
+                                                                  //     child: Icon(
+                                                                  //       Icons
+                                                                  //           .favorite,
+                                                                  //       color: splashProvider.wishListid.contains(pro.allTodayProducts[index].id.toString())
+                                                                  //           ? ColorRes.red
+                                                                  //           : ColorRes.grey,
+                                                                  //       size:
+                                                                  //           18,
+                                                                  //     )),
                                                                 ),
                                                               ),
                                                             ],

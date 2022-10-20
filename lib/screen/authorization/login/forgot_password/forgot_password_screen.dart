@@ -1,7 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:utardia/common/common_loader.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/material_button.dart';
 import 'package:utardia/common/text_styles.dart';
@@ -21,7 +20,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         child: Scaffold(
       resizeToAvoidBottomInset: false,
       body: provider.loader == true
-          ? Center(child: commonLoader())
+          ? const Center(child: Text(""))
           //     : const SizedBox()
           : Padding(
               padding: const EdgeInsets.only(top: 40.0),

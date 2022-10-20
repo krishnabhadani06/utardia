@@ -8,7 +8,6 @@ Widget txtFieldAddress({
   required String hintTxt,
 }) {
   return TextFormField(
-    //obscureText: obscuretxt,
     validator: validate,
     controller: controllerValue,
     cursorColor: ColorRes.blue,

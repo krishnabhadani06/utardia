@@ -316,12 +316,6 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                                   ),
                                   InkWell(
                                     onTap: () => pro.onTapColor(e),
-                                    // onTap: () {
-                                    //   pro.currentColor = pro
-                                    //       .homeProductDetail!.colors!
-                                    //       .indexOf(e);
-                                    //   pro.getQty();
-                                    // },
                                     child: Stack(
                                       children: [
                                         Container(
@@ -343,13 +337,18 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                                             height: 40,
                                             width: 40,
                                             decoration: BoxDecoration(
-                                              // border: Border.all(
-                                              //     color: provider.currentColor ==
-                                              //             provider.homeProductDetail!
-                                              //                 .colors!
-                                              //                 .indexOf(e)
-                                              //         ? ColorRes.black
-                                              //         : ColorRes.white),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: ColorRes.black
+                                                      .withOpacity(0.5),
+                                                  //color of shadow
+                                                  spreadRadius:
+                                                      0, //spread radius
+                                                  blurRadius: 3, // blur radius
+                                                  offset: const Offset(0,
+                                                      0), // changes position of shadow
+                                                )
+                                              ],
                                               shape: BoxShape.circle,
                                               color: toColor(e),
                                             ),
@@ -372,7 +371,8 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
         Card(
           elevation: 5.0,
           child: Container(
-            constraints: const BoxConstraints(maxHeight: 307),
+            padding: const EdgeInsets.only(left: 8.0),
+            constraints: const BoxConstraints(minHeight: 20),
             //height: deviceHeight * 0.50,
             decoration: BoxDecoration(
               color: ColorRes.white,
@@ -385,30 +385,25 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                 ),
               ],
             ),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 6.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            Strings.description,
-                            style: robotoMediumTextStyle(fontSize: 13),
-                          ),
-                        ],
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        Strings.description,
+                        style: robotoMediumTextStyle(fontSize: 13),
                       ),
-                    ),
-                    SizedBox(height: deviceHeight / 90),
-                    HtmlWidget(
-                      pro.homeProductDetail!.description.toString(),
-                    ),
-                    SizedBox(height: deviceHeight / 40),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+                SizedBox(height: deviceHeight / 90),
+                HtmlWidget(
+                  pro.homeProductDetail!.description.toString(),
+                ),
+                SizedBox(height: deviceHeight / 40),
+              ],
             ),
           ),
         ),
@@ -416,7 +411,8 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
         Card(
           elevation: 5.0,
           child: Container(
-            height: deviceHeight * 0.30,
+            constraints: BoxConstraints(minHeight: 20.0),
+            // height: deviceHeight * 0.30,
             width: deviceWidth,
             decoration: BoxDecoration(
               color: ColorRes.white,
@@ -431,9 +427,8 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
             ),
             child: Padding(
               padding: const EdgeInsets.only(top: 10.0, left: 15.0, right: 6.0),
-              child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       Strings.rating,
@@ -442,82 +437,77 @@ class _ProductDetailsBottomState extends State<ProductDetailsBottom> {
                         color: ColorRes.blackText,
                       ).copyWith(fontWeight: FontWeight.w700),
                     ),
-                    // const Spacer(),
-                    // ElevatedButton(
-                    //   style: ElevatedButton.styleFrom(
-                    //     primary: ColorRes.detailColor,
-                    //   ),
-                    //   onPressed: () {},
-                    //   child: Text(
-                    //     Strings.rateProduct,
-                    //     style: robotoBoldTextStyle(
-                    //         fontSize: 12, color: ColorRes.white),
-                    //   ),
-                    // ),
-                  ],
-                ),
-                SizedBox(height: deviceHeight * 0.02),
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(right: 10.0),
-                                  height: 22,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4.0),
-                                    color: ColorRes.yellow,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                    SizedBox(height: deviceHeight * 0.02),
+
+                    //[Review] box
+                    pro.reviews.isNotEmpty
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: pro.reviews.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Row(
                                     children: [
-                                      Text(
-                                        "${pro.homeProductDetail!.rating!.toDouble()}",
-                                        style: const TextStyle(
-                                            color: ColorRes.white,
-                                            fontSize: 12),
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 10.0),
+                                        height: 22,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                          color: ColorRes.yellow,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "${pro.reviews[index].rating!.toDouble()}",
+                                              style: const TextStyle(
+                                                  color: ColorRes.white,
+                                                  fontSize: 12),
+                                            ),
+                                            const Icon(
+                                              Icons.star,
+                                              color: ColorRes.white,
+                                              size: 15,
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                      const Icon(
-                                        Icons.star,
-                                        color: ColorRes.white,
-                                        size: 15,
-                                      )
+                                      //const Spacer(),
+                                      Text(
+                                          pro.reviews[index].comment.toString(),
+                                          style: robotoRegularTextStyle(
+                                              color: ColorRes.black,
+                                              fontSize: 13)),
                                     ],
                                   ),
-                                ),
-                                //const Spacer(),
-                                Text(Strings.terrific,
-                                    style: robotoRegularTextStyle(
-                                        color: ColorRes.black, fontSize: 13)),
-                              ],
-                            ),
-                            SizedBox(
-                              height: deviceHeight * 0.01,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  Strings.niceProduct,
-                                  style: robotoRegularTextStyle(
-                                      fontSize: 12, color: ColorRes.greyRsText),
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              thickness: 2,
-                              color: ColorRes.greyLine,
-                            )
-                          ],
-                        );
-                      }),
-                ),
-              ]),
+                                  SizedBox(
+                                    height: deviceHeight * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        pro.reviews[index].time.toString(),
+                                        style: robotoRegularTextStyle(
+                                            fontSize: 12,
+                                            color: ColorRes.greyRsText),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    thickness: 2,
+                                    color: ColorRes.greyLine,
+                                  )
+                                ],
+                              );
+                            })
+                        : Text("No Any Reviews"),
+                  ]),
             ),
           ),
         ),

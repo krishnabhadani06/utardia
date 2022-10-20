@@ -238,28 +238,34 @@ class ProductDetailScreen extends StatelessWidget {
                                                                           .white,
                                                                   radius: 15,
                                                                   child: Center(
-                                                                    child: InkWell(
-                                                                        onTap: () async {
-                                                                          pro.addToWishList(
-                                                                              context,
-                                                                              pro.homeProductDetail!.id.toString());
-                                                                        },
-                                                                        child: Icon(
-                                                                          Icons
-                                                                              .favorite,
-                                                                          color: splashProvider.wishListid.contains(pro.allTodayProducts[index].id.toString())
-                                                                              ? ColorRes.red
-                                                                              : ColorRes.grey,
-                                                                          // color: like!
-                                                                          //     ? ColorRes.red
-                                                                          //     : ColorRes.grey,
-                                                                          size:
-                                                                              18,
-                                                                        )),
+                                                                    child: Consumer<
+                                                                            SplashProvider>(
+                                                                        builder: (context,
+                                                                            con,
+                                                                            child) {
+                                                                      return InkWell(
+                                                                          onTap:
+                                                                              () {
+                                                                            con.wishListOperation(pro.homeProductDetail!.id.toString(),
+                                                                                con.wishListid.contains(pro.allTodayProducts[index].id.toString()) ? true : false);
+                                                                            pro.allTodaysProductDealData();
+                                                                          },
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.favorite,
+                                                                            color: con.wishListid.contains(pro.allTodayProducts[index].id.toString())
+                                                                                ? ColorRes.red
+                                                                                : ColorRes.grey,
+                                                                            // color: like!
+                                                                            //     ? ColorRes.red
+                                                                            //     : ColorRes.grey,
+                                                                            size:
+                                                                                18,
+                                                                          ));
+                                                                    }),
                                                                   ),
                                                                 ),
                                                               ),
-                                                              //SizedBox(height: deviceHeight * 0.01),
                                                             ],
                                                           ),
                                                         ),
@@ -443,6 +449,8 @@ class ProductDetailScreen extends StatelessWidget {
                                       );
                                     }),
                               ),
+
+                              ///Endedd
                               SizedBox(
                                 height: deviceHeight * 0.10,
                               ),
@@ -470,22 +478,29 @@ class ProductDetailScreen extends StatelessWidget {
                               radius: 15,
                               child: Consumer<SplashProvider>(
                                   builder: (context, con, child) {
-                                return Center(
-                                    child: InkWell(
-                                  onTap: () {
-                                    con.wishListOperation(
-                                        pro.homeProductDetail!.id.toString());
-                                  },
-                                  child: Icon(
-                                    Icons.favorite,
-                                    color: con.wishListid.contains(pro
-                                            .homeProductDetail!.id
-                                            .toString())
-                                        ? ColorRes.red
-                                        : ColorRes.grey,
-                                    size: 18,
-                                  ),
-                                ));
+                                return Center(child: Consumer<SplashProvider>(
+                                    builder: (context, con, widget) {
+                                  return InkWell(
+                                    onTap: () {
+                                      con.wishListOperation(
+                                          pro.homeProductDetail!.id.toString(),
+                                          con.wishListid.contains(pro
+                                                  .homeProductDetail!.id
+                                                  .toString())
+                                              ? true
+                                              : false);
+                                    },
+                                    child: Icon(
+                                      Icons.favorite,
+                                      color: con.wishListid.contains(pro
+                                              .homeProductDetail!.id
+                                              .toString())
+                                          ? ColorRes.red
+                                          : ColorRes.grey,
+                                      size: 18,
+                                    ),
+                                  );
+                                }));
                               }),
                             ),
                           )),

@@ -74,15 +74,6 @@ class OtpProvider extends ChangeNotifier {
     // reSendApi()
   }
 
-  // void reSendApi( String uid, String code) async
-  // {
-  // try{
-  //   http.Response? res= await HttpService.postApi(url: )
-  // }catch(e,x){
-  //   kDebugMode?Logger().e(e.toString()+x.toString()):"";
-  //   showToast(e.toString());
-  // }
-
   void onTapContinue() async {
     if (txtOtp1.text.isNotEmpty &&
         txtOtp2.text.isNotEmpty &&

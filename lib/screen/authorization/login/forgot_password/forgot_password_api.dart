@@ -40,7 +40,6 @@ class ForgotPasswordApi {
         Fluttertoast.showToast(msg: "Code is sent Successfully");
         // Fluttertoast.showToast(msg: response.body.toString());
         if (jsonDecode(response.body)['result']) {
-          // Provider.of<OtpProvider>(context, listen: false).isForgot = true;
           navigator.currentState!
               .pushReplacement(MaterialPageRoute(builder: (context) {
             Provider.of<OtpProvider>(context, listen: false).startTimer();

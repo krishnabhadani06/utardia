@@ -66,8 +66,6 @@ class SingInpApi {
       Map<String, dynamic> param = {
         "login_type": "phone",
         "country_code": country.replaceAll("+", ""),
-        // "country_code": "+${country}",
-        // "email_or_phone": "+91${phone}",
         "email_or_phone": phone,
         "password": password,
         "identity_matrix": true.toString(),
@@ -104,61 +102,3 @@ class SingInpApi {
     }
   }
 }
-
-// class SingInpApi {
-//   static Future<SingInModel?> singInApi(
-//       String email, String password, BuildContext context) async {
-//     try {
-//       String url = ApiEndPoint.signIn;
-//       Map<String, dynamic> param = {
-//         // "email": email,
-//
-//         Provider.of<LoginProvider>(context, listen: false).isPhone == true
-//             ? "Phone"
-//             : "email": Provider.of<LoginProvider>(context, listen: false)
-//             .isPhone
-//             ? "${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}"
-//             : email.toString(),
-//
-//         // "email_or_phone": Provider.of<LoginProvider>(context, listen: false)
-//         //             .isPhone ==
-//         //         true
-//         //     ? "${Provider.of<LoginProvider>(context, listen: false).currentCountry!.phoneCode}${Provider.of<LoginProvider>(context, listen: false).txtPhone.toString()}}"
-//         //     : email.toString(),
-//         // "country_code": Provider.of<LoginProvider>(context, listen: false)
-//         //     .currentCountry!
-//         //     .phoneCode,
-//         "password": password,
-//         "identity_matrix": true.toString()
-//       };
-//       http.Response? response = await HttpService.postApi(
-//           url: url,
-//           body: param,
-//           header: {"X-Requested-With": "XMLHttpRequest"});
-//       if (response != null && response.statusCode == 200) {
-//         var responseJson = json.decode(response.body);
-//         // Fluttertoast.showToast(msg: response.body);
-//         Fluttertoast.showToast(msg: "Login Successful.");
-//         await PrefService.setValue(PrefKeys.isLogin, true);
-//         await PrefService.setValue(
-//             PrefKeys.accessToken, responseJson["access_token"].toString());
-//         await PrefService.setValue(
-//             PrefKeys.uid, responseJson["user"]["id"].toString());
-//         navigator.currentState!
-//             .pushReplacement(MaterialPageRoute(builder: (context) {
-//           Provider.of<HomeProvider>(context, listen: false).init();
-//           return DashScreen();
-//         }));
-//         return singInModelFromJson(response.body);
-//       } else {
-//         Fluttertoast.showToast(msg: "Enter valid email or password.");
-//       }
-//       return null;
-//     } catch (e) {
-//       if (kDebugMode) {
-//         print(e);
-//       }
-//       return null;
-//     }
-//   }
-// }

@@ -132,8 +132,8 @@ class OrderDetailsCart extends StatelessWidget {
                     ],
                   ),
                 ),
-                provider.orderModel.data![i].deliveryStatus == "deliverd"
-                    ? ElevatedButton(
+                provider.orderModel.data![i].deliveryStatus == "delivered"
+                    ? OutlinedButton(
                         onPressed: () {
                           showDialog(
                               context: context,
@@ -148,11 +148,15 @@ class OrderDetailsCart extends StatelessWidget {
                                 );
                               });
                         },
-                        style: ElevatedButton.styleFrom(
+                        style: OutlinedButton.styleFrom(
                             fixedSize: const Size(30.0, 20.0),
-                            backgroundColor: ColorRes.borderblue,
+                            // backgroundColor: ColorRes.borderblue,
+
                             minimumSize: Size(deviceWidth * 0.2, 27.0)),
-                        child: const Text("Rate"))
+                        child: const Text(
+                          "Rate",
+                          style: TextStyle(color: ColorRes.blue),
+                        ))
                     : const SizedBox()
               ],
             );

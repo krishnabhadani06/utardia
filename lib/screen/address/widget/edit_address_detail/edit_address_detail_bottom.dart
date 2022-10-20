@@ -156,8 +156,6 @@ class EditAddressDetailBottom extends StatelessWidget {
                         : const Center(
                             child: CircularProgressIndicator(),
                           )),
-            // child: txtfield(controllerValue: provider.txtCity,
-            //     hintTxt: Strings.city)),
           ],
         ),
         const SizedBox(height: 20),

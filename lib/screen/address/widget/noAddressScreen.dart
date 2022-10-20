@@ -67,20 +67,3 @@ class NoAddressScreen extends StatelessWidget {
     ));
   }
 }
-
-// body: Column(
-// children: [
-// SizedBox(height: MediaQuery.of(context).size.height * 0.17),
-// Padding(
-// padding: const EdgeInsets.only(left: 77.0,right:76.18 ),
-// child: Image.asset(AssetsString.noAddressImage),
-// ),
-//
-// SizedBox(height:MediaQuery.of(context).size.height * 0.04),
-// Text(Strings.noSavedAddress,style:robotoBoldTextStyle(fontSize: 20,color: ColorRes.black)),
-//
-// SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-// Text(Strings.saveYourAddress,style: natoMediumTextStyle(fontSize: 16,color: ColorRes.grey)),
-// Text(Strings.useItAll,style: natoMediumTextStyle(fontSize: 16,color: ColorRes.grey)),
-// ],
-// ),

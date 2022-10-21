@@ -33,7 +33,12 @@ class HomeScreen extends StatelessWidget {
                     //if drawer is closed then open the drawer.
                   }
                 },
-                child: Image.asset(AssetsImagesRes.menuBar)),
+                child:  Container(
+                  height: 35,
+                  width: 35,
+                  padding: const EdgeInsets.only(left: 5,right: 5,top: 12,bottom: 12),
+                  child: Image.asset(AssetsImagesRes.menuBar)
+                ),),
             // leading: IconButton(
             //   onPressed: () {
             //     //on drawer menu pressed

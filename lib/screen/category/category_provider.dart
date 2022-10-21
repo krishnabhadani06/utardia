@@ -157,12 +157,12 @@ class CategoryProvider extends ChangeNotifier {
           Logger().e(wishListId);
         }
       } else {
-        showToast(res!.statusCode.toString());
+        //showToast(res!.statusCode.toString());
       }
       notifyListeners();
     } catch (e, x) {
       kDebugMode ? Logger().e(e.toString() + x.toString()) : "";
-      showToast(e.toString());
+      //showToast(e.toString());
       notifyListeners();
     }
   }

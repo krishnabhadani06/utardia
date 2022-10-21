@@ -11,7 +11,9 @@ import 'package:utardia/model/home_model/home_subCategory_model.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 
-class HomeCategoryApiService {
+class HomeCategoryApiService
+
+{
   static Future<HomeCategoryApi> homeAllCategoryData() async {
     try {
       String url = ApiEndPoint.homeAllCenterCategory;
@@ -41,7 +43,7 @@ class HomeCategoryApiService {
         // throw Exception("");
       }
     } catch (e, x) {
-      showToast(e.toString());
+      //showToast(e.toString());
       return HomeCategoryProductApi(status: 200, data: [], success: true);
     }
   }
@@ -56,7 +58,7 @@ class HomeCategoryApiService {
       }
     } catch (e, x) {
       Logger().e(e.toString() + x.toString());
-      showToast(e.toString());
+      //showToast(e.toString());
       return HomeProductDetailApi(status: 200);
       ;
     }
@@ -72,7 +74,7 @@ class HomeCategoryApiService {
       }
     } catch (e, x) {
       Logger().e(e.toString() + x.toString());
-      showToast(e.toString());
+      //showToast(e.toString());
       return homeCenterSubCategoryModelFromJson("");
     }
   }

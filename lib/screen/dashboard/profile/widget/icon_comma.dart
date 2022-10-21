@@ -14,7 +14,12 @@ Widget icons(
 Widget rowCommon({required Image icon, required String title}) {
   return Row(
     children: [
-      icon,
+      SizedBox(
+        height: 35,
+        width: 35,
+        child: icon,
+      ),
+
       // icons(iconData: icon, size: 28, color: ColorRes.buttonBlue),
       SizedBox(width: deviceWidth * 0.03),
       // Container(

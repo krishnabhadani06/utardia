@@ -27,7 +27,11 @@ class ProfileDrawerAppSetting extends StatelessWidget {
         SizedBox(height: deviceHeight * 0.01),
         Row(
           children: [
-            Image.asset(AssetsImagesRes.notificationIcon),
+            SizedBox(
+              height: 35,
+              width: 35,
+              child: Image.asset(AssetsImagesRes.notificationIcon),
+            ),
             // icons(
             //     iconData: IconRes.icNotification,
             //     size: 28,
@@ -90,7 +94,12 @@ class ProfileDrawerAppSetting extends StatelessWidget {
           },
           child: Row(
             children: [
-              Image.asset(AssetsImagesRes.logoutIcon),
+              SizedBox(
+                height: 35,
+                width: 35,
+                child:  Image.asset(AssetsImagesRes.logoutIcon),
+              ),
+
               // icons(
               //     iconData: IconRes.icLogOut,
               //     size: 28,

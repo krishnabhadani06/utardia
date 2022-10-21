@@ -36,6 +36,12 @@ class LoginProvider extends ChangeNotifier {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   bool loader = false;
+
+  void onTapCountry(Country country){
+    currentCountry = country;
+    notifyListeners();
+  }
+
   void onTapForgot() {
     navigator.currentState!.push(
         MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()));
@@ -132,9 +138,5 @@ class LoginProvider extends ChangeNotifier {
 
   void writeSignInData(Map<String, dynamic> userdata) {
     PrefService.setValue("UserData", jsonEncode(userdata));
-  }
-
-  void onTapCountry(Country country) {
-    currentCountry = country;
   }
 }

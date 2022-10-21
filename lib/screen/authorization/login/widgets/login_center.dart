@@ -173,11 +173,8 @@ class LoginCenter extends StatelessWidget {
                       onTap: () {
                         showCountryPicker(
                             context: context,
-                            onSelect: (Country country) {
-                              Logger().e(country.toJson());
-                              provider.currentCountry = country;
-                              // provider.notifyListeners();
-                            });
+                            onSelect: provider.onTapCountry,
+                        );
                       },
                       child: Center(
                         child: Padding(
@@ -222,7 +219,7 @@ class LoginCenter extends StatelessWidget {
                       hintText: Strings.enterMobileNo,
                       error: false,
                       width: deviceWidth,
-                      border: false),
+                      border: false,),
                 ),
               ],
             ),

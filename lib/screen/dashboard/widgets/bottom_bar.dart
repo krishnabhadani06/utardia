@@ -26,7 +26,7 @@ class BottomBar extends StatelessWidget {
                   Image.asset(AssetsImagesRes.cartIcon1), 2, context),
               tab(Image.asset(AssetsImagesRes.campaignIcon),
                   Image.asset(AssetsImagesRes.campaignIcon1), 3, context),
-              tab(Image.asset(AssetsImagesRes.profileIcon),
+              tab(Image.asset(AssetsImagesRes.profileIcon,),
                   Image.asset(AssetsImagesRes.profileIcon1), 4, context),
             ],
           ),
@@ -51,7 +51,12 @@ Widget tab(Image icon1, Image icon2, int index, BuildContext context) {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              index == provider.currentTab ? icon2 : icon1
+              SizedBox(
+                height: 35,
+                width: 35,
+                child: index == provider.currentTab ? icon2 : icon1,
+              ),
+
               // ? Icon(icon2, color: ColorRes.white, size: 33)
               // : Icon(icon1, color: ColorRes.white, size: 33)
             ],

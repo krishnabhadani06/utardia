@@ -65,67 +65,68 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           body: Scaffold(
-              appBar: AppBar(
-                toolbarHeight: 0.0,
-                primary: false,
-                backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              toolbarHeight: 0.0,
+              primary: false,
+              backgroundColor: Colors.transparent,
+            ),
+            drawerEnableOpenDragGesture: false,
+            key: provider.drawerScaffoldLKey,
+            drawer: Theme(
+              data: Theme.of(context).copyWith(
+                canvasColor: ColorRes.lightGrey, //desired color
               ),
-              drawerEnableOpenDragGesture: false,
-              key: provider.drawerScaffoldLKey,
-              drawer: Theme(
-                data: Theme.of(context).copyWith(
-                  canvasColor: ColorRes.lightGrey, //desired color
+              child: Drawer(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30),
+                      bottomRight: Radius.circular(30)),
                 ),
-                child: Drawer(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        bottomRight: Radius.circular(30)),
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(left: 23.0),
-                          child: Column(
-                            children: const [
-                              ProfileDrawer(),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              //body:SingleChildScrollView(
-              body: provider.loader == true
-                  ? commonLoader()
-                  : RefreshIndicator(
-                      triggerMode: RefreshIndicatorTriggerMode.anywhere,
-                      onRefresh: () async {
-                        Logger().e("refresh");
-                        provider.init();
-                      },
-                      child: SingleChildScrollView(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(left: 23.0),
                         child: Column(
-                          children: [
-                            const HomeTop(),
-                            const HomeCenter(),
-                            ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: provider.allHomeTopCategories.length,
-                                padding: EdgeInsets.only(
-                                    top: MediaQuery.of(context).size.height *
-                                        0.02),
-                                itemBuilder: (context, index) {
-                                  return HomeBottom(index: index);
-                                }),
+                          children: const [
+                            ProfileDrawer(),
                           ],
                         ),
                       ),
-                    )),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            //body:SingleChildScrollView(
+            body: provider.loader == true
+                ? commonLoader()
+                : RefreshIndicator(
+                    triggerMode: RefreshIndicatorTriggerMode.anywhere,
+                    onRefresh: () async {
+                      Logger().e("refresh");
+                      provider.init();
+                    },
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const HomeTop(),
+                          const HomeCenter(),
+                          ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: provider.allHomeTopCategories.length,
+                              padding: EdgeInsets.only(
+                                  top: MediaQuery.of(context).size.height *
+                                      0.02),
+                              itemBuilder: (context, index) {
+                                return HomeBottom(index: index);
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+          ),
         ),
       );
     });

@@ -72,37 +72,41 @@ class FavoriteCenter extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Container(
-                            height: 25,
-                            width: 30,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: ColorRes.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.20),
-                                  blurRadius: 5,
-                                  offset: Offset.zero,
-                                  spreadRadius: 0,
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 6.0, right: 5.0),
+                            child: Container(
+                              height: 25,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: ColorRes.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.20),
+                                    blurRadius: 5,
+                                    offset: Offset.zero,
+                                    spreadRadius: 0,
+                                  ),
+                                ],
+                              ),
+                              child: CircleAvatar(
+                                backgroundColor: ColorRes.white,
+                                radius: 15,
+                                child: Center(
+                                  child: InkWell(
+                                      onTap: () {
+                                        provider.removeWishList(
+                                            context,
+                                            provider.Wishlist2!.data![index!].id
+                                                .toString());
+                                      },
+                                      child: const Icon(
+                                        Icons.favorite,
+                                        color: ColorRes.red,
+                                        size: 18,
+                                      )),
                                 ),
-                              ],
-                            ),
-                            child: CircleAvatar(
-                              backgroundColor: ColorRes.white,
-                              radius: 15,
-                              child: Center(
-                                child: InkWell(
-                                    onTap: () {
-                                      provider.removeWishList(
-                                          context,
-                                          provider.Wishlist2!.data![index!].id
-                                              .toString());
-                                    },
-                                    child: const Icon(
-                                      Icons.favorite,
-                                      color: ColorRes.red,
-                                      size: 18,
-                                    )),
                               ),
                             ),
                           ),

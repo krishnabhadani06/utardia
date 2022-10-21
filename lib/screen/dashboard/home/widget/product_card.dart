@@ -79,7 +79,7 @@ Widget ProductCard({
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
+                          padding: const EdgeInsets.only(top: 6.0, right: 5.0),
                           child: Column(
                             children: [
                               Container(

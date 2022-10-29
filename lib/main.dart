@@ -25,7 +25,6 @@ import 'package:utardia/screen/payment/payment_provider.dart';
 import 'package:utardia/screen/splash/splash_provider.dart';
 import 'package:utardia/screen/splash/splash_screen.dart';
 import 'package:utardia/services/pref_service.dart';
-
 import 'common/helper.dart';
 import 'screen/category/product_details/product_details_provider.dart';
 

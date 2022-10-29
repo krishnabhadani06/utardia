@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+flutter skd 3.0.5
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

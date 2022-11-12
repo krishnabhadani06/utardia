@@ -36,7 +36,7 @@ Widget sliderHome(
                   ),
                 ),
                 placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
+                    Center(child: const CircularProgressIndicator()),
                 errorWidget: (context, url, error) =>
                     Image.asset(AssetsImagesRes.buy2GetFreeImage),
               ),

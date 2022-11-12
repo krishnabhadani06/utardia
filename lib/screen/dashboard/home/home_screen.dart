@@ -23,22 +23,23 @@ class HomeScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: ColorRes.appBarColor,
             leading: InkWell(
-                onTap: () {
-                  // on drawer menu pressed
-                  if (provider.drawerScaffoldLKey.currentState!.isDrawerOpen) {
-                    //if drawer is open, then close the drawer
-                    Navigator.pop(context);
-                  } else {
-                    provider.drawerScaffoldLKey.currentState!.openDrawer();
-                    //if drawer is closed then open the drawer.
-                  }
-                },
-                child:  Container(
+              onTap: () {
+                // on drawer menu pressed
+                if (provider.drawerScaffoldLKey.currentState!.isDrawerOpen) {
+                  //if drawer is open, then close the drawer
+                  Navigator.pop(context);
+                } else {
+                  provider.drawerScaffoldLKey.currentState!.openDrawer();
+                  //if drawer is closed then open the drawer.
+                }
+              },
+              child: Container(
                   height: 35,
                   width: 35,
-                  padding: const EdgeInsets.only(left: 5,right: 5,top: 12,bottom: 12),
-                  child: Image.asset(AssetsImagesRes.menuBar)
-                ),),
+                  padding: const EdgeInsets.only(
+                      left: 5, right: 5, top: 12, bottom: 12),
+                  child: Image.asset(AssetsImagesRes.menuBar)),
+            ),
             // leading: IconButton(
             //   onPressed: () {
             //     //on drawer menu pressed
@@ -56,11 +57,11 @@ class HomeScreen extends StatelessWidget {
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("U T R A D I A",
+                Text("UTRADIA",
                     style: robotoSemiBoldTextStyle(
                       color: ColorRes.white,
                       fontSize: 18,
-                    ).copyWith(fontWeight: FontWeight.w700)),
+                    ).copyWith(fontWeight: FontWeight.w700, letterSpacing: 5)),
                 Text("T h e  T r u s t w o r t h y  M a r k e t p l a c e",
                     style: robotoSemiBoldTextStyle(
                       color: ColorRes.white,
@@ -87,20 +88,7 @@ class HomeScreen extends StatelessWidget {
                       topRight: Radius.circular(30),
                       bottomRight: Radius.circular(30)),
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(left: 23.0),
-                        child: Column(
-                          children: const [
-                            ProfileDrawer(),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                child: ProfileDrawer(),
               ),
             ),
             //body:SingleChildScrollView(

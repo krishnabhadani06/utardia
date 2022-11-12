@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
@@ -11,7 +12,6 @@ import 'package:utardia/screen/dashboard/dashboard_screen.dart';
 import 'package:utardia/screen/dashboard/home/home_provider.dart';
 import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
-import 'package:http/http.dart' as http;
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
 

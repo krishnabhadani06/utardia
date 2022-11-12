@@ -40,7 +40,9 @@ Widget sliderBottomHome({
             // imageUrl: 'https://picsum.photos/250?image=9',
             imageUrl: e.toString(),
             progressIndicatorBuilder: (context, url, downloadProgress) =>
-                CircularProgressIndicator(value: downloadProgress.progress),
+                Center(
+                    child: CircularProgressIndicator(
+                        value: downloadProgress.progress)),
             errorWidget: (context, url, error) =>
                 Image.asset(AssetsImagesRes.buy2GetFreeImage),
             fit: BoxFit.fill,

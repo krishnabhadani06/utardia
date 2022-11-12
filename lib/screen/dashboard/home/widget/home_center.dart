@@ -52,9 +52,10 @@ class HomeCenter extends StatelessWidget {
                           imageUrl: provider.allHomeCategories[index].banner
                               .toString(),
                           progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  CircularProgressIndicator(
-                                      value: downloadProgress.progress),
+                              (context, url, downloadProgress) => Center(
+                            child: CircularProgressIndicator(
+                                value: downloadProgress.progress),
+                          ),
                           errorWidget: (context, url, error) =>
                               Image.asset(AssetsImagesRes.girl1),
                           fit: BoxFit.fill,

@@ -11,14 +11,19 @@ class ProfileDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const ProfileDrawerAccount(),
-        SizedBox(height: deviceHeight / 35),
-        const ProfileDrawerGeneral(),
-        SizedBox(height: deviceHeight / 50),
-        const ProfileDrawerAppSetting(),
-      ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 23.0),
+        child: Column(
+          children: [
+            const ProfileDrawerAccount(),
+            SizedBox(height: deviceHeight / 35),
+            const ProfileDrawerGeneral(),
+            SizedBox(height: deviceHeight / 50),
+            const ProfileDrawerAppSetting(),
+          ],
+        ),
+      ),
     );
   }
 }

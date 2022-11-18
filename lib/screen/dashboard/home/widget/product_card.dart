@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utardia/common/helper.dart';
 import 'package:utardia/common/text_styles.dart';
-import 'package:utardia/screen/dashboard/favorite/favorite_provider.dart';
 import 'package:utardia/screen/splash/splash_provider.dart';
 import 'package:utardia/util/color_res.dart';
 import 'package:utardia/util/image_res.dart';
@@ -64,16 +63,19 @@ Widget ProductCard({
                       // color: ColorRes.blue,
                       height: deviceHeight * 0.22,
                       width: deviceWidth,
-                      child: CachedNetworkImage(
-                          imageUrl: image!,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => SizedBox(
-                                  height: 40,
-                                  width: 40,
-                                  child: CircularProgressIndicator(
-                                      value: downloadProgress.progress)),
-                          errorWidget: (context, url, error) =>
-                              Image.asset(AssetsImagesRes.girl1)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: CachedNetworkImage(
+                            imageUrl: image!,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => SizedBox(
+                                    height: 40,
+                                    width: 40,
+                                    child: CircularProgressIndicator(
+                                        value: downloadProgress.progress)),
+                            errorWidget: (context, url, error) =>
+                                Image.asset(AssetsImagesRes.girl1)),
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,

@@ -16,7 +16,6 @@ import 'package:utardia/model/home_top_category/home_all_top_category.dart';
 import 'package:utardia/model/home_top_category/home_all_top_category_product.dart';
 import 'package:utardia/screen/category/category_provider.dart';
 import 'package:utardia/screen/category/category_screen.dart';
-import 'package:utardia/screen/category/product_list_screen/product_list_Screen.dart';
 import 'package:utardia/screen/dashboard/home/category_api/all_category_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_screen_Category_all_api.dart';
 import 'package:utardia/screen/dashboard/home/home_screen_category_api/home_top_category_apii/home_top_category_api.dart';
@@ -25,6 +24,7 @@ import 'package:utardia/services/http_service.dart';
 import 'package:utardia/services/pref_service.dart';
 import 'package:utardia/util/api_endpoints.dart';
 import 'package:utardia/util/pref_key.dart';
+
 import 'home_screen_slider_api/home_slider_api.dart';
 
 class HomeProvider extends ChangeNotifier {
